@@ -1,10 +1,10 @@
 ---
-title: "Trip Advisor - User Reviews Analysis"
+title: "Trip Advisor - Boston, London or Dubai?"
 date: 2020-02-14
-tags: [text analytics, sentiment analysis, R]
+tags: [text analytics, sentiment analysis, tokenization, TF-IDF, R]
 header:
   image: "/images/dubai.jpg"
-excerpt: "Traveler's analysis of Boston, Dubai and London using Trip Advisor's cities reviews."
+excerpt: "Analysis of traveler's experiences in Boston, Dubai and London using Trip Advisor's city reviews."
 mathjax: "true"
 ---
 
