@@ -5,4 +5,4 @@ permalink: /resume-cv/
  # image: "/images/zakim.jpg"
 ---
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/Briques, Sophie - Resume .pdf)
+![alt]({{ site.url }}{{ site.baseurl }}/images/Briques-Sophie-CV.pdf)
