@@ -23,7 +23,7 @@ This game requires courage, and having a small amount of survival knowledge in c
 
 ## Instructions
 
-To run the game, I suggest copy-pasting the following code block into a Jupyter Notebook code cell. Then, you only need to run the cell to start the game and follow the printed commands!
+To run the game, I suggest copy-pasting the following code block into a Jupyter Notebook code cell (I know the code is long, but don't worry about it, we just need all of these things to make it awesome). Then, you only need to run the cell to start the game and follow the printed commands!
 
 Have fun with it, and bonus points for those who can find the easter eggs!
 
