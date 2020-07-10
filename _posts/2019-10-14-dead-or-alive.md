@@ -28,7 +28,7 @@ To run the game, I suggest copy-pasting the following code block into a Jupyter 
 Have fun with it, and bonus points for those who can find the easter eggs!
 
 
-**Note: If you're not familiar with Jupyter Notebooks, here's a [great tutorial](https://www.youtube.com/watch?v=HW29067qVWk) on how they work and [how to set up] (https://www.anaconda.com/products/individual) Anaconda Navigator.**
+*Note: If you're not familiar with Jupyter Notebooks, here's a [great tutorial](https://www.youtube.com/watch?v=HW29067qVWk) on how they work and [how to set up](https://www.anaconda.com/products/individual) Anaconda Navigator.*
 
 
 ```python
