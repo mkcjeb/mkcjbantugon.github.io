@@ -1,6 +1,7 @@
 ---
 title: "Hello World Post"
 date: 1996-09-22
+path: "/data-management/"
 tags: [data wrangling, data science, messy data]
 header:
   image: "/images/perceptron/percept.jpg"
