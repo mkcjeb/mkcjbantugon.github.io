@@ -80,7 +80,7 @@ After import, each city’s reviews were a data frame with two variables: line a
 ```r
 
 # STEP 2: Data Cleaning and Tokenization
-######################################################
+
 ## Custom Stop Words
 custom_stop_words <- tribble(~word, ~lexicon, 
                              "boston", "CUSTOM",
@@ -179,11 +179,12 @@ london_bing <- london_tokens %>%
 
 ![Boston Reviews Sentiment - Bing Lexicon](/images/Boston-Review-Sentiments-Bing.png)
 
+![London Reviews Sentiment - Bing Lexicon](/images/London-Review-Sentiments-Bing.png)
+
 ![Dubai Reviews Sentiment - Bing Lexicon](/images/Dubai-Review-Sentiments-Bing.png)
 
 *Note that the analysis was conducted using the Bing lexicon. This lexicon simply classifies words as positive or negative. In the case of Dubai, the lexicon classified the word “desert” as a negative word as it took it by the meaning of abandonment. In this case however, it means the type of land, a characteristic of the United Arab Emirates region.*
 
-![London Reviews Sentiment - Bing Lexicon](/images/London-Review-Sentiments-Bing.png)
 
 Positive words used in all three cities include: “nice”, “amazing”, “recommend”, “friendly”, “clean”, “delicious”. However, Boston seems to a colder city (“cold” and “chilly” are amongst the most frequent words in reviews) and London is expensive, noisy and can be disappointing. Surprisingly, Dubai reviews frequently included words such as “bashing”, “worst” and “strange”. These suggest travelers should be cautious and prepared.
 
