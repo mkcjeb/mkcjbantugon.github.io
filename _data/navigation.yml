@@ -2,13 +2,13 @@
 main:
   - title: "About"
     url: /about/
-  - title: "Python Projects"
-    url: /python-projects/
-  - title: "R Projects"
-    url: /r-projects/
-  - title: "SQL Projects"
-    url: /sql-projects/
-  - title: "Data Visualization"
-    url: /data-visualization/
-  - title: "Data Management"
-    url: /data-management/
+  - title: "Projects"
+    url: /projects/
+  - title: "Resume"
+    url: /resume-cv/
+# - title: "SQL Projects"
+#   url: /sql-projects/
+# - title: "Data Visualization"
+#   url: /data-visualization/
+# - title: "Data Management"
+#   url: /data-management/
