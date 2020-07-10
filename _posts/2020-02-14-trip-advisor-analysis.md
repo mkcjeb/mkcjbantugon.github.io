@@ -3,7 +3,7 @@ title: "Trip Advisor - User Reviews Analysis"
 date: 2020-02-14
 tags: [text analytics, sentiment analysis, R]
 header:
-  image: ""
+  image: "/images/TripAdvisor-Logo.png"
 excerpt: "Traveler's analysis of Boston, Dubai and London using Trip Advisor's cities reviews."
 mathjax: "true"
 ---
