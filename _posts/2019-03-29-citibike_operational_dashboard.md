@@ -43,7 +43,7 @@ In order to answer the above questions, I have connected Data Studio to Big Quer
 
 ### Station Health
 
-1. How many stations are at capacity, empty, or out of service?
+* How many stations are at capacity, empty, or out of service?
 
 ```sql
 
@@ -55,7 +55,7 @@ FROM `bigquery-public-data.new_york_citibike.citibike_stations`
 
 ```
 
-2. What is the fill rate(bikes available/capacity) for each station?
+* What is the fill rate(bikes available/capacity) for each station?
 
 ```sql
 
@@ -64,7 +64,7 @@ FROM `bigquery-public-data.new_york_citibike.citibike_stations`
 
 ```
 
-3. What is the most popular station to start rides for all time?
+* What is the most popular station to start rides for all time?
 
 ```sql
 
@@ -76,7 +76,8 @@ ORDER BY num_rides desc
 LIMIT 1;
 
 ```
-4. What is the most popular station to end rides for all time?
+
+* What is the most popular station to end rides for all time?
 
 ```sql
 
@@ -89,7 +90,7 @@ LIMIT 1;
 
 ```
 
-5. What are the top 3 most popular trips (start and end station combination) for all time?
+* What are the top 3 most popular trips (start and end station combination) for all time?
 
 ```sql
 
@@ -101,7 +102,7 @@ LIMIT 3;
 
 ```
 
-6. Which hours of the day does usage peak on weekdays?
+* Which hours of the day does usage peak on weekdays?
 
 ```sql
 
@@ -114,7 +115,7 @@ ORDER BY num_trips desc;
 
 ```
 
-7. Which hours of day does usage peak on weekends? 
+* Which hours of day does usage peak on weekends? 
 
 ```sql
 
@@ -129,7 +130,7 @@ ORDER BY num_trips desc;
 
 ### System Health
 
-1. How many trips are there per day?
+* How many trips are there per day?
 
 ```sql
 
@@ -142,7 +143,7 @@ ORDER BY DAY ASC;
 
 ```
 
-2. What is the average trip duration?
+* What is the average trip duration?
 
 ```sql
 
@@ -151,7 +152,7 @@ FROM `bigquery-public-data.new_york_citibike.citibike_trips`;
 
 ```
 
-3. What was the shortest trip?
+* What was the shortest trip?
 
 ```sql
 
@@ -159,7 +160,7 @@ SELECT ROUND(MIN(tripduration/60),2) as min_duration
 FROM `bigquery-public-data.new_york_citibike.citibike_trips`;
 
 ```
-4. What was the longest trip?
+* What was the longest trip?
 
 ```sql
 
@@ -168,7 +169,7 @@ FROM `bigquery-public-data.new_york_citibike.citibike_trips`;
 
 ```
 
-5. How many total hours of usage does each bike have?
+* How many total hours of usage does each bike have?
 
 ```sql
 
