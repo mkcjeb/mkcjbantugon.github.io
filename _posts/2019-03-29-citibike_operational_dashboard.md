@@ -1,5 +1,5 @@
 ---
-title: "CitiBike: Operational Dashboard"
+title: "Citi Bike: Operational Dashboard"
 date: 2019-03-29
 tags: [SQL, google data studio, google big query, dashboards, data visualization]
 header:
@@ -41,7 +41,7 @@ The dashboard can be found [here](https://datastudio.google.com/s/oEq2kNO82HQ). 
 ## SQL queries
 In order to answer the above questions, I have connected Data Studio to Big Query, using SQL to extract the needed information.
 
-# Station Health
+### Station Health
 
 1. How many stations are at capacity, empty, or out of service?
 
@@ -127,7 +127,7 @@ ORDER BY num_trips desc;
 
 ```
 
-# System Health
+### System Health
 
 1. How many trips are there per day?
 
