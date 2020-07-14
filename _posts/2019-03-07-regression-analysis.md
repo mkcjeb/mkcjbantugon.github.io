@@ -9,9 +9,9 @@ mathjax: "true"
 ---
 
 
-<br><h1>Apprentice Chef, Inc.: Regression-based Analysis</h1>
+Apprentice Chef, Inc.: Regression-based Analysis
 By: Sophie Briques<br>
-Hult International Business School<br><br><br>
+Hult International Business School
 
 ***
 
@@ -24,7 +24,7 @@ Hult International Business School<br><br><br>
 ***
 
 <strong> Case: Apprentice Chef, Inc. </strong> <br>
-<i> Audience: Top Executives </i> <br>
+<strong>  Audience: Top Executives </strong> <br>
 <strong> Goal: </strong> understand how much revenue to expect from each customer within their first year of orders <br>
 <strong> Target consumer: </strong> busy professional, little to no skills in the kitchen <br>
 <strong> Product: </strong> daily-prepared gourmet meals delivered <br>
@@ -32,11 +32,12 @@ Hult International Business School<br><br><br>
 <strong>Revenue: </strong> 90% of revenue comes from customers that have been ordering for 12 months or less
 
 
-<br> Specifications: 
+Specifications: 
 - at most 30 min to finish cooking
 - disposable cookware
 - delicious and healthy eating
-<br> Channels: online platform and mobile app
+
+Channels: online platform and mobile app
 Revenue: 90% of revenue comes from customers that have been ordering for 12 months or less
 
 
@@ -62,7 +63,10 @@ Assumptions:
 3. Part 3: Build a machine learning model to predict revenue 
 4. Part 4: Evaluating Model
 
+*** 
+
 ### Set-up
+
 
 ```python
 # Importing Necessary Libraries
@@ -251,6 +255,7 @@ def at_flag(variable, index, threshold, data):
 
 ```
 
+***
 
 ## Part 1: Exploratory Data Analysis (EDA)
 
@@ -268,7 +273,7 @@ chef_description = pd.read_excel('Apprentice_Chef_Data_Dictionary.xlsx')
 
 ```
 
-<strong> Observations: </strong>
+<i> Observations: </i>
 - Data types are coherent with each variable description
 - 47 missing values in Family Name
 - Number of observations: 1946
@@ -276,6 +281,7 @@ chef_description = pd.read_excel('Apprentice_Chef_Data_Dictionary.xlsx')
     - 3 are floats
     - 22 are integers
     - 4 are objects
+
 
 <strong> Step 1: </strong> Classifying our variables based on variable types:
 
@@ -356,8 +362,6 @@ counts = ['TOTAL_MEALS_ORDERED',
           'TOTAL_PHOTOS_VIEWED']
 ```
 
-### A) Missing Value Analysis and Imputation
-
 
 <strong> Step 2: </strong> Further investigating missing values
 
@@ -368,7 +372,7 @@ chef_org.isnull().sum()
 chef_org.loc[:,:][chef_org['FAMILY_NAME'].isna()]
 ```
 
-<strong>Observations: </strong>
+<i>Observations: </i>
 - Customers that have NA family name have parenthesis in names
 - Parenthesis seem to indicate either their role or their geographical location
 - Emails take the same format for last name 
@@ -387,10 +391,10 @@ chef_m['m_FAMILY_NAME'] = chef_m['FAMILY_NAME'].isnull().astype(int)
 ```
 
 
-### B) Categorical Variables - Sample Size Check
 
+<strong> Step 3: </strong> Categorical Variables - Sample Size Check.
 
-<strong> Step 3: </strong> Checking for sample size for each of categorical/ binary variables. We need to see if the size of each of the categories is large enough to infer statistical significance or insignificance. If not, the variable could be insignificant to predict revenue when in reality its sample size is too small.
+We need to see if the size of each of the categories is large enough to infer statistical significance or insignificance. If not, the variable could be insignificant to predict revenue when in reality its sample size is too small.
 
 
 ```python
@@ -441,11 +445,11 @@ Name: REFRIGERATED_LOCKER, dtype: int64
 
 ```
 
-<strong> Observations: </strong>
+<i> Observations: </i>
 - Sample size for each option in all categorical variables are large enough for analysis (all contain above 200 observations)
 
 
-### C) Categorical Variables: Email Domains
+<strong> Step 4: </strong> Categorical Variables: Email Domains
 
 <strong> Purpose </strong>: email domains from clients can provide insight on which customers are more likely to open any email communications. For example, if the email used for subscription is a "junk" email, chances are this customer might look at the inbox as often as we would like, as opposed to a professional email address where the customer might be looking at it multiple times a day. This can lead to an affect in revenue since clients might order a meal through an advertisement or a discount. <br>
 
@@ -545,14 +549,14 @@ categorical          = categorical + domains
 
 ```
 
-### D) Continuous Variables: Outliers Detection
+<strong> Step 5: </strong> Continuous Variables: Outliers Detection
 
 <strong> Purpose: </strong> Outliers affect most predictive models. It increases variance in a variable, and therefore need to be flagged for two main reasons: <br> <br>
 1) Using outlier flag variable in our model quantifies the affect of that outlier on the variable we are trying to predict (in this case, revenue) <br>
 2) In some cases, removing outliers can improve our predictions and increase generalization of our model <br> <br>
 
-<nbsp> <nbsp> <nbsp> <nbsp>  In the following code, we visualize each variable's distribution with an user-defined function and we look at the quartile ranges using descriptive statistics. We then set thresholds which will determine which observations are going to be considered as outliers in this analysis. Finally, we create a new column for each of the variables that contain outliers, where a 1 will be imputed for outlier observations. <br><br>
-<i> Note: no outliers are removed in the part of the analysis <i> <br><br>
+In the following code, we visualize each variable's distribution with an user-defined function and we look at the quartile ranges using descriptive statistics. We then set thresholds which will determine which observations are going to be considered as outliers in this analysis. Finally, we create a new column for each of the variables that contain outliers, where a 1 will be imputed for outlier observations. <br><br>
+<i> Note: no outliers are removed in the part of the analysis </i> <br><br>
 
 
 ```python
@@ -562,7 +566,7 @@ for variable in continuous:
 ```
 
 
-<strong> Observations:</strong>
+<i> Observations:</i>
 - Revenue:
     - big dip in clients with revenue at approx 2,000 
 
@@ -596,7 +600,7 @@ for variable in counts:
     continuous_distributions(variable, chef_org, bins = 'auto',kde = False, rug = False)
 ```
 
-<strong> Observations: </strong>
+<i> Observations: </i>
 
 - Total Meals Ordered:
     - strong dip in around 25 - investigate
@@ -695,11 +699,11 @@ for key in lst_thresholds_lo.keys():
     outlier_flag_lo(key,lst_thresholds_lo[key],chef_1)
 ```
 
-### E) Continuous/ Count Variables: Trend-Based Features
+<strong> Step 6: </strong> Continuous/ Count Variables: Trend-Based Features
 
 <strong> Purpose: </strong> Changes in variables behaviors in relation to our target variable can provide powerful explanations in our model as to how our revenue might be afftected. <br> 
 
-<nbsp> <nbsp> <nbsp> <nbsp>  In the following code, we visualize each variable's relationship with revenue with an user-defined function. We then set thresholds which will determine which observations are going to be considered having a differing effect on our revenue. Finally, we create a new feature for each of the variables that contain this difference, where a 1 will be imputed for these observations. <br><br>
+In the following code, we visualize each variable's relationship with revenue with an user-defined function. We then set thresholds which will determine which observations are going to be considered having a differing effect on our revenue. Finally, we create a new feature for each of the variables that contain this difference, where a 1 will be imputed for these observations. <br><br>
 
 
 
