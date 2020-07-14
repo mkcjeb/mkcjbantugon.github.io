@@ -1806,8 +1806,10 @@ sns.residplot(x = out_lr_pred,  # prediction values
 # displaying the plot
 plt.show()
 ```
+
 ![Residual Plot After Outliers](images/regression-residual-plot-2.png)
 
+<br>
 <strong> Observations: </strong> 
 - there still seems to be a few outliers in our model with really big residual. It is most likely these outlier do not come from our independent variables, and is instead an outlier in Revenue, which is why our model's testing score still increased. 
 - for the purpose of this analysis, we will keep the Revenue outliers in our data, since the objective is to identify the best features to predict revenue for a new consumer. Further investigation is needed on this Revenue data point as to understand its relationship in with the selected features.
