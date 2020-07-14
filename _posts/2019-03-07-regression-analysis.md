@@ -11,7 +11,9 @@ mathjax: "true"
 
 Apprentice Chef, Inc.: Regression-based Analysis<br>
 By: Sophie Briques<br>
-Hult International Business School
+Hult International Business School<br><br>
+
+Jupyter notebook and dataset for this analysis can be found here: [Portfolio-Projects](https://github.com/sbriques/portfolio-projects)
 
 ***
 
