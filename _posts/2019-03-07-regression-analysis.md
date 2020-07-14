@@ -1552,7 +1552,7 @@ X_train_s, X_test_s, y_train_s, y_test_s = train_test_split(
 
 <strong> Model 1: </strong> OLS (linear regression - ordinary least squares)
 
-```pyton
+```python
 # applying modeling with scikit-learn
 # INSTANTIATING a model object
 lr = LinearRegression()
