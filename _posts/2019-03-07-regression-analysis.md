@@ -9,7 +9,7 @@ mathjax: "true"
 ---
 
 
-Apprentice Chef, Inc.: Regression-based Analysis
+Apprentice Chef, Inc.: Regression-based Analysis<br>
 By: Sophie Briques<br>
 Hult International Business School
 
@@ -24,7 +24,7 @@ Hult International Business School
 ***
 
 <strong> Case: Apprentice Chef, Inc. </strong> <br>
-<strong>  Audience: Top Executives </strong> <br>
+<strong>  Audience: </strong> Top Executives  <br>
 <strong> Goal: </strong> understand how much revenue to expect from each customer within their first year of orders <br>
 <strong> Target consumer: </strong> busy professional, little to no skills in the kitchen <br>
 <strong> Product: </strong> daily-prepared gourmet meals delivered <br>
@@ -37,7 +37,7 @@ Specifications:
 - disposable cookware
 - delicious and healthy eating
 
-Channels: online platform and mobile app
+Channels: online platform and mobile app <br>
 Revenue: 90% of revenue comes from customers that have been ordering for 12 months or less
 
 
@@ -556,7 +556,7 @@ categorical          = categorical + domains
 2) In some cases, removing outliers can improve our predictions and increase generalization of our model <br> <br>
 
 In the following code, we visualize each variable's distribution with an user-defined function and we look at the quartile ranges using descriptive statistics. We then set thresholds which will determine which observations are going to be considered as outliers in this analysis. Finally, we create a new column for each of the variables that contain outliers, where a 1 will be imputed for outlier observations. <br><br>
-<i> Note: no outliers are removed in the part of the analysis </i> <br><br>
+<i> Note: no outliers are removed in this part of the analysis </i> <br><br>
 
 
 ```python
@@ -908,8 +908,8 @@ clean_chef = chef_1.drop([
 <br>
 <i> Note: log transformations require non-zero values </i><br><br>
 sources: <br>
-<a> https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114 <br>
-<a> https://www.r-statistics.com/2013/05/log-transformations-for-skewed-and-wide-distributions-from-practical-data-science-with-r/ 
+<a>[Feature Engineering for Machine Learning - Towards Data Science](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114) <br>
+<a>[Log Transformations for Skewed and Wide Distributions - Practical Data Science with R](https://www.r-statistics.com/2013/05/log-transformations-for-skewed-and-wide-distributions-from-practical-data-science-with-r/)
 
 
 
@@ -952,6 +952,7 @@ def standard(num_df):
 
 ```
 
+Performing the log transformation of revenue:
 
 ```python
 # Log Transformation
@@ -963,6 +964,7 @@ clean_chef['rev_log'] = clean_chef['REVENUE'].transform(np.log)
 
 ```
 
+Standardizing the dataset (without revenue):
 
 ```python
 # Standardization
@@ -982,6 +984,7 @@ chef_std   = standard(chef_x).join(chef_target)
 
 <strong> Purpose: </strong> Find a model that can predict a new customer's revenue.
 
+The following dictionary format allows us to easily test different variable combinations. These are the the variables tested for each instance. 
 
 ```python
 # Defining a dictionary with variables names for each different model test
@@ -1101,12 +1104,16 @@ We'll start with an multilinear model. We'll be using the statsmodel package to 
 <strong> Step 3: </strong> OLS model with original and engineered features <br> 
 <strong> Step 4: </strong> OLS model with fitted variables (only significant variables) <br><br>
 
+***
+
+<strong> Step 1: </strong> Correlation between dependent variables and independent variable <br>
 
 ```python
 # creating a (Pearson) correlation matrix
 df_corr = clean_chef.corr().round(2)
 ```
 
+<strong> Step 2: </strong> OLS model with original features <br>
 
 ```python
 # Creating a DataFrame with only Original Features (Base Model)
@@ -1114,10 +1121,7 @@ chef_org_explanatory = chef_org[variables_dict['Base']]
 
 # dropping Revenue and Discrete variables from the explanatory variable set
 chef_org_explanatory = chef_org_explanatory.drop(['REVENUE','NAME','FIRST_NAME','FAMILY_NAME', 'EMAIL'], axis = 1)
-```
 
-
-```python
 # Building a full OLS model with all original features
 lm_full = smf.ols(formula = """ chef_org['REVENUE'] ~
                             chef_org['CROSS_SELL_SUCCESS'] +
@@ -1160,7 +1164,10 @@ print(results_full.summary2())
 - significant variables: total meals ordered (+ 5.7), unique meal purchased (-63.7), contacts with customer service (+ 45.6), average prep video time (+ 9.3), largest order size (- 96), master classes attended (+ 175.2), median meal rating ( + 342.4), total photos viewed (+ 0.69).
 - from these, it is not surprising to have total meals ordered and largest order size as revenue = quantity * price and these variables are directly related to quantity. However it is interesting to look at unique meals purchased having a negative relationship with revenue. This could indicate that customers for Apprentice Chef are most likely to be always ordering the same meals. --> for further investigation
 - ! The condition number is large (6e+03). This might indicate strong multicollinearity or other numerical problems.
+<br>
+<br>
 
+<strong> Step 3: </strong> OLS model with original and engineered features <br> 
 
 ```python
 ### Creating a Feature Rich DataFrame (Full model)
@@ -1168,10 +1175,7 @@ chef_full_explanatory = clean_chef[variables_dict['Full_Features']]
 
 # dropping Revenue and Discrete variables from the explanatory variable set
 chef_full_explanatory = chef_full_explanatory.drop(['REVENUE','out_REVENUE'], axis = 1)
-```
 
-
-```python
 ## Building a full OLS model with created features
 lm_full = smf.ols(formula = """ chef_org['REVENUE'] ~
                             clean_chef['TOTAL_MEALS_ORDERED'] +
@@ -1248,17 +1252,14 @@ results_full = lm_full.fit()
 - still a lot of insignificant features
 - still possibility of multicollinearity
 
+<br>
+<strong> Step 4: </strong> OLS model with fitted variables (only significant variables) <br><br>
 
 ```python
 ## Creating a DataFrame with only significant features
 chef_fit = clean_chef[variables_dict['LinearReg Features']]
 
-```
-
-
-```python
 # Building a fit OLS model based on P-value from full model (alpha = 0.001)
-
 lm_fit = smf.ols(formula = """ chef_org['REVENUE'] ~
                             clean_chef['TOTAL_MEALS_ORDERED'] +
                             clean_chef['CONTACTS_W_CUSTOMER_SERVICE'] +
@@ -1278,7 +1279,7 @@ lm_fit = smf.ols(formula = """ chef_org['REVENUE'] ~
 results_fit = lm_fit.fit()
 
 # printing the results
-#print(results_fit.summary2())
+print(results_fit.summary2())
 ```
 
 <strong> Observations: </strong>
@@ -1290,9 +1291,14 @@ results_fit = lm_fit.fit()
 ### B) Feature Selection
 
 In this section, we'll be utilizing different methods to improve our models predictive power by shedding a light on which features are important: <br> <br>
-<strong> Method 1: </strong> L1 Regularization or Lasso - useful for feature selection when we have too many variables
+<strong> Method 1: </strong> L1 Regularization or Lasso
 <br><br>
 
+Preparation:
+* random state: seed set to 222
+* test size: 0.25
+* features: orignial and engineered features
+* revenue: log
 
 ```python
 ## Preparing the orginal data for SKLEARN models
@@ -1302,11 +1308,10 @@ seed = 222
 # Preparing response variable
 chef_target = clean_chef['rev_log']
 
-
 ### Non-transformed Data ###
 # Preparing x-variables
 ## use dictionary keys for different sets of features (might need to drop different columns)
-chef_x = clean_chef[variables_dict['ARD Features']].drop(['REVENUE','rev_log'], axis = 1)# 'out_REVENUE',
+chef_x = clean_chef[variables_dict['Log Revenue Features']].drop(['REVENUE','rev_log'], axis = 1)# 'out_REVENUE',
 
 # Running train/test split
 X_train, X_test, y_train, y_test = train_test_split(
@@ -1317,7 +1322,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 ### Transformed Data #### 
 # Preparing x-variables
-chef_std_x = chef_std[variables_dict['ARD Features']].drop(['REVENUE','rev_log'], axis = 1) #'out_REVENUE',
+chef_std_x = chef_std[variables_dict['Log Revenue Features']].drop(['REVENUE','rev_log'], axis = 1) #'out_REVENUE',
 
 # Running train/test split
 X_train_s, X_test_s, y_train_s, y_test_s = train_test_split(
@@ -1367,16 +1372,18 @@ lr_test_score  = lr.score(X_test, y_test).round(4)
 ***
 <br>
 Now let's run our first regularization model on sklearn: Lasso (L1 Regularization). The goal is to evaluate which features are important to our target variable. The model uses a penalty function to decrease a feature's coefficient each time it runs, thus making insignificant coefficients equal to zero by the end. <br><br>
-Its parameters specified below are alpha (regularization parameter, when equal to one - simple linear regression, as it reduces, we further filter our features by penalizing them) and normalize (which here is set to false since we are using normalized data on it). It is important to use standardized data with this method to reduce 
+Its parameters specified below are alpha (regularization parameter, when equal to one - simple linear regression, as it reduces, we further filter our features by penalizing them) and normalize (which here is set to false since we are using normalized data on it). It is important to use standardized data with this method.
 
 <br>
 We then look at the coefficients for each of the variables to identify features that are important. 
 <br><br>
 sources: <br>
-<a> https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c <br>
-<a> https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b
+<a> [L1 and L2 Regularization Methods - Towards Data Science](https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c) <br>
+<a> [Ridge and Lasso Regression - Towards Data Science](https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b)
+<br>
+<br>
 
-
+First pass through lasso model with normalized data:
 
 ```python
 # INSTANTIATING a model object
@@ -1399,7 +1406,7 @@ print('Testing Score:',  lasso_model.score(X_test_s, y_test_s).round(4))
     Testing Score: 0.7817
 ```
 
-
+With the Lasso model, we are most interested in the coefficients of different variables. Coefficients with 0 are insignificant for our target variable.
 ```python
 # storing coefficients as df 
 lasso_model_coef = pd.DataFrame(lasso_model.coef_)
@@ -1410,7 +1417,42 @@ lasso_model_coef['Variable Names'] = chef_std_x.columns
 # Looking at insignificant coefficients
 drop = lasso_model_coef.iloc[:,:][lasso_model_coef[0] == 0]
 ```
+Observations:
+significant features: 
+* TOTAL_MEALS_ORDERED
+* UNIQUE_MEALS_PURCH
+* CONTACTS_W_CUSTOMER_SERVICE
+* AVG_TIME_PER_SITE_VISIT
+* CANCELLATIONS_BEFORE_NOON
+* CANCELLATIONS_AFTER_NOON
+* PC_LOGINS
+* MOBILE_LOGINS
+* EARLY_DELIVERIES
+* REFRIGERATED_LOCKER
+* AVG_PREP_VID_TIME
+* LARGEST_ORDER_SIZE
+* MEDIAN_MEAL_RATING
+* TOTAL_PHOTOS_VIEWED
+* junk
+* outlier flags: out_TOTAL_MEALS_ORDERED, out_UNIQUE_MEALS_PURCH, out_CONTACTS_W_CUSTOMER_SERVICE, out_LATE_DELIVERIES, out_TOTAL_PHOTOS_VIEWED, out_REVENUE, out_LARGEST_ORDER_SIZE, out_AVG_CLICKS_PER_VISIT, 
+* trend-based flags: change_AVG_PREP_VID_TIME_1, change_LARGEST_ORDER_SIZE_0, change_UNIQUE_MEALS_PURCH_0, change_CONTACTS_W_CUSTOMER_SERVICE_0, change_PRODUCT_CATEGORIES_VIEWED_0,change_CANCELLATIONS_BEFORE_NOON_0, change_PC_LOGINS_0, change_WEEKLY_PLAN_0, change_MEDIAN_MEAL_RATING_0, change_MEDIAN_MEAL_RATING_1, change_MEDIAN_MEAL_RATING_2, change_MASTER_CLASSES_ATTENDED_0, change_MASTER_CLASSES_ATTENDED_1, change_TOTAL_PHOTOS_VIEWED_0
 
+
+<br>
+<br>
+<strong> Method 2: </strong> L2 Regularization or Bayesian Ridge Regression
+
+Now let's run our another regularization model on sklearn: ARDRegression (L2 Regularization). The goal is to evaluate which features are important to our target variable. The model uses a penalty function to decrease a feature's coefficient each time it runs, thus making insignificant coefficients equal to zero by the end. With this method, our lambda (L2) is treated as a variable, and is much more adaptable to our data. <br><br>
+Its parameters specified below are n_iter (number of maximum interations) and normalize (which here is set to false since we are using normalized data on it). It is important to use standardized data with this method.
+
+<br>
+We then look at the coefficients for each of the variables to identify features that are important. 
+<br><br>
+sources: <br>
+<a> [L1 and L2 Regularization Methods - Towards Data Science](https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c) <br>
+<a> [ARD Regression - scikit-learn package documentation](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ARDRegression.html)
+<br>
+<br>
 
 ```python
 # INSTANTIATING a model object
@@ -1443,6 +1485,102 @@ ard_model_coef['Variable Names'] = chef_std_x.columns
 drop = ard_model_coef.iloc[:,:][ard_model_coef[0] == 0]
 ```
 
+Observations:
+significant features:
+* TOTAL_MEALS_ORDERED
+* CONTACTS_W_CUSTOMER_SERVICE
+* AVG_PREP_VID_TIME
+* LARGEST_ORDER_SIZE
+* MEDIAN_MEAL_RATING
+* out_TOTAL_MEALS_ORDERED
+* out_CONTACTS_W_CUSTOMER_SERVICE
+* change_AVG_PREP_VID_TIME_1
+* change_UNIQUE_MEALS_PURCH_0
+* change_CONTACTS_W_CUSTOMER_SERVICE_0
+* change_MEDIAN_MEAL_RATING_0
+* change_MEDIAN_MEAL_RATING_1
+* change_MASTER_CLASSES_ATTENDED_0
+* change_MASTER_CLASSES_ATTENDED_1
+* change_TOTAL_PHOTOS_VIEWED_0
+<br>
+
+We can see the second method has further filtered through our variables, creating a much simpler model.
+
+
+### C) Model Selection
+
+In this section, we'll evaluate the performance of the linear regression and the KNN regression models against each other, using the feautures selected with regularization methods.
+
+Preparation:
+* random state: seed set to 222
+* test size: 0.25
+* features: ARD features
+* revenue: log
+
+```python
+## Preparing the orginal data for SKLEARN models
+# Creating a variable for random seed
+seed = 222
+
+# Preparing response variable
+chef_target = clean_chef['rev_log']
+
+
+### Non-transformed Data ###
+# Preparing x-variables
+## use dictionary keys for different sets of features (might need to drop different columns)
+chef_x = clean_chef[variables_dict['ARD Features']].drop(['REVENUE','rev_log'], axis = 1)# 'out_REVENUE',
+
+# Running train/test split
+X_train, X_test, y_train, y_test = train_test_split(
+            chef_x,
+            chef_target,
+            test_size = 0.25,
+            random_state = seed)
+
+### Transformed Data #### 
+# Preparing x-variables
+chef_std_x = chef_std[variables_dict['ARD Features']].drop(['REVENUE','rev_log'], axis = 1) #'out_REVENUE',
+
+# Running train/test split
+X_train_s, X_test_s, y_train_s, y_test_s = train_test_split(
+            chef_std_x,
+            chef_target,
+            test_size = 0.25,
+            random_state = seed)
+```
+
+<strong> Model 1: </strong> OLS (linear regression - ordinary least squares)
+
+```pyton
+# applying modeling with scikit-learn
+# INSTANTIATING a model object
+lr = LinearRegression()
+
+
+# FITTING to the training data
+lr_fit = lr.fit(X_train, y_train) 
+
+
+# PREDICTING on new data
+lr_pred = lr_fit.predict(X_test) 
+
+# SCORING the results
+print('Training Score:', lr.score(X_train, y_train).round(4)) 
+print('Testing Score:',  lr.score(X_test, y_test).round(4))   
+
+# saving results for later:
+lr_train_score = lr.score(X_train, y_train).round(4) 
+lr_test_score  = lr.score(X_test, y_test).round(4)
+```
+
+```python
+Training Score: 0.8259
+Testing Score: 0.7832
+```
+
+<strong> Model 2: </strong> K-Nearest Neighbors Regression
+To best utilize this model, we need to include a calculation of the optimal number of neighbors. We do so through a loop, that evaluates n neighbors from 1 to 21.
 
 ```python
 # creating lists for training set accuracy and test set accuracy
@@ -1464,15 +1602,6 @@ for n_neighbors in neighbors_settings:
     # Recording the generalization accuracy
     test_accuracy.append(clf.score(X_test_s, y_test_s))
 
-
-# plotting the visualization
-fig, ax = plt.subplots(figsize=(12,8))
-plt.plot(neighbors_settings, training_accuracy, label = "training accuracy")
-plt.plot(neighbors_settings, test_accuracy, label = "test accuracy")
-plt.ylabel("Accuracy")
-plt.xlabel("n_neighbors")
-plt.legend()
-plt.show()
 
 # finding the optimal number of neighbors
 opt_neighbors = test_accuracy.index(max(test_accuracy)) + 1
@@ -1503,18 +1632,18 @@ print('Testing Score:',  knn_reg.score(X_test_s, y_test_s).round(4))
 ```
 
 <br> <strong> Observations: </strong>
-- KNN model score is not higher than a Linear model with features selected by regularization methods
+- KNN model score is slightly higher than a Linear model with features selected by regularization methods
 - KNN slightly overfits our model (difference of 0.065 between train and test scores)
 
-<strong> Conclusion: </strong>  Linear model provides a high score with features selected by regularization methods. Its interpretability will provide powerful business insights. However, we need to make sure we are meeting all the assumptions necessary of a linear model.
+<strong> Conclusion: </strong>  Linear model provides a slightly lower score with features selected by regularization methods. However, its interpretability will provide powerful business insights. However, we need to make sure we are meeting all the assumptions necessary of a linear model.
 
 
 ***
 
 ## Part IV: Evaluating Model - Linear Model Assumptions
 1. Residual plots (is linear assumption valid? are outliers affecting our predictions?)
-2.  Multicollinearity (highly correlated explanatory variables)
-3.  Re - sampling methods (cross validation)
+2. Multicollinearity (highly correlated explanatory variables)
+3. Re - sampling methods (cross validation)
 
 
 <strong> 1. Residual Plot </strong>
@@ -1532,14 +1661,16 @@ sns.residplot(x = lr_pred,  # prediction values
 plt.show()
 ```
 
+![Regression-residual-plot](images/Regression-residual-plot.png)
+
 <strong> Observations:</strong>
 - no obvious patterns: homoskedasticity assumption met, linear relationship met
 - Caution: very big outlier could be affecting our prediction
 
 <br>
 sources: <br>
-<a> https://data.library.virginia.edu/interpreting-log-transformations-in-a-linear-model/ <br>
-<a> http://docs.statwing.com/interpreting-residual-plots-to-improve-your-regression/
+[Interpreting Log Transformations in a Linear Model](https://data.library.virginia.edu/interpreting-log-transformations-in-a-linear-model/) <br>
+[Interpreting Residual Plots to Improve your Regression](http://docs.statwing.com/interpreting-residual-plots-to-improve-your-regression/)
 
 
 ***
@@ -1675,10 +1806,11 @@ sns.residplot(x = out_lr_pred,  # prediction values
 # displaying the plot
 plt.show()
 ```
+![Residual Plot After Outliers](images/regression-residual-plot-2.png)
 
 <strong> Observations: </strong> 
 - there still seems to be a few outliers in our model with really big residual. It is most likely these outlier do not come from our independent variables, and is instead an outlier in Revenue, which is why our model's testing score still increased. 
-- for the purpose of this analysis, we will keep the Revenue outliers in our model, since the objective is to identify the best features to predict revenue for a new consumer. Further investigation is needed on this Revenue data point as to understand its relationship in with the selected features.
+- for the purpose of this analysis, we will keep the Revenue outliers in our data, since the objective is to identify the best features to predict revenue for a new consumer. Further investigation is needed on this Revenue data point as to understand its relationship in with the selected features.
 
 <strong> 3. Multicollinearity </strong>
 
@@ -1702,6 +1834,7 @@ sns.heatmap(corr_chef,
 
 plt.show()
 ```
+
 
 <strong> Observations: </strong> 
 - there are no correlations above 0.8 so we can say that multicollinearity is not affecting our model.
