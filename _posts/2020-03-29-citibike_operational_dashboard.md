@@ -6,6 +6,8 @@ header:
   image: "/images/citibike.jpg"
 excerpt: "This Google Data Studio dashboard aims to satisfy CitiBike operational needs using live public data from Google Big Query."
 mathjax: "true"
+toc: true
+toc_label : "Navigate"
 ---
 
 ## Introduction
