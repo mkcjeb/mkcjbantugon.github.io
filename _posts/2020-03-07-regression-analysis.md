@@ -16,6 +16,11 @@ Hult International Business School<br><br>
 Jupyter notebook and dataset for this analysis can be found here: [Portfolio-Projects](https://github.com/sbriques/portfolio-projects)
 
 ***
+### Introduction
+
+The meal kit market is competitive, with new players joining every day, as well as traditional grocery stores which are now also offering customers semi-prepared kits (Forbes, 2018). However, research shows consumers continue to order meal kits due to health reasons and getting to know new recipes (Nielsen, 2017).
+<br>
+Therefore, it is essential to understand the behaviors of our customers at Apprentice Chef which contribute to revenue to stay competitive.
 
 ### Overview
 
@@ -1838,3 +1843,34 @@ cross_val[11]
 - Our best performing model was a Linear Regression with 15 features with a test score of 0.8279 and a cross validation score with 11 folds at 0.8086
 - Optimal features were found using regularization methods such as Lasso and ARD Regression
 - It is predicting the log of revenue, therefore when interpreting coefficients, it is important to transform back using 10<sup>(coef)
+	
+## Business Insights
+
+1. Customer Segmentation
+Even though we might think customers use meal kits for new recipes, our customer data
+shows that, all else equal, customers that order the same meals every time have a 71.24% higher revenue contribution than those who order different options.
+<br>
+
+This could mean a segmentation in terms of our customers purchase intentions:
+1) customers that order our service for the practicality of quick and healthy meals
+2) customers that order our service to increase their cooking skills
+<br>
+Indeed, customers that attend 2 master classes for instance have a 12.45% increase in revenue.
+
+2. Customer Service
+Customers call customer service for a change in order delivery or a complaint. However,
+cancellations and calls are not correlated in our customer dataset, confirming Customer Service team’s observations.
+<br>
+Our ability to handle these complaints is somewhat effective. Until 10 calls, customers that have contacted customer services have an increase in revenue contribution of around 5%. However, after a customer has made 10 calls, their revenue contribution lowers by almost half (48%).
+
+## Recommendations and Business Implementation
+<br>
+<strong> Marketing </strong><br>
+By identifying which customers belong to each of the segments identified above, we could use targeted marketing campaigns on emails or social media to improve number of orders. For example, sending discounts for master classes to those who order a variety of meals, whereas for those who always order the same meal, we could offer campaigns such as: ‘order 5 meals, get 1 free’.<br>
+
+<strong> Quick Re-order </strong><br>
+Customers that always order the same meal seem to be our biggest customer segment. If we identify a customer as someone that orders always the same dish, we could include a ‘quick re-order’ button in our website and mobile app. This customer would be able to quickly order with 1 click.<br>
+
+<strong> Customer Service Data Collection </strong><br>
+Due to competitive nature of this market, customer retention is key. When a customer has a bad experience with our delivery, they could easily switch to another service, food delivery or grocery stores. However, our data for customer service calls is insufficient to evaluate how many of our calls are complaints.
+We should identify if a customer service call was a complaint or not. This provides extremely valuable insight on how a customer complaint affects our revenue, which would indirectly increase our competitive advantage.
