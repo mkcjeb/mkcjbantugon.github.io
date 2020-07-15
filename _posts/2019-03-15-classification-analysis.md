@@ -3,7 +3,7 @@ title: "Apprentice Chef, Inc.: Classification Modeling Case Study"
 date: 2019-03-15
 tags: [Python, machine learning, classification]
 header:
-  image: "/images/.jpg"
+  image: "/images/wine.jpg"
 excerpt: "At Apprentice Chef, a new subscription option, Halfway There, was just launched to a sample group of customers. Customers can receive a half bottle of wine from a local California vineyard every Wednesday. When promoting this service to a wider audience, we want to know which customers will subscribe to Halfway There. Based on a fictitious business case: Apprentice Chef, Inc. built by Professor Chase Kusterer from Hult International Business School"
 mathjax: "true"
 ---
