@@ -6,6 +6,8 @@ header:
   image: "/images/culinary.jpg"
 excerpt: "This regression analysis and model aims to understand how much revenue to expect from each customer within their first year of orders. Based on a fictitious business case: Apprentice Chef, Inc. built by Professor Chase Kusterer from Hult International Business School"
 mathjax: "true"
+toc: true
+toc_label : "Navigate"
 ---
 
 
