@@ -15,6 +15,7 @@ Hult International Business School<br>
 <br>
 Jupyter notebook and dataset for this analysis can be found here: [Portfolio-Projects](https://github.com/sbriques/portfolio-projects) 
 <br>
+<br>
 Note: this analysis is based on a fictitious business case, Apprentice Chef, Inc. built by Professor Chase Kusterer from Hult International Business School. For a better understanding of the case, please read the regression analysis on the same case, which can be found [here](https://sbriques.github.io/regression-analysis/)
 
 ***
