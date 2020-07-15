@@ -1,6 +1,6 @@
 ---
 title: "Apprentice Chef, Inc.: Classification Modeling Case Study"
-date: 2019-03-15
+date: 2020-03-15
 tags: [Python, machine learning, classification]
 header:
   image: "/images/wine.jpg"
