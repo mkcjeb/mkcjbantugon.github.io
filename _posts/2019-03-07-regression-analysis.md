@@ -25,7 +25,7 @@ Jupyter notebook and dataset for this analysis can be found here: [Portfolio-Pro
 
 ***
 
-<strong> Case: Apprentice Chef, Inc. </strong> <br>
+<strong> Case - Apprentice Chef, Inc. </strong> <br>
 <strong>  Audience: </strong> Top Executives  <br>
 <strong> Goal: </strong> understand how much revenue to expect from each customer within their first year of orders <br>
 <strong> Target consumer: </strong> busy professional, little to no skills in the kitchen <br>
@@ -39,8 +39,6 @@ Specifications:
 - disposable cookware
 - delicious and healthy eating
 
-Channels: online platform and mobile app <br>
-Revenue: 90% of revenue comes from customers that have been ordering for 12 months or less
 
 
 ***
@@ -54,7 +52,7 @@ Dataset:
 
 Assumptions:
 - all average times are in seconds
-- revenue = price x quantity and total meals ordered represent quantity
+- revenue = price x quantity, where quantity is total meals ordered
 - when customers attend master classes, they are looking to increase their cooking skills
 
 ***
@@ -94,7 +92,7 @@ file = "Apprentice_Chef_Dataset.xlsx"
 
 # reading the file into Python
 original_df = pd.read_excel(file)
-chef_org = original_df.copy()
+chef_org.   = original_df.copy()
 ```
 
 ### User-defined functions
@@ -269,13 +267,13 @@ Let us first take a look at our dataset and its dictionnary.
 chef_description = pd.read_excel('Apprentice_Chef_Data_Dictionary.xlsx')
 
 # Displaying:
-#chef_description
-#chef_org.info()
-#chef_org.describe()
+chef_description
+chef_org.info()
+chef_org.describe()
 
 ```
 
-<i> Observations: </i>
+Observations:
 - Data types are coherent with each variable description
 - 47 missing values in Family Name
 - Number of observations: 1946
@@ -284,57 +282,11 @@ chef_description = pd.read_excel('Apprentice_Chef_Data_Dictionary.xlsx')
     - 22 are integers
     - 4 are objects
 
-
+<br>
 <strong> Step 1: </strong> Classifying our variables based on variable types:
 
 
 ```python
-"""
-# CONTINUOUS OR INTERVAL
-REVENUE                     
-AVG_TIME_PER_SITE_VISIT        
-FOLLOWED_RECOMMENDATIONS_PCT
-AVG_PREP_VID_TIME
-LARGEST_ORDER_SIZE
-MEDIAN_MEAL_RATING             (interval)
-AVG_CLICKS_PER_VISIT
-
-# BINARY
-CROSS_SELL_SUCCESS     (target variable)
-MOBILE_NUMBER          (also categorical)
-TASTES_AND_PREFERENCES (also categorical)
-PACKAGE_LOCKER         (also categorical)
-REFRIGERATED_LOCKER    (also categorical)
-
-# COUNT
-TOTAL_MEALS_ORDERED
-UNIQUE_MEALS_PURCH
-CONTACTS_W_CUSTOMER_SERVICE
-PRODUCT_CATEGORIES_VIEWED
-CANCELLATIONS_BEFORE_NOON
-CANCELLATIONS_AFTER_NOON
-MOBILE_LOGINS
-PC_LOGINS
-WEEKLY_PLAN
-EARLY_DELIVERIES
-LATE_DELIVERIES
-MASTER_CLASSES_ATTENDED
-TOTAL_PHOTOS_VIEWED
-
-# CATEGORICAL
-CROSS_SELL_SUCCESS     (also binary)
-MOBILE_NUMBER          (also binary)
-TASTES_AND_PREFERENCES (also binary)
-PACKAGE_LOCKER         (also binary)
-REFRIGERATED_LOCKER    (also binary)
-
-# DISCRETE
-NAME
-EMAIL
-FIRST_NAME
-FAMILY_NAME
-
-"""
 categorical = ['CROSS_SELL_SUCCESS',
                'MOBILE_NUMBER',
                'TASTES_AND_PREFERENCES',
@@ -365,7 +317,7 @@ counts = ['TOTAL_MEALS_ORDERED',
 ```
 
 
-<strong> Step 2: </strong> Further investigating missing values
+<strong> Step 2: </strong> Investigating missing values
 
 
 ```python
@@ -374,7 +326,7 @@ chef_org.isnull().sum()
 chef_org.loc[:,:][chef_org['FAMILY_NAME'].isna()]
 ```
 
-<i>Observations: </i>
+Observations:
 - Customers that have NA family name have parenthesis in names
 - Parenthesis seem to indicate either their role or their geographical location
 - Emails take the same format for last name 
@@ -392,7 +344,8 @@ chef_m = chef_org.copy()
 chef_m['m_FAMILY_NAME'] = chef_m['FAMILY_NAME'].isnull().astype(int)
 ```
 
-
+<br>
+<br>
 
 <strong> Step 3: </strong> Categorical Variables - Sample Size Check.
 
@@ -400,6 +353,7 @@ We need to see if the size of each of the categories is large enough to infer st
 
 
 ```python
+# Printing value counts for categorical variables
 for variable in chef_org:
     if variable in categorical:
         print(f"""{variable}
@@ -410,7 +364,7 @@ for variable in chef_org:
 ```
 
 ```python
-
+"""
 CROSS_SELL_SUCCESS
 ------
 1    1321
@@ -444,18 +398,22 @@ REFRIGERATED_LOCKER
 0    1726
 1     220
 Name: REFRIGERATED_LOCKER, dtype: int64
-
+"""
 ```
 
-<i> Observations: </i>
+Observations:
 - Sample size for each option in all categorical variables are large enough for analysis (all contain above 200 observations)
 
+<br>
+<br>
 
 <strong> Step 4: </strong> Categorical Variables: Email Domains
 
-<strong> Purpose </strong>: email domains from clients can provide insight on which customers are more likely to open any email communications. For example, if the email used for subscription is a "junk" email, chances are this customer might look at the inbox as often as we would like, as opposed to a professional email address where the customer might be looking at it multiple times a day. This can lead to an affect in revenue since clients might order a meal through an advertisement or a discount. <br>
+<strong> Purpose </strong>: email domains from clients can provide insight on which customers are more likely to open any email communications. For example, if the email used for subscription is a "junk" email, chances are this customer might not look at the inbox as often as we would like, as opposed to a professional email address where the customer might be looking at it multiple times a day. This can affect revenue since clients might order a meal after seeing an advertisement or a discount. <br>
 
-<br> This steps first selects the email domain for each customer, then creates a new categorical variable where each domain is classified as "personal", "professional" or "junk". Finally, we will be one-hot encoding this new variable which will create three new columns for each email category. In these new columns, if an email corresponds to the column, that observation will take on the value 1.
+<br> This step first selects the email domain for each customer, then creates a new categorical variable where each domain is classified as "personal", "professional" or "junk".
+<br>
+Finally, we will be one-hot encoding this new variable which will create three new columns for each email category. In these new columns, if an email corresponds to the column, that observation will take on the value 1.
 
 
 ```python
@@ -550,11 +508,13 @@ domains              = ['professional','personal','junk']
 categorical          = categorical + domains
 
 ```
+<br>
+<br>
 
 <strong> Step 5: </strong> Continuous Variables: Outliers Detection
 
 <strong> Purpose: </strong> Outliers affect most predictive models. It increases variance in a variable, and therefore need to be flagged for two main reasons: <br> <br>
-1) Using outlier flag variable in our model quantifies the affect of that outlier on the variable we are trying to predict (in this case, revenue) <br>
+1) Using an outlier flag variable in our model quantifies the effect of that outlier on the variable we are trying to predict (in this case, revenue) <br>
 2) In some cases, removing outliers can improve our predictions and increase generalization of our model <br> <br>
 
 In the following code, we visualize each variable's distribution with an user-defined function and we look at the quartile ranges using descriptive statistics. We then set thresholds which will determine which observations are going to be considered as outliers in this analysis. Finally, we create a new column for each of the variables that contain outliers, where a 1 will be imputed for outlier observations. <br><br>
@@ -567,8 +527,7 @@ for variable in continuous:
     continuous_distributions(variable, chef_org, bins = 'fd', kde = True, rug = False)
 ```
 
-
-<i> Observations:</i>
+Observations from distributions:
 - Revenue:
     - big dip in clients with revenue at approx 2,000 
 
@@ -588,7 +547,6 @@ for variable in continuous:
     - after 5: a family is usually 4 - 5 people, more than that it could be that these customers are throwing dinner parties or keeping the meals for the next day
 
 - Median Meal Rating:
-    - peak on 3
     - no obvious outliers
 
 - Average Clicks per visit:
@@ -602,7 +560,7 @@ for variable in counts:
     continuous_distributions(variable, chef_org, bins = 'auto',kde = False, rug = False)
 ```
 
-<i> Observations: </i>
+Observations from distributions: 
 
 - Total Meals Ordered:
     - strong dip in around 25 - investigate
@@ -657,8 +615,6 @@ followed_rec_hi            = 80
 largest_order_size_hi      = 5
 avg_clicks_per_visit_lo    = 10
 
-
-
 # Counts:
 total_meals_ordered_hi            = 320
 unique_meals_purchased_hi         = 10
@@ -689,10 +645,8 @@ lst_thresholds_hi = {
 lst_thresholds_lo = {
      'AVG_CLICKS_PER_VISIT'         : avg_clicks_per_visit_lo
      }
-```
 
 
-```python
 # Looping over variables to create outlier flags:
 for key in lst_thresholds_hi.keys():
     outlier_flag_hi(key,lst_thresholds_hi[key],chef_1)
@@ -700,6 +654,8 @@ for key in lst_thresholds_hi.keys():
 for key in lst_thresholds_lo.keys():
     outlier_flag_lo(key,lst_thresholds_lo[key],chef_1)
 ```
+<br>
+<br>
 
 <strong> Step 6: </strong> Continuous/ Count Variables: Trend-Based Features
 
@@ -732,66 +688,66 @@ for variable in dependent_vars:
     scatterplots(independ_var = variable, target_var = 'REVENUE', data = chef_org, color = 'r')
 ```
 
-Observations:
-- AVG_TIME_PER_SITE_VISIT
+Observations from visualizations:
+- Average Time per Site Visit
     - different at 50 seconds
     - 50 seconds to 200 seconds: no trend changes
-    - data scatter after 200
+    - data scatters after 200
     - outlier at 1600
-- FOLLOWED_RECOMMENDATIONS_PCT
+- Followed recommendations percentage 
     - more dispersed after 70 percent
-- AVG_PREP_VID_TIME
-    - more variance after 150s (how to flag this?)
+- Average prep video time 
+    - more variance after 150s
     - less variance after 210s
     - after 300 less data points
-- LARGEST_ORDER_SIZE
+- Largest order size 
     - increase in revenue until 5
     - decrease but less steep after 5
-- MEDIAN_MEAL_RATING
+- Median Meal Rating
     - inflated at 3 and 4
-	   - decrease after 4
-- AVG_CLICKS_PER_VISIT
+    - decrease after 4
+- Average clicks per visit
     - less than 8 very few data points
-	  -  increase in revenue until 10 clicks
+    - increase in revenue until 10 clicks
     - decrease after 10 until 15
     - 16 to max constant
-- TOTAL_MEALS_ORDERED
+- Total Meals Ordered
     - heteroskedasticity
     - at 15 inflated
     - increase at 100 
     - slower increase after 100    
-- UNIQUE_MEALS_PURCH
+- Unique meals purchased 
     - inflated at 1: people must be ordering the same thing all the time
     - until 9 - constant
     - after 10 - outliers
-- CONTACTS_W_CUSTOMER_SERVICE
+- Contacts with customer service
     - until 10: revenue increases
     - after 10: revenue decreases
-- PRODUCT_CATEGORIES_VIEWED
+- Product Categories viewed
     - until 5 slow decrease
     - after 5 more constant
-- CANCELLATIONS_BEFORE_NOON
+- Cancellations before noon
     - after 8
-- CANCELLATIONS_AFTER_NOON
+- Cancellations after noon
     - zero inflated
     - at 3 - few observations with big revenue variance
-- MOBILE_LOGINS
+- Mobile Logins
     - 0 and 1 are increase
     - 2 and 3 decrease
-- PC_LOGINS
+- PC Logins
     - 4 to 6 increase
     - 7 decrease
-- WEEKLY_PLAN
+- Weekly plan
     - after 15 seems to be a decrease
     - constant after that
-- EARLY_DELIVERIES
+- Early deliveries
     - no obvious trend changes (does not seem to be a problem)
-- LATE_DELIVERIES
+- Late deliveries
     - decrease until 8
-- MASTER_CLASSES_ATTENDED
+- Master classes attended
     - at 1
     - at 2: less
-- TOTAL_PHOTOS_VIEWED
+- Total photos viewed
     - 0 inflated
 
 
@@ -818,7 +774,6 @@ WEEKLY_PLAN_change_hi                 = 15
 LATE_DELIVERIES_change_lo             = 8
 TOTAL_MEALS_ORDERED_change_hi         = 100
 
-
 # Different at __ 
 AVG_TIME_PER_SITE_VISIT_change_at  = 50
 MEDIAN_MEAL_RATING_change_at1      = 3
@@ -829,7 +784,6 @@ UNIQUE_MEALS_PURCH_change_at       = 1
 CANCELLATIONS_AFTER_NOON_change_at = 0
 MASTER_CLASSES_ATTENDED_change_at1  = 1
 MASTER_CLASSES_ATTENDED_change_at2  = 2
-
 
 # Zero Inflated
 TOTAL_PHOTOS_VIEWED_change_at = 0 
@@ -869,10 +823,8 @@ at_thresholds = {
     'TOTAL_PHOTOS_VIEWED'          : [TOTAL_PHOTOS_VIEWED_change_at]
     }
 
-```
 
 
-```python
 # Looping over dataset to create trend based columns
 for key, value in high_thresholds.items():
     i = 0
@@ -907,9 +859,9 @@ clean_chef = chef_1.drop([
 - Explanatory variables: <strong> standardization </strong> is going to be applied to our dependent variables. This is important for models that use distance (variance) to predict the target variable, revenue. By standardizing, we ensure that all dependent variables are on the same scale and can be compared easily. 
 
 - Target Variable: <strong> logarithmic </strong> is going to be applied to our independent variable. The distribution of revenue is skewed to the right. By treating this skewness with a log transformation, we normalize the magnitude of smaller and larger variables. In other words, lower revenues are expanded in our analysis and higher revenues are compressed. In addition, this transformation will decrease the effects of outliers which increases the application of any model to new unseen data.
-<br>
+<br><br>
 <i> Note: log transformations require non-zero values </i><br><br>
-sources: <br>
+Sources: <br>
 <a>[Feature Engineering for Machine Learning - Towards Data Science](https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a5114) <br>
 <a>[Log Transformations for Skewed and Wide Distributions - Practical Data Science with R](https://www.r-statistics.com/2013/05/log-transformations-for-skewed-and-wide-distributions-from-practical-data-science-with-r/)
 
@@ -1252,7 +1204,7 @@ results_full = lm_full.fit()
 <strong> Observations: </strong>
 - improved adjusted r-squared: features created help explain REVENUE better
 - still a lot of insignificant features
-- still possibility of multicollinearity
+- high possibility of multicollinearity
 
 <br>
 <strong> Step 4: </strong> OLS model with fitted variables (only significant variables) <br><br>
@@ -1286,8 +1238,43 @@ print(results_fit.summary2())
 
 <strong> Observations: </strong>
 - skewness reduced
-- adjusted r-squared reduced: normal since this is the first fitted model
+- adjusted r-squared reduced: normal since this is the first fitted model!
 - all variables are significant
+
+<br>
+Let's first run a linear regression model on sklearn to evaluate our training and testing score:
+<br>
+
+
+```python
+# applying modeling with scikit-learn
+# INSTANTIATING a model object
+lr = LinearRegression()
+
+
+# FITTING to the training data
+lr_fit = lr.fit(X_train, y_train) 
+
+
+# PREDICTING on new data
+lr_pred = lr_fit.predict(X_test) 
+
+# SCORING the results
+print('Training Score:', lr.score(X_train, y_train).round(4)) 
+print('Testing Score:',  lr.score(X_test, y_test).round(4))   
+
+# saving results for later:
+lr_train_score = lr.score(X_train, y_train).round(4) 
+lr_test_score  = lr.score(X_test, y_test).round(4)
+```
+
+```python
+    Training Score: 0.8376
+    Testing Score: 0.7873
+```
+Observations:
+- not a bad testing score!
+- we can improve it through feature selection methods
 
 
 ### B) Feature Selection
@@ -1295,6 +1282,17 @@ print(results_fit.summary2())
 In this section, we'll be utilizing different methods to improve our models predictive power by shedding a light on which features are important: <br> <br>
 <strong> Method 1: </strong> L1 Regularization or Lasso
 <br><br>
+The goal is to evaluate which features are important to our target variable. The model uses a penalty function to decrease a feature's coefficient each time it runs, thus making insignificant coefficients equal to zero by the end. <br><br>
+Its parameters specified below are alpha (regularization parameter, when equal to one - simple linear regression, as it reduces, we further filter our features by penalizing them) and normalize (which here is set to false since we are using normalized data on it). It is important to use standardized data with this method.
+
+<br>
+We then look at the coefficients for each of the variables to identify features that are important. 
+<br><br>
+sources: <br>
+<a> [L1 and L2 Regularization Methods - Towards Data Science](https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c) <br>
+<a> [Ridge and Lasso Regression - Towards Data Science](https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b)
+<br>
+	
 
 Preparation:
 * random state: seed set to 222
@@ -1337,54 +1335,13 @@ X_train_s, X_test_s, y_train_s, y_test_s = train_test_split(
 <br>
 
 ***
-<br>
-Let's first run a linear regression model on sklearn to evaluate how our features test on new data:
-<br>
-
-
-```python
-# applying modeling with scikit-learn
-# INSTANTIATING a model object
-lr = LinearRegression()
-
-
-# FITTING to the training data
-lr_fit = lr.fit(X_train, y_train) 
-
-
-# PREDICTING on new data
-lr_pred = lr_fit.predict(X_test) 
-
-# SCORING the results
-print('Training Score:', lr.score(X_train, y_train).round(4)) 
-print('Testing Score:',  lr.score(X_test, y_test).round(4))   
-
-# saving results for later:
-lr_train_score = lr.score(X_train, y_train).round(4) 
-lr_test_score  = lr.score(X_test, y_test).round(4)
-```
-
-```python
-    Training Score: 0.8259
-    Testing Score: 0.7832
-```
 
 <br>
 
 ***
 <br>
-Now let's run our first regularization model on sklearn: Lasso (L1 Regularization). The goal is to evaluate which features are important to our target variable. The model uses a penalty function to decrease a feature's coefficient each time it runs, thus making insignificant coefficients equal to zero by the end. <br><br>
-Its parameters specified below are alpha (regularization parameter, when equal to one - simple linear regression, as it reduces, we further filter our features by penalizing them) and normalize (which here is set to false since we are using normalized data on it). It is important to use standardized data with this method.
-
+Now let's run our first regularization model on sklearn: Lasso (L1 Regularization). 
 <br>
-We then look at the coefficients for each of the variables to identify features that are important. 
-<br><br>
-sources: <br>
-<a> [L1 and L2 Regularization Methods - Towards Data Science](https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c) <br>
-<a> [Ridge and Lasso Regression - Towards Data Science](https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b)
-<br>
-<br>
-
 First pass through lasso model with normalized data:
 
 ```python
@@ -1438,6 +1395,10 @@ significant features:
 * junk
 * outlier flags: out_TOTAL_MEALS_ORDERED, out_UNIQUE_MEALS_PURCH, out_CONTACTS_W_CUSTOMER_SERVICE, out_LATE_DELIVERIES, out_TOTAL_PHOTOS_VIEWED, out_REVENUE, out_LARGEST_ORDER_SIZE, out_AVG_CLICKS_PER_VISIT, 
 * trend-based flags: change_AVG_PREP_VID_TIME_1, change_LARGEST_ORDER_SIZE_0, change_UNIQUE_MEALS_PURCH_0, change_CONTACTS_W_CUSTOMER_SERVICE_0, change_PRODUCT_CATEGORIES_VIEWED_0,change_CANCELLATIONS_BEFORE_NOON_0, change_PC_LOGINS_0, change_WEEKLY_PLAN_0, change_MEDIAN_MEAL_RATING_0, change_MEDIAN_MEAL_RATING_1, change_MEDIAN_MEAL_RATING_2, change_MASTER_CLASSES_ATTENDED_0, change_MASTER_CLASSES_ATTENDED_1, change_TOTAL_PHOTOS_VIEWED_0
+<br>
+<br>
+Observations: 
+- we can see that this method has yielded a large number of variables, which reduces the interpretability of our model.
 
 
 <br>
@@ -1487,7 +1448,7 @@ ard_model_coef['Variable Names'] = chef_std_x.columns
 drop = ard_model_coef.iloc[:,:][ard_model_coef[0] == 0]
 ```
 
-Observations:
+Observations: <br>
 significant features:
 * TOTAL_MEALS_ORDERED
 * CONTACTS_W_CUSTOMER_SERVICE
@@ -1516,7 +1477,7 @@ In this section, we'll evaluate the performance of the linear regression and the
 Preparation:
 * random state: seed set to 222
 * test size: 0.25
-* features: ARD features
+* features: ARD selected features
 * revenue: log
 
 ```python
@@ -1708,9 +1669,9 @@ print(out_chef.shape)
     (1946, 62)
     (1939, 62)
 ```
-
+<br>
 Removed only 7 observations that we outliers in Total Meals Ordered. Total meals ordered is a variable that has a direct relationship with revenue since Revenue = Quantity x Price and Total meals ordered for each customer corresponds to its quantity. Therefore, any outliers could be affecting our model's ability to generalize and predict new data.
-
+<br>
 
 ```python
 # Re-running our linear model without outliers to compare test scores (previous = 0.7832)
@@ -1759,38 +1720,8 @@ out_lr_test_score  = out_lr.score(X_test_out, y_test_out).round(4)
 ```
 
 
-```python
-# Using StatsModels to print out summary of our best model 
-# merging X_train and y_train so that they can be used in statsmodels
-chef_train = pd.concat([X_train_out, y_train_out], axis = 1)
 
-# Step 1: build a model
-lm_best = smf.ols(formula =  """rev_log ~ chef_train['TOTAL_MEALS_ORDERED'] +
-                                chef_train['CONTACTS_W_CUSTOMER_SERVICE'] +
-                                chef_train['AVG_PREP_VID_TIME'] +
-                                chef_train['LARGEST_ORDER_SIZE'] +
-                                chef_train['MEDIAN_MEAL_RATING'] +
-                                chef_train['out_CONTACTS_W_CUSTOMER_SERVICE'] +
-                                chef_train['change_AVG_PREP_VID_TIME_1'] +
-                                chef_train['change_UNIQUE_MEALS_PURCH_0'] +
-                                chef_train['change_CONTACTS_W_CUSTOMER_SERVICE_0'] +
-                                chef_train['change_MEDIAN_MEAL_RATING_0'] +
-                                chef_train['change_MEDIAN_MEAL_RATING_1'] +
-                                chef_train['change_MASTER_CLASSES_ATTENDED_0'] +
-                                chef_train['change_MASTER_CLASSES_ATTENDED_1'] +
-                                chef_train['change_TOTAL_PHOTOS_VIEWED_0']""",
-                                data = chef_train)
-
-
-# Step 2: fit the model based on the data
-results = lm_best.fit()
-
-
-# Step 3: analyze the summary output
-#print(results.summary2())
-```
-
-<strong> Observations: </strong>
+Observations:
 - outliers were having a large effect on model: new testing score = 0.8279
 <br><br>
 Let's plot again our residual plot:
@@ -1812,7 +1743,7 @@ plt.show()
 ![Residual Plot After Outliers](images/regression-residual-plot-2.png)
 
 <br>
-<strong> Observations: </strong> 
+Observations:
 - there still seems to be a few outliers in our model with really big residual. It is most likely these outlier do not come from our independent variables, and is instead an outlier in Revenue, which is why our model's testing score still increased. 
 - for the purpose of this analysis, we will keep the Revenue outliers in our data, since the objective is to identify the best features to predict revenue for a new consumer. Further investigation is needed on this Revenue data point as to understand its relationship in with the selected features.
 
