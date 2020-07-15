@@ -1846,20 +1846,19 @@ cross_val[11]
 	
 ## Business Insights
 
-1. Customer Segmentation
+- <strong> Customer Segmentation </strong> <br>
 Even though we might think customers use meal kits for new recipes, our customer data
 shows that, all else equal, customers that order the same meals every time have a 71.24% higher revenue contribution than those who order different options.
 <br>
 
-This could mean a segmentation in terms of our customers purchase intentions:
-1) customers that order our service for the practicality of quick and healthy meals
-2) customers that order our service to increase their cooking skills
+This could mean a segmentation in terms of our customers purchase intentions: <br>
+1) customers that order our service for the practicality of quick and healthy meals <br>
+2) customers that order our service to increase their cooking skills<br>
 <br>
 Indeed, customers that attend 2 master classes for instance have a 12.45% increase in revenue.
 
-2. Customer Service
-Customers call customer service for a change in order delivery or a complaint. However,
-cancellations and calls are not correlated in our customer dataset, confirming Customer Service team’s observations.
+- <strong> Customer Service </strong><br>
+Customers call customer service for a change in order delivery or a complaint. However,cancellations and calls are not correlated in our customer dataset, confirming Customer Service team’s observations.
 <br>
 Our ability to handle these complaints is somewhat effective. Until 10 calls, customers that have contacted customer services have an increase in revenue contribution of around 5%. However, after a customer has made 10 calls, their revenue contribution lowers by almost half (48%).
 
