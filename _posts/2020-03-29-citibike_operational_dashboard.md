@@ -1,6 +1,6 @@
 ---
 title: "Citi Bike: Operational Dashboard"
-date: 2019-03-29
+date: 2020-03-29
 tags: [SQL, google data studio, google big query, dashboards, data visualization]
 header:
   image: "/images/citibike.jpg"
