@@ -1784,7 +1784,7 @@ print("Tuned CV AUC      :", knn_tuned_cv.best_score_.round(4))
 
 ```python
 GridSearch Output: <br>
-Tuned Parameters  : {{'leaf_size': 10, 'n_neighbors': 2, 'weights': 'uniform'} <br>
+Tuned Parameters  : {{'leaf_size': 10, 'n_neighbors': 2, 'weights': 'uniform'}}
 Tuned CV AUC      : 0.6372
 ```
 
