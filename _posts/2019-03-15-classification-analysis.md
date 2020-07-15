@@ -13,7 +13,10 @@ By: Sophie Briques<br>
 Hult International Business School<br>
 <br>
 <br>
-Jupyter notebook and dataset for this analysis can be found here: Portfolio-Projects
+Jupyter notebook and dataset for this analysis can be found here: [Portfolio-Projects](https://github.com/sbriques/portfolio-projects) 
+<br>
+Note: this analysis is based on a fictitious business case, Apprentice Chef, Inc. built by Professor Chase Kusterer from Hult International Business School. For a better understanding of the case, please read the regression analysis on the same case, which can be found [here](https://sbriques.github.io/regression-analysis/)
+
 ***
 
 ### Overview
@@ -66,7 +69,7 @@ Assumptions:
 - each customer was able to set their preferred contact method (optional). If not set, customers will be contacted via SMS if their phone number was mobile, and via a direct sales call if their phone number was a landline.
 
 Data Quality issues:
-- cancellations before noon and after noon: dictionary says after noon is after 3pm. There are 3 hours of data for cancellations missing.
+- cancellations before noon and after noon: dictionary specifies after noon as after 3pm. There are 3 hours of data for cancellations missing.
 
 ***
 <strong> Outline: </strong>
@@ -120,7 +123,7 @@ chef_description = pd.read_excel('Apprentice_Chef_Data_Dictionary.xlsx')
 
 
 ### User-defined functions
-
+In the next section, we’ll design a number of functions that will facilitate our analysis.
 
 ```python
 ## User-Defined Functions   
@@ -365,14 +368,6 @@ titel  : str, title of confusion matrix, default: 'Confusion Matrix of the Class
     plt.show()
 ```
 
-<strong> Observations: </strong>
-- Data types are coherent with each variable description
-- 47 missing values in Family Name
-- Number of observations: 1946
-- Total of 28 variables (including target variable) where:
-    - 3 are floats
-    - 22 are integers
-    - 4 are objects
 
 ***
 ***
@@ -381,6 +376,17 @@ titel  : str, title of confusion matrix, default: 'Confusion Matrix of the Class
 
 In this section, our objective is too understand the data and identify possible insights that will be useful for business application. We'll also go through feature engineering (creating new variables) where we deem appropriate.
 <br> <br>
+
+<strong> Observations: </strong>
+- Data types are coherent with each variable description
+- 47 missing values in Family Name
+- Number of observations: 1946
+- Total of 28 variables (including target variable) where:
+    - 3 are floats
+    - 22 are integers
+    - 4 are objects
+    
+   
 For this purpose, it is important to identify the different variable types in our model:
 
 
@@ -418,14 +424,14 @@ counts = ['TOTAL_MEALS_ORDERED',
 ### A) Anomaly Detection: Missing Values
 
 <strong> Purpose: </strong> Identify and create a strategy for missing values.
-***
+<br>
 Missing values can affect our model and our ability to create plots to identify other features in our data.
 
 
 ```python
 # Inspecting missing values
-#chef_org.isnull().sum()
-#chef_org.loc[:,:][chef_org['FAMILY_NAME'].isna()]
+chef_org.isnull().sum()
+chef_org.loc[:,:][chef_org['FAMILY_NAME'].isna()]
 
 # Flagging missing variables for FAMILY_NAME
 # creating a copy of dataframe for safety measures
@@ -438,7 +444,7 @@ chef_m['m_FAMILY_NAME'] = chef_m['FAMILY_NAME'].isnull().astype(int)
 chef_m['FAMILY_NAME'] = chef_m['FAMILY_NAME'].fillna('Unknown')
 
 # checking to see if missing values were imputed
-#chef_m.isnull().sum()
+chef_m.isnull().sum()
 ```
 
 ### B) Anomaly Detection: Sample Size Check
@@ -451,13 +457,51 @@ Additionally, since our target variable is binary, we want to ensure we have the
 
 
 ```python
-#for variable in chef_org:
-#    if variable in categorical:
-#        print(f"""{variable}
-#------
-#{chef_org[variable].value_counts()}
-#          
-#    """)
+for variable in chef_org:
+    if variable in categorical:
+        print(f"""{variable}
+------
+{chef_org[variable].value_counts()}
+          
+    """)
+```
+
+```python
+"""
+CROSS_SELL_SUCCESS
+------
+1    1321
+0     625
+Name: CROSS_SELL_SUCCESS, dtype: int64
+          
+    
+MOBILE_NUMBER
+------
+1    1708
+0     238
+Name: MOBILE_NUMBER, dtype: int64
+          
+    
+TASTES_AND_PREFERENCES
+------
+1    1390
+0     556
+Name: TASTES_AND_PREFERENCES, dtype: int64
+          
+    
+PACKAGE_LOCKER
+------
+0    1255
+1     691
+Name: PACKAGE_LOCKER, dtype: int64
+          
+    
+REFRIGERATED_LOCKER
+------
+0    1726
+1     220
+Name: REFRIGERATED_LOCKER, dtype: int64
+"""
 ```
 
 <strong> Observations: </strong>
@@ -481,8 +525,8 @@ In the following code, we visualize each variable's distribution with an user-de
 
 ```python
 # Visualizing variable distributions
-#for variable in continuous + counts:
-#    distributions(variable, chef_m, bins = 'fd', kde = True, rug = False)
+for variable in continuous + counts:
+    distributions(variable, chef_m, bins = 'fd', kde = True, rug = False)
 ```
 
 <strong> Observations:</strong>
@@ -592,7 +636,7 @@ chef_o['out_AVG_CLICKS_PER_VISIT'] = chef_o['out_AVG_CLICKS_PER_VISIT_hi'] + che
 <br>
 When we promote Halfway There to a wider customer base, we could choose from several promotion methods (ex: sales call, flyers, email, SMS...). With our customers email domains, we can identify if the email provided in the application process is a professional or personal email, or if they have provided a 'junk' email (an inbox they never open but use to avoid spam). 
 <br>
-***
+
 
 By adding these features in our analysis, we are able to identify if customers that use their personal or professional emails are more likely to buy the subscription. If so, it would be a good idea to implement an email marketing campaign to these customers. It would also confirm the need to run a campaign in another platform if we see the potential in customers with 'junk' emails.
 <br> <br>
@@ -690,8 +734,9 @@ chef_e               = chef_e.join(one_hot_email_domain)
 domains              = ['professional','personal','junk']
 
 ### Only run once!
-#categorical          = categorical + domains
+categorical          = categorical + domains
 ```
+<br>
 
 ### D) Feature Engineering: Computing New Variables
 
@@ -806,7 +851,7 @@ outlier_flag_lo('rev_per_mobilelogin', rev_per_mobilelogin_lo, chef_n)
 ### E) Feature Engineering: Trend Based Features
 
 <strong> Purpose: </strong> Identify points in the relationships between explanatory variables and response variable where there is a clear separation between a success case and failure case.
-***
+
 
 Changes in variables behaviors in relation to our target variable can provide powerful explanations in our model as to how our success in selling Halfway There might be affected.
 <br> <br>
@@ -827,11 +872,12 @@ for var in continuous + counts:
 - Followed Recommendation Pct: high separation - low quartile of 1 is higher quartile of 0 
 - Cancellations before noon: high separation - median for 1 is high quartile for 0
 
-<strong> Further investigation: </strong>
-- cancellations_before_noon
-- followed recommendations percentage
+<strong> Need further investigation: </strong>
+1. cancellations_before_noon
+2. followed recommendations percentage
 
-
+<br>
+Cancellations before Noon Analysis:
 ```python
 # Cancellations Before Noon Analysis
 # count of cancellations before noon that subscribe to new service
@@ -859,8 +905,9 @@ print(len(did_not))
 ```
 <br>
 <strong> INSIGHT: </strong> Of those that have cancelled at least once before noon, 73% have subscribed to Halfway There.
-***
 
+<br>
+Followed Recommendation Percentage Analysis:
 
 ```python
 # Followed Recommendation Percentage Analysis
@@ -891,10 +938,10 @@ print(len(did_not))
 <br>
 
 <strong> INSIGHT: </strong> Of those that have followed a recommendation more than 20%, 85% have subscribed to Halfway There.
-***
+
 
 ***
-<strong> Feature engineering: </strong> creating flags
+<strong> Feature engineering: </strong> creating flags from trend-based analysis
 
 
 ```python
@@ -929,7 +976,7 @@ for key in success_trend.keys():
 
 ```python
 df_corr = chef_t.corr().round(2)
-#df_corr['CROSS_SELL_SUCCESS'].sort_values(ascending = True)
+df_corr['CROSS_SELL_SUCCESS'].sort_values(ascending = True)
 ```
 
 <strong> Observations: </strong>
@@ -950,7 +997,7 @@ As seen previously, in classification models we need to ensure our target variab
 
 When splitting the data between training and testing sets, we need to ensure both cases are represented. We will do so through stratification.
 
-#### Preparation: Data Set Up
+### Preparation: Data Set Up
 
 
 ```python
@@ -982,146 +1029,66 @@ variables_dict = {
         'MEDIAN_MEAL_RATING', 'AVG_CLICKS_PER_VISIT', 'TOTAL_PHOTOS_VIEWED'
     ],
     "Full Model"  :  [
-        'REVENUE',
-        'TOTAL_MEALS_ORDERED',
-        'UNIQUE_MEALS_PURCH',
-        'CONTACTS_W_CUSTOMER_SERVICE',
-        'PRODUCT_CATEGORIES_VIEWED',
-        'AVG_TIME_PER_SITE_VISIT',
-        'MOBILE_NUMBER',
-        'CANCELLATIONS_BEFORE_NOON',
-        'CANCELLATIONS_AFTER_NOON',
-        'TASTES_AND_PREFERENCES',
-        'PC_LOGINS',
-        'MOBILE_LOGINS',
-        'WEEKLY_PLAN',
-        'EARLY_DELIVERIES',
-        'LATE_DELIVERIES',
-        'PACKAGE_LOCKER',
-        'REFRIGERATED_LOCKER',
-        'FOLLOWED_RECOMMENDATIONS_PCT',
-        'AVG_PREP_VID_TIME',
-        'LARGEST_ORDER_SIZE',
-        'MASTER_CLASSES_ATTENDED',
-        'MEDIAN_MEAL_RATING',
-        'AVG_CLICKS_PER_VISIT',
-        'TOTAL_PHOTOS_VIEWED',
-        'm_FAMILY_NAME',
-        'out_AVG_TIME_PER_SITE_VISIT_hi',
-        'out_AVG_PREP_VID_TIME_hi',
-        'out_TOTAL_MEALS_ORDERED_hi',
-        'out_UNIQUE_MEALS_PURCH_hi',
-        'out_CONTACTS_W_CUSTOMER_SERVICE_hi',
-        'out_CANCELLATIONS_BEFORE_NOON_hi',
-        'out_LATE_DELIVERIES_hi',
-        'out_TOTAL_PHOTOS_VIEWED_hi',
-        'out_REVENUE_hi',
-        'out_FOLLOWED_RECOMMENDATIONS_PCT_hi',
-        'out_LARGEST_ORDER_SIZE_hi',
-        'out_PRODUCT_CATEGORIES_VIEWED_hi',
-        'out_AVG_CLICKS_PER_VISIT_hi',
-        'out_MEDIAN_MEAL_RATING_hi',
-        'out_AVG_CLICKS_PER_VISIT_lo',
-        'out_PRODUCT_CATEGORIES_VIEWED_lo',
-        'out_FOLLOWED_RECOMMENDATIONS_PCT_lo',
-        'out_UNIQUE_MEALS_PURCH_lo',
-        'out_MEDIAN_MEAL_RATING_lo',
-        'junk',
-        'personal',
-        'professional',
-        'rev_per_meal',
-        'out_rev_per_meal_hi',
-        'out_rev_per_meal_lo',
-        'rev_per_pclogin',
-        'rev_per_mobilelogin',
-        'out_rev_per_pclogin_hi',
-        'out_rev_per_pclogin_lo',
-        'out_rev_per_mobilelogin_hi',
-        'out_rev_per_mobilelogin_lo',
-        'success_FOLLOWED_RECOMMENDATIONS_PCT',
-        'success_CANCELLATIONS_BEFORE_NOON',
+        'REVENUE', 'TOTAL_MEALS_ORDERED', 'UNIQUE_MEALS_PURCH', 'CONTACTS_W_CUSTOMER_SERVICE',
+        'PRODUCT_CATEGORIES_VIEWED', 'AVG_TIME_PER_SITE_VISIT', 'MOBILE_NUMBER',
+        'CANCELLATIONS_BEFORE_NOON', 'CANCELLATIONS_AFTER_NOON', 'TASTES_AND_PREFERENCES',
+        'PC_LOGINS', 'MOBILE_LOGINS', 'WEEKLY_PLAN', 'EARLY_DELIVERIES', 'LATE_DELIVERIES',
+        'PACKAGE_LOCKER', 'REFRIGERATED_LOCKER', 'FOLLOWED_RECOMMENDATIONS_PCT', 'AVG_PREP_VID_TIME',
+        'LARGEST_ORDER_SIZE', 'MASTER_CLASSES_ATTENDED', 'MEDIAN_MEAL_RATING', 
+        'AVG_CLICKS_PER_VISIT', 'TOTAL_PHOTOS_VIEWED', 'm_FAMILY_NAME',
+        'out_AVG_TIME_PER_SITE_VISIT_hi', 'out_AVG_PREP_VID_TIME_hi', 'out_TOTAL_MEALS_ORDERED_hi',
+        'out_UNIQUE_MEALS_PURCH_hi', 'out_CONTACTS_W_CUSTOMER_SERVICE_hi', 
+        'out_CANCELLATIONS_BEFORE_NOON_hi', 'out_LATE_DELIVERIES_hi', 'out_TOTAL_PHOTOS_VIEWED_hi',
+        'out_REVENUE_hi', 'out_FOLLOWED_RECOMMENDATIONS_PCT_hi', 'out_LARGEST_ORDER_SIZE_hi',
+        'out_PRODUCT_CATEGORIES_VIEWED_hi', 'out_AVG_CLICKS_PER_VISIT_hi', 
+        'out_MEDIAN_MEAL_RATING_hi', 'out_AVG_CLICKS_PER_VISIT_lo', 
+        'out_PRODUCT_CATEGORIES_VIEWED_lo', 'out_FOLLOWED_RECOMMENDATIONS_PCT_lo', 
+        'out_UNIQUE_MEALS_PURCH_lo', 'out_MEDIAN_MEAL_RATING_lo', 'junk', 'personal',
+        'professional', 'rev_per_meal', 'out_rev_per_meal_hi', 'out_rev_per_meal_lo',
+        'rev_per_pclogin', 'rev_per_mobilelogin', 'out_rev_per_pclogin_hi', 'out_rev_per_pclogin_lo',
+        'out_rev_per_mobilelogin_hi', 'out_rev_per_mobilelogin_lo',
+        'success_FOLLOWED_RECOMMENDATIONS_PCT', 'success_CANCELLATIONS_BEFORE_NOON',
         'success_MEDIAN_MEAL_RATING'
     ],
     "Important Model"  : [   # variables from EDA
-          'EARLY_DELIVERIES',
-          'MOBILE_NUMBER','CANCELLATIONS_BEFORE_NOON',
+          'EARLY_DELIVERIES', 'MOBILE_NUMBER','CANCELLATIONS_BEFORE_NOON', 
           'CANCELLATIONS_AFTER_NOON','TASTES_AND_PREFERENCES',
           'REFRIGERATED_LOCKER','FOLLOWED_RECOMMENDATIONS_PCT',
           'personal','professional','junk',
-          'out_FOLLOWED_RECOMMENDATIONS_PCT_hi',
-          'out_FOLLOWED_RECOMMENDATIONS_PCT_lo',
-          'out_PRODUCT_CATEGORIES_VIEWED_hi',
-          'out_PRODUCT_CATEGORIES_VIEWED_lo',
-          'out_MEDIAN_MEAL_RATING_hi',
-          'out_MEDIAN_MEAL_RATING_lo',
-          'rev_per_mobilelogin',
-          'out_rev_per_pclogin_hi',
-          'out_rev_per_pclogin_lo',
-          'out_rev_per_mobilelogin_hi',
-          'out_rev_per_mobilelogin_lo',
+          'out_FOLLOWED_RECOMMENDATIONS_PCT_hi', 'out_FOLLOWED_RECOMMENDATIONS_PCT_lo',
+          'out_PRODUCT_CATEGORIES_VIEWED_hi', 'out_PRODUCT_CATEGORIES_VIEWED_lo',
+          'out_MEDIAN_MEAL_RATING_hi', 'out_MEDIAN_MEAL_RATING_lo',
+          'rev_per_mobilelogin', 'out_rev_per_pclogin_hi', 'out_rev_per_pclogin_lo',
+          'out_rev_per_mobilelogin_hi', 'out_rev_per_mobilelogin_lo',
           'success_FOLLOWED_RECOMMENDATIONS_PCT'
     ],
     'Full Tree Features' : [ #important features for a tree with full dataset
-        'UNIQUE_MEALS_PURCH',
-        'MOBILE_NUMBER',
-        'LARGEST_ORDER_SIZE',
-        'TOTAL_PHOTOS_VIEWED',
-        'CONTACTS_W_CUSTOMER_SERVICE',
-        'TOTAL_MEALS_ORDERED',
-        'rev_per_meal',
-        'EARLY_DELIVERIES',
-        'REVENUE',
-        'professional',
-        'CANCELLATIONS_BEFORE_NOON',
-        'rev_per_mobilelogin',
-        'junk',
-        'FOLLOWED_RECOMMENDATIONS_PCT'
+        'UNIQUE_MEALS_PURCH', 'MOBILE_NUMBER', LARGEST_ORDER_SIZE', 'TOTAL_PHOTOS_VIEWED',
+        'CONTACTS_W_CUSTOMER_SERVICE', 'TOTAL_MEALS_ORDERED', 'rev_per_meal', 'EARLY_DELIVERIES',
+        'REVENUE', 'professional', 'CANCELLATIONS_BEFORE_NOON', 'rev_per_mobilelogin',
+        'junk', 'FOLLOWED_RECOMMENDATIONS_PCT'
     ],
     'Random Forest Full' : [
-        'WEEKLY_PLAN',
-        'TOTAL_MEALS_ORDERED',
-        'junk',
-        'rev_per_pclogin',
-        'REVENUE',
-        'rev_per_mobilelogin',
-        'AVG_PREP_VID_TIME',
-        'rev_per_meal',
-        'AVG_TIME_PER_SITE_VISIT',
-        'success_FOLLOWED_RECOMMENDATIONS_PCT',
-        'FOLLOWED_RECOMMENDATIONS_PCT'
+        'WEEKLY_PLAN', 'TOTAL_MEALS_ORDERED', 'junk', 'rev_per_pclogin', 'REVENUE',
+        'rev_per_mobilelogin', 'AVG_PREP_VID_TIME', 'rev_per_meal', 'AVG_TIME_PER_SITE_VISIT',
+        'success_FOLLOWED_RECOMMENDATIONS_PCT', 'FOLLOWED_RECOMMENDATIONS_PCT'
     ],
     'Gradient Boosting' : [
-        'CONTACTS_W_CUSTOMER_SERVICE',
-        'rev_per_pclogin',
-        'TOTAL_MEALS_ORDERED',
-        'AVG_PREP_VID_TIME',
-        'MOBILE_NUMBER',
-        'rev_per_meal',
-        'AVG_TIME_PER_SITE_VISIT',
-        'professional',
-        'CANCELLATIONS_BEFORE_NOON',
-        'rev_per_mobilelogin',
-        'junk',
-        'FOLLOWED_RECOMMENDATIONS_PCT'
+        'CONTACTS_W_CUSTOMER_SERVICE', 'rev_per_pclogin', 'TOTAL_MEALS_ORDERED', 'AVG_PREP_VID_TIME',
+        'MOBILE_NUMBER', 'rev_per_meal', 'AVG_TIME_PER_SITE_VISIT', 'professional', 
+        'CANCELLATIONS_BEFORE_NOON', 'rev_per_mobilelogin',
+        'junk', 'FOLLOWED_RECOMMENDATIONS_PCT'
     ],
     'Best Model' : [
-        'EARLY_DELIVERIES',
-          'MOBILE_NUMBER','CANCELLATIONS_BEFORE_NOON',
-          'CANCELLATIONS_AFTER_NOON','TASTES_AND_PREFERENCES',
-          'REFRIGERATED_LOCKER','FOLLOWED_RECOMMENDATIONS_PCT',
-          'personal','professional','junk',
-          'out_FOLLOWED_RECOMMENDATIONS_PCT_hi',
-          'out_FOLLOWED_RECOMMENDATIONS_PCT_lo',
-          'out_PRODUCT_CATEGORIES_VIEWED_hi',
-          'out_PRODUCT_CATEGORIES_VIEWED_lo',
-          'out_MEDIAN_MEAL_RATING_hi',
-          'out_MEDIAN_MEAL_RATING_lo',
-          'rev_per_mobilelogin',
-          'out_rev_per_pclogin_hi',
-          'out_rev_per_pclogin_lo',
-          'out_rev_per_mobilelogin_hi',
-          'out_rev_per_mobilelogin_lo',
-          'success_FOLLOWED_RECOMMENDATIONS_PCT'
+        'EARLY_DELIVERIES', 'MOBILE_NUMBER','CANCELLATIONS_BEFORE_NOON', 
+        'CANCELLATIONS_AFTER_NOON','TASTES_AND_PREFERENCES', 'REFRIGERATED_LOCKER',
+        'FOLLOWED_RECOMMENDATIONS_PCT', 'personal','professional','junk', 
+        'out_FOLLOWED_RECOMMENDATIONS_PCT_hi',  'out_FOLLOWED_RECOMMENDATIONS_PCT_lo',
+        'out_PRODUCT_CATEGORIES_VIEWED_hi', 'out_PRODUCT_CATEGORIES_VIEWED_lo',
+        'out_MEDIAN_MEAL_RATING_hi', 'out_MEDIAN_MEAL_RATING_lo',
+        'rev_per_mobilelogin', 'out_rev_per_pclogin_hi', 'out_rev_per_pclogin_lo',
+        'out_rev_per_mobilelogin_hi', 'out_rev_per_mobilelogin_lo',
+        'success_FOLLOWED_RECOMMENDATIONS_PCT'
     ]
 }
 
@@ -1147,7 +1114,8 @@ We'll start with a logistic regression model. We'll be using statsmodel package 
 <strong> Step 3: </strong> Fitted Model (significant features) <br>
 
 
-#### Step 1: Base Model
+### Step 1: Base Model
+Preparation:
 
 
 ```python
@@ -1186,7 +1154,6 @@ X_train_stand, X_test_stand, y_train_stand, y_test_stand = train_test_split(
 chef_train_stand = pd.concat([X_train_stand, y_train_stand], axis = 1)
 ```
 
-
 ```python
 # instantiating a logistic regression model object
 logistic_base = smf.logit(formula   = """ CROSS_SELL_SUCCESS ~ 
@@ -1221,7 +1188,6 @@ logistic_base = smf.logit(formula   = """ CROSS_SELL_SUCCESS ~
 # FITTING the model object
 results_logistic = logistic_base.fit()
 
-
 # checking the results SUMMARY
 results_logistic.summary2()
 ```
@@ -1232,7 +1198,7 @@ results_logistic.summary2()
 - significant variables: mobile_number (+0.7131), cancellations before noon (+0.2444), followed recommendations percentage (+0.0572)
 <br>
 
-#### Step 2: Full Model
+### Step 2: Full Model
 Logistic regression using variables created during exploratory data analysis.
 
 
@@ -1314,7 +1280,6 @@ logistic_full = smf.logit(formula   = """ CROSS_SELL_SUCCESS ~
 # FITTING the model object
 results_logistic = logistic_full.fit()
 
-
 # checking the results SUMMARY
 results_logistic.summary()
 ```
@@ -1330,7 +1295,7 @@ results_logistic.summary()
     - success in followed recommendations percentage
 
 
-#### Step 3: Fitted model
+### Step 3: Fitted model
 
 
 ```python
@@ -1370,7 +1335,7 @@ results_logistic.summary()
 <br>
 <br>
 
-#### Step 4: Important Model Scores (sklearn)
+### Step 4: Important Model Scores (sklearn)
 Logistic regression using sklearn to find more details on the scoring. Still using the variables that showed important through exploratory data analysis:
 - Mobile Number
 - Mobile Logins
@@ -1428,13 +1393,6 @@ print('AUC Score        :', logreg_auc)
     AUC Score        : 0.6997
 ```
 
-```python
-# saving the results
-model_performance.append(['Logistic Regression',
-                          logreg_train_acc,
-                          logreg_test_acc,
-                          logreg_auc])
-```
 
 <strong> Observations: </strong>
 - model is well fitted based on training and testing score
@@ -1442,7 +1400,7 @@ model_performance.append(['Logistic Regression',
 
 <br>
 <br>
-#### Step 5: Logistic on Scaled Data
+### Step 5: Logistic on Scaled Data
 
 
 ```python
@@ -1496,14 +1454,6 @@ print('AUC Score        :', logreg_auc_stand)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['Logistic Regression - Standardized',
-                          logreg_train_acc_stand,
-                          logreg_test_acc_stand,
-                          logreg_auc_stand])
-```
-
 <strong> Observations: </strong>
 - model on standardized data slightly improved in scores
 - run hyperparameter tuning to increase score
@@ -1511,7 +1461,7 @@ model_performance.append(['Logistic Regression - Standardized',
 <br>
 <br>
 
-#### Step 6: Hyperparameter Tuning
+### Step 6: Hyperparameter Tuning
 
 
 ```python
@@ -1552,8 +1502,8 @@ print("Tuned CV AUC      :", lr_tuned_cv.best_score_.round(4))
 ```
 
 ```python
-GridSearch Output: <br>
-Tuned Parameters  : {'C': 1.6, 'solver': 'newton-cg', 'warm_start': True} <br>
+GridSearch Output: 
+Tuned Parameters  : {'C': 1.6, 'solver': 'newton-cg', 'warm_start': True}
 Tuned CV AUC      : 0.6117
 ```
 
@@ -1593,17 +1543,9 @@ print('AUC Score        :', logreg_auc_tuned)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['Logistic Regression - Tuned',
-                          logreg_train_acc_tuned,
-                          logreg_test_acc_tuned,
-                          logreg_auc_tuned])
-```
-
 ### B) K-Nearest Neighbors Classifier
 
-#### Step 1: Base model
+### Step 1: Base model
 
 
 ```python
@@ -1663,19 +1605,11 @@ print('AUC Score        :', full_knn_class_auc)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['Full KNN',
-                          full_knn_class_train_acc,
-                          full_knn_class_test_acc,
-                          full_knn_class_auc])
-```
-
 <strong> Observations: </strong>
 - model is overfit but does performs better than logistic regression
 - use KNN with important features next
 
-#### Step 2: Model with important features
+### Step 2: Model with important features
 
 
 ```python
@@ -1729,13 +1663,6 @@ print('AUC Score        :', knn_class_auc)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['KNN',
-                          knn_class_train_acc,
-                          knn_class_test_acc,
-                          knn_class_auc])
-```
 
 <strong> Observations: </strong>
 - reduced model performance with KNN
@@ -1783,7 +1710,7 @@ print("Tuned CV AUC      :", knn_tuned_cv.best_score_.round(4))
 ```
 
 ```python
-GridSearch Output: <br>
+GridSearch Output: 
 Tuned Parameters  : {{'leaf_size': 10, 'n_neighbors': 2, 'weights': 'uniform'}}
 Tuned CV AUC      : 0.6372
 ```
@@ -1823,21 +1750,13 @@ print('AUC Score        :', knn_class_auc_tuned)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['KNN Tuned',
-                          knn_class_train_acc_tuned,
-                          knn_class_test_acc_tuned,
-                          knn_class_auc_tuned])
-```
-
 <strong> Observations: </strong>
 - Tuned parameters do not increase AUC score
 - keep default parameters with optimal number of neighbors with Best Variables
 
 ### C) CART Model (Decision Tree)
 
-#### Step 1: Default Model with all Features
+### Step 1: Default Model with all Features
 
 
 ```python
@@ -1879,14 +1798,7 @@ print('AUC Score        :', roc_auc_score(y_true  = y_test,
 ```
 
 
-```python
-model_performance.append(['Full Tree',
-                          full_tree_train_acc,
-                          full_tree_test_acc,
-                          full_tree_auc])
-```
-
-#### Step 2: Hyperparameter Tuning
+### Step 2: Hyperparameter Tuning
 
 Tunining tree parameters to fit best variable set.
 
@@ -1974,15 +1886,8 @@ tree_auc       = roc_auc_score(y_true  = y_test,
 <strong> BEST MODEL! </strong>
 
 
-```python
-# appending to model_performance
-model_performance.append(['Tuned Tree',
-                          tree_train_acc,
-                          tree_test_acc,
-                          tree_auc])
-```
 
-#### Step 3: Feature Selection
+### Step 3: Feature Selection
 
 
 ```python
@@ -1992,7 +1897,7 @@ tree_features['Variable Names'] = chef_best.columns
 
 # Looking at insignificant coefficients
 tree_features = tree_features.iloc[:,:][tree_features[0] != 0].sort_values(by = 0) # cut-off based on boxplots analysis
-#tree_features
+tree_features
 
 ```
 
@@ -2057,16 +1962,11 @@ print('AUC Score        :', fit_tree_auc)
 ```
 
 
-```python
-model_performance.append(['Fit Tree',
-                          fit_tree_train_acc,
-                          fit_tree_test_acc,
-                          fit_tree_auc])
-```
+
 
 ### D) Random Forest
 
-#### Step 1: Default Model with all Features
+### Step 1: Default Model with all Features
 
 
 ```python
@@ -2111,15 +2011,7 @@ print('AUC Score        :', rf_auc_score)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['Random Forest Default Full',
-                          rf_train_acc,
-                          rf_test_acc,
-                          rf_auc_score])
-```
-
-#### Step 2: Hyperparameter Tuning
+### Step 2: Hyperparameter Tuning
 
 
 ```python
@@ -2164,14 +2056,14 @@ print("Tuned Parameters  :", full_forest_cv.best_params_)
 print("Tuned Training AUC:", full_forest_cv.best_score_.round(4))
 ```
 
-<strong> Full set </strong>:
+```python
 Tuned Parameters  : {'bootstrap': False, 'criterion': 'entropy', 'min_samples_leaf': 1, 'n_estimators': 600, 'warm_start': True}
 Tuned Training AUC: 0.5882
 <br>
 Tree set: 
 Tuned Parameters  : {'bootstrap': False, 'criterion': 'entropy', 'min_samples_leaf': 1, 'n_estimators': 350, 'warm_start': True} <br>
 Tuned Training AUC: 0.5836
-
+```
 
 ```python
 # INSTANTIATING a random forest model with tuned parameters
@@ -2205,15 +2097,7 @@ print('AUC Score        :', rf_auc_score_tuned)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['Random Forest Tuned Full',
-                          rf_train_acc_tuned,
-                          rf_test_acc_tuned,
-                          rf_auc_score_tuned])
-```
-
-#### Step 3: Feature Selection
+### Step 3: Feature Selection
 
 
 ```python
@@ -2277,17 +2161,9 @@ print('AUC Score        :', rf_auc_score2)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['Random Forest Tuned Fit',
-                          rf_train_acc2,
-                          rf_test_acc2,
-                          rf_auc_score2])
-```
-
 ### E) Gradient Boosting
 
-#### Step 1: Default Model with all Features
+### Step 1: Default Model with all Features
 
 
 ```python
@@ -2338,19 +2214,11 @@ print('AUC Score        :', gbm_auc_score)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['Gradient Boosting Default',
-                          gbm_train_score,
-                          gbm_test_score,
-                          gbm_auc_score])
-```
-
 <strong> Observations: </strong>
 - improved model performance
 - run hyperparameter tuning
 
-#### Step 2: Hyperparameter Tuning
+### Step 2: Hyperparameter Tuning
 
 
 ```python
@@ -2397,7 +2265,7 @@ Tuned parameters: {'learning_rate': 0.01, 'max_depth': 9, 'min_samples_leaf': 1,
 Tuned CV AUC      : 0.6406
 ```
 
-#### Step 3: Feature Selection
+### Step 3: Feature Selection
 
 Gradient boosting selects the best features that can explain our model. Here, we will use the cut-off at 0.01 to determine these features based on the box plots analysis we did earlier. Variable before this value did not show a significant separation between failure and success.
 
@@ -2468,22 +2336,10 @@ print('AUC Score        :', fit_gbm_auc_score)
 ```
 
 
-```python
-# saving the results
-model_performance.append(['Gradient Boosting Fit',
-                          fit_gbm_train_score,
-                          fit_gbm_test_score,
-                          fit_gbm_auc_score])
-```
+
 
 ## Part 3: Evaluating the model
 
-
-```python
-# declaring a DataFrame object
-model_performance_df = pd.DataFrame(model_performance[1:], columns = model_performance[0])
-model_performance_df
-```
 
 
 ![Model-Performance](images/model-performance-classification)
