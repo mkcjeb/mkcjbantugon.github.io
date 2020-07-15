@@ -6,6 +6,8 @@ header:
   image: "/images/dubai.jpg"
 excerpt: "Analysis of traveler's experiences in Boston, Dubai and London using Trip Advisor's city reviews."
 mathjax: "true"
+toc: true
+toc_label : "Navigate"
 ---
 
 ## Introduction
