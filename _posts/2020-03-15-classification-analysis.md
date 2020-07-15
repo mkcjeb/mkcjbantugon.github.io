@@ -20,6 +20,14 @@ Note: this analysis is based on a fictitious business case, Apprentice Chef, Inc
 
 ***
 
+### Introduction
+
+The meal kit market is competitive, with new players joining every day, as well as traditional grocery stores which are now also offering customers semi-prepared kits (Forbes, 2018). However, research shows consumers continue to order meal kits due to health reasons and getting to know new recipes (Nielsen, 2017).
+<br>
+Therefore, it is essential to diversify our revenue streams at Apprentice Chef through different promotions such as Halfway There, a wine subscription service.
+
+
+
 ### Overview
 
 - Our best performing model was a Decision Tree with 21 features with a test score of 0.9058
@@ -2375,3 +2383,44 @@ However, our marketing expenditures could be optimized since we can see 39 out o
 - Optimal features were found using exploratory data analysis, domain knowledge and tree classifiers
 - It is predicting whether or not a customer will subscribe to the new service Halfway There.
 - Its precision in correctly predicting a new customer is 96%
+
+## Business Insights
+
+1. Customer Loyalty
+<br>
+We provide full refunds for customers that cancel before noon. This policy is contributing to increase our customer satisfaction and loyalty. Indeed, <strong> of those that have cancelled at least once before noon, 73% have subscribed to Halfway There. </strong>
+<br>
+Thus, allowing for full refunds in cancellations increases customer satisfaction and loyalty. Assuming the bottle delivery is independent from the meal delivery, our customer’s may have an easier time committing to a half-bottle wine delivery then a fresh full meal, increasing their loyalty to the brand. Once loyal, customers are more likely to subscribe to new services.
+
+2. Recommendation System
+<br>
+Our recommendation system adapts to our customer’s previous purchases, lookalike scores and trending products. In the context of our new product, of customers that have previously followed our recommendations 20% of the time, 85% are subscribed to Halfway There. Additionally, customers that usually follow our recommendations are almost twice as likely to subscribe for this new service.
+<br>
+This group of customers is pickier with their meal options. Due to their busy schedules, they enjoy new offerings from recommendations, and take this opportunity to explore new tastes without the effort of research and appreciate the uniqueness of the local selection.
+
+## Recommendations and Business Implementation
+
+The number of customers that follow recommendations and the influence of communication channels are predictors of success in selling Halfway There. It indicates that a two-fold marketing strategy should be implemented when promoting the new service to a wider audience.
+<br>
+
+1) <strong> In-house: </strong> Customers that followed recommendations and that have watched preparation videos have proved to positively impact the success in selling Halfway There. Thus, implementing promotional videos inside our mobile and web platform would reduce marketing costs related to external parties and still be effective in reaching the desired customer (ex: advertisement videos before food prep videos promoting the wine as a drink while preparing the food).
+<br>
+
+2) <strong> Email Marketing: </strong> email campaigns are a cheap way to reach a great number of customers. Professional emails are positively correlated with successfully selling Halfway There, since customers access these inboxes multiple times a day. Therefore, we should consider an email campaign of the new service, in addition to make an email and email confirmation, required fields upon new customer registration.
+
+
+### Sources:
+
+Technical sources:
+- [Logistic Regression Analysis](https://stats.idre.ucla.edu/stata/output/logistic-regression-analysis/)
+- [Overview of feature selection methods - Towards Data Science](https://towardsdatascience.com/overview-of-feature-selection-methods-a2d115c7a8f7)
+- [Gradient Boosting Classifier sklearn Documentation](https://scikitlearn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html)
+- (Hughes,2012) <i> Why Email Marketing is King. </i> Retrieved from [https://hbr.org/2012/08/why-email-marketing-is-king](https://hbr.org/2012/08/why-email-marketing-is-king)
+
+<br>
+
+Domain Knowledge Sources:
+- (Forbes, 2018). Amazon Icon Meals and Mercatus How These Companies Are Driving Change in the Grocery Industry. Retrieved from [https://www.forbes.com/sites/brittainladd/2018/12/03/amazon- icon-meals-and-mercatus-how-these-companies-are-driving-change-in-the-grocery- industry/#72e1826a7d5b](https://www.forbes.com/sites/brittainladd/2018/12/03/amazon- icon-meals-and-mercatus-how-these-companies-are-driving-change-in-the-grocery- industry/#72e1826a7d5b)
+- [What do we know about the meal kit consumer?](https://www.fmi.org/blog/view/fmi-blog/2018/06/11/what-do-we-know-about-the- meal-kit-consumer)
+- (Nielsen, 2017). Understanding Landscape and Consumer Preferences. Retrieved from [https://www.nielsen.com/us/en/insights/article/2017/understanding- the-meal-kit-landscape-and-consumer-preferences/](https://www.nielsen.com/us/en/insights/article/2017/understanding- the-meal-kit-landscape-and-consumer-preferences/)
+
