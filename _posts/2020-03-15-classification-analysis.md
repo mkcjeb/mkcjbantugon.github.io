@@ -2343,7 +2343,7 @@ print('AUC Score        :', fit_gbm_auc_score)
 
 
 
-![Model-Performance](/images/model-performance-classification)
+![Model-Performance](/images/model-performance-classification.png)
 
 According to the table above, the best model to predict if a customer will or not subscribe to Halfway There is the decision tree. In the following steps, we will interpret the results of the model and evaluate is applicability to the business case.
 
