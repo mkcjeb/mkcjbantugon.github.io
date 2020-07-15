@@ -1624,7 +1624,7 @@ sns.residplot(x = lr_pred,  # prediction values
 plt.show()
 ```
 
-![Regression-residual-plot](images/Regression-residual-plot.png)
+![Regression-residual-plot](/images/Regression-residual-plot.png)
 
 <strong> Observations:</strong>
 - no obvious patterns: homoskedasticity assumption met, linear relationship met
@@ -1740,7 +1740,7 @@ sns.residplot(x = out_lr_pred,  # prediction values
 plt.show()
 ```
 
-![Residual Plot After Outliers](images/regression-residual-plot-2.png)
+![Residual Plot After Outliers](/images/regression-residual-plot-2.png)
 
 <br>
 Observations:
