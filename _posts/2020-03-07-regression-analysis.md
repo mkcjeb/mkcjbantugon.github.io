@@ -1,6 +1,6 @@
 ---
 title: "Apprentice Chef, Inc.: Regression-based Analysis"
-date: 2019-03-07
+date: 2020-03-07
 tags: [Python, machine learning, regression]
 header:
   image: "/images/culinary.jpg"
