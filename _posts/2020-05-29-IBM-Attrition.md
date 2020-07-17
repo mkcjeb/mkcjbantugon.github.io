@@ -9,8 +9,8 @@ mathjax: "true"
 toc: "true"
 ---
 
-<i> Note: This project was a collaboration with Ana Oliveira, Ivan Manurung and 
-Nandish Hebbal in the context of a Data Mining class with Professor Thomas Kurnicki at Hult International Business School. </i>
+<i> Note: This project was a collaboration with [Ana Oliveira](https://www.linkedin.com/in/ana-gillingham-78a027175/) , [Ivan Manurung](https://www.linkedin.com/in/ivanmanurung/) and 
+[Nandish Hebbal](https://www.linkedin.com/in/nandish-hebbal-b12b1417b/) in the context of a Data Mining class with Professor Thomas Kurnicki at Hult International Business School. </i>
 
 All the queries and analysis below were executed on [Dataiku DSS](https://www.dataiku.com/).
 
