@@ -24,9 +24,9 @@ International Business Machines Corporation (IBM) is an American multinational t
 
 ### Dataset
 
-Number of observations: 1470
-Target Variable: Attrition = Employee leaving the company (0 = no, 1 = yes)
-Business Case: Retention = Employee staying in the company
+Number of observations: 1470 <br>
+Target Variable: Attrition = Employee leaving the company (0 = no, 1 = yes) <br>
+Business Case: Retention = Employee staying in the company <br>
 
 ### Our focus: Enabling IBM to reduce attrition
 
@@ -157,7 +157,7 @@ FROM "TEAM12IBM_ibm_clean"
 WHERE "TotalWorkingYears_flag" = 0;
 ```
 
-### MOdel Selection
+### Model Selection
 
 <strong> Step 1: </strong> Correlation Matrix (Python - pandas)
 
