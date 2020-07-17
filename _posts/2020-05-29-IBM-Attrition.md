@@ -3,7 +3,7 @@ title: "IBM: Predicting Employee Attrition"
 date: 2020-05-29
 tags: [Python, PySpark, data mining, business case]
 header:
-  image: "/images/IBM.png"
+  image: "/images/IBM.jpg"
 excerpt: "Team project using IBM human resource data to predict employee attrition."
 mathjax: "true"
 toc: "true"
@@ -365,7 +365,7 @@ The confusion matrix above shows how our model tested against the test data. Whe
 - When Attrition could not be preventing, establishing “exit interviews” could be an additional tool to gather honest insight.
 
 
-### Overtime:
+### Overtime
 
 - Efforts must be taken to appropriately gauge human resource needs and allocation to reduce overtime needs;
 - Adequate support should be offered to employees who frequently engage in overtime;
