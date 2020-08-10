@@ -37,7 +37,7 @@ System Health
 
 ## Dashboard
 
-The dashboard can be found [here](https://datastudio.google.com/s/oEq2kNO82HQ). Please note there are two pages, one for station and the other for system.
+The dashboard can be found [here](https://datastudio.google.com/reporting/f7bb9400-2dd8-425d-ac4d-6e47e71d6655). Please note there are two pages, one for station and the other for system.
 
 
 ## SQL queries
