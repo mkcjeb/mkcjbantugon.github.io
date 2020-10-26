@@ -7,7 +7,7 @@ header:
 
 Hi, I’m Sophie! 
 
-I'm a globe-trotter who has recently moved from Montreal to San Francisco to pursue a master’s in business analytics. I’m a **sustainability nerd**, focused on data-driven solutions for sustainability that make sense for the community, the environment, and business.
+I'm a globe-trotter who has recently moved from Montreal to San Francisco to pursue a master’s in business analytics. Now currently living in Switzerland. I’m a **sustainability nerd**, focused on data-driven solutions for sustainability that make sense for the community, the environment, and business.
 
 My past experience in management has strengthened my belief that innovative business models are a solution for systemic change and the future success of our planet. Using tools such as Python, R, SQL and Tableau to mine data, I believe we can find deep insights and solutions for our present challenges.
 
