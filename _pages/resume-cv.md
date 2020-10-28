@@ -5,4 +5,4 @@ permalink: /resume-cv/
  # image: "/images/zakim.jpg"
 ---
 
-![Sophie Briques - Summer 2020](/images/Briques-Sophie-CV.jpg)
+![Sophie Briques - Summer 2020](/images/Briques-Sophie-CV.pdf)
