@@ -4,7 +4,7 @@ date: 2020-05-29
 tags: [Python, PySpark, data mining, business case]
 header:
   image: "/images/IBM.jpg"
-excerpt: "Team project using IBM human resource data and Dataiku DSS to predict employee attrition."
+excerpt: "(Python, SQL, PySpark) Team project using IBM human resource data and Dataiku DSS to predict employee attrition."
 mathjax: "true"
 toc: "true"
 ---
