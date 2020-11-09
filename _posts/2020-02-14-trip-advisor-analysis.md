@@ -4,7 +4,7 @@ date: 2020-02-14
 tags: [text analytics, sentiment analysis, tokenization, TF-IDF, R]
 header:
   image: "/images/dubai.jpg"
-excerpt: "Analysis of traveler's experiences in Boston, Dubai and London using Trip Advisor's city reviews."
+excerpt: "(R - Text Analytics) Analysis of traveler's experiences in Boston, Dubai and London using Trip Advisor's city reviews."
 mathjax: "true"
 toc: true
 toc_label : "Navigate"
