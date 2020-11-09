@@ -4,7 +4,7 @@ date: 2019-10-14
 tags: [python, user-input, game development, text adventure]
 header:
   image: "/images/The-walking-dead.jpg"
-excerpt: "A text input interactive game full of random plot twists and survival strategy.This game requires courage, and having a small amount of survival knowledge in case of a zombie apocalypse will be helpful. Desgined in Jupyter Notebooks."
+excerpt: "(Python) A text input interactive game full of random plot twists and survival strategy.This game requires courage, and having a small amount of survival knowledge in case of a zombie apocalypse will be helpful. Desgined in Jupyter Notebooks."
 mathjax: "true"
 ---
 
