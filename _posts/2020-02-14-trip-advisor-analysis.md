@@ -1,5 +1,5 @@
 ---
-title: "Trip Advisor - Boston, London or Dubai?"
+title: "Trip Advisor: Boston, London or Dubai?"
 date: 2020-02-14
 tags: [text analytics, sentiment analysis, tokenization, TF-IDF, R]
 header:
