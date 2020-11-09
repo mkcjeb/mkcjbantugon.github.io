@@ -4,7 +4,7 @@ date: 2020-03-29
 tags: [SQL, google data studio, google big query, dashboards, data visualization]
 header:
   image: "/images/citibike.jpg"
-excerpt: "This Google Data Studio dashboard aims to satisfy CitiBike operational needs using live public data from Google Big Query."
+excerpt: "(SQL) This Google Data Studio dashboard aims to satisfy CitiBike operational needs using live public data from Google Big Query."
 mathjax: "true"
 toc: true
 toc_label : "Navigate"
@@ -37,7 +37,10 @@ System Health
 
 ## Dashboard
 
-The dashboard can be found [here](https://datastudio.google.com/reporting/f7bb9400-2dd8-425d-ac4d-6e47e71d6655). Please note there are two pages, one for station and the other for system.
+![citibike dashboard](/images/citibike_dashboard.png)
+
+
+The full dashboard can be found [here](https://datastudio.google.com/reporting/f7bb9400-2dd8-425d-ac4d-6e47e71d6655). Please note there are two pages, one for station and the other for system.
 
 
 ## SQL queries
