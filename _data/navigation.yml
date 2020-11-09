@@ -6,8 +6,8 @@ main:
     url: /projects/
   - title: "Resume"
     url: /resume-cv/
-# - title: "SQL Projects"
-#   url: /sql-projects/
+ - title: "Certificates"
+   url: /certificates/
 # - title: "Data Visualization"
 #   url: /data-visualization/
 # - title: "Data Management"
