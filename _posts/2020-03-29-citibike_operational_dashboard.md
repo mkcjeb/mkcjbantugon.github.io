@@ -40,7 +40,7 @@ System Health
 ![citibike dashboard](/images/citibike_dashboard.png)
 
 
-The full dashboard can be found [here](https://datastudio.google.com/reporting/f7bb9400-2dd8-425d-ac4d-6e47e71d6655). Please note there are two pages, one for station and the other for system.
+The full and interactive dashboard version can be found [here](https://datastudio.google.com/reporting/f7bb9400-2dd8-425d-ac4d-6e47e71d6655). Please note there are two pages, one for station and the other for system.
 
 
 ## SQL queries
