@@ -11,6 +11,8 @@ toc : "true"
 
 <i> Note: This case study was a collaboration with Jasmine Gomez, Michael Abramson, Prajakta Parkar, Santiago Abisambra and Santiago Romero in the context of our capstone project with Professor Cari Guittard and Adjunct Instructor Malcolm "MK" Palmore at Hult International Business School. </i>
 
+## Presentation: The Future of Genome Medicine
 The full strategy presentation and recommendations can be found [here](https://drive.google.com/file/d/1khnPIrC7YewclmEOPnbaNd3r22EkkwC5/view?usp=sharing).
 
+## Executive Memo: Cyber Risk Mitigation and Incident Response Plan
 The Executive Memo and recommended Incident Response Plan outline can be found [here](https://drive.google.com/file/d/1zLrX_VI4Katk6RZVGQzyL2XDnWpMXVEi/view?usp=sharing).
