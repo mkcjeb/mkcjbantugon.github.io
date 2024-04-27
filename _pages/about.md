@@ -11,22 +11,6 @@ I moved to San Francisco to pursue a "Master's Degree in Business Analytics," ai
 
 My dream? Not only to analyze data but also drive business outcomes and innovate people experience by contributing and making impactful software solutions.
 
-Core Competencies:
-
-Data Analytics, Programming, 
-Structured Data, 
-Unstructured Data, 
-NLP,
-Database Administration
-Data Visualization
-Graphical User Interface
-Project Commissioning (FAT, SAT)
-System Migration
-Agile Methodology
-Project Planning and Execution
-Process Improvement
-Leadership
-
 Systems:
 
 SQL
