@@ -9,9 +9,9 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Sophie Briques"
+title                    : "Michelle Kae Celine Jo-anne Bantugon"
 title_separator          : "-"
-name                     : "Sophie Briques"
+name                     : "Michelle Kae Celine Jo-anne Bantugon""
 description              : "Data Science Portfolio"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -85,11 +85,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Sophie Briques"
+  name             : "Michelle Kae Celine Jo-anne Bantugon""
   avatar           : "/images/LinkedinHeadshot.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "+41 78 234 22 62"
-  location         : "Switzerland - Europe"
-  email            : "sophiebriques@gmail.com"
+  bio              : "+650 346 5184"
+  location         : "San Francisco Bay Area"
+  email            : "joannebantugon.che@gmail.com"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
@@ -98,16 +98,16 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "sbriques"
+  github           : "mkcjbantugon"
   gitlab           :
   google_plus      :
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : "sophiebriques" # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
+  linkedin         : "michellebantugon" # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
   pinterest        :
   soundcloud       :
-  stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
+  stackoverflow    : # "24723636/michelle-kae-celine-jo-anne-ba" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
   steam            : # "steamId" (the last part of your profile url, e.g. https://steamcommunity.com/id/steamId/)
   tumblr           :
   twitter          :
