@@ -3,5 +3,5 @@ title: "Resume"
 permalink: /resume-cv/
 
 ---
+<img src="/images/Resume.png" alt="Resume">
 
-![Michelle Kae Celine Jo-anne Bantugon Data Scientist](/images/Resume.png){: .align-center}
