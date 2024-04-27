@@ -5,4 +5,4 @@ permalink: /resume-cv/
  # image: "/images/zakim.jpg"
 ---
 
-![Michelle Kae Celine Jo-anne Bantugon Data Scientist ](/images/resume.png)
+![Michelle Kae Celine Jo-anne Bantugon Data Scientist ](/images/Resume.png)
