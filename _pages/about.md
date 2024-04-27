@@ -13,11 +13,10 @@ My dream? Not only to analyze data but also drive business outcomes and innovate
 
 Core Competencies:
 
-Data Analytics
-Programming
-Structured Data
-Unstructured Data
-NLP
+Data Analytics, Programming, 
+Structured Data, 
+Unstructured Data, 
+NLP,
 Database Administration
 Data Visualization
 Graphical User Interface
