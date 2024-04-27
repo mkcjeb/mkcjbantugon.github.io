@@ -13,47 +13,47 @@ title                    : "Michelle Kae Celine Jo-anne Bantugon"
 title_separator          : "-"
 name                     : "Michelle Kae Celine Jo-anne Bantugon"
 description              : "Data Science Portfolio"
-url                      : "" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : "" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl                  : # the subpath of your site, e.g. "/blog"
+repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : "" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
+  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
   disqus:
-    shortname            : "" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
-    server               : "" # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
     # https://developers.facebook.com/docs/plugins/comments
     appid                :
-    num_posts            : "" # 5 (default)
-    colorscheme          : "" # "light" (default), "dark"
+    num_posts            : # 5 (default)
+    colorscheme          : # "light" (default), "dark"
 staticman:
-  allowedFields          : "" # ['name', 'email', 'url', 'message']
-  branch                 : "" # "master"
-  commitMessage          : "" # "New comment."
-  filename               : "" # comment-{@timestamp}
-  format                 : "" # "yml"
-  moderation             : "" # true
-  path                   : "" # "/_data/comments/{options.slug}" (default)
-  requiredFields         : "" # ['name', 'email', 'message']
+  allowedFields          : # ['name', 'email', 'url', 'message']
+  branch                 : # "master"
+  commitMessage          : # "New comment."
+  filename               : # comment-{@timestamp}
+  format                 : # "yml"
+  moderation             : # true
+  path                   : # "/_data/comments/{options.slug}" (default)
+  requiredFields         : # ['name', 'email', 'message']
   transforms:
-    email                : "" # "md5"
+    email                : # "md5"
   generatedFields:
     date:
-      type               : "" # "date"
+      type               : # "date"
       options:
-        format           : "" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
+        format           : # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 reCaptcha:
   siteKey                :
   secret                 :
 atom_feed:
-  path                   : "" # blank (default) uses feed.xml
-search                   : "" # true, false (default)
-search_full_content      : "" # true, false (default)
-masthead_title           : "Data Science Portfolio - Sophie Briques"
+  path                   : # blank (default) uses feed.xml
+search                   : # true, false (default)
+search_full_content      : # true, false (default)
+masthead_title.          : "Data Science Portfolio - Sophie Briques"
 
 # SEO Related
 google_site_verification :
@@ -68,25 +68,26 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "" # Open Graph/Twitter default site image
+og_image                 : # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : "" # Person or Organization (defaults to Person)
-  name                   : "" # If the user or organization name differs from the site's name
+  type                   : # Person or Organization (defaults to Person)
+  name                   : # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
 
 # Analytics
 analytics:
   provider               : false # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          : ""
+    tracking_id          :
+
 
 # Site Author
 author:
   name             : "Michelle Kae Celine Jo-anne Bantugon"
   avatar           : "/images/LinkedinHeadshot.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "+650 346 5184"
+  bio              : "+41 78 234 22 62"
   location         : "San Francisco Bay Area"
   email            : "joannebantugon.che@gmail.com"
   uri              :
@@ -106,7 +107,7 @@ author:
   linkedin         : "michelle-bantugon" # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
   pinterest        :
   soundcloud       :
-  stackoverflow    : # "24723636/michelle-kae-celine-jo-anne-ba" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
+  stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
   steam            : # "steamId" (the last part of your profile url, e.g. https://steamcommunity.com/id/steamId/)
   tumblr           :
   twitter          :
@@ -114,6 +115,7 @@ author:
   weibo            :
   xing             :
   youtube          : # "https://youtube.com/c/MichaelRoseDesign"
+
 
 # Reading Files
 include:
@@ -151,12 +153,14 @@ keep_files:
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
+
 # Conversion
 markdown: kramdown
 highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
+
 
 # Markdown Processing
 kramdown:
@@ -169,16 +173,19 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
+
 # Sass/SCSS
 sass:
   sass_dir: _sass
   style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+
 
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
 
 # Plugins (previously gems:)
 plugins:
@@ -196,6 +203,7 @@ whitelist:
   - jekyll-feed
   - jemoji
 
+
 # Archives
 #  Type
 #  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
@@ -212,6 +220,18 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+# https://github.com/jekyll/jekyll-archives
+# jekyll-archives:
+#   enabled:
+#     - categories
+#     - tags
+#   layouts:
+#     category: archive-taxonomy
+#     tag: archive-taxonomy
+#   permalinks:
+#     category: /categories/:name/
+#     tag: /tags/:name/
+
 
 # HTML Compression
 # - http://jch.penibelst.de/
@@ -219,6 +239,7 @@ compress_html:
   clippings: all
   ignore:
     envs: development
+
 
 # Defaults
 defaults:
