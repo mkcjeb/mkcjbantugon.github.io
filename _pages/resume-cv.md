@@ -3,5 +3,5 @@ title: "Resume"
 permalink: /resume-cv/
 
 ---
-<img src="/images/Resume.png" alt="Resume">
+<img src="/images/MKCJEB.JPG" alt="Resume">
 
