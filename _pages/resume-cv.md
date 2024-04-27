@@ -1,7 +1,7 @@
 ---
-title: "Resume"
-permalink: /resume-cv/
-
+title: "About"
+permalink: /about/
+header:
+  image: "/images/Resume.png"
 ---
-<img src="/images/MKCJEB.JPG" alt="Resume">
 
