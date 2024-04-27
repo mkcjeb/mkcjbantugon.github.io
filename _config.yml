@@ -86,7 +86,7 @@ analytics:
 # Site Author
 author:
   name             : "Michelle Kae Celine Jo-anne Bantugon"
-  avatar           : "/images/MKCJEB.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/images/MKCJEB.JPG" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "+650 346 5184"
   location         : "San Francisco Bay Area"
   email            : "joannebantugon.che@gmail.com"
