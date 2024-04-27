@@ -13,12 +13,12 @@ My dream? Not only to analyze data but also drive business outcomes and innovate
 
 Systems:
 
-SQL
-Python
-Pandas
-Machine Learning (Supervised Learning, Classification, Regression, Clustering)
-R
-Tableau
-VB Script
-Process Control Systems (DCS, ESD, PLC, SCADA, APC)
+SQL |
+Python |
+Pandas |
+Machine Learning |
+R |
+Tableau |
+VB Script |
+Process Control Systems |
 Agile Methodology
