@@ -53,7 +53,7 @@ atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : # true, false (default)
 search_full_content      : # true, false (default)
-masthead_title.          : "Data Science Portfolio - Sophie Briques"
+masthead_title.          : "Data Science Portfolio - Michelle Kae Celine Jo-anne Bantugon"
 
 # SEO Related
 google_site_verification :
@@ -87,7 +87,7 @@ analytics:
 author:
   name             : "Michelle Kae Celine Jo-anne Bantugon"
   avatar           : "/images/LinkedinHeadshot.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "+41 78 234 22 62"
+  bio              : "+650 346 5184"
   location         : "San Francisco Bay Area"
   email            : "joannebantugon.che@gmail.com"
   uri              :
