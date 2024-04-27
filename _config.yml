@@ -56,7 +56,7 @@ search_full_content      : # true, false (default)
 masthead_title.          : "Data Science Portfolio - Michelle Kae Celine Jo-anne Bantugon"
 header:
   image: "/images/bay area.jpeg"
-  height: 100px
+  height: 50px
 
 
 # SEO Related
