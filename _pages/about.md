@@ -2,13 +2,38 @@
 title: "About"
 permalink: /about/
 header:
-  image: "/images/Panorama-Sao-Paulo-Brazil.jpg"
+  image: "/images/Manila.jpg"
 ---
 
-Hi, I’m Sophie! 
+Hi there! You can call me **Jo-anne**, and here's a fun fact for you: I can effortlessly recite the alphabet backwards and I bring that same level of creativity and innovation in everything I do.
 
-I'm a globe-trotter who has recently moved from Montreal to San Francisco to pursue a master’s in business analytics. Now currently living in Switzerland. I’m a **sustainability nerd**, focused on data-driven solutions for sustainability that make sense for the community, the environment, and business.
+I moved to San Francisco to pursue a "Master's Degree in Business Analytics," aiming to transition into roles within the data science field. I have a goal of joining a global data-centric, data-driven team, and growth-focused tech industry. 
 
-My past experience in management has strengthened my belief that innovative business models are a solution for systemic change and the future success of our planet. Using tools such as Python, R, SQL and Tableau to mine data, I believe we can find deep insights and solutions for our present challenges.
+My dream? Not only to analyze data but also drive business outcomes and innovate people experience by contributing and making impactful software solutions.
 
-I was born and raised in São Paulo (in case you were wondering which city was the panorama above), and I'm passionate about the globe, fascinated by cities, and curious about all types of food.
+Core Competencies:
+Data Analytics
+Programming
+Structured Data
+Unstructured Data
+NLP
+Database Administration
+Data Visualization
+Graphical User Interface
+Project Commissioning (FAT, SAT)
+System Migration
+Agile Methodology
+Project Planning and Execution
+Process Improvement
+Leadership
+
+Systems:
+SQL
+Python
+Pandas
+Machine Learning (Supervised Learning, Classification, Regression, Clustering)
+R
+Tableau
+VB Script
+Process Control Systems (DCS, ESD, PLC, SCADA, APC)
+Agile Methodology
