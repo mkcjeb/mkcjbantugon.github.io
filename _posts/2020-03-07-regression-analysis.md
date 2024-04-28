@@ -1,18 +1,19 @@
 ---
-title: "Apprentice Chef, Inc.: Regression-based Analysis"
-date: 2020-03-07
+title: "Chicago Bike Rental: Regression-based Analysis"
+date: 2024-02-28
 tags: [Python, machine learning, regression]
 header:
-  image: "/images/culinary.jpg"
-excerpt: "(Python - Machine Learning) This regression analysis and model aims to understand how much revenue to expect from each customer within their first year of orders. Based on a fictitious business case: Apprentice Chef, Inc. built by Professor Chase Kusterer from Hult International Business School"
+  image: "/images/bike.jpg"
+excerpt: "(Python - Machine Learning) This regression analysis and model aims to developing a machine learning model to predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. 
+Business case built by Professor Chase Kusterer from Hult International Business School"
 mathjax: "true"
 toc: true
 toc_label : "Navigate"
 ---
 
 
-Apprentice Chef, Inc.: Regression-based Analysis<br>
-By: Sophie Briques<br>
+Chicago Bike Rental: Regression-based Analysis<br>
+By: Michelle Kae Celine Jo-anne Bantugon<br>
 Hult International Business School<br><br>
 
 Jupyter notebook and dataset for this analysis can be found here: [Portfolio-Projects](https://github.com/sbriques/portfolio-projects)
