@@ -10,1058 +10,635 @@ mathjax: "true"
 
 ## The Game
 
-This game  is based on the first episode of the tv series The Walking Dead (2010) and has some references from the movie Zombieland (2009). More specifically, line 805 is a direct quote from The Walking Dead, episode 01 - season 01 min 1:05:00. The explanation from how the zombie virus was created is a reference to Zombieland.
+Fan of intense and survival games? Rejoice! <br>
+Let's refresh your memory on the game's inspiration drawn from the worlds of <a href="https://www.sportskeeda.com/pop-culture/what-is-alice-in-borderland-about">Alice in Borderland</a> and <a href="https://movieweb.com/escape-room-ending-explained/">Escape Room</a> movies.
     
-The game consists of four stages, and also has defined functions for set ups in each stage, user inventory, alive and dead. Certain codes were inspired by Professor Chase Kusterer from Hult International Business School (example games - line 813).
-    
-This game requires courage, and having a small amount of survival knowledge in case of a zombie apocalypse will be helpful.
-    
-1. Round 1: Hospital;
-2. Round 2: Home;
-3. Round 3: On the road to Atlanta;
-4. Round 4: Atlanta.
+In the realm of <b>Alice in Borderland</b>, characters find themselves in a distant fantasy land called Borderland, where survival hinges on engaging in death-defying challenges to earn precious lives. Win, and you gain additional days to live; lose, and it could cost you your life. When their visas expire, players face the threat of being instantly eliminated by a laser. The only way to stay alive is to engage in a series of challenging games.
+
+In another world, <b>Escape Room</b>, six strangers receive mysterious black boxes with tickets to an immersive escape room, promising a chance to win a big amount of money. Trapped in various rooms with extreme challenges, players unravel the secrets within to survive and secure their escape.
+
+And now, the game is set for you. Your challenge?
+
+As the player, you will find yourself trapped in a room, navigating through a sequence of trials and questions. Your survival depends on relying on your wit and creative problem-solving skills to persevere and crack the challenges that lie ahead. 
+
+Anticipate the unexpected in this game, comprising <u><font color=blue>three stages</u></font> featuring some unforeseen twists distinct from those depicted in the movie-adapted version. You will face different challenges with <b>Kings of</b> <b><font color=red>Hearts, Diamonds</b>,</font> or <b>Spades</b>. It involves a mix of chance and strategy, testing the player's decision-making skills and wit. Players progress through challenges, face unique scenarios, and ultimately aim to escape the Python Escape Room.
+
+Best of luck on your journey!
 
 ## Instructions
 
-To run the game, I suggest copy-pasting the following code block into a Jupyter Notebook code cell (I know the code is long, but don't worry about it, we just need all of these things to make it awesome). Then, you only need to run the cell to start the game and follow the printed commands!
-
-Have fun with it, and bonus points for those who can find the easter eggs!
-
+You must have Python installed in your computer in order to play the game. Open your terminal window and run the jupyter notebook and copy-paste the following code block. Then, you only need to run the cell to start the game and follow the printed commands!
 
 *Note: If you're not familiar with Jupyter Notebooks, here's a [great tutorial](https://www.youtube.com/watch?v=HW29067qVWk) on how they work and [how to set up](https://www.anaconda.com/products/individual) Anaconda Navigator.*
 
 
 ```python
 """
-Created on Mon Oct 14, 2019
+Created on Mon December 03, 2023
 
-@author: sophie.briques
+@author: michelle.bantugon
 """
 
 """
-    A) Introduction:
-    This game is based on the first episode of the tv series The Walking Dead
-    (2010) and has some references from the movie Zombieland (2009).
-    More specifically, line 805 is a direct quote from The Walking Dead,
-    episode 01 - season 01 min 1:05:00. The explanation from how the zombie virus 
-    was created is a reference to Zombieland.
-    
-    The game consists of four stages, and also has defined functions
-    for set ups in each stage, user inventory, alive and dead.
-    
-    Certain codes were inspired by Professor Chase's example games (line 813).
-    
-    This game requires courage, and having a small amount of survival
-    knowledge in case of a zombie apocalypse will be helpful.
-    
-    Round 1: Hospital;
-    Round 2: Home;
-    Round 3: On the road to Atlanta;
-    Round 4: Atlanta.
-        
-    B) Bugs and Errors:
-   -  User name input: if statement does not run 
-
-
-"""
-
-##############################################################################
-
-##Importing necessary packages
-from sys import exit
-from random import randint
+# Importing modules for generating random values, strings, and time
+import random
+import string
 import time
 
-##Waking up the user
-def setup():
-    print("""
-Hey... hellooo? can you hear me? .... is there anyone there?
-""")
-    time.sleep(2)
-    
-    print("""
-Hello? Come on... you need to wake up, like, *RIGHT NOW*!
-""")
-    
-    input("""<Press enter to show you're you awake>\n""")
-    print("""
-Conscience: Oh! Good. Hi there. I'm your conscience. How do you feel?""")
-    start_game()
+#####################################################################################
+# Defining a game_intro function to introduce the game and prompt the player to start
+#####################################################################################
 
-## First user interaction, introducing user's conscience
-def start_game():
-    feeling = input("""
+def game_intro():
+    # Displaying a welcome message
+    print("\nHey there, Player!🎉 Ready to enter into the wild world of Python Escape Room?🤑🤑🤑\n")
     
-a) Confused... what is going on?
-b) Am I still sleeping?
-c) Perfectly fine, thank you for asking kind voice in my head.
+    # Calling the name function to get the player's username
+    username = name() 
+    
+    # Displaying the obtained username
+    print(f"\nAre you ready, {username.title()}? You're at the point of no return!🚷")
+    
+    input(prompt = "Press <<Enter>> to start.\n")
+    
+    # Calling the stage_1 function to start the first stage of the game
+    stage_1() 
 
-""").lower()
+# Defining a name function to prompt the user to input their name or a random username will be generated
+def name():
     
-    ## User selects a
-    if feeling == 'a' or feeling == '1' or feeling == 'Confused':
-        time.sleep(1)
-        print("""
-Conscience: Don't worry, everything is ok, we'll get through this together!
-            You just woke up from a coma.
-            It is normal to feel this way.
+    # Using a loop to repeatedly ask for a valid username
+    while True:
+        
+        # Getting user input for the username
+        username = input(prompt = "Input your name: ")
+        
+        # Checking if the username input is not empty
+        if username.strip():
             
-            Do you remember anything?
-""")
-        time.sleep(2)
-        print("""
-Conscience: Oh yeah true... I guess not. Stupid me!
-            That blow to your head must have been really strong.
-""")
-        time.sleep(2)
-        print("""
-Conscience: Let's start with the basics then, shall we?\n
-""")
-        ## Bringing user to first scene
-        waking_up()
-    
-    ### User selects b
-    elif feeling == 'b'or feeling == '2' or 'am i still sleeping?' in feeling:
-        time.sleep(1)
-        print("""
-Conscience: NO! THIS IS REAL LIFE! Snap out of it! You just woke up from a coma.
-            ugh.. you don't remember anything do you? This will be fun... \n
-""")
-        time.sleep(2)
-        print("""
-Conscience: That blow to your head must have wiped out most of your memory.
-            Let's just hope you still remember how to RUN - you'll need it. \n
-""")
-        time.sleep(2)
-        print("""
-Conscience: Alright, let's start with the basics. \n
-""")
-        
-        ## Bringing user to first scene
-        waking_up()
-    
-    ### User selects c
-    elif feeling == 'c' or feeling == '3' or feeling == 'fine'or feeling == 'perfectly fine':
-        time.sleep(1)
-        print("""
-Conscience: No problem buddy! Do you remember anything at all? 
-            Of what happened to you? No? It's alright.
-            You suffered from a pretty big blow to your head.
-""")
-        time.sleep(4)
-        print("""
-Conscience: Let's see if you can at least recall some of the basics shall we? \n
-""")
-        ## Bringing user to first scene
-        waking_up()
-    
-    ### Buffering any mistakes in user input
-    else:
-        time.sleep(1)
-        print("Invalid entry. Please try again.\n")
-        start_game()
-
-
-## First scene - Defining essential variables and story line
-def waking_up():
-
-    ## Defining global variables (the basics)
-    global your_name
-    global your_SO
-
-    ## Defining user's name
-    time.sleep(2)
-    your_name = input("""
-Conscience: Now, do you remember your name?\n
-    > Input what you think your name is:
-""").capitalize()
-    if your_name == "no":
-        input("""
-Conscience: Nope, thata's not right... try again!
-""")
-        waking_up()
-    elif your_name == " ":
-        input("""
-Conscience: Nope, thata's not right... try again!
-""")
-        waking_up()
-    elif your_name == "yes":
-        input("""
-Conscience: Nope, thata's not right... try again!
-""")
-        waking_up()
-
-    ##Defining significant other's name
-    time.sleep(1)
-    print(f"""
-Conscience: Yes, uff!, you got that right, it's not as bad as I thought.
-            You're definetly {your_name}!""")
-    
-    time.sleep(2)
-    your_SO = input(f"""\n
-Conscience: Now, let's see now if you remember your family's name.
-            What's the name of your significant other? \n
-> Input what you think the name of your significant other is:
-""").capitalize()
-    if your_SO == "no":
-        input("""
-Conscience: Nope, thata's not right... try again (it's ok to be creative)!
-""")
-    elif your_SO == " ":
-        input("""
-Conscience: Nope, thata's not right... try again (it's ok to be creative)!
-""")
-    elif your_SO == "yes":
-        input("""
-Conscience: Nope, thata's not right... try again (it's ok to be creative)!
-""")
-    elif your_SO == "single":
-        input("""
-Conscience: Nope, thata's not right... try again (it's ok to be creative)!
-""")
-        
-        waking_up()
-    
-    time.sleep(2)
-    input(f"""\n
-Conscience: Yes! {your_SO}!!! Oh my, I do hope {your_SO} is safe... 
-            Hm.. What?... Oh, nevermind about that right now.
-            We need to get you up and running. \n
-<Press enter to continue>\n
-""")
-    time.sleep(1)
-    hospital_setup()
-
-## end of game set up ##
-
-############## ROUND 1 - Hospital ##############
-## In this round, the user will atempt to escape the abandoned hospital without
-## being eaten by zombies that have been kept in a section of the hospital.
-## The options in this round are randomized as our user does not know yet
-## where they are or what is going on.
-
-#### Setting the scene of the hospital - Something is going on ####
-def hospital_setup():
-    print(f"""\n
-Conscience: Ok {your_name}, now listen carefully.
+            # Checking if the username input contains only letters or spaces
+            if all(x.isalpha() or x.isspace() for x in username):
+                # Returning the valid username
+                return username 
             
-            You are in the hospital because of a head injury that left you in a coma.
-            I'm glad you remember everything.
-            However, I think somtehing is wrong.
-            It's been very quiet around here.
-            The flowers near your bed are dead, and the clock is stopped.
-""")
-    
-   
-    time.sleep(1)
-    print('-' * 50)
-    input("""
-  < Press enter to call the nurse > \n
-""")
-    time.sleep(1)
-    print('no one answers...\n')
-    print('-' * 50)
-
-    time.sleep(2)
-    print("""... ok, this is sketchy, we need to get out of here... and FAST.""")
-    
-    ## Taking user to hospital challenge
-    hospital_challenge()
-    
-#### Abandoned hospital Challenge - GOAL : Get out alive ####
-def hospital_challenge():
-    input('< Press enter to leave your room and walk down the hallway >')
-    time.sleep(1)
-    print(f"""
-Conscience: {your_name}! I see the exit. It's over there at the end of the hallway. 
-""")
-    time.sleep(2)
-    print("""
-Conscience: Oh no wait, it might be this one on the right.
-""")
-    time.sleep(2)
-    print("""
-Conscience: Uh... what about the one in the left?
-""")
-    time.sleep(1)
-    ## Defining random doors with zombies
-    door = input("""
-- Which door do you choose to exit the hospital?
-         a) End of hallway
-         b) Right
-         c) Left
-""").lower()
-    zombies = randint(0,2)
-    
-    ## Start of conditional statement for round 1 - if user selected a
-    if "a" in door or "end of hallway" in door or "end" in door or "1" in door or "hallway" in door:
-        door_int = 0
+            # Displaying a message for invalid input
+            else:
+                print("Invalid input. Please enter a valid string without numbers or special characters.\n")
         
-        ### Start of nested conditional to include randomization of zombies in doors
-        if zombies != door_int:
-            time.sleep(1)
-            print(f"""
-Conscience: Uff! Escaped this freakish place. What is going on?? Let's try to find out {your_name}.
-""")
-            time.sleep(2)
-            home_setup()
-        elif zombies == door_int:
-            print(f"""
-Conscience: Are you hearing this? Are these...
-""")
-            time.sleep(1)
-            print(f"""
-Conscience: Growling noises???
-""")
-            time.sleep(2)
-            dead()
+        # Generating a random username if the input is empty
         else:
-            time.sleep(1)
-            print("""
-Something went wrong. Please try again
-""")
-            time.sleep(1)
-            hospital_challenge() 
-        ### end of nested conditional
+            return random_username()
+
+# Defining a random_username function to generate a random username
+def random_username():
     
-    ## Continuing of conditional statement for round 1 - if user selected b
-    elif "b" in door or "right" in door or "r" in door or "2" in door:
-        door_int = 1
+    # Generating a random username using letters and digits with a length of 6 characters
+    random_username = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
+    
+    # Displaying a message with the generated random username
+    print(f"Oh, feeling nervous! You will be called... something mysterious🕵️‍♂️: {random_username}")
+
+    # Returning the generated random username
+    return random_username
+
+#####################################################################################
+# Defining a stage_1 function for the first stage of the game
+#####################################################################################
+
+def stage_1():
+    
+    # Displaying an introduction message for Stage 1
+    print(f"{'*' * 120}")
+    print("""Stage 1️⃣: Meeting the Kings🚪♥️👑♦️👑♠️\n
+    You stand in a room with three doors: left, middle, and right.🤔
+    """)
+    
+    # Using a loop to handle player's choice for door
+    while True:
         
-        ### Start of nested conditional to include randomization of zombies in doors
-        if zombies != door_int:
-            time.sleep(1)
-            print(f"""
-Conscience: Uff! Escaped this freakish place. What is going on?? Let's try to find out {your_name}.
-""")
-            time.sleep(1)
-            home_setup()
-        elif zombies == door_int:
-            time.sleep(1)
-            print(f"""
-Conscience: Are you hearing this? Are these...
-""")
-            time.sleep(1)
-            print(f"""
-Conscience: Growling noises???
-""")
-            time.sleep(1)
-            dead()
-        else:
-            time.sleep(1)
-            print("""
-Something went wrong. Please try again
-""")
-            hospital_challenge() 
-        ### end of nested conditional
-    
-    ## Continuing of conditional statement for round 1 - if user selected c
-    elif "c" in door or "left" in door or "l" in door or "3" in door:
-        door_int = 2
+        # Getting user input for the chosen door
+        action1 = input(prompt = "Which way do you want to go? ╰┈➤🚪").casefold()
         
-        ### Start of nested conditional to include randomization of zombies in doors
-        if zombies != door_int:
-            time.sleep(1)
-            print(f"""
-Conscience: Uff! Escaped this freakish place. What is going on?? Let's try to find out {your_name}.
-""")
-            time.sleep(1)
-            home_setup()
-        elif zombies == door_int:
-            time.sleep(1)
-            print(f"""
-Conscience: Are you hearing this? Are these...
-""")
-            time.sleep(1)
-            print(f"""
-Conscience: Growling noises???
-""")
-            time.sleep(1)
-            dead()
+        # Meeting the King of Hearts if chosen door is left
+        if "left" in action1 and "middle" not in action1 and "right" not in action1:
             
-        else:
-            time.sleep(1)
-            print("""
-Something went wrong. Please try again
-""")
-            time.sleep(1)
-            hospital_challenge() 
-        ### end of nested conditional
-    
-    else:
-        time.sleep(1)
-        print("""
-Conscience: What sorry? Did you forget which way was right or left?
-            Really? Come on you can do this. Try again.""")
-        time.sleep(1)
-        hospital_challenge() 
+            # Displaying a message for meeting the King of Hearts
+            print(f"\n{' ♥️' * 60}\n""")
+            print("Welcome, left-handed adventurer!🧙 The King of Hearts eagerly awaits your arrival in his kingdom.❤️‍🔥♖\n")
+            input(prompt = "Press <<Enter>> to continue.\n")
+            print("""King of Hearts: I challenge you to a single round of the ultimate game of Rock, Paper, Scissors.🪨📰✂
+May the odds be in your favor!👸💀\n
+            """)
             
+            # Prompting the player to press Enter 
+            input(prompt = "Press <<Enter>> to start the game.\n")
 
-            
-############## ROUND 2 - Home ##############
-## In this round, the user just made it home from the hospital on a bike.
-## The user will not find his/her family at home. He(r) will however meet the
-## neighbour, who will explain what is going on.
-## Then, the user, after deciding to go to Atlanta to find his/her family, 
-## will have to collect into the inventory, items that will help achieve the goal.
-## There are no active zombies in this cage that can kill the user, so everyone 
-## should pass. There is a. mini easter egg in it! Have fun!
+            # Initializing variables needed for Rock, Paper, Scissor game
+            option1 = ["Rock", "Paper", "Scissor"]
+            player_score_1 = 0
+            king_hearts_score = 0
 
-#### Setting the scene of home - nobody is there ####
-def home_setup():
-    time.sleep(1)
-    print("""
-- You just walked outside the hospital into the parking lot. - 
-""")
-    time.sleep(1)
-    input(f"""
-Conscience: {your_name} is that smell coming from you?
-            Gee, you should think about taking a shower from time to time...
-            I mean, it's really hard to think in these conditions...\n
-< Press enter to make your conscience shut up > \n
-""")
-    time.sleep(1)
-    print(f"""Sorry {your_name}.""")
-    time.sleep(2)
-    input("""
-Conscience: Wait...
-            What are those white bags??
-
-< Press enter to get closer and inspect >""")
-
-    input("""
-- You are looking at body bags spread all over the hospital's parking lot.
-  The bodies are deformed, some with big pieces of flesh missing,
-  all with drooping skin. - \n 
-< Press enter to continue >
-""")
-    time.sleep(2)
-    input(f"""
-Conscinence: {your_name} I think we need to get home as soon as possible.
-             Something is not right. It looks like a ghost town around here.
-             Let's grab that bike! \n
-< Press enter to hop on the bike and go home > \n
-""")
-    
-    time.sleep(3)
-    
-    ## taking user home for neighbour's explanation
-    home_neighbour()
-
-### Conversation with neighbour ###
-def home_neighbour():
-    time.sleep(1)
-    print(f"""
-- You arrive home, the door is open wide. You enter the house. -
-""")
-    time.sleep(3)
-    in_house = input("""
-- You are trying to find your family. Do you wish to:
-        a) call out for their names
-        b) go into every room, you don't know if there is someone else in the house.
-""").lower()
-    
-    ##Start of conditional statement
-    if in_house == "a" or in_house == "call out" or in_house == "1" or in_house == "call out for their names":
-        input("""
-Conscience: SHHHHHHHH! What if... what if.... there is one of those here?
-            Maybe try going into every room carefully...
-
-< Press enter to continue >
-""")
-    elif in_house == "b" or in_house == "go into room" or in_house == "2" or in_house == "go into every room":
-        time.sleep(1)
-        print(f"""
-Conscience: You know what {your_name}, that's a good idea.
-            I see your judgement has not been affected by the head blow.""")
-   
-    ## Buffer in case user gets a wrong answer --> a mini easter egg ;) 
-    else:
-        cry = input(f"""
-Something went wrong. Please try again by entering one of the two options. 
-Unless you want to sit and cry for 5 seconds. That's ok too.\n
- > Just enter "cry" if that's the case, if not, just enter "try again" 
-""")
-        if cry == "cry":
-            time.sleep(5)
-            home_neighbout()
-        elif cry == "try again":
-            time.sleep(1)
-            home_neighbour()
-        else:
-            time.sleep(1)
-            print(f"""
-Conscience: Come on {your_name}, I know you can do this. Your coma was not THAT long.
-            Here's a little help:
-            Enter the letter "a" or "b" when asked what to do to find your family.""")
-            time.sleep(1)
-            home_neighbour()
-    
-    ## End of conditional statement
-    time.sleep(2)
-    print(f"""
-- It seems like {your_SO} is not here. -
-""")
-    time.sleep(1)
-    print("""
-- You turn around and there is a man behind you, alive and well...
-  pointing a gun at you... - """)
-    time.sleep(1)
-    print("""
-- You suddenly recognize its your neighbour, Kyle, and you both fall into an embrace. - 
-""")
-    input("""
-- Press enter to ask Kyle what is going on - 
-""")
-    time.sleep(1)
-    print(f"""
-Kyle: Oh {your_name}! We all thought you had died after the hospital was taken over.
-      The world as we know it is over.
-      
-      A few months after you entered your coma, a certain strain of the mad cow disease
-      mutated into a human virus, which, when contaminated, killed people with a
-      terrible fever, only to make them come back as zombies.
-
-""")
-    time.sleep(5)
-    print(f"""
-{your_name}: What about {your_SO}?
-""")
-    time.sleep(1)
-    print(f"""
-Kyle: I don't know {your_name}. I haven't seen {your_SO} since it all started.
-      A lot of people left to Atlanta.
-      Apparently there is a center with no dead there.
-      That's the only place I can think of.
-""")
-    time.sleep(2)
-    input(f"""
-Conscience: We should go to Atlanta then, we need to find {your_SO}.
-            Let's gather some supplies. \n
-< Press enter to continue >
-""")
-    time.sleep(1)
-    input(f"""
-Kyle: Oh and {your_name}, be careful with noise and light.
-      
-      These things will not stop until they find where it comes from... 
-      Especially when they are hungry... \n
-< Press enter to continue >
-""")
-    time.sleep(1)
-    inventory()
-
-### Gathering supplies for the trip ###
-def inventory():
-    
-    # Defining the inventory empty list
-    inventory_lst = []
-    choices_lst = ['a) Family Photo Albums',
-                   'b) Clothes',
-                   'c) 5 Water bottles and 5 Canned foods',
-                   'd) Gun and bullets',
-                   'e) Match Box',
-                   'f) Big Kitchen knife']
-
-    ## start of while loop for 3 item choices to put in the bag
-    print("""
-Conscience: Alright, here are a few items you can choose from.
-            
-            BE CAREFUL - You can choose 3 items to put in your duffle bag.
-            We don't want anything slowing us down:""")
-    items = 3       
-    while items > 0:
-        print(*choices_lst, sep='\n')
-
-        choices = input('> \n').lower()
-
-        if choices == "a" or choices == "1" or choices == "family photo albums" or choices == "photos":
-            inventory_lst.append("Family Photo Albums")
-            choices_lst.remove("a) Family Photo Albums")
-        elif choices == "b" or choices == "2" or choices == "clothes":
-            inventory_lst.append("Clothes")
-            choices_lst.remove("b) Clothes")
-        elif choices == "c" or choices == "3" or choices == "water and food" or choices == "food" or choices == "5 water bottles and 5 canned foods":
-            inventory_lst.append("5 Water bottles and 5 Canned foods")
-            choices_lst.remove("c) 5 Water bottles and 5 Canned foods")
-        elif choices == "d" or choices == "4" or choices == "gun" or choices == "gun and bullets":
-            inventory_lst.append("Gun and bullets")
-            choices_lst.remove("d) Gun and bullets")
-        elif choices == "e" or choices == "5" or choices == "matches" or choices == "match box" or choices == "box":
-            inventory_lst.append("Match Box")
-            choices_lst.remove("e) Match Box")
-        elif choices == "f" or choices == "6" or choices == "knife" or choices == "big knife" or choices == "kitchen knife":
-            inventory_lst.append("Big Kitchen knife")
-            choices_lst.remove("f) Big Kitchen knife")
-        else:
-            print("""
-        Conscience: Oh it appears the item you are trying to collect is no longer in your home...
-                    Someone must have stolen it! Sorry, try again. """)
-            input('<Press enter to try again>')
-            inventory()
-        
-        
-        items -= 1
-    
-    time.sleep(1)    
-    print(f"""\n
-    Great! {your_name} you now have {inventory_lst[0]}, {inventory_lst[1]}
-    and {inventory_lst[-1]} in your inventory!""")
-    
-    # Taking the user to round 3: on the road to Atlanta
-    time.sleep(2)
-    on_the_road()            
-            
-
-############## ROUND 3 - On the Road to Atlanta ##############
-## In this round, the user took his/her car to go to Atlanta and try to find
-## his/her family. The user will encounter a home along the way, but the longer
-## he/she goes, the gas meter goes down noticeably. The user will have to decide
-## whether or not to stop at the house to ask for gas. If him/her chooses
-## not to stop, they will be stranded on the road and be killed by zombies.
-## If they stop, they will be faced with the option to go inside and ask for gas
-## or take the horse and make the rest of the way by horse. The house is full
-## of zombies that will kill the user, and the horse will lead the user to the
-## final round.
-
-#### Setting the scene of getting on the road - where are you going to get gas? ####
-
-## try to add the inventory inside this function
-def on_the_road():
-    input(f"""
-Conscience: Alright {your_name}, now that we have all we need, let's hit the
-            road to find {your_SO}.
-            Good thing your car is still here. \n
-< Press enter to get in the car and start on the road to Atlanta >
-""")
-    time.sleep(2)
-    gallons = 4
-    print("""
-- You are on the highway to Atlanta -  
-""")
-    time.sleep(2)
-    print(f"""
-Conscience: What? We only have {gallons} gallons of gas? Oh no... this is no good.
-            We can't make it to atlanta on that! \n
-""")
-    
-    time.sleep(2)
-    exit = input("""
-Conscience: I see an exit! Do you want to take the exit or keep going?
-                a) Take exit
-                b) Keep driving
-""").lower()
-        
-        ## Conditional to take the exit
-    if "a" in exit or "exit" in exit or "take the exit" in exit or "1" in exit:
-        print("""
-- You have taken the exit - 
-""")
-        gallons -= 1
-        time.sleep(2)
-        stop_house = input("""
-Conscience: I see a house! This is a nice little farm... Let's stop here.
-            Look! They even have a horse!
-            What do you want to do?
-                a) Knock on door and ask for gas
-                b) Say hi to the horse
-""").lower()
-            
-            ## Nested conditional to go into the house or steal the horse
-        if "a" in stop_house or "knock" in stop_house or "1" in stop_house or "knock on door and ask for gas" in stop_house or "ask for gas" in stop_house:
-            time.sleep(2)
-            print("""
-Conscience: Hm it seems like no one is home.
-""")
-            time.sleep(2)
-            print("""                
-Conscience: Oh no, are you hearing this? Are these growling noises?
-""")
-            dead()
-          
-        elif "b" in stop_house or "say hi" in stop_house or "2" in stop_house or "horse" in stop_house or "say hi to the horse" in stop_house:
-            time.sleep(1)
-            print("""
-Conscience: It seems like the horsy likes us!
-""")
-            time.sleep(1)
-            input(f"""
-Conscience: You know {your_name}, it wouldn't be a bad idea to use him to take us
-            to Atlanta.
-            
-            At least he will never run out of gas!
-            And the house looks empty, I'm sure nobody is here...
-
-            
-< Press enter to saddle the horse and hop on the road again to head to Atlanta >
-""")
-            atlanta()
-        else:
-            input("""
-Something went wrong. Please press enter to try again.
-Remember! Input the letter of the option you would like to choose""")
-            on_the_road()
-          
-          ## end of nested conditional
-    elif "b" in exit or "keep going" in exit or "keep driving" in exit or "keep" in exit:   
-        
-        ## while loop for gas left until Atlanta
-        miles_to_atlanta = 40 * 2
-        while gallons > 0 and miles_to_atlanta > 0:
-            gallons -= 1
-            miles_to_atlanta -= 20
-            
-            # start of conditional
-            if gallons > 0 and miles_to_atlanta >0:
-                time.sleep(2)
-                print(f"""
-- You have {gallons} gallons of gas left -          
-""")
-            elif gallons > 0 and miles_to_atlanta == 0:
-                print(f"""
-- Congratulations! You have arrived -          
-""")
-            else: #gallons == 0 and miles_to_atlanta > 0:
-                time.sleep(2)
-                print("""
-- You are out of gas and in the middle of a highway. - """)
-                time.sleep(3)
-                print("""
-Conscience: You know what, it will be ok. Let's just keep walking. 
-""")
-                time.sleep(2)
-                print("""
-Conscience: Oh no, are you hearing this? Are these growling noises?
-""")
-                time.sleep(1)
-                dead()
-            
-            ## end of while loop
-        
-    else: 
-        input("""
-Something went wrong. Please try again.
-Remember! Input the letter of the option you would like to choose""")
-        on_the_road()
-
-############## ROUND 4 - Atlanta - FINAL ROUND ##############
-## In this round, the user is in Atlanta, trying to find the zombieless paradise,
-## hoping the family will be there. However, in the city the user will find a 
-## hungry mob of zombies (regardless of directions the user takes) instead
-##that will attack. With sharp decisions, the user can get out alive, and
-## find a radio that will let him or her talk to their relatives.
-##### this round has an easter egg - good luck! #####
-
-#### Setting the scene of Atlanta - where is everybody? ####
-def atlanta():
-    zombie_free = input(f"""
-Conscience: {your_name}, we are finally in Atlanta! Oh my I can feel our heart 
-            beating fater to think we're so close to finding {your_SO}. 
-        
-Conscience: Let's try to find the zombie free center. Where do you think that is?
-                a) Airport
-                b) CDC Headquarters
-""").lower()
-    
-    time.sleep(1)
-    
-    ## Start of conditional
-    if "a" in zombie_free or "1" in zombie_free:
-        print("""
-Conscience: Ok! I can see the sign for the Airport! It says to take a right here! 
-""")
-        time.sleep(1)
-        input("""
-< Press enter to take a right on the next block >
-""")
-    elif "b" in zombie_free or "2" in zombie_free or "c" in zombie_free or "h" in zombie_free:
-        print("""
-Conscience: Ok! I remember the CDC is a little further away! Let's take a left here! 
-""")
-        time.sleep(1)
-        input("""
-< Press enter to take a left on the next block >
-""")
-    
-    else:
-        input("""
-Something went wrong. Please press enter to try again.
-Remember! Input the letter of the option you would like to choose""")
-        atlanta()
-    ## End of conditional
-
-## Encountering the mob of zombie
-    time.sleep(2)
-    print("""\n      
- ▄▄▄       ██▀███    ▄████  ██░ ██  ██░ ██ 
-▒████▄    ▓██ ▒ ██▒ ██▒ ▀█▒▓██░ ██▒▓██░ ██▒
-▒██  ▀█▄  ▓██ ░▄█ ▒▒██░▄▄▄░▒██▀▀██░▒██▀▀██░
-░██▄▄▄▄██ ▒██▀▀█▄  ░▓█  ██▓░▓█ ░██ ░▓█ ░██ 
- ▓█   ▓██▒░██▓ ▒██▒░▒▓███▀▒░▓█▒░██▓░▓█▒░██▓
- ▒▒   ▓▒█░░ ▒▓ ░▒▓░ ░▒   ▒  ▒ ░░▒░▒ ▒ ░░▒░▒
-  ▒   ▒▒ ░  ░▒ ░ ▒░  ░   ░  ▒ ░▒░ ░ ▒ ░▒░ ░
-  ░   ▒     ░░   ░ ░ ░   ░  ░  ░░ ░ ░  ░░ ░
-      ░  ░   ░           ░  ░  ░  ░ ░  ░  ░
-                                           
-      \n""")
-    
-    time.sleep(2)
-    print("""
-- You encounter a mob of zombies - 
-""")
-    time.sleep(1)
-    print("""
-Conscience: They look hungry...
-""")
-    time.sleep(1)
-    print("""
-- Your horse starts to freak out, you loose your inventory bag in the process -
-""")
-    time.sleep(2)
-    final()
-
-def final():
-## Start of final decision to win the game
-    final_decision = input("""
-Conscience: QUICK!!!! 
-            What do you want to do?
-                a) Outrun them - they don't look like they can run that fast
-                b) There's a building across the street - try to go in
-                c) Crawl underneath the abandoned military tank
+            # Using a loop to handle game for only one round
+            while player_score_1 < 1 and king_hearts_score < 1:
                 
-""").lower()
-    
-    ## Start of conditional
-    
-    ### User chooses to outrun them - ha ha
-    if "a" in final_decision or "1" in final_decision or "run" in final_decision:
-        run = 5
-        while run > 0:
-            input ("""
-< Press enter to run >
-""")
-            run -= 1
-        print(f"""
-Conscience: {your_name}, I think there are too many of them...        
-""")
-        time.sleep(2)
-        dead()
-    
-    ### User chooses to go inside the building - ops
-    elif "b" in final_decision or "building" in final_decision or "in" in final_decision or "street" in final_decision or "2" in final_decision:
-        print(f"""
-Conscience: Oh no... the door is locked. Nice work {your_name} ... Genius.
-""")
-        run = 5
-        while run > 0:
-            input ("""
-< Press enter to run the other way >
-""")
-            run -= 1
-        print(f"""
-Conscience: {your_name}, I think there are too many of them...        
-""")
-        time.sleep(2)
-        dead()
-    
-    ### User chooses to crawl under the tank - YES
-    elif "c" in final_decision or "3" in final_decision or "crawl" in final_decision or "under" in final_decision or "tank" in final_decision:
-        crawl = input(f""" 
-Conscience: Are you really sure this is a good idea? \n
-             a) YES! SHUT UP BRAIN!
-             b) No... you're right, we can outrun them! We go this!
+                # Getting user input for the player's choice
+                choice1 = input(prompt = "Choose Rock, Paper, or Scissor: ").capitalize()
 
-""").lower()
-        ## Start of nested conditional
-        if "a" in crawl or "1" in crawl or "yes shut up brain" in crawl or "y" in crawl:
-            time.sleep(2)
-            print("""
-- You crawl under the tank. There are zombies crawling behind you. - 
-""")
-            time.sleep(1)
-            print("""
-- You keep going but as you move forward, zombies are crawling under the other side as well. -
-""")
-            time.sleep(1)
-            print("""
-- Desperately, you look up to to say your last words, and you see the under door to the tank.
-  You pull yourself up and close the door behind you. You are now in the tank. -
-""")
-            time.sleep(1)
-            print("""
-- You pull yourself together trying to catch your breath, when the radio starts making a noise: 
+                # Checking if the player's choice is valid
+                if any(option.lower() in choice1.lower() for option in option1) and \
+                    sum(option.lower() in choice1.lower() for option in option1) == 1:
+                    choice1 = next(option for option in option1 if option.lower() in choice1.lower())
+                    
+                    # Assigning a random choice for the King of Hearts
+                    king_choice = random.choice(option1)
+                    
+                    # Displaying both the player's and King's choices
+                    print("You chose:", choice1)
+                    print("King of Hearts chose:", king_choice)
 
-Radio: "Hey you? Dumbass. Yeah you in the tank. Cozy in there?" \n
-""")
-            time.sleep(2)
-            alive()
+                    # No one wins
+                    if choice1 == king_choice:
+                        print("\nIt's a tie!😮")
+                    
+                    # Player wins
+                    elif (choice1 == "Rock" and king_choice == "Scissor") or \
+                         (choice1 == "Paper" and king_choice == "Rock") or \
+                         (choice1 == "Scissor" and king_choice == "Paper"):
+                        print("\nYou win!💪")
+                        player_score_1 += 1
+                    
+                    # King wins
+                    else:
+                        print("\nKing of Hearts wins!😕")
+                        king_hearts_score += 1
+                    
+                    # Displaying current score every loop
+                    print(f"Score - You: {player_score_1}, King of Hearts: {king_hearts_score}\n")
+                
+                # Displaying a message for invalid input
+                else:
+                    print("\nInvalid input! Please choose only one option from Rock, Paper, or Scissor.❎\n")
             
-        elif "b" in crawl or "2" in crawl or "run" in crawl or "no" in crawl or "right" in crawl:
-            run = 5
-            while run > 0:
-                input ("""
-< Press enter to run the other way >
+            # Player wins at the end of the round and proceeds to the next stage 
+            if player_score_1 > king_hearts_score:
+                print("Bravo, adventurer! You're advancing to the next room. Good luck.👀🚪")
+                stage_2() # Moving to the next stage of the game
+            
+            # Player fails and proceeds to the fail function
+            else:
+                print("♥️ King of Hearts win! ♥️")
+                fail()
+            
+            # Exit the loop if a valid choice is made
+            break  
+
+        # Meeting the King of Diamonds if chosen door is middle
+        elif "middle" in action1 and "left" not in action1 and "right" not in action1:
+            
+            # Displaying a message for meeting the King of Diamonds
+            print(f"\n{' ♦️' * 60}\n""")
+            print("Welcome to the royal adventure! The King of Diamonds awaits you in a high-stake Bluff Card Game.🦹🃏\n")
+            input(prompt = "Press <<Enter>> to continue.\n")
+            print("""King of Diamonds: Greetings, adventurer! To conquer my realm, you must outwit me in the daring Bluff Card Game.🤡❓ 
+Shall you accept the challenge?🫱🏻‍🫲🏾🆙
 """)
-                run -= 1
-            print(f"""
-Conscience: {your_name}, I think there are too many of them...        
+            input(prompt = "Press <<Enter>> to continue.\n")
+            
+            # Initializing variables needed for Bluff Card Game
+            player_score_2 = 0
+            king_diamonds_score = 0
+
+            # Displaying a message for instructions
+            print("Welcome to the Bluff Card Game!🤡\n")
+            print("""The King of Diamonds will draw a card (1️⃣ to 🔟), and you have to guess if he is bluffing. If the card is 8️⃣ or 
+higher, the King is bluffing; otherwise, he's not.❓🦹🤥 Reach a score of two victories before he outsmarts you.
+Good luck!
 """)
-            dead()
-        else: ## try to have it back to the middle of questions 
-            print(f"""
-Conscience: WE DON'T HAVE TIME FOR THINKING {your_name} CLOWN.
-            WE NEED TO MAKE A DECISION NOW IF YOU WANT TO SEE {your_SO} AGAIN.
+            # Using a loop to play until one player wins 2 rounds
+            while player_score_2 < 2 and king_diamonds_score < 2:
+                
+                # Using a loop to handle player's choice if bluff or not
+                while True:
+                    
+                    # Getting user input for the player's guess
+                    player_guess = input(prompt = "\nDo you think the King is bluffing? (yes/no):🤔 ").lower()
+
+                    # Initializing variable for player's guess
+                    option2 = ["yes", "no"]
+                    
+                    # Checking if the player's guess is valid
+                    if any(choice.lower() in player_guess.lower() for choice in option2) and \
+                        sum(choice.lower() in player_guess.lower() for choice in option2) == 1:
+                        player_guess = next(choice for choice in option2 if choice.lower() in player_guess.lower())
+                        break
+                    
+                    # Displaying a message for invalid input
+                    else:
+                        print("\nInvalid input! Please enter 'yes' or 'no'.🚫\n")
+
+                # King randomly draws a card from 1 to 10 and displaying the drawn card
+                king_card = random.randint(1, 10)
+                print(f"\nKing's card: {king_card}")
+
+                # Player's guess is correct and the King bluffed
+                if (player_guess == "yes" and king_card >= 8) or \
+                   (player_guess == "no" and king_card < 8):
+                    print(f"You said {player_guess} and that's correct!🤩")
+                    player_score_2 += 1
+                
+                # Player's guess is incorrect and the King bluffed
+                elif (player_guess == "no" and king_card >= 8):
+                    print("Incorrect! The King was bluffing.😑🤷‍♀️")
+                    king_diamonds_score += 1
+                
+                # Player's guess is incorrect and the King did not bluffed
+                else:
+                    print("Incorrect! The King wasn't bluffing.😑🤷‍♀️")
+                    king_diamonds_score += 1
+
+                # Displaying current score every loop
+                print(f"Your score: {player_score_2}, King's score: {king_diamonds_score}\n")
+
+            # Player wins at the end of the round and proceeds to the next stage
+            if player_score_2 > king_diamonds_score:
+                print("Well done! You've triumphed over the King of Diamonds. Prepare for the next stage of your adventure.🎊👌")
+                stage_2() # Moving to the next stage of the game
+            
+            # Player fails and proceeds to the fail function
+            else:
+                print("♦️ King of Diamonds win! ♦️")
+                fail()
+            
+            # Exit the loop if a valid choice is made
+            break  
+            
+        # Meeting the King of Spades if chosen door is right
+        elif "right" in action1 and "middle" not in action1 and "left" not in action1:
+            
+            # Displaying a message for meeting the King of Spades
+            print(f"\n{' ♠️' * 60}\n""")
+            print("""You bravely chose the right door.
+Challenge the King of Spades in the thrilling "King Says" game to prove your wit and rule his kingdom.🤫♛\n
 """)
-            time.sleep(1)
-            input("""
-< Press enter to try to make a decision again and not be eaten by zombies > 
+            input(prompt = "Press <<Enter>> to continue.\n")
+            print("""King of Spades: Step into my kingdom! Prove your worth and conquer me in the "King Says" game.👀👂
+You need to at least win two rounds. Are you up for the challenge?🤝⚔️🛡️
 """)
+            input(prompt = "Press <<Enter>> to continue.\n")
+            
+            # Defining a list of commands for the King Says Game
+            commands = ["King says hi", "teal", "SMILE", "King says JUMP", "purple"]
+    
+            print("Welcome to King Says!👋🫅🏻")
+            print("King will sometimes trick you, so be careful!🤹😜\n")
+            print("Get ready...🧏🧐")
+
+            # Adding a delay in display to build suspense
             time.sleep(2)
-            final()
+
+            # Initializing the player's score and attempt counters
+            player_score_3 = 0
+            attempt = 0
+
+            # Using a loop to play the game until the player wins or reaches the maximum attempts
+            while player_score_3 < 2 and attempt < 2:
+                
+                king_command = random.choice(commands)
+                print(f"\nKing says: {king_command}")
+
+                player_input = input(prompt="Your turn: ").strip().casefold()
+
+                # Validate non-empty input
+                while not player_input:
+                    print("\nInvalid input. Please enter a valid response.")
+                    player_input = input(prompt="Your turn: ").strip().casefold()
+                
+                # Player's input matches the King's command
+                if king_command.casefold() == player_input:
+                    print("\nGood job! The King is impressed.👏\n")
+                    
+                    # Increasing the player's score and resetting the attempt counter
+                    player_score_3 += 1
+                    attempt = 0
+                
+                # Player's input did not match the King's command
+                elif ("king says" in player_input) and (king_command.lower() not in player_input):
+                    print("\nOops! The King tricked you.😆✌️\n")
+                    attempt += 1
+                
+                # Player's input is incorrect
+                else:
+                    print("\nWrong move!😜\n")
+                    attempt += 1
+            
+            # The King gives a new command for the next round to avoid repetition
+            king_command = random.choice(commands)
+
+            # Player wins at the end of the round and proceeds to the next stage
+            if player_score_3 == 2:
+                print("Hail, victorious adventurer! You've conquered me in the Game of Kings. May luck be your loyal companion!🎉😊")
+                stage_2() # Moving to the next stage of the game
+                break
+            
+            # Player fails and proceeds to the fail function
+            else:
+                print("You lose to the ♠️ King of Spades ♠️")
+                fail()
+            
+            # Exit the loop if a valid choice is made
+            break  
         
-    ## easter egg
-    elif final_decision == "jeep":
-        print("""
-Conscience: Great idea! Use the radio from the military jeep in the corner.
+        # Displaying a message for invalid input
+        else:
+            print("Invalid input. Please select one (left, middle, right).🙅☝️\n")
+
+#####################################################################################
+# Defining a stage_2 function for the second stage of the game
+#####################################################################################
+
+def stage_2():
+    print(f""" 
+{'*' * 120}    
+
+Way to go to the next game!➡️✅
 """)
-        time.sleep(2)
-        print("""
-- After entering the jeep to use the radio, you realize the key is in the ignition.
-  
-  You turn the ignition on and the car starts. SUPRISE: the tank is full.
-  
-  You use the car to leave the mob behind (not before stopping near your bag of inventory
-  and taking it with you.) - 
-""")
-        time.sleep(2)
-        alive()
+    input(prompt = "Press <<Enter>> to start.\n")
+    print("""
+Stage 2: Switch Right or Die💡🖲️
+
+    Details: In the room there is one light-bulb and a door to an adjacent room where there are three switches.
+    There is one switch that connects to the light-bulb. With the door closed, players may flip any switch. 
+    While the door is open, players may only flip the switch once. The door will not close if there are people 
+    in both rooms or a switch is flipped.
     
-    ## Buffer for mistakes
+    Rule: It is game clear if players can unanimously answer which switch turns on the light. If the water level
+    rises and the surface of the water touches the high current lines, it is game over. 
+    """)
+    
+    input(prompt = "Press <<Enter>> to continue.\n")
+    
+    # Initializing a variable play_stage2 to True for Stage 2 game
+    play_stage2 = True
+    
+    # Use while loop for Stage 2 question
+    while play_stage2:
+        
+        # Used when user enters a non-numeric value when a numeric value is required
+        try:
+            result = input(prompt="""Which scenario has the higher probability?. 
+        1️⃣ Open the door. Flip any switch with the door open and should it remain off, then guess between the 
+            remaining 2 switches.
+        2️⃣ Close the door, and flip one switch on until the water rises. Turn off the switch, unclose the door,
+            and flip another switch.
+        3️⃣ I need a hint.💡
+        \n""").lower()
+
+            # Defining lists for different input choices by the player for stage_2
+            choice1 = ["open", "open the door", "flip any", "door open", "remain off", "guess", "switches", "1"]
+            choice2 = ["close", "close the door", "water", "flip one", "turn", "unclose", "flip another", "2"]
+            choice3 = ["I", "need", "hint", "3"]
+            result1 = result # To store the chosen choice
+            
+            # Player choose option 1 or a or any word in choice1 list leading to failure
+            if result1 == '1' or result1 == 'a' or any(word in result1.lower() for word in choice1):
+                fail()
+                play_stage2 = False
+            
+            # Player choose option 2 or b or any word in choice2 list leading to the next stage  
+            elif result1 == '2' or result1 == 'b' or any(word in result1.lower() for word in choice2):
+                print("Excellent! The final room is open.") 
+                stage_3() # Moving to the next stage of the game
+                play_stage2 = False
+            
+            # Player choose option 3 or c or any word in choice3 list which asks for a hint
+            elif result1 == '3' or result1 == 'c' or any(word in result1.lower() for word in choice3):
+                print("Hint: Consider the following Python code that might be helpful.🧐")
+                print("""
+            while water_level < high_current_lines:
+                flip_switch_on()
+                wait_until_water_rises()
+                flip_another_switch()
+                print("Is the light bulb hot?")
+            """)
+                # Calling stage_2 again function when the user wants to have a hint
+                stage_2_again()
+                play_stage2 = False
+            
+            # Displaying a message for invalid input
+            else:
+                print("Invalid entry. Please try again.🚫")
+               
+        # Handling error when user enters a non-numeric value when a numeric value is required
+        except ValueError:
+            print("Invalid input. Please enter a valid number.🚫\n")
+
+#####################################################################################
+# Defining a stage_2_again function in stage_2 when the user asks for a hint
+#####################################################################################
+
+def stage_2_again():
+    result = input(prompt = """Which scenario has the higher probability?🚪💡🖲️
+        1️⃣ Open the door. Flip any switch with the door open and should it remain off, then guess between the 
+            remaining 2 switches. 
+        2️⃣ Close the door, and flip one switch on until the water rises. Turn off the switch, open that door, 
+            and flip another switch.
+        \n""").lower()
+
+    # Defining lists for different input choices by the player for stage_2_again
+    choice1 = ["open", "open the door", "flip any", "door open", "remain off", "guess", "switches", "1"]
+    choice2 = ["close", "close the door", "water", "flip one", "turn", "unclose","flip another", "2"]
+    result1 = result # To store the chosen choice
+
+    # Player choose option 1 or a or any word in choice1 list leading to failure
+    if result1 == '1' or result1 == 'a' or any(word in result1.lower() for word in choice1):
+        fail()
+        play_stage2 = False
+            
+    # Player choose option 2 or b or any word in choice2 list leading to the next stage
+    elif result1 == '2' or result1 == 'b' or any(word in result1.lower() for word in choice2):
+        print("Excellent! The final room is open.👏")
+        stage_3() # Moving to the next stage of the game
+        play_stage2 = False
+    
+    # Displaying a message for invalid input   
     else:
-        time.sleep(2)
-        print(f"""
-Conscience: WE DON'T HAVE TIME FOR THINKING {your_name} CLOWN.
-            WE NEED TO MAKE A DECISION NOW IF YOU WANT TO SEE {your_SO} AGAIN.
-""")
-        time.sleep(1)
-        input("""
-< Press enter to try to make a decision again and not be eaten by zombies > 
-""")
-        time.sleep(2)
-        final()
-    ## end of conditional
+        print("Invalid entry. Please try again.🚫\n")
+        stage_2_again() # Calling the function stage_2_again if the input is invalid
 
-##############################################################################
-############## Dead Function ##############
-## This function defines any time where the user is killed by zombies.
-## It gives the option to play again, as the game has random aspects to it.
+#####################################################################################
+# Defining a stage_3 function for the third stage of the game
+#####################################################################################
 
-def dead():
-    print(40 * "-")
-    time.sleep(2)
+def stage_3():
+    random.seed(None) # Setting a random seed for consistent results
+    print(f""" 
+{'*' * 120}    
+
+Can you make it to the final round?👹🤓
+""")
+
+    input(prompt = "Press <<Enter>> to continue.\n")
     print("""
-▒███████▒ ▒█████   ███▄ ▄███▓ ▄▄▄▄    ██▓▓█████   ██████ 
-▒ ▒ ▒ ▄▀░▒██▒  ██▒▓██▒▀█▀ ██▒▓█████▄ ▓██▒▓█   ▀ ▒██    ▒ 
-░ ▒ ▄▀▒░ ▒██░  ██▒▓██    ▓██░▒██▒ ▄██▒██▒▒███   ░ ▓██▄   
-  ▄▀▒   ░▒██   ██░▒██    ▒██ ▒██░█▀  ░██░▒▓█  ▄   ▒   ██▒
-▒███████▒░ ████▓▒░▒██▒   ░██▒░▓█  ▀█▓░██░░▒████▒▒██████▒▒
-░▒▒ ▓░▒░▒░ ▒░▒░▒░ ░ ▒░   ░  ░░▒▓███▀▒░▓  ░░ ▒░ ░▒ ▒▓▒ ▒ ░
-░░▒ ▒ ░ ▒  ░ ▒ ▒░ ░  ░      ░▒░▒   ░  ▒ ░ ░ ░  ░░ ░▒  ░ ░
-░ ░ ░ ░ ░░ ░ ░ ▒  ░      ░    ░    ░  ▒ ░   ░   ░  ░  ░  
-  ░ ░        ░ ░         ░    ░       ░     ░  ░      ░  
-░                                  ░                     
+Stage 3: Beauty Contest💄🧖🏻‍♀️🤖
 
-""")
-    time.sleep(2)
-    print("""
-
-Sorry: You have been eaten alive by zombies. You are now one of them. 
-
-""")
-    print(40 * "-")
-    time.sleep(2)
-    play_again = input(f"""
-{your_name} would you like to play again?
-        a) Yes
-        b) No
-""").lower()
+    Details: Player must choose a number between 1️⃣ and 🔟. The computer will also make a guess.🤖🧠🤔\n
+    Rule: The winner is determined based on the absolute difference between the player's guess and a randomly 
+    generated number, with the goal of having a smaller difference than the computer.🧮🤯🔢
+    """)
     
-    ## start of conditional statement
-    if "a" in play_again or "1" in play_again or "yes" in play_again:
-        time.sleep(1)
-        print("""
-Great! You will start again at the hospital round.
-
-- Maybe this time your zombie apocalypse skills are improved. -
-""")
-        ##take user to round 1
-        hospital_setup()
-
-    elif "b" in play_again or "2" in play_again or "no" in play_again:
-        time.sleep(1)
-        print("""
-No problem! Enjoy your after-life!
-""")
-        exit()
-
-##############################################################################
-############## Alive Function ##############
-## This function defines the win in the game! The user made it to their family alive.
-
-def alive():
-    print(40 * "-")
-    time.sleep(2)
-    print(f"""
-
-Congratulations! You have stayed alive long enough to meet {your_SO} again!
-
-The person in the radio is part of a group of survivors that are living in the outskirts of town.
-
-They were on a mission in the city and will take you back with them were you will meet up with your family!
-
-""")
-    time.sleep(2)
-    print(40 * "-")
-    
-    ## Asking if user wants to play again
-    play_again = input(f"""
-{your_name} would you like to play again?
-        a) Yes
-        b) No
-""").lower()
-    
-    ## start of conditional statement
-    if "a" in play_again or "1" in play_again or "yes" in play_again:
-        time.sleep(1)
-        print("""
-Great! You will start again at round 1 at the hospital.
-""")
-        ##take user to round 1
-        hospital_setup()
-
-    elif "b" in play_again or "2" in play_again or "no" in play_again:
-        time.sleep(1)
-        print("""
-No problem! Enjoy your post-apocalyptic life!
-
-
-▒███████▒ ▒█████   ███▄ ▄███▓ ▄▄▄▄    ██▓▓█████   ██████ 
-▒ ▒ ▒ ▄▀░▒██▒  ██▒▓██▒▀█▀ ██▒▓█████▄ ▓██▒▓█   ▀ ▒██    ▒ 
-░ ▒ ▄▀▒░ ▒██░  ██▒▓██    ▓██░▒██▒ ▄██▒██▒▒███   ░ ▓██▄   
-  ▄▀▒   ░▒██   ██░▒██    ▒██ ▒██░█▀  ░██░▒▓█  ▄   ▒   ██▒
-▒███████▒░ ████▓▒░▒██▒   ░██▒░▓█  ▀█▓░██░░▒████▒▒██████▒▒
-░▒▒ ▓░▒░▒░ ▒░▒░▒░ ░ ▒░   ░  ░░▒▓███▀▒░▓  ░░ ▒░ ░▒ ▒▓▒ ▒ ░
-░░▒ ▒ ░ ▒  ░ ▒ ▒░ ░  ░      ░▒░▒   ░  ▒ ░ ░ ░  ░░ ░▒  ░ ░
-░ ░ ░ ░ ░░ ░ ░ ▒  ░      ░    ░    ░  ▒ ░   ░   ░  ░  ░  
-  ░ ░        ░ ░         ░    ░       ░     ░  ░      ░  
-░                                  ░                     
-
-
-""")
-        exit()
-  
+    # Asking the player for input until a valid number between 1 and 10 is entered
+    while True:
         
-##################### INITIALIZE GAME ########################################
-setup()
+        # Handling potential errors during user input in the stage_3 function
+        try: 
+            guess = int(input(prompt = "Pick a number between 1️⃣ and 🔟 (whole number only): "))
+
+            # Checking if the input is within the specified range
+            if 1 <= guess <= 10:
+                break # If valid, break out of the loop
+            
+            # Displaying a message for invalid input
+            else:
+                print("Number must be between 1 and 10. Please try again.🚫\n")
+
+        # Handling the ValueError exception if the input is not an integer
+        except ValueError:
+            print("Invalid input. Please enter a valid number.🚫\n")
+
+    print(f"You entered: {guess}")
+
+    # Generating a random number for the computer's guess and calculate the differences
+    number = random.randint(a=1, b=10)
+    
+    # Calculating the absolute difference between the player's guess and the computer's random number
+    difference = abs(guess - number)
+
+    # Calculating the absolute difference between the player's guess and the previously calculated difference
+    player_difference = abs(guess - difference)
+
+    # Adjusting the computer's guess based on the difference between the player's guess and a random number
+    if difference > 2:
+        computer_guess = random.randint(1, 10) # The computer randomly guesses a number between 1 and 10
+    
+    # Conditional statement that adds a random number between -1 and 1 to the player's guess
+    else:
+        computer_guess = guess + random.randint(-1, 1) 
+
+    # Calculating the absolute difference between the computer's guess and the original difference 
+    computer_difference = abs(computer_guess - difference)
+
+    print(f"""
+Your number is {guess} and the computer guessed {computer_guess}.
+The difference is {difference}.
+    """)
+    
+    # Player wins
+    if player_difference <= computer_difference:
+        win() # Calling the win function if player wins
+    
+    # Computer wins
+    else:
+        print("Sorry, you've failed. Game over.💀⚰️🩸🧛\n")
+        fail() # Calling the fail function when the player loses to computer
+
+# Defining a fail function when the player fails
+def fail():
+    print(f""" 
+{'*' * 120}  
+
+Tough luck, my friend. The room swallowed you whole.😵🚨
+Better luck next time... maybe in another life!🤷‍♂️💀
+
+          ==============================
+          ||     ||<(.)>||<(.)>||     ||
+          ||    _||     ||     ||_    ||
+          ||   (__D     ||     C__)   ||
+          ||   (__D     ||     C__)   ||
+          ||   (__D     ||     C__)   ||
+          ||   (__D     ||     C__)   ||
+          ||     ||     ||     ||     ||
+          ==============================
+          
+""") 
+    
+    # Calling the play_again function to confirm if the player wants to play again
+    play_again() 
+
+# Defining a win function when the player wins
+def win():
+    print("""
+    
+██    ██  ██████  ██    ██     ███████ ██    ██ ██████  ██    ██ ██ ██    ██ ███████ ██████  ██ 
+ ██  ██  ██    ██ ██    ██     ██      ██    ██ ██   ██ ██    ██ ██ ██    ██ ██      ██   ██ ██ 
+  ████   ██    ██ ██    ██     ███████ ██    ██ ██████  ██    ██ ██ ██    ██ █████   ██   ██ ██ 
+   ██    ██    ██ ██    ██          ██ ██    ██ ██   ██  ██  ██  ██  ██  ██  ██      ██   ██    
+   ██     ██████   ██████      ███████  ██████  ██   ██   ████   ██   ████   ███████ ██████  ██ 
+                                                                                                
+
+
+You just bagged ¥20,000,000, roughly $132,000!🏆🎖️🤑🤑🤑
+You made it out alive!🗝️👏😊
+""")
+    
+    # Calling the play_again function to confirm if the player wants to play again
+    play_again() 
+
+#####################################################################################
+# Defining a play_again function to ask if the player wants to play again
+#####################################################################################
+
+def play_again():
+    input(prompt = "Press <<Enter>> to exit.\n")
+    
+    # Using a loop for the play again input prompt
+    while True:
+        
+        # Initializing variables if the player wants to play again
+        option3 = ["yes", "no"]
+        new_game = input(prompt = "Do you want to play again? (yes/no): ").lower()
+        
+        # Checking if the player's choice is valid
+        if any(play_ask.lower() in new_game.lower() for play_ask in option3) and \
+            sum(play_ask.lower() in new_game.lower() for play_ask in option3) == 1:
+            new_game = next(play_ask for play_ask in option3 if play_ask.lower() in new_game.lower())            
+
+            # Player choose yes to play again
+            if new_game == 'yes':
+                game_intro() # Calling the game_intro function if the player wants to play again
+                break # To exit the loop after calling game_intro function
+
+            # Player choose not to play again
+            elif new_game == 'no':
+                print("""\nThank you for taking on the challenge in the Python Escape Room Game.🙂👑💂‍♂️
+
+Copyright © 2023 Python – All Rights Reserved.
+""")
+                # To exit the loop
+                break 
+
+        # Displaying a message for invalid input
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.\n")
+            
+# Calling the game_intro function to start the game
+game_intro()
 
 ```
+
+References <br><br>
+Ayberk, Sony (2023, November). List Comprehensions in Python and Generator Expressions.<br>&nbsp;&nbsp;&nbsp;&nbsp;https://djangostars.com/blog/list-comprehensions-and-generator-expressions/<br>
+Beauty Contest (Season 2, Episode 6)  [TV series episode]. (2022). In Alice in Borderland. Netflix <br>
+Dead or Alive (Season 1, Episode 1)  [TV series episode]. (2020). In Alice in Borderland. Netflix <br>
+Fandom. (n.d.). Four of Diamonds (Netflix). Alice in Borderland Fandom. https://aliceinborderland.fandom.com/wiki/Four_of_Diamonds_(Netflix)<br>
+Fandom. (n.d.). King of Diamonds (Netflix). Alice in Borderland Fandom. https://aliceinborderland.fandom.com/wiki/King_of_Diamonds <br>
+Fandom. (n.d.). Three of Clubs (Netflix). Alice in Borderland Fandom. https://aliceinborderland.fandom.com/wiki/Three_of_Clubs_(Netflix)#Participants <br>
+Federico Furzan. (2023, August). Escape Room Ending, Explained. https://movieweb.com/escape-room-ending-explained/ <br>
+Light Bulb (Season 1, Episode 5) [TV series episode]. (2020). In Alice in Borderland. Netflix <br>
+OpenAI. (2023). ChatGPT (Mar 14 version) [Large language model]. https://chat.openai.com/chat<br>
+SK Desk. (2023, January). What is Alice in Borderland about?. https://www.sportskeeda.com/pop-culture/what-is-alice-in-borderland-about<br>
+Stackoverflow. (2011, August). https://stackoverflow.com/questions/7006839/alternative-to-list-comprehension-if-there-will-be-only-one-result<br>
+Stackoverflow. (2012, March). Find a a value in a list. https://stackoverflow.com/questions/9542738/find-a-value-in-a-list/9542768#9542768<br>
+Stackoverflow. (2022, February). List Comprehension Method. 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;https://stackoverflow.com/questions/71185614/take-exact-number-of-inputs-using-list-comprehension-method-on-python
+
+Copyright © 2023 Python – All Rights Reserved.
