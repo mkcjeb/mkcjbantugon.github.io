@@ -10,15 +10,12 @@ mathjax: "true"
 toc: true
 toc_label : "Navigate"
 ---
-
-
-Chicago Bike Rental: Regression-based Analysis<br>
 By: Michelle Kae Celine Jo-anne Bantugon<br>
-
-This regression analysis and model aims to developing a machine learning model to predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. <br>
 
 Business case built by Professor Chase Kusterer from Hult International Business School
 Hult International Business School<br><br>
+------------------------------------------------------------------------------------------------------------------
+This regression analysis and model aims to developing a machine learning model to predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. <br>
 
 Jupyter notebook and dataset for this analysis can be found here: [Portfolio-Projects](https://github.com/sbriques/portfolio-projects)
 
