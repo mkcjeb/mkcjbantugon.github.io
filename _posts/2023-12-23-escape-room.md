@@ -3,7 +3,7 @@ title: "Escape Room"
 date: 2023-12-03
 tags: [python, user-input, game development, text adventure]
 header:
-  image: "/images/The-walking-dead.jpg"
+  image: "/images/escape_room.jpeg"
 excerpt: "(Python) A text adventure game full of random plot twists and survival strategy. This game requires critical thinking, simple code analysis, and having fun will be helpful. Designed in Jupyter Notebook."
 mathjax: "true"
 ---
