@@ -2,7 +2,7 @@
 title: "About"
 permalink: /about/
 header:
-  image: "/images/manila_test.png"
+  image: "/images/manila.png"
 ---
 
 Hi there! You can call me **Jo-anne**, and here's a fun fact for you: I can effortlessly recite the alphabet backwards and I bring that same level of creativity and innovation in everything I do.
