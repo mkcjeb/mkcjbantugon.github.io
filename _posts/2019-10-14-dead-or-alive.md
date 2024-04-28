@@ -1,10 +1,10 @@
 ---
-title: "Dead or Alive: The Game"
-date: 2019-10-14
+title: "Escape Room"
+date: 2023-12-03
 tags: [python, user-input, game development, text adventure]
 header:
   image: "/images/The-walking-dead.jpg"
-excerpt: "(Python) A text input interactive game full of random plot twists and survival strategy.This game requires courage, and having a small amount of survival knowledge in case of a zombie apocalypse will be helpful. Desgined in Jupyter Notebooks."
+excerpt: "(Python) A text adventure game full of random plot twists and survival strategy. This game requires critical thinking, simple code analysis, and having fun will be helpful. Designed in Jupyter Notebook."
 mathjax: "true"
 ---
 
@@ -21,7 +21,7 @@ And now, the game is set for you. Your challenge?
 
 As the player, you will find yourself trapped in a room, navigating through a sequence of trials and questions. Your survival depends on relying on your wit and creative problem-solving skills to persevere and crack the challenges that lie ahead. 
 
-Anticipate the unexpected in this game, comprising <u><font color=blue>three stages</u></font> featuring some unforeseen twists distinct from those depicted in the movie-adapted version. You will face different challenges with <b>Kings of</b> <b><font color=red>Hearts, Diamonds</b>,</font> or <b>Spades</b>. It involves a mix of chance and strategy, testing the player's decision-making skills and wit. Players progress through challenges, face unique scenarios, and ultimately aim to escape the Python Escape Room.
+Anticipate the unexpected in this game, comprising <u><font color=blue>three stages</u></font> featuring some unforeseen twists distinct from those depicted in the movie-adapted version. You will face different challenges with Kings of Hearts, Diamonds or Spades. It involves a mix of chance and strategy, testing the player's decision-making skills and wit. Players progress through challenges, face unique scenarios, and ultimately aim to escape the Python Escape Room.
 
 Best of luck on your journey!
 
