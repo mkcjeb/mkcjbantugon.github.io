@@ -11,7 +11,8 @@ toc_label : "Navigate"
 ---
 By: Michelle Kae Celine Jo-anne Bantugon<br>
 
-Business case built by Professor Chase Kusterer<br>
-Ernst & Young | NASA
+Business case built by <br>
+Professor Chase Kusterer<br>
+Ernst & Young | NASA <br>
 Hult International Business School<br>
 
