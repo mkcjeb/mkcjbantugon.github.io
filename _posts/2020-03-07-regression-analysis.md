@@ -33,20 +33,20 @@ Therefore, it is essential to understand future demand patterns that can help re
 - Small alpha was used and cyclic selection
 -  Used of L1 penalty to shrink the coefficients of less important features to zero, effectively performing feature selection
  
-<strong> Case - Chicago Bike Rental </strong> <br>
+<strong> Case: Chicago Bike Rental </strong> <br>
 <strong>  Audience: </strong> Cook County Planning and Development Department  <br>
 <strong> Goal: </strong> To predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. <br>
 
 ***
 
-<strong> Analysis Outline: </strong>
-Part I: Libraries and Data Import
-Part II: Base Modeling
-Part III. Exploratory Data Analysis (EDA)
-Part IV. Feature Engineering
-Part V. Data Partitioning 
-Part VI. Candidate Modeling
-Part VII. Hyperparameter Tuning
+<strong> Analysis Outline: </strong><br>
+Part I: Libraries and Data Import<br>
+Part II: Base Modeling<br>
+Part III. Exploratory Data Analysis (EDA)<br>
+Part IV. Feature Engineering<br>
+Part V. Data Partitioning <br>
+Part VI. Candidate Modeling <br>
+Part VII. Hyperparameter Tuning <br>
 Part VIII: Preparing Submission File for Kaggle
 
 *** 
@@ -555,7 +555,7 @@ for model_name, model in models:
 coef_df
 ```
 
-for KNN
+KNN
 ```
 ## for KNN
 model_name = 'KNN (Not Tuned)' # name your model
@@ -587,7 +587,7 @@ Train-Test Gap: {model_gap}
 print(model_summary)
 ```
 
-for Decision Tree
+Decision Tree
 ```
 ## for Decision Tree
 model_name = 'Unpruned Regression Tree' # name your model
@@ -672,10 +672,11 @@ Decision Tree was chosen to have a baseline of the model since it is nonparametr
 
 The x_data is scaled and it shows no difference in the model score among the three models. The model performance was countercheck in Kaggle to see if there will be any significant difference in the r square and it shows minimal difference. There r square are near each other after tuning which means it can predict on new unseen data after training and tuning.
 
-Ridge and Lasso Regression It helps reduce overfitting by adding a penalty to the regression coefficients, promoting simpler models. Ridge adds a penalty equal to the square of the magnitude of coefficients, while Lasso adds a penalty equal to the absolute value of coefficients.
+Ridge and Lasso Regression 
+It helps reduce overfitting by adding a penalty to the regression coefficients, promoting simpler models. Ridge adds a penalty equal to the square of the magnitude of coefficients, while Lasso adds a penalty equal to the absolute value of coefficients.
 
 ## Part VII. Hyperparameter Tuning
-Lasso 
+Lasso Regression Model
 ```
 ## Hyperparameter Tuning ##
 
@@ -845,8 +846,6 @@ print(model_summary)
 #max_range   = np.arange(1000, 11000, 1000)
 #solver_range = ["auto", "svd", "cholesky", "lsqr", "sparse_cg", "sag", "saga", "lbfgs"]
 #positive_range = [True, False]
-
-
 
 # creating a hyperparameter grid
 #param_grid = {'alpha'         : alpha_range,
@@ -1030,7 +1029,7 @@ Train-Test Gap: {model_gap}
 
 print(model_summary)
 ```
-Linear Regression
+Linear Regression Model
 ```
 ## OLS
 
