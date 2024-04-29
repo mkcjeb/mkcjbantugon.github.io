@@ -631,6 +631,7 @@ game_intro()
 ```
 
 ### References 
+```
 Ayberk, Sony (2023, November). List Comprehensions in Python and Generator Expressions.<br>&nbsp;&nbsp;&nbsp;&nbsp;https://djangostars.com/blog/list-comprehensions-and-generator-expressions/<br>
 Beauty Contest (Season 2, Episode 6)  [TV series episode]. (2022). In Alice in Borderland. Netflix <br>
 Dead or Alive (Season 1, Episode 1)  [TV series episode]. (2020). In Alice in Borderland. Netflix <br>
@@ -645,5 +646,5 @@ Stackoverflow. (2011, August). https://stackoverflow.com/questions/7006839/alter
 Stackoverflow. (2012, March). Find a a value in a list. https://stackoverflow.com/questions/9542738/find-a-value-in-a-list/9542768#9542768<br>
 Stackoverflow. (2022, February). List Comprehension Method. 
 <br>&nbsp;&nbsp;&nbsp;&nbsp;https://stackoverflow.com/questions/71185614/take-exact-number-of-inputs-using-list-comprehension-method-on-python
-
+```
 Copyright © 2023 Python – All Rights Reserved.
