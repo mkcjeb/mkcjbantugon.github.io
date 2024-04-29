@@ -6,11 +6,11 @@ header:
 ---
 Hi there! 
 
-👩‍💻 I'm a master's student at Hult International Business School San Francisco (August 2024).
+Hailing from the beautiful place Philippines, I bring with me my passion for Chemical Engineering. My passion led me to San Francisco to see more of the mysteries and beauty of data.
+
+👩‍💻 I'm a Master's student at Hult International Business School San Francisco (September 2023 - August 2024).
 
 📊 I'm aspiring to be a data scientist or machine learning engineer.
-
-Hailing from the beautiful place Philippines, I bring with me my passion for Chemical Engineering. My passion led me to San Francisco to see more of the mysteries and beauty of data.
 
 You can call me **Jo-anne**, and here's a fun fact for you: I can effortlessly recite the alphabet backwards and I bring that same level of creativity and innovation in everything I do.
 
