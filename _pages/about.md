@@ -4,7 +4,7 @@ permalink: /about/
 title: "About Me"
 author_profile: true
 header:
-  image: "/images/manila.jpg"
+  image: "/images/manila_test.png"
 ---
 
 Hi there! You can call me **Jo-anne**, and here's a fun fact for you: I can effortlessly recite the alphabet backwards and I bring that same level of creativity and innovation in everything I do.
