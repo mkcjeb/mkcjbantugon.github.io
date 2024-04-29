@@ -6,12 +6,14 @@ header:
   image: "/images/escape_room.jpg"
 excerpt: "(Python) A text adventure game full of random plot twists and survival strategy. This game requires critical thinking, simple code analysis, and having fun will be helpful. Designed in Jupyter Notebook."
 mathjax: "true"
+toc: true
+toc_label : "Navigate"
 ---
 By: Michelle Kae Celine Jo-anne Bantugon<br>
 
 Business case built by Professor Chase Kusterer<br>
 Hult International Business School<br>
-## The Game
+### The Game
 
 Fan of intense and survival games? Rejoice! <br>
 Let's refresh your memory on the game's inspiration drawn from the worlds of <a href="https://www.sportskeeda.com/pop-culture/what-is-alice-in-borderland-about">Alice in Borderland</a> and <a href="https://movieweb.com/escape-room-ending-explained/">Escape Room</a> movies.
@@ -28,7 +30,7 @@ Anticipate the unexpected in this game, comprising three stages featuring some u
 
 Best of luck on your journey!
 
-## Instructions
+### Instructions
 
 You must have Python installed in your computer in order to play the game. Open your terminal window and run the jupyter notebook and copy-paste the following code block. Then, you only need to run the cell to start the game and follow the printed commands!
 
@@ -628,7 +630,7 @@ game_intro()
 
 ```
 
-References <br><br>
+### References 
 Ayberk, Sony (2023, November). List Comprehensions in Python and Generator Expressions.<br>&nbsp;&nbsp;&nbsp;&nbsp;https://djangostars.com/blog/list-comprehensions-and-generator-expressions/<br>
 Beauty Contest (Season 2, Episode 6)  [TV series episode]. (2022). In Alice in Borderland. Netflix <br>
 Dead or Alive (Season 1, Episode 1)  [TV series episode]. (2020). In Alice in Borderland. Netflix <br>
