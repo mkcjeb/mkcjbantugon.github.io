@@ -1,7 +1,8 @@
 ---
 title: "Resume"
 permalink: /resume-cv/
-author_profile: true
-header:
-  image: "/images/resume_mbantugon.png"
+#header:
+  # image: "/images/Data-Analytics-header.jpg"
 ---
+
+![MKCJEB](/images/resume_mbantugon.png)
