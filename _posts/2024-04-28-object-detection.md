@@ -16,3 +16,6 @@ Professor Chase Kusterer<br>
 Ernst & Young | NASA <br>
 Hult International Business School<br>
 
+[EY Open Science Data Challenge](https://challenge.ey.com/challenges/tropical-cyclone-damage-assessment-lrrno2xm)
+
+
