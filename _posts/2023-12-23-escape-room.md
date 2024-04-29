@@ -7,7 +7,10 @@ header:
 excerpt: "(Python) A text adventure game full of random plot twists and survival strategy. This game requires critical thinking, simple code analysis, and having fun will be helpful. Designed in Jupyter Notebook."
 mathjax: "true"
 ---
+By: Michelle Kae Celine Jo-anne Bantugon<br>
 
+Business case built by Professor Chase Kusterer<br>
+Hult International Business School<br>
 ## The Game
 
 Fan of intense and survival games? Rejoice! <br>
