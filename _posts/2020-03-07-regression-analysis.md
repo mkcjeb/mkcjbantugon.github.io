@@ -4,8 +4,7 @@ date: 2024-02-28
 tags: [Python, machine learning, regression]
 header:
   image: "/images/citibike.jpg"
-excerpt: "(Python - Machine Learning) This regression analysis and model aims to developing a machine learning model to predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. 
-Business case built by Professor Chase Kusterer from Hult International Business School"
+excerpt: "(Python - Machine Learning) This regression analysis and model aims to developing a machine learning model to predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand."
 mathjax: "true"
 toc: true
 toc_label : "Navigate"
@@ -32,7 +31,7 @@ Therefore, it is essential to understand future demand patterns that can help re
 - Small alpha was used and cyclic selection
 - Used of L1 penalty to shrink the coefficients of less important features to zero, effectively performing feature selection
 
-- <b>Case: Chicago Bike Rental</b>
+<b>Case: Chicago Bike Rental</b>
 <b>Audience</b>: Cook County Planning and Development Department
 <b>Goal</b>: To predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand
 
