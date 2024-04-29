@@ -14,7 +14,7 @@ By: Michelle Kae Celine Jo-anne Bantugon<br>
 
 Business case built by Professor Chase Kusterer<br>
 Hult International Business School<br>
----------------------------------------------------------------------------------------------------
+
 This regression analysis and model aims to develop a machine learning model to predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. <br>
 
 Jupyter notebook and dataset for this analysis can be found here: [Data Science Portfolio](https://github.com/mkcjeb/data-science-portfolio/tree/main/projects/regression_bike_rentals) 
