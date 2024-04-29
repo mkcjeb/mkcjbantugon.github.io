@@ -1327,7 +1327,7 @@ for i, (model_name, model) in enumerate(models):
 plt.tight_layout()
 plt.show()
 ```
-### Part VIII. Top Three Models | Hyperparameter Tuning
+### Part VIII. Top Three Models and Hyperparameter Tuning
 1. Lasso Regression
 2. Ridge Regression
 3. Linear Regression
