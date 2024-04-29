@@ -1,4 +1,15 @@
-
+---
+title: "Chicago Bike Rental: Regression-based Analysis"
+date: 2024-02-28
+tags: [Python, machine learning, regression]
+header:
+  image: "/images/bike.jpg"
+excerpt: "(Python - Machine Learning) This regression analysis and model aims to developing a machine learning model to predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. 
+Business case built by Professor Chase Kusterer from Hult International Business School"
+mathjax: "true"
+toc: true
+toc_label : "Navigate"
+---
 
 
 Hi there! You can call me **Jo-anne**, and here's a fun fact for you: I can effortlessly recite the alphabet backwards and I bring that same level of creativity and innovation in everything I do.
