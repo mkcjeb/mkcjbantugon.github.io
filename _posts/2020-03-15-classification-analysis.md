@@ -4,7 +4,7 @@ date: 2024-04-05
 tags: [Python, machine learning, classification]
 header:
   image: "/images/low bw.jpg"
-excerpt: "(Python - Machine Learning) At Apprentice Chef, a new subscription option, Halfway There, was just launched to a sample group of customers. Customers can receive a half bottle of wine from a local California vineyard every Wednesday. When promoting this service to a wider audience, we want to know which customers will subscribe to Halfway There. Based on a fictitious business case: Apprentice Chef, Inc. built by Professor Chase Kusterer from Hult International Business School"
+excerpt: "(Python - Machine Learning) A critical measurement that can signal complications in a baby's health, birthweight, will be analyzed and predicted. Countless studies have identified factors, both preventative and hereditary, that lead to low birth weight."
 mathjax: "true"
 toc: true
 toc_label : "Navigate"
