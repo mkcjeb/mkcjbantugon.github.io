@@ -2,7 +2,7 @@
 title: "About Me"
 permalink: /about/
 header:
-  image: "/images/manila.png"
+  image: "/images/banner.jpg"
 ---
 Hi there! 
 
