@@ -51,7 +51,7 @@ Part VIII: Preparing Submission File for Kaggle
 
 *** 
 
-## Part I. Libraries and Packages
+### Part I. Libraries and Packages
 
 
 ```python
@@ -80,7 +80,7 @@ pd.set_option('display.width', 1000)
 warnings.filterwarnings(action = 'ignore')
 ```
 
-### Kaggle Dataset
+## Kaggle Dataset
 
 ```python
 ## importing data ##
@@ -128,7 +128,7 @@ y_variable = 'RENTALS' # for OLS, KNN, Ridge, Lasso,SGD, and Decision Tree
 
 ```
 
-## Part II: Base Modeling
+### Part II: Base Modeling
 
 ```python
 ## Base Modeling ##
@@ -153,7 +153,7 @@ results = lm_base.fit()
 print(results.summary())
 
 ```
-## Part III: Exploratory Data Analysis (EDA)
+### Part III: Exploratory Data Analysis (EDA)
 
 Missing Value Analysis and Imputation
 
@@ -243,7 +243,7 @@ df_full['Month'] = df_full['Month'].astype(int)
 df_full['Hour'] = df_full['Hour'].astype(int)
 ```
 
-## Part IV. Feature Engineering
+### Part IV. Feature Engineering
 
 ```
 ## Feature Engineering ##
@@ -346,7 +346,7 @@ results = lm_best.fit()
 print(results.summary())
 ```
 
-## Part V. Data Partitioning
+### Part V. Data Partitioning
 Separating the Kaggle Data
 
 ```
@@ -495,7 +495,7 @@ Feature Name:        {y_test.name}
 Observations (Rows): {y_test.shape[0]}""")
 ```
 
-## Part VI. Candidate Modeling
+### Part VI. Candidate Modeling
 
 ```
 ## Candidate Modeling ##
@@ -675,7 +675,7 @@ The x_data is scaled and it shows no difference in the model score among the thr
 Ridge and Lasso Regression 
 It helps reduce overfitting by adding a penalty to the regression coefficients, promoting simpler models. Ridge adds a penalty equal to the square of the magnitude of coefficients, while Lasso adds a penalty equal to the absolute value of coefficients.
 
-## Part VII. Hyperparameter Tuning
+### Part VII. Hyperparameter Tuning
 Lasso Regression Model
 ```
 ## Hyperparameter Tuning ##
@@ -1065,7 +1065,7 @@ Train-Test Gap: {model_gap}
 print(model_summary)
 ```
 
-## Part VIII: Preparing Submission File for Kaggle
+### Part VIII: Preparing Submission File for Kaggle
 ```
 # x-data
 x_data_kaggle = kaggle_data[x_features].copy()
