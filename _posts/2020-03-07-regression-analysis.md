@@ -15,39 +15,43 @@ By: Michelle Kae Celine Jo-anne Bantugon<br>
 Business case built by Professor Chase Kusterer<br>
 Hult International Business School<br>
 ---------------------------------------------------------------------------------------------------
-This regression analysis and model aims to developing a machine learning model to predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. <br>
+This regression analysis and model aims to develop a machine learning model to predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. <br>
 
-Jupyter notebook and dataset for this analysis can be found here: [Portfolio-Projects](https://github.com/sbriques/portfolio-projects)
+Jupyter notebook and dataset for this analysis can be found here: [Data Science Portfolio](https://github.com/mkcjeb/data-science-portfolio/tree/main/projects/regression_bike_rentals) 
 
 ***
 ### Introduction
 
-The bike sharing industry has grown tremendously in recent years, with an estimated global value of $2.8 billion in 2023. This is due to a number of factors, such as convenience, sustainability, and physical fitness. As a result of the market's growth, accurately predicting accurate bike rentals presents a significant challenge due to the dynamic nature of bikesharing systems and the unpredictable behavior of riders. These challenges result in fluctuating demand, leading to inefficiencies in operation, decreased service levels, and potential user dissatisfaction.
-<br>
+The bike sharing industry has grown tremendously in recent years, with an estimated global value of $2.8 billion in 2023. This is due to a number of factors, such as convenience, sustainability, and physical fitness. As a result of the market's growth, accurately predicting bike rentals presents a significant challenge due to the dynamic nature of bikesharing systems and the unpredictable behavior of riders. These challenges result in fluctuating demand, leading to inefficiencies in operation, decreased service levels, and potential user dissatisfaction.
+<br><br>
 Therefore, it is essential to understand future demand patterns that can help reduce relocation costs and improve system performance.
 
 ### Overview
 
-- Best performing model after tuning was a Lasso Regression with 27 features with a test score of 0.7688 and a cross validation score with 5 folds with train-test gap of 0.0198
+- Best performing model after tuning was a Lasso Regression with 27 features with a test score of 0.7688
+- Cross validation score with 5 folds and train-test gap of 0.0198
 - Small alpha was used and cyclic selection
--  Used of L1 penalty to shrink the coefficients of less important features to zero, effectively performing feature selection.
-***
-
-<strong> Case - Chicago Bike Rental. </strong> <br>
+-  Used of L1 penalty to shrink the coefficients of less important features to zero, effectively performing feature selection
+ 
+<strong> Case - Chicago Bike Rental </strong> <br>
 <strong>  Audience: </strong> Cook County Planning and Development Department  <br>
 <strong> Goal: </strong> To predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand. <br>
 
 ***
 
 <strong> Analysis Outline: </strong>
-1. Part 1: Exploratory Data Analysis
-2. Part 2: Transformations
-3. Part 3: Build a machine learning model to predict bike rentals 
-4. Part 4: Evaluating Model
+Part I: Libraries and Data Import
+Part II: Base Modeling
+Part III. Exploratory Data Analysis (EDA)
+Part IV. Feature Engineering
+Part V. Data Partitioning 
+Part VI. Candidate Modeling
+Part VII. Hyperparameter Tuning
+Part VIII: Preparing Submission File for Kaggle
 
 *** 
 
-### Libraries and Packages
+## Part I. Libraries and Packages
 
 
 ```python
@@ -124,7 +128,7 @@ y_variable = 'RENTALS' # for OLS, KNN, Ridge, Lasso,SGD, and Decision Tree
 
 ```
 
-## Part I: Base Modeling
+## Part II: Base Modeling
 
 ```python
 ## Base Modeling ##
@@ -149,7 +153,7 @@ results = lm_base.fit()
 print(results.summary())
 
 ```
-## Part II: Exploratory Data Analysis (EDA)
+## Part III: Exploratory Data Analysis (EDA)
 
 Missing Value Analysis and Imputation
 
@@ -239,7 +243,7 @@ df_full['Month'] = df_full['Month'].astype(int)
 df_full['Hour'] = df_full['Hour'].astype(int)
 ```
 
-## Part III. Feature Engineering
+## Part IV. Feature Engineering
 
 ```
 ## Feature Engineering ##
@@ -342,7 +346,7 @@ results = lm_best.fit()
 print(results.summary())
 ```
 
-## Part IV. Data Partitioning
+## Part V. Data Partitioning
 Separating the Kaggle Data
 
 ```
@@ -491,7 +495,7 @@ Feature Name:        {y_test.name}
 Observations (Rows): {y_test.shape[0]}""")
 ```
 
-## Part V. Candidate Modeling
+## Part VI. Candidate Modeling
 
 ```
 ## Candidate Modeling ##
@@ -670,7 +674,7 @@ The x_data is scaled and it shows no difference in the model score among the thr
 
 Ridge and Lasso Regression It helps reduce overfitting by adding a penalty to the regression coefficients, promoting simpler models. Ridge adds a penalty equal to the square of the magnitude of coefficients, while Lasso adds a penalty equal to the absolute value of coefficients.
 
-## Part VI. Hyperparameter Tuning
+## Part VII. Hyperparameter Tuning
 Lasso 
 ```
 ## Hyperparameter Tuning ##
@@ -1062,7 +1066,7 @@ Train-Test Gap: {model_gap}
 print(model_summary)
 ```
 
-## Part VI: Preparing Submission File for Kaggle
+## Part VIII: Preparing Submission File for Kaggle
 ```
 # x-data
 x_data_kaggle = kaggle_data[x_features].copy()
