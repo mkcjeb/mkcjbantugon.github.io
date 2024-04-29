@@ -10,2419 +10,1743 @@ toc: true
 toc_label : "Navigate"
 ---
 
-## Predicting Low Birthweight: Classification Modeling Case Study
 By: Michelle Kae Celine Jo-anne Bantugon<br>
+
+Business case built by Professor Chase Kusterer<br>
 Hult International Business School<br>
-<br>
-<br>
-Jupyter notebook and dataset for this analysis can be found here: [Portfolio-Projects](https://github.com/sbriques/portfolio-projects) 
-<br>
-<br>
-Note: this analysis is based on a fictitious business case, Apprentice Chef, Inc. built by Professor Chase Kusterer from Hult International Business School. For a better understanding of the case, please read the regression analysis on the same case, which can be found [here](https://sbriques.github.io/regression-analysis/)
+
+Jupyter notebook and dataset for this analysis can be found here: [Data Science Portfolio](https://github.com/mkcjeb/data-science-portfolio/tree/main/projects/predicting_low_bweight) 
 
 ***
-
 ### Introduction
 
-The meal kit market is competitive, with new players joining every day, as well as traditional grocery stores which are now also offering customers semi-prepared kits (Forbes, 2018). However, research shows consumers continue to order meal kits due to health reasons and getting to know new recipes (Nielsen, 2017).
-<br>
-Therefore, it is essential to diversify our revenue streams at Apprentice Chef through different promotions such as Halfway There, a wine subscription service.
+The World Health Organization (WHO) defines low birth weight (LBW) as a birth weight of less than 2500 g. LBW is a major global public health concern. 19.8 million babies, or 14.7 percent of all births worldwide in 2020, were afflicted by LBW. This statistic is essential for evaluating the health of newborns and understanding the difficulties pregnant women experience (Alam, M. et.al, 2024). Prenatal care is considered by many to be an essential part of a pregnant mother's healthcare. The 2002 North Dakota PRAMS survey found that mothers who were younger, less educated, single, American Indian, or Medicaid people were more likely to report having difficulty accessing prenatal care as early as they would have liked. Therefore, by direct clinical screening and healthcare intervention, it is essential to precisely identify which pregnant patients may be most at-risk of delivering a baby with LBW during the preconception or early stages of pregnancy in order to save newborn lives and save potentially avoidable medical expenses.
 
+Predicting low birth weight (LBW) will serve as a valuable tool for prevention and as an indicator of potential health risks for newborns. This analysis utilized different machine learning models and techniques to analyzed feature importance (risk factors) to make predictions regarding LBW.
 
+### Conclusion & Actionable Insights
 
-### Overview
+The results of the analysis reveal that low birthweight may be caused by a number of factors. The model found that the month <b>prenatal care began, mother's age, mother's race (white), and prenatal visits</b> were the most significant factors. It indicates that the <b>highest risk factor for low birth weight</b> is the combined features of <b>mother's age and the starting month of their prenatal care</b>. This is followed by the <b>inadequate prenatal visits (fewer than 8)</b>. The model also showed that the <b>combined features of women older than 34 of white race</b> were associated with low birth weight. Other factors such as the <b>combined features of starting month of prenatal care and different races as well as educational level </b>were among the other features that can help predict low birthweight.
 
-- Our best performing model was a Decision Tree with 21 features with a test score of 0.9058
-- Optimal features were found using exploratory data analysis, domain knowledge and tree classifiers
-- It is predicting whether or not a customer will subscribe to the new service Halfway There.
-- Its precision in correctly predicting a new customer is 96%
+These findings were all consistent to the study in North Dakota last 2002 in which mothers had an average of 11 prenatal care visits and only 20 percent of mothers also did not receive prenatal care in their first trimester. Moreover research last 2016 about the Timing and Adequacy of Prenatal Care in the United States in which it was found out that Prenatal Care (PNC) utilization in the United States, based on the trimester of pregnancy in which PNC began and the Adequacy of Prenatal Care Utilization (APNCU) Index, by maternal age, race and Hispanic origin, education, state of residence, birth order, and source of payment for the delivery. Similarly, state data center records showed that race, mother's age, and educational attainment all contributed to the quantity of mothers in North Dakota who did not start prenatal care in the first trimester. 
 
-***
-
-<strong> Case: Apprentice Chef, Inc. </strong> <br>
-<i> Audience: Top Executives </i> <br><br>
-<strong> Context: </strong> <i> Halfway There </i>, new subscription where customers can receive a half bottle of wine from a local California vineyard every Wednesday. <br>
-<strong> Goal: </strong> when promoting this service to a wider audience, know which customers will subscribe to <i> Halfway There </i> <br>
-<strong> Target consumer: </strong> busy professional, little to no skills in the kitchen <br>
-<strong> Product: </strong> daily-prepared gourmet meals delivered <br>
-<strong> Channels: </strong> online platform and mobile app <br> 
-<strong> Revenue: </strong> 90% of revenue comes from customers that have been ordering for 12 months or less
-
-
-<br> General Product Specifications: 
-- at most 30 min to finish cooking
-- disposable cookware
-- delicious and healthy eating<br>
-
-<br> Halfway There Specifications:
-- hard to find local wines
-- customer need to include government ID in application process to order
-<br>
-Channels: online platform and mobile app
-Revenue: 90% of revenue comes from customers that have been ordering for 12 months or less
+Pregnant women should therefore start having prenatal checks in the first trimester (the first four months of pregnancy) and made at least eight to ten visits of the recommended checkup prior to delivery. Likewise, it is also crucial to have a regular, promptly, and adequate appointments in order to improve delivery outcomes and prevent low birth weight. Advanced maternal age was another crucial component, specifically for white mothers, since it is considered that an older mother during birth poses a considerable risk for the health of the delivery. Healthcare systems can strengthen measures to support frequent and early prenatal visits in order to better safeguard against potential risks related to low birth weight. Moreover, for expecting mothers who might not be aware of these risk factors, it might direct the development of targeted LBW early prevention, clinical intervention, and statewide changes to maternity and infant health policies. Implementing these actionable strategies and having a system for services and access can effectively prevent and address low birth weight issues, thereby improving both maternal and infant health outcomes.
 
 ***
-<strong> Data and Assumptions </strong> <br>
-Dataset:
-<br> 2,000 customers (approx.)
-- at least one purchase per month for a total of 11 of their first 12 months
-- at least one purchase per quarter and at least 15 purchases through their first year
-- dataset engineering techniques are statistically sound and represent the customers
+
+<strong> Analysis Outline: </strong><br>
+Part I: Libraries and Data Import<br>
+Part II: Base Modeling<br>
+Part III. Exploratory Data Analysis (EDA)<br>
+Part IV. Feature Engineering<br>
+Part V. Data Partitioning <br>
+Part VI. Candidate Modeling <br>
+Part VII. Hyperparameter Tuning <br>
+Part VIII: Preparing Submission File for Kaggle
+
+*** 
+
+### Part I. Libraries and Packages
 
 
-Assumptions:
-- all average times are in seconds
-- revenue = price x quantity and total meals ordered represent quantity
-- all customers have included their government ID in the registration process
-- price of subscription to halfway there is the average price of half-bottle of wine in the menu
-- bottle is delivered on Wednesday regardless if the customer has ordered a meal that day or not
-- upon registration, each customer gave a phone number (required for registration) and optionally gave an email address
-- each customer was able to set their preferred contact method (optional). If not set, customers will be contacted via SMS if their phone number was mobile, and via a direct sales call if their phone number was a landline.
+```
+# Importing libraries
+import numpy  as np                                          # mathematical essentials
+import pandas as pd                                          # data science essentials
+import matplotlib.pyplot as plt                              # essential graphical output
+import sklearn.linear_model                                  # linear models
+from sklearn.model_selection import train_test_split         # train/test split
+from sklearn.preprocessing import StandardScaler             # standard scaler
+from sklearn.tree import plot_tree                           # tree plots
+from sklearn.model_selection import RandomizedSearchCV       # hyperparameter tuning
+import phik                                                  # Matthew's coefficient (phi)
 
-Data Quality issues:
-- cancellations before noon and after noon: dictionary specifies after noon as after 3pm. There are 3 hours of data for cancellations missing.
+# preprocessing and testing
+from sklearn.preprocessing import PowerTransformer          # fixing skewness
+from sklearn.preprocessing import StandardScaler            # standard scaler
+from sklearn.model_selection import train_test_split        # train-test split
 
-***
-<strong> Outline: </strong>
-1. Part 1: Exploratory Data Analysis
-2. Part 2: Build a machine learning model to predict cross-sell success 
-3. Part 3: Evaluating Model 
 
-### Set-up
-```python
-# importing libraries
-import pandas            as pd                       # data science essentials
-import numpy             as np
-import matplotlib.pyplot as plt                      # data visualization
-import seaborn           as sns                      # enhanced data viz
-import statsmodels.formula.api as smf                # statsmodel regressions
-from sklearn.model_selection import train_test_split # train-test split
-from sklearn.linear_model import LogisticRegression  # logistic regression
-from sklearn.metrics import confusion_matrix         # confusion matrix
-from sklearn.metrics import roc_auc_score            # auc score
-from sklearn.neighbors import KNeighborsClassifier   # KNN for classification
-from sklearn.neighbors import KNeighborsRegressor    # KNN for regression
-from sklearn.preprocessing import StandardScaler     # standard scaler
-from sklearn.model_selection import GridSearchCV     # hyperparameter tuning
-from sklearn.metrics import make_scorer              # customizable scorer
-from sklearn.ensemble import RandomForestClassifier     # random forest
-from sklearn.ensemble import GradientBoostingClassifier # gbm
+# machine learning
+import statsmodels.formula.api as smf
+from sklearn.linear_model import RidgeClassifier            # Ridge Classification
+from sklearn.linear_model import LogisticRegression         # logistic regression
+from sklearn.tree import DecisionTreeClassifier             # decision tree
+from sklearn.ensemble import RandomForestClassifier         # random forest
+from sklearn.ensemble import GradientBoostingClassifier     # gbm
 
-# CART model packages
-from sklearn.tree import DecisionTreeClassifier      # classification trees
-from sklearn.tree import export_graphviz             # exports graphics
-from sklearn.externals.six import StringIO           # saves objects in memory
-from IPython.display import Image                    # displays on frontend
-import pydotplus                                     # interprets dot objects
+# model results
+from sklearn.metrics import make_scorer                     # customizable scorer
+from sklearn.metrics import precision_recall_curve, accuracy_score 
+from sklearn.metrics import f1_score as calculate_f1_score  # f-1 score
+from sklearn.metrics import (confusion_matrix, f1_score,
+                             roc_auc_score, precision_score, 
+                             recall_score, roc_curve)
+
 
 # setting pandas print options
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
-# specifying file name
-file = "Apprentice_Chef_Dataset.xlsx"
+## importing data ##
 
-# reading the file into Python
-original_df = pd.read_excel(file)
-chef_org = original_df.copy()
+# reading modeling data into Python
+modeling_data = './birthweight.xlsx'
 
-# Reading data dictionary
-chef_description = pd.read_excel('Apprentice_Chef_Data_Dictionary.xlsx')
-#chef_description
+# calling this df_train
+birth = pd.read_excel(io         = modeling_data,
+                         sheet_name = 'birthweight',
+                         header     = 0,
+                         index_col  = 'bwt_id')
+
+# checking the first five rows of data
+birth.head(n = 5)
 ```
+### User-defined Function (Feature Importance)
 
-
-### User-defined functions
-In the next section, we’ll design a number of functions that will facilitate our analysis.
-
-```python
-## User-Defined Functions   
-
-# Defining function for distribution histograms
-def distributions(variable, data, bins = 'fd', kde = False, rug = False):
+```
+########################################
+# plot_feature_importances
+########################################
+def plot_feature_importances(model, train, export=False):
     """
-    This function can be used for continuous or count variables.
-
+    Plots the importance of features from a CART model.
+    
     PARAMETERS
     ----------
-    variable : str, continuous or count variable
-    data     : DataFrame
-    bins     : argument for matplotlib hist(), optional. If unspecified, Freedman–Diaconis rule is used.
-    kde      : bool, optional, plot or not a kernel density estimate.  If unspecified, not calculated.
-    rug      : bool, optional, include a rug on plot or not. If unspecified, not shown.
+    model  : CART model
+    train  : explanatory variable training data
+    export : whether or not to export as a .png image, default False
     """
     
-    sns.distplot(data[variable],  
-                    bins  = bins,
-                    kde   = False,
-                    rug   = rug)
+    # number of features to plot
+    n_features = train.shape[1]
     
-    plt.xlabel(variable)
-    plt.tight_layout()
-    plt.show()
+    # Sort feature importances
+    feature_importances = pd.Series(model.feature_importances_, index=train.columns)
+    sorted_feature_importances = feature_importances.sort_values(ascending=True)
     
-# Defining function to flag high outliers in variables
-def outlier_flag_hi(variable, threshold, data):
-    """
-    This function is used to flag high outliers in a dataframe the variables' 
-    outliers by creating a new column that is preceded by 'out_'.
-
-    PARAMETERS
-    ----------
-    variable  : str, continuous variable.
-    threshold : float, value that will identify where outliers would be.
-    data      : dataframe, where the variables are located.
+    # setting plot window
+    fig, ax = plt.subplots(figsize=(12, 9))
     
-    """
-    # creating a new column
-    data['out_' + variable + '_hi'] = 0
-        
-    # defining outlier condition
-    high = data.loc[0:,'out_' + variable + '_hi'][data[variable] > threshold]
-        
-    # imputing 1 inside flag column
-    data['out_' + variable + '_hi'].replace(to_replace = high,
-                                    value   = 1,
-                                    inplace = True)
-
+    # Remove gridlines
+    ax.grid(False)
     
-
-
-# Defining function to flag high outliers in variables
-def outlier_flag_lo(variable, threshold, data):
-    """
-    This function is used to flag low outliers in a dataframe the variables' 
-    outliers by creating a new column that is preceded by 'out_'.
-
-    PARAMETERS
-    ----------
-    variable  : str, continuous variable.
-    threshold : float, value that will identify where outliers would be.
-    data      : dataframe, where the variables are located.
+    plt.barh(range(n_features), sorted_feature_importances, align='center')
+    plt.yticks(np.arange(n_features), sorted_feature_importances.index)
+    plt.xlabel("Feature importance")
+    plt.ylabel("Feature")
     
-    """
-    # creating a new column
-    data['out_' + variable + '_lo'] = 0
-        
-    # defining outlier condition
-    low = data.loc[0:,'out_' + variable + '_lo'][data[variable] < threshold]
-        
-    # imputing 1 inside flag column
-    data['out_' + variable + '_lo'].replace(to_replace = low,
-                                    value   = 1,
-                                    inplace = True)
-    
-
-# Defining function to plot relationships with categorical response variable
-def trend_boxplots(cont_var, response, data):
-    """
-    This function can be used for categorical variables as target and 
-    continuous variables as explanatory.
-
-    PARAMETERS
-    ----------
-    cont_var : str, explanatory variable
-    response : str, response categorical variable
-    data     : DataFrame of the response and explanatory variables
-    """
-
-    data.boxplot(column       = cont_var,
-                 by           = response,
-                 vert         = True,
-                 patch_artist = False,
-                 meanline     = True,
-                 showmeans    = True)
-    
-    plt.grid(b=True, which='both', linestyle='-')
-    plt.suptitle("")
-    plt.show()
-    
-    
-# Defining function to flag higher variables
-def success_flag(variable, threshold, data):
-    """
-    This function is used to flag in a dataframe the variables' trend changes 
-    above a threshold by creating a new column that is preceded by 'success_'.
-
-    PARAMETERS
-    ----------
-    variable  : str, continuous variable.
-    threshold : float, value that will identify after which the trend on variable y changes
-    data      : dataframe, where the variables are located.
-    
-    """
-    new_column = 'success_' + variable
-    
-    # creating a new column
-    data[new_column] = 0
-        
-    # defining outlier condition
-    high = data.loc[0:,new_column][data[variable] > threshold]
-        
-    # imputing 1 inside flag column
-    data[new_column].replace(to_replace = high,
-                             value   = 1,
-                             inplace = True)
-    
-# Defining a function to standardize numerical variables in the dataset:
-def standard(num_df):
-    """
-    This function standardizes a dataframe that contains variables which are either
-    integers or floats.
-    
-    ------
-    num_df : DataFrame, must contain only numerical variables
-    
-    """
-    # INSTANTIATING a StandardScaler() object
-    scaler = StandardScaler()
-
-    # FITTING the scaler with housing_data
-    scaler.fit(num_df)
-
-    # TRANSFORMING our data after fit
-    X_scaled = scaler.transform(num_df)
-
-    # converting scaled data into a DataFrame
-    X_scaled_df = pd.DataFrame(X_scaled)
-    
-    # adding labels to the scaled DataFrame
-    X_scaled_df.columns = num_df.columns
-    
-    # Re-attaching target variable to DataFrame
-    #X_scaled_df = X_scaled_df.join(target_variable)
-    
-    # returning the standardized data frame into the global environment
-    return X_scaled_df
-
-# Defining a function to find optimal number of neighbors in KNN
-def optimal_neighbors(criteria, X_train, y_train, X_test, y_test, max_neighbors):
-    """
-    This function calculates and returns the optimal number of neighbors for a 
-    KNN classifier the optimal number of neighbors given a training, testing, 
-    a random seed and max. Should only be used with standardized data.
-    
-    ----
-    criteria      : str, score to which return the optimal number of neighbors.
-                        'accuracy', 'auc'
-    X_train       : set of explanatory training data
-    y_train       : set of target training data
-    X_test.       : set of explanatory testing data
-    y_test        : set of target testing data
-    max_neighbors : maximum number of neighbors to be tested
-    """
-    # creating empty lists for training set accuracy, test set accuracy and AUC
-    training_accuracy = []
-    test_accuracy     = []
-    auc_score         = []
-    
-    neighbors_settings = range(1, max_neighbors)
-    
-    for n_neighbors in neighbors_settings:
-        #Building Model
-        clf = KNeighborsClassifier(n_neighbors = n_neighbors)
-        clf.fit(X_train, y_train.values.reshape(-1,))
-        clf_pred = clf.predict(X_test)
-        
-        # Recording scores
-        training_accuracy.append(clf.score(X_train,y_train))
-        test_accuracy.append(clf.score(X_test,y_test))
-        auc_score.append(roc_auc_score(y_true = y_test,
-                                       y_score = clf_pred))
-    
-    opt_neighbors_accuracy = test_accuracy.index(max(test_accuracy)) + 1
-    opt_neighbors_auc      = auc_score.index(max(auc_score)) + 1
-    #returning the optimal number of neighbors
-    if criteria == 'accuracy':
-        return opt_neighbors_accuracy
-    elif criteria == 'auc':
-        return opt_neighbors_auc
-    else:
-        print("""Error: criteria specified not available. Argument can only take 'accuracy' or 'auc' """)
-
-# Classification confusion matrix
-def visual_cm(true_y, pred_y, labels = None, title = 'Confusion Matrix of the Classifier'):
-    """
-Creates a visualization of a confusion matrix.
-
-PARAMETERS
-----------
-true_y : true values for the response variable
-pred_y : predicted values for the response variable
-labels : , default None
-titel  : str, title of confusion matrix, default: 'Confusion Matrix of the Classifier'
-    """
-    # visualizing the confusion matrix
-
-    # setting labels
-    lbls = labels
-    
-
-    # declaring a confusion matrix object
-    cm = confusion_matrix(y_true = true_y,
-                          y_pred = pred_y)
-
-
-    # heatmap
-    sns.heatmap(cm,
-                annot       = True,
-                xticklabels = lbls,
-                yticklabels = lbls,
-                cmap        = 'Blues',
-                fmt         = 'g')
-
-
-    plt.xlabel('Predicted')
-    plt.ylabel('Actual')
-    plt.title(title)
-    plt.show()
+    if export:
+        plt.savefig('./analysis_images/Feature_Importance.png')
 ```
 
-
-***
-***
-
-## Part 1: Exploratory Data Analysis (EDA)
-
-In this section, our objective is too understand the data and identify possible insights that will be useful for business application. We'll also go through feature engineering (creating new variables) where we deem appropriate.
-<br> <br>
-
-<strong> Observations: </strong>
-- Data types are coherent with each variable description
-- 47 missing values in Family Name
-- Number of observations: 1946
-- Total of 28 variables (including target variable) where:
-    - 3 are floats
-    - 22 are integers
-    - 4 are objects
-    
-   
-For this purpose, it is important to identify the different variable types in our model:
-
-
-```python
-# Defining lists for each type of variable:
-categorical = ['CROSS_SELL_SUCCESS',     # (target variable - binary)
-               'MOBILE_NUMBER',          # (also binary)
-               'TASTES_AND_PREFERENCES', # (also binary)
-               'PACKAGE_LOCKER',         # (also binary)
-               'REFRIGERATED_LOCKER']    # (also binary)
-
-continuous = ['REVENUE',
-              'AVG_TIME_PER_SITE_VISIT',
-              'FOLLOWED_RECOMMENDATIONS_PCT',
-              'AVG_PREP_VID_TIME',
-              'MEDIAN_MEAL_RATING',]     # (interval)
-
-counts = ['TOTAL_MEALS_ORDERED',
-          'UNIQUE_MEALS_PURCH',
-          'CONTACTS_W_CUSTOMER_SERVICE',
-          'PRODUCT_CATEGORIES_VIEWED',
-          'CANCELLATIONS_BEFORE_NOON',
-          'CANCELLATIONS_AFTER_NOON',
-          'MOBILE_LOGINS',
-          'PC_LOGINS',
-          'WEEKLY_PLAN',
-          'EARLY_DELIVERIES',
-          'LATE_DELIVERIES',
-          'MASTER_CLASSES_ATTENDED',
-          'TOTAL_PHOTOS_VIEWED',
-          'LARGEST_ORDER_SIZE',
-          'AVG_CLICKS_PER_VISIT']
-```
-
-### A) Anomaly Detection: Missing Values
-
-<strong> Purpose: </strong> Identify and create a strategy for missing values.
-<br>
-Missing values can affect our model and our ability to create plots to identify other features in our data.
-
-
-```python
-# Inspecting missing values
-chef_org.isnull().sum()
-chef_org.loc[:,:][chef_org['FAMILY_NAME'].isna()]
-
-# Flagging missing variables for FAMILY_NAME
-# creating a copy of dataframe for safety measures
-chef_m = chef_org.copy()
-
-# creating a new column where 1 indicates that observation has a missing family name
-chef_m['m_FAMILY_NAME'] = chef_m['FAMILY_NAME'].isnull().astype(int)
-
-# imputing missing values
-chef_m['FAMILY_NAME'] = chef_m['FAMILY_NAME'].fillna('Unknown')
-
-# checking to see if missing values were imputed
-chef_m.isnull().sum()
-```
-
-### B) Anomaly Detection: Sample Size Check
-
-<strong> Purpose: </strong> Identify size of each category in categorical variables.
-
-***
-We need to see if the size of each of the categories is large enough to infer statistical significance or insignificance. If not, the variable could be insignificant to predict cross sell success when in reality its sample size is too small. <br> <br>
-Additionally, since our target variable is binary, we want to ensure we have the same number of success and failure values in our sampling.
-
-
-```python
-for variable in chef_org:
-    if variable in categorical:
-        print(f"""{variable}
-------
-{chef_org[variable].value_counts()}
-          
-    """)
-```
-
-```python
-"""
-CROSS_SELL_SUCCESS
-------
-1    1321
-0     625
-Name: CROSS_SELL_SUCCESS, dtype: int64
-          
-    
-MOBILE_NUMBER
-------
-1    1708
-0     238
-Name: MOBILE_NUMBER, dtype: int64
-          
-    
-TASTES_AND_PREFERENCES
-------
-1    1390
-0     556
-Name: TASTES_AND_PREFERENCES, dtype: int64
-          
-    
-PACKAGE_LOCKER
-------
-0    1255
-1     691
-Name: PACKAGE_LOCKER, dtype: int64
-          
-    
-REFRIGERATED_LOCKER
-------
-0    1726
-1     220
-Name: REFRIGERATED_LOCKER, dtype: int64
-"""
-```
-
-<strong> Observations: </strong>
-- Sample size for each option in all categorical variables are large enough for analysis (all contain above 200 observations)
-- Sample size for target variable is large enough. We will need to use stratification methods in our splitting of training and testing in the model to make sure we have both success and failures in both training and testing.
-<br><br> 
-In this sample of customers, our <strong> success in selling Halfway There was about 88% ! </strong>
-<br>
-
-### C) Anomaly Detection: Outliers
-
-<strong> Purpose: </strong> Outliers affect most predictive models. It increases variance in a variable, and therefore need to be flagged for two main reasons: <br> <br>
-1) Using outlier flag variable in our model quantifies the affect of that outlier on the variable we are trying to predict (in this case, cross sell success) <br>
-2) In some cases, removing outliers can improve our predictions and increase generalization of our model <br> <br>
-
-***
-
-In the following code, we visualize each variable's distribution with an user-defined function and we look at the quartile ranges using descriptive statistics. We then set thresholds which will determine which observations are going to be considered as outliers in this analysis. Finally, we create a new column for each of the variables that contain outliers, where a 1 will be imputed for outlier observations. <br><br>
-<i> Note: no outliers are removed in the part of the analysis <i> <br><br>
-
-
-```python
-# Visualizing variable distributions
-for variable in continuous + counts:
-    distributions(variable, chef_m, bins = 'fd', kde = True, rug = False)
-```
-
-<strong> Observations:</strong>
-- Revenue: big dip in clients with revenue at approx 2,000 
-- Avg Time per Site Visit (in seconds): almost a normal distribution, outliers after 200 (3.3 min)    
-- Followed Recommendations Percentage: outliers after 80%  and before 10%   
-- Average Preparation Video Time (in seconds): almost a normal distribution, outliers after 250 (approx 4 min)    
-- Largest Order Size: almost normal distribution, after 5: a family is usually 4 - 5 people, more than that it could be that these customers are throwing dinner parties or keeping the meals for the next day
-- Median Meal Rating: peak on 3, no obvious outliers
-- Average Clicks per visit: outliers before 10
-- Total Meals Ordered: strong dip in around 25 - investigate, outliers after 320    
-- Unique Meals Purchased: outliers after 10    
-- Contacts with customer service: outliers after 13    
-- Product Categories Viewed: after 9 and before 2
-- Cancellations Before Noon: approx exponential distribution, outliers after 8   
-- Cancellations After Noon: no obvious outliers   
-- Mobile Log-ins: no obvious outliers  
-- PC Log-ins: no obvious outliers
-- Weekly Plan: no obvious outliers
-- Early Deliveries: peak on 0, no obvious outliers
-- Late Deliveries: outliers after 17   
-- Master Class Attended: no obvious outliers  
-- Total Photos Viewed: peak on 0, outliers after 800   
-- Revenue per meal: Outliers after 80 dollars
-
-
-```python
-# Establishing outliers thresholds for analysis
-# Continous
-avg_time_per_site_visit_hi = 200
-avg_prep_vid_time_hi       = 250
-followed_rec_hi            = 75
-followed_rec_lo            = 10 
-largest_order_size_hi      = 5
-avg_clicks_per_visit_hi    = 17
-avg_clicks_per_visit_lo    = 11
-median_meal_hi             = 3
-
-# Counts:
-total_meals_ordered_hi            = 320
-unique_meals_purchased_hi         = 8
-unique_meals_purchased_lo         = 2
-contacts_with_customer_service_hi = 13
-cancellations_before_noon_hi      = 8
-late_deliveries_hi                = 17
-total_photos_viewed_hi            = 800
-products_viewed_hi                = 9 
-products_viewed_lo                = 2 
-median_meal_lo                    = 2
-
-# Target Variable
-revenue_hi  =  5500
-
-
-# Creating Dictionary to link variables with outlier thresholds
-lst_thresholds_hi = {
-    'AVG_TIME_PER_SITE_VISIT'      : avg_time_per_site_visit_hi,
-    'AVG_PREP_VID_TIME'            : avg_prep_vid_time_hi,
-    'TOTAL_MEALS_ORDERED'          : total_meals_ordered_hi,
-    'UNIQUE_MEALS_PURCH'           : unique_meals_purchased_hi,
-    'CONTACTS_W_CUSTOMER_SERVICE'  : contacts_with_customer_service_hi,
-    'CANCELLATIONS_BEFORE_NOON'    : cancellations_before_noon_hi,
-    'LATE_DELIVERIES'              : late_deliveries_hi,
-    'TOTAL_PHOTOS_VIEWED'          : total_photos_viewed_hi,
-    'REVENUE'                      : revenue_hi,
-    'FOLLOWED_RECOMMENDATIONS_PCT' : followed_rec_hi,
-    'LARGEST_ORDER_SIZE'           : largest_order_size_hi,
-    'PRODUCT_CATEGORIES_VIEWED'    : products_viewed_hi,
-    'AVG_CLICKS_PER_VISIT'         : avg_clicks_per_visit_hi,
-    'PRODUCT_CATEGORIES_VIEWED'    : products_viewed_hi,
-    'MEDIAN_MEAL_RATING'           : median_meal_hi
-    }
-
-lst_thresholds_lo = {
-    'AVG_CLICKS_PER_VISIT'          : avg_clicks_per_visit_lo,
-    'PRODUCT_CATEGORIES_VIEWED'     : products_viewed_lo,
-    'FOLLOWED_RECOMMENDATIONS_PCT'  : followed_rec_lo,
-    'UNIQUE_MEALS_PURCH'            : unique_meals_purchased_lo,
-    'MEDIAN_MEAL_RATING'            : median_meal_lo
-     }
-```
-
-
-```python
-# creating a copy of dataframe for safety measures
-chef_o = chef_m.copy()
-
-# Looping over variables to create outlier flags:
-for key in lst_thresholds_hi.keys():
-    outlier_flag_hi(key,lst_thresholds_hi[key],chef_o)
-    
-for key in lst_thresholds_lo.keys():
-    outlier_flag_lo(key,lst_thresholds_lo[key],chef_o)
-```
-
-
-```python
-#merging avg clicks per visit hi and lo
-chef_o['out_AVG_CLICKS_PER_VISIT'] = chef_o['out_AVG_CLICKS_PER_VISIT_hi'] + chef_o['out_AVG_CLICKS_PER_VISIT_lo'] 
+Data dictionary
 
 ```
-<br>
+# instantiating data dictionary for the dataset
+dictionary = './birthweight_data_dictionary.xlsx'
 
-### D) Feature Engineering: Email Domains
-
-<strong> Purpose </strong>: 
-<br>
-When we promote Halfway There to a wider customer base, we could choose from several promotion methods (ex: sales call, flyers, email, SMS...). With our customers email domains, we can identify if the email provided in the application process is a professional or personal email, or if they have provided a 'junk' email (an inbox they never open but use to avoid spam). 
-<br>
-
-
-By adding these features in our analysis, we are able to identify if customers that use their personal or professional emails are more likely to buy the subscription. If so, it would be a good idea to implement an email marketing campaign to these customers. It would also confirm the need to run a campaign in another platform if we see the potential in customers with 'junk' emails.
-<br> <br>
-In the next steps, we will first select the email domain for each customer, then create a new categorical variable where each domain is classified as "personal", "professional" or "junk". Finally, we will be one-hot encoding this new variable which will create three new columns for each email category. In these new columns, if an email corresponds to the column, that observation will take on the value 1.
-
-
-```python
-# STEP 1: splitting emails
-# placeholder list
-placeholder_lst = []
-
-# looping over each email address
-for index, col in chef_o.iterrows():
-    
-    # splitting email domain at '@'
-    split_email = chef_o.loc[index, 'EMAIL'].split(sep = '@')
-
-    # appending placeholder_lst with the results
-    placeholder_lst.append(split_email)
-    
-# converting placeholder_lst into a DataFrame
-email_df = pd.DataFrame(placeholder_lst)
-
-# STEP 2: concatenating with original DataFrame
-# Creating a copy of chef for features and safety measure
-chef_v = chef_o.copy()
-
-# renaming column to concatenate
-email_df.columns = ['name' , 'EMAIL_DOMAIN'] 
-
-# concatenating personal_email_domain with chef DataFrame
-chef_v = pd.concat([chef_v, email_df.loc[:, 'EMAIL_DOMAIN']], 
-                   axis = 1)
-
-# printing value counts of personal_email_domain
-chef_v.loc[: ,'EMAIL_DOMAIN'].value_counts()
-
-# email domain types
-professional_email_domains = ['@mmm.com',         '@amex.com',
-                              '@apple.com',       '@boeing.com',
-                              '@caterpillar.com', '@chevron.com',
-                              '@cisco.com',       '@cocacola.com',
-                              '@disney.com',      '@dupont.com',
-                              '@exxon.com',       '@ge.org',
-                              '@goldmansacs.com', '@homedepot.com',
-                              '@ibm.com',         '@intel.com',
-                              '@jnj.com',         '@jpmorgan.com',
-                              '@mcdonalds.com',   '@merck.com',
-                              '@microsoft.com',   '@nike.com',
-                              '@pfizer.com',      '@pg.com',
-                              '@travelers.com',   '@unitedtech.com',
-                              '@unitedhealth.com','@verizon.com',
-                              '@visa.com',        '@walmart.com']
-personal_email_domains     = ['@gmail.com',       '@yahoo.com',    
-                              '@protonmail.com']
-junk_email_domains         = ['@me.com',          '@aol.com',
-                              '@hotmail.com',     '@live.com', 
-                              '@msn.com',         '@passport.com']
-
-# placeholder list
-placeholder_lst = []  
-
-
-# looping to group observations by domain type
-for domain in chef_v['EMAIL_DOMAIN']:
-        if "@" + domain in professional_email_domains:
-            placeholder_lst.append('professional')
-            
-        elif "@" + domain in personal_email_domains:
-            placeholder_lst.append('personal')
-            
-        elif "@" + domain in junk_email_domains:
-            placeholder_lst.append('junk')
-            
-        else:
-            print('Unknown')
-
-
-# concatenating with original DataFrame
-chef_v['email_domain_group'] = pd.Series(placeholder_lst)
-
-# checking results and sample size
-#print(chef['email_domain_group'].value_counts())
-
-# Step 3: One-Hot encoding
-one_hot_email_domain = pd.get_dummies(chef_v['email_domain_group'])
-
-# dropping orginal columns to keep only encoded ones
-chef_e               = chef_v.drop(['email_domain_group','EMAIL','EMAIL_DOMAIN'], axis = 1)
-
-# joining encoded columns to dataset
-chef_e               = chef_e.join(one_hot_email_domain)
-
-# including new categorical variables to list
-domains              = ['professional','personal','junk']
-
-### Only run once!
-categorical          = categorical + domains
+# displaying dictionary
+df_desc = pd.read_excel( io = dictionary)
+df_desc
 ```
-<br>
-
-### D) Feature Engineering: Computing New Variables
-
-<strong> Purpose: </strong> Our analysis can benefit from the creation of new features based on the data we already have. <br>
-
-***
-
-<strong> Feature: </strong> Revenue per meal <br> <br>
-Our goal in creating Halfway There is to diversify revenue. This feature will hopefully shed a light on how much a customer spends on a meal. Hopefully, we can identify certain customer segments according to this new variable.
-
-
-```python
-# creating a copy of dataframe for safety measures
-chef_n = chef_e.copy()
-
-# placeholder for 'rev_per_meal' feature
-chef_n['rev_per_meal'] = 0
-
-# replacing values based on calculation
-for index, col in chef_n.iterrows():
-    revenue      = chef_n.loc[index, 'REVENUE']
-    total_orders = chef_n.loc[index, 'TOTAL_MEALS_ORDERED']
-    chef_n.loc[index, 'rev_per_meal'] = (revenue / total_orders).round(2)
-        
-# checking results
-chef_n.loc[0:10,['rev_per_meal', 'REVENUE', 'TOTAL_MEALS_ORDERED']]
+```
+# Formatting and printing the dimensions of the dataset
+print(f"""
+Size of Bwght Dataset (Train)
+------------------------
+Observations (rows): {birth.shape[0]}
+Features (columns) : {birth.shape[1]}
+""")
 ```
 
-
-```python
-# Updating our variables list after new features (only run once!)
-continuous.append('rev_per_meal')
+```
+# INFOrmation about each variable
+birth.info(verbose=True)
 ```
 
-
-```python
-# Determining Outliers in new variable
-distributions('rev_per_meal', chef_n)
-
-# Establishing Outlier Flags
-rev_per_meal_hi = 70
-rev_per_meal_lo = 15
-outlier_flag_hi('rev_per_meal', rev_per_meal_hi, chef_n)
-outlier_flag_lo('rev_per_meal', rev_per_meal_lo, chef_n)
+Drop Features after Event Horizon
 ```
-<br><br>
-<strong> Feature: </strong> Revenue per logins <br> <br>
-When launching a new product, an important question is what channels to market the product in. Therefore, computing the revenue per logins for mobile and pc logins could help us understand user's buying behavior and better tailor our marketing strategy.
+# Dropping post-event horizon features
+birth = birth.drop(labels = ['omaps',
+                            'fmaps'],
+                   axis   = 1) # columns
+
+# Checking results
+birth.columns
+```
+
+### Part II. Data Preparation
+
+Exploratory Data Analysis (EDA) and Data Preprocessing (DP)
+```
+# creating feature sets
+continuous     = ['bwght','mage', 'meduc', 'monpre', 'npvis', 'fage', 'feduc', 'cigs', 'drink']
+
+non_continuous = ['bwght','male', 'mwhte', 'mblck', 'moth', 'fwhte', 'fblck','foth']
 
 
-```python
-# creating a copy of dataframe for safety measures
-chef_n = chef_n.copy()
+# pearson correlation
+bw_corr = birth[ continuous ].corr(method = 'pearson').round(decimals = 4)
 
-# new column for 'rev_per_login' feature
-chef_n['rev_per_pclogin']     = 0
-chef_n['rev_per_mobilelogin'] = 0
 
-# replacing values based on calculation
-for index, col in chef_n.iterrows():
-    revenue       = chef_n.loc[index, 'REVENUE']
-    PC_LOGINS     = chef_n.loc[index, 'PC_LOGINS']
-    if PC_LOGINS   == 0:
-        chef_n.loc[index, 'rev_per_pclogin'] = 0
-    elif PC_LOGINS >= 0:
-        chef_n.loc[index, 'rev_per_pclogin'] = (revenue / PC_LOGINS).round(2)
-    else:
-        print('Something went wrong.')
+# phi coefficient
+bw_phi_corr = birth[ non_continuous ].phik_matrix(interval_cols = non_continuous).round(decimals = 4)
 
-for index, col in chef_n.iterrows():
-    revenue       = chef_n.loc[index, 'REVENUE']
-    MOBILE_LOGINS = chef_n.loc[index, 'MOBILE_LOGINS']    
-    if MOBILE_LOGINS   == 0:
-        chef_n.loc[index, 'rev_per_mobilelogin'] = 0
-    elif MOBILE_LOGINS >= 0:
-        chef_n.loc[index, 'rev_per_mobilelogin'] = (revenue / MOBILE_LOGINS).round(2)
-    else:
-        print('Something went wrong.')
 
 # checking results
-chef_n.loc[0:10,['rev_per_mobilelogin', 'REVENUE', 'rev_per_pclogin']]
+print(f"""
+Pearson Correlations
+---------------------------
+{bw_corr.loc[ : , 'bwght'].sort_values(ascending = False)}
 
 
+Phi Coefficients
+----------------
+{bw_phi_corr.loc[ : , 'bwght' ].sort_values(ascending = False)}
+""")
 ```
 
+Based on the correlation results, all variables appear to have very weak correlations with birth weight , indicating the need for further analysis.
 
-```python
-# Determining Outliers in new variable
-#distributions('rev_per_pclogin', chef_n)
+Pearson Correlation
 
-# flagging outliers
-rev_per_pclogin_hi = 800
-rev_per_pclogin_lo = 150
-outlier_flag_hi('rev_per_pclogin', rev_per_pclogin_hi, chef_n)
-outlier_flag_lo('rev_per_pclogin', rev_per_pclogin_lo, chef_n)
+The number of prenatal visits (npvis) shows a weak positive correlation with birth weight, suggesting that more visits may be associated with higher birth weight, indicating better access to healthcare during pregnancy.
+Paternal age (fage) and education (feduc) have positive correlations, implying that older and more educated fathers might have a slight positive influence on birth weight.
+The month prenatal care began (monpre), mother's age (mage), and education (meduc) have weak positive correlations, indicating a weak relationship with birth weight.
+Average drinks per week consumed by the mother (drink) and average cigarettes smoked per day (cigs) have weak negative correlations, suggesting that these habits might be associated with lower birth weight.
+Phi Coefficients
 
-```
+Categorical variables like foth (father is not black or white), moth ( mother is not black or white), mwhte (mother white), fwhte (father white), fblck (father black), and mblck (mother black) show weak positive correlations with birthweight. However, it is worth investigating to look at how different racial groups interact with other variables in the dataset to potentially provide insights into disparities in prenatal care and birth outcomes among different racial groups.
 
+Male (baby is male) shows a very weak positive correlation with birthweight, suggesting that male babies may have a slightly higher birthweight, which is consistent with some medical research (Epidemiology 20(4), 2009).
 
-```python
-# Determining Outliers in new variable
-#distributions('rev_per_mobilelogin', chef_n)
-
-# flagging outliers
-rev_per_mobilelogin_hi = 2500
-rev_per_mobilelogin_lo = 200
-outlier_flag_hi('rev_per_mobilelogin', rev_per_mobilelogin_hi, chef_n)
-outlier_flag_lo('rev_per_mobilelogin', rev_per_mobilelogin_lo, chef_n)
+Prenatal care, paternal factors, maternal age and education show some association with birthweight, though the correlations are generally weak. The weak correlations suggest that birthweight is likely influenced by a combination of factors rather than a single variable.
 
 ```
-
-### E) Feature Engineering: Trend Based Features
-
-<strong> Purpose: </strong> Identify points in the relationships between explanatory variables and response variable where there is a clear separation between a success case and failure case.
-
-
-Changes in variables behaviors in relation to our target variable can provide powerful explanations in our model as to how our success in selling Halfway There might be affected.
-<br> <br>
-In the following code, we visualize each variable's relationship with cross sell success with an user-defined function. We then set thresholds which will determine which observations are going to be considered having a differing effect on our success in selling Halfway There. Finally, we create a new feature for each of the variables that contain this difference, where a 1 will be imputed for these observations. <br><br>
-
-
-```python
-# calling the function for each categorical variable
-for var in continuous + counts:
-    trend_boxplots(cont_var = var,
-                   response = 'CROSS_SELL_SUCCESS',
-                   data     = chef_n)
+# Checking missing values 
+birth.isnull().sum(axis=0)
 ```
 
-<strong> Observations </strong>
-(clear separations between success and failure):
-- Avg time per site visit: huge outlier. After removing it still no clear separation between success and failure.
-- Followed Recommendation Pct: high separation - low quartile of 1 is higher quartile of 0 
-- Cancellations before noon: high separation - median for 1 is high quartile for 0
+Continuous features correlation
+```
+# Checking for distributions
 
-<strong> Need further investigation: </strong>
-1. cancellations_before_noon
-2. followed recommendations percentage
+# Columns with missing values (continuous)
+col = ['mage', 'fage',  'meduc', 'feduc', 'monpre', 'npvis', 'cigs','drink']
 
-<br>
-Cancellations before Noon Analysis:
-```python
-# Cancellations Before Noon Analysis
-# count of cancellations before noon that subscribe to new service
-did = chef_n.loc[:,'CANCELLATIONS_BEFORE_NOON'][chef_n.loc[:,'CROSS_SELL_SUCCESS'] == 1]\
-                                                     [chef_n.loc[:,'CANCELLATIONS_BEFORE_NOON'] > 0]
+# Create a figure and a grid of subplots
+plt.figure(figsize=(8, 4))  # Adjust the size as needed
 
-# count of cancellations before noon that did not subscribe to new service
-did_not = chef_n.loc[:,'CANCELLATIONS_BEFORE_NOON'][chef_n.loc[:,'CROSS_SELL_SUCCESS'] == 0]\
-                                                   [chef_n.loc[:,'CANCELLATIONS_BEFORE_NOON'] > 0]
-print(len(did))
-print(len(did_not))
+# Loop through the numerical columns and create a subplot for each one
+for index, column in enumerate(col, start=1):  # Start enumeration at 1 for subplot indexing
+    plt.subplot(2, 4, index)                   # Create a subplot in the right position
+    birth[column].hist(bins=20)
+    plt.title(f'{column} Distribution')
+    plt.xlabel(column)
+    plt.ylabel('Frequency')
+    plt.grid(False)
+
+# Adjust the layout so that plots do not overlap
+plt.tight_layout()
+
+# Display the plots
+plt.show()
+
+# Descriptive statistics for continuous data
+birth[col].describe().round(decimals = 2)
 ```
 
-```python
-    928
-    351
+Mother's Education (mage)
+The distribution of mother's age appears to be roughly symmetric, indicating that it is relatively evenly distributed.
+
+Father's Education (fage)
+The data is slightly negatively skewed, indicating that most fathers are older. Missing values could be imputed with the median value.
+
+Education Level (meduc and feduc)
+The mean education level of mothers (meduc) is 13.66 years, while for fathers (feduc) it is 13.90 years. The data for each is slightly negatively skewed, indicating that most mothers and fathers have higher education levels. Missing values could be imputed with the median education level for each.
+
+Month that Prenatal Care began (monpre)
+The data is positively skewed, suggesting that most mothers begin prenatal care later in pregnancy. It is worth investigating to identify if duration of pregnancy has an impact on the likelihood of low birthweight. There are no missing values.
+
+Total Number of Prenatal Visits (npvis)
+The data is positively skewed indicating that most women have a relatively small number of visits. It might be worth exploring if the frequency of prenatal visits affects the incidence of low birthweight. Missing values could be imputed with the median number of visits for each month that prenatal care began.
+
+Average Number of Cigarettes Smoked Per Day (cigs)
+The data is highly positively skewed suggesting that most mothers do not smoke during pregnancy. Missing values could be imputed with 0.
+
+Average Number of Alcoholic Drinks Consumed Per Week (drinks) The data is extremely positively skewed, indicating that most mothers do not consume alcohol during pregnancy. Missing values could be imputed with 0.
+
+Areas Worth Investigating
+
+Relationship between prenatal care and visits (monpre, npvis) on maternal age (mage), different races, and birth weight.
+Impact of maternal and paternal education levels (meduc, feduc) on birth weight.
+Investigate if there are specific age ranges, both for mother and father, associated with higher or lower risk of low birthweight.
+Influence of maternal age (mage), father's age (fage), and lifestyle choices (smoking and drinking) on birth weight.
+Comparison of birth weight between different racial/ethnic groups (mwhte, mblck, moth, fwhte, fblck, foth).
+Further Investigation
+Data Accuracy of Cigarette and Alcohol Consumption
+
+The significant skewness in the distributions of the number of cigarettes smoked and drinks consumed could suggests potential issues with data accuracy. Future studies could explore the accuracy of the data on cigarette and alcohol consumption, as individuals may underreport these behaviors to their healthcare providers or researchers. Investigating alternative data collection methods or incorporating additional data sources (e.g., medical records) may help improve the accuracy of these variables.
+
+```
+# Creating correlation matrix to understand relationship of age, education, cigarets and drinks
+corr_matrix_m = birth[['mage', 'meduc', 'cigs', 'drink']].corr()
+corr_matrix_m
 ```
 
-```python
-((928/(920+351))*100)
+Correlation between mother's education (mage) and cigarettes (cigs)
+The analysis indicates a weak correlation between education and number of cigarettes consumed. However, this relationship is not particularly strong. Both smoking and drinking habits are significant lifestyle choices that warrant careful examination in this study. Further investigation and the inclusion of additional information may alter these findings.
+
+```
+# Creating correlation matrix to understand relationship of age, education, npvis, and monpre
+corr_matrix = birth[ ['mage', 'meduc', 'npvis', 'monpre', 'mwhte', 'mblck', 'moth', 'bwght'] ].corr()
+corr_matrix
 ```
 
-```python
-    73.01337529504328
+Month prenatal care began (monpre)
+Negative correlation with mage (mother's age), meduc (mother's education), npvis (number of prenatal visits). It is interesting to study how the timing of prenatal care in combination of these three factors affects birth outcomes.
+
+Number of prenatal visits (npvis)
+Positive correlation with mage (mother's age) while negative correlation with monpre (month prenatal care began). It is worth looking into how the number of prenatal visits in combination of these two factors impacts birth weight.
+
+Positive correlation with birthweight (bwght) which indicates having adequate prenatal care, indicated by more visits, may lead to healthier birthweights.
+
+Mother's year of education (meduc)
+Positive correlation with mage (mother's age) while negative correlation with monpre (month prenatal care began). It is interesting to study how different levels of education relate to prenatal care decisions and birth outcomes.
+
+Potential Areas for Deeper Analysis
+
+Age Bracket
+
+Further analysis could be done to determine which age brackets (e.g., young mothers, middle-aged mothers, elderly mothers) are associated with low or high correlations with other variables. This could provide insights into the impact of age on prenatal care and birth outcomes.
+Education Level
+
+Similarly, exploring the relationship between different education levels and correlations with other variables could reveal patterns related to education and prenatal care.
+Race
+
+Investigating how different racial groups interact with other variables in the dataset could provide insights into disparities in prenatal care and birth outcomes among different racial groups.
+
+Imputation
 ```
-<br>
-<strong> INSIGHT: </strong> Of those that have cancelled at least once before noon, 73% have subscribed to Halfway There.
+## Cigs and drink
 
-<br>
-Followed Recommendation Percentage Analysis:
+# Imputing with the zero
 
-```python
-# Followed Recommendation Percentage Analysis
-# count of Followed Recommendation Percentage that subscribe to new service
-did = chef_n.loc[:,'FOLLOWED_RECOMMENDATIONS_PCT'][chef_n.loc[:,'CROSS_SELL_SUCCESS'] == 1]\
-                                                     [chef_n.loc[:,'FOLLOWED_RECOMMENDATIONS_PCT'] > 20]
+# cigs
+fill = 0
+birth['cigs'] = birth['cigs'].fillna(value = fill)
 
-# count of cancellations before noon that did not subscribe to new service
-did_not = chef_n.loc[:,'FOLLOWED_RECOMMENDATIONS_PCT'][chef_n.loc[:,'CROSS_SELL_SUCCESS'] == 0]\
-                                                   [chef_n.loc[:,'FOLLOWED_RECOMMENDATIONS_PCT'] > 20]
-print(len(did))
-print(len(did_not))
-```
+# drink
+fill = 0
+birth['drink'] = birth['drink'].fillna(value = fill)
 
-```python
-    877
-    149
-```
+## Monpre
 
+# Imputing with median per month of pregnancy that prenatal care began
+monpre_medians = []
 
-```python
-877/(877+149)
-```
+for month in range(0, 9):
+    median_visits = birth.loc[birth['monpre'] == month, 'npvis'].median()
+    monpre_medians.append(median_visits)
 
-```python
-    0.854775828460039
-```
-<br>
+# Individual medians
+monpre_0 = monpre_medians[0]
+monpre_1 = monpre_medians[1]
+monpre_2 = monpre_medians[2]
+monpre_3 = monpre_medians[3]
+monpre_4 = monpre_medians[4]
+monpre_5 = monpre_medians[5]
+monpre_6 = monpre_medians[6]
+monpre_7 = monpre_medians[7]
+monpre_8 = monpre_medians[8]
 
-<strong> INSIGHT: </strong> Of those that have followed a recommendation more than 20%, 85% have subscribed to Halfway There.
+# ensuring all missing values for npvis are taken care of
 
+for index, value in birth.iterrows():
+    
+    if str(birth.loc[index, 'npvis']).lower() == 'nan' and \
+        birth.loc[index, 'monpre'] == 0:
+        
+        birth.loc[index, 'npvis'] = monpre_0
+        
+    elif str(birth.loc[index, 'npvis']).lower() == 'nan' and \
+        birth.loc[index, 'monpre'] == 1:
+        
+        birth.loc[index, 'npvis'] = monpre_1
+        
+    elif str(birth.loc[index, 'npvis']).lower() == 'nan' and \
+        birth.loc[index, 'monpre'] == 2:
+        
+        birth.loc[index, 'npvis'] = monpre_2
+        
+    elif str(birth.loc[index, 'npvis']).lower() == 'nan' and \
+        birth.loc[index, 'monpre'] == 3:
+        
+        birth.loc[index, 'npvis'] = monpre_3
+        
+    elif str(birth.loc[index, 'npvis']).lower() == 'nan' and \
+        birth.loc[index, 'monpre'] == 4:
+        
+        birth.loc[index, 'npvis'] = monpre_4
+        
+    elif str(birth.loc[index, 'npvis']).lower() == 'nan' and \
+        birth.loc[index, 'monpre'] == 5:
+        
+        birth.loc[index, 'npvis'] = monpre_5
+        
+    elif str(birth.loc[index, 'npvis']).lower() == 'nan' and \
+        birth.loc[index, 'monpre'] == 6:
+        
+        birth.loc[index, 'npvis'] = monpre_6
+        
+    elif str(birth.loc[index, 'npvis']).lower() == 'nan' and \
+        birth.loc[index, 'monpre'] == 7:
+        
+        birth.loc[index, 'npvis'] = monpre_7
+        
+    elif str(birth.loc[index, 'npvis']).lower() == 'nan' and \
+        birth.loc[index, 'monpre'] == 8:
+        
+        birth.loc[index, 'npvis'] = monpre_8
 
-***
-<strong> Feature engineering: </strong> creating flags from trend-based analysis
+## fage and meduc
 
+# Imputing with median
 
-```python
-# Establishing trend thresholds for analysis
-# above this threshold its a succes
-followed_recommendations_pct_1 = 20 #(or 30 for certainty)
-cancellations_before_noon_1    = 2 #(or 1 for mean)
-median_ratings_1               = 3
-median_ratings_2               = 2
+# fage
+fage_median = birth['fage'].median()
 
-# Creating Dictionary to link variables with outlier thresholds
-success_trend = {
-    'FOLLOWED_RECOMMENDATIONS_PCT' : followed_recommendations_pct_1,
-    'CANCELLATIONS_BEFORE_NOON'    : cancellations_before_noon_1,
-    'MEDIAN_MEAL_RATING'           : median_ratings_1,
-    'MEDIAN_MEAL_RATING'           : median_ratings_2
-     }
-```
+# Impute median to NaN values in 'fage' column
+birth.loc[birth['fage'].isna(), 'fage'] = fage_median
 
+# meduc
+meduc_median = birth['meduc'].median()
 
-```python
-# creating a copy of dataframe for safety measures
-chef_t = chef_n.copy()
+# Impute median to NaN values in 'meduc' column
+birth.loc[birth['meduc'].isna(), 'meduc'] = meduc_median
 
-# Looping over variables to create trend flags:
-for key in success_trend.keys():
-    success_flag(key,success_trend[key],chef_t)
-```
+# feduc
+feduc_median = birth['feduc'].median()
 
-### F) Correlations
+# Impute median to NaN values in 'meduc' column
+birth.loc[birth['feduc'].isna(), 'feduc'] = feduc_median
 
-
-```python
-df_corr = chef_t.corr().round(2)
-df_corr['CROSS_SELL_SUCCESS'].sort_values(ascending = True)
-```
-
-<strong> Observations: </strong>
-- Junk email is negatively correlated to cross sell success <strong>(-0.28)</strong> -> if communications of the promotion were by email, then this makes sense, since junk emails are people that have other emails as to not receive promotions. 
-- Professional <strong>(+0.19)</strong> -> people with these emails are more likely to subscribe, if communications about the subscription are through email, these are the ones that are going to open and click on it
-<br><br>
---> because email communication is optional (i.e. only happens if the customer set their preferred method as email and not mobile which is default), then this correlation does not provide significant insight. Customers may have used a junk email because they prefer to receive sms and are as responsive to that as they would be on a professional email. More information is needed for a complete analysis.
-<br> <br>
-- Followed recommendations percentage highly correlated to success <strong>(+ 0.46) </strong> -> people that follow a lot of recommendations on the meal suggestions will most likely subscribe to the wine service
-- Cancellations before noon <strong> (+0.16) </strong> -> not a high correlation but interesting. Hypothesis: 
-    - Customers that cancel before noon might have a busier than usual schedule so committing to a meal delivery is harder than committing to a just half a bottle of wine (does not need to be drank with the meal)
-<br>
-<br>
-
-## Part 2: Modeling
-
-As seen previously, in classification models we need to ensure our target variable is balanced in terms of success and failure cases. If not, it could affect our model predictions. <br>
-
-When splitting the data between training and testing sets, we need to ensure both cases are represented. We will do so through stratification.
-
-### Preparation: Data Set Up
-
-
-```python
-# creating a copy for safety measures
-chef = chef_t.copy()
-
-# dropping discrete variables (only run once!)
-chef = chef.drop(['NAME', 'FIRST_NAME', 'FAMILY_NAME'], axis = 1)
-
-# checking the results
-chef.columns
-```
-The following dictionary format allows us to easily test different variable combinations. These are the the variables tested for each instance.
-
-```python
-# Defining a dictionary with explanatory variables names 
-variables_dict = {
-    "target"     : [    # target variable
-        'CROSS_SELL_SUCCESS'
-    ],
-    "Base"       :  [   # dataset without feature engineering
-        'REVENUE', 'TOTAL_MEALS_ORDERED', 'UNIQUE_MEALS_PURCH',
-        'CONTACTS_W_CUSTOMER_SERVICE',    'PRODUCT_CATEGORIES_VIEWED', 
-        'AVG_TIME_PER_SITE_VISIT', 'MOBILE_NUMBER', 'CANCELLATIONS_BEFORE_NOON', 
-        'CANCELLATIONS_AFTER_NOON', 'TASTES_AND_PREFERENCES', 'PC_LOGINS',
-        'MOBILE_LOGINS', 'WEEKLY_PLAN', 'EARLY_DELIVERIES', 'LATE_DELIVERIES', 
-        'PACKAGE_LOCKER', 'REFRIGERATED_LOCKER', 'FOLLOWED_RECOMMENDATIONS_PCT',
-        'AVG_PREP_VID_TIME', 'LARGEST_ORDER_SIZE', 'MASTER_CLASSES_ATTENDED', 
-        'MEDIAN_MEAL_RATING', 'AVG_CLICKS_PER_VISIT', 'TOTAL_PHOTOS_VIEWED'
-    ],
-    "Full Model"  :  [
-        'REVENUE', 'TOTAL_MEALS_ORDERED', 'UNIQUE_MEALS_PURCH', 'CONTACTS_W_CUSTOMER_SERVICE',
-        'PRODUCT_CATEGORIES_VIEWED', 'AVG_TIME_PER_SITE_VISIT', 'MOBILE_NUMBER',
-        'CANCELLATIONS_BEFORE_NOON', 'CANCELLATIONS_AFTER_NOON', 'TASTES_AND_PREFERENCES',
-        'PC_LOGINS', 'MOBILE_LOGINS', 'WEEKLY_PLAN', 'EARLY_DELIVERIES', 'LATE_DELIVERIES',
-        'PACKAGE_LOCKER', 'REFRIGERATED_LOCKER', 'FOLLOWED_RECOMMENDATIONS_PCT', 'AVG_PREP_VID_TIME',
-        'LARGEST_ORDER_SIZE', 'MASTER_CLASSES_ATTENDED', 'MEDIAN_MEAL_RATING', 
-        'AVG_CLICKS_PER_VISIT', 'TOTAL_PHOTOS_VIEWED', 'm_FAMILY_NAME',
-        'out_AVG_TIME_PER_SITE_VISIT_hi', 'out_AVG_PREP_VID_TIME_hi', 'out_TOTAL_MEALS_ORDERED_hi',
-        'out_UNIQUE_MEALS_PURCH_hi', 'out_CONTACTS_W_CUSTOMER_SERVICE_hi', 
-        'out_CANCELLATIONS_BEFORE_NOON_hi', 'out_LATE_DELIVERIES_hi', 'out_TOTAL_PHOTOS_VIEWED_hi',
-        'out_REVENUE_hi', 'out_FOLLOWED_RECOMMENDATIONS_PCT_hi', 'out_LARGEST_ORDER_SIZE_hi',
-        'out_PRODUCT_CATEGORIES_VIEWED_hi', 'out_AVG_CLICKS_PER_VISIT_hi', 
-        'out_MEDIAN_MEAL_RATING_hi', 'out_AVG_CLICKS_PER_VISIT_lo', 
-        'out_PRODUCT_CATEGORIES_VIEWED_lo', 'out_FOLLOWED_RECOMMENDATIONS_PCT_lo', 
-        'out_UNIQUE_MEALS_PURCH_lo', 'out_MEDIAN_MEAL_RATING_lo', 'junk', 'personal',
-        'professional', 'rev_per_meal', 'out_rev_per_meal_hi', 'out_rev_per_meal_lo',
-        'rev_per_pclogin', 'rev_per_mobilelogin', 'out_rev_per_pclogin_hi', 'out_rev_per_pclogin_lo',
-        'out_rev_per_mobilelogin_hi', 'out_rev_per_mobilelogin_lo',
-        'success_FOLLOWED_RECOMMENDATIONS_PCT', 'success_CANCELLATIONS_BEFORE_NOON',
-        'success_MEDIAN_MEAL_RATING'
-    ],
-    "Important Model"  : [   # variables from EDA
-          'EARLY_DELIVERIES', 'MOBILE_NUMBER','CANCELLATIONS_BEFORE_NOON', 
-          'CANCELLATIONS_AFTER_NOON','TASTES_AND_PREFERENCES',
-          'REFRIGERATED_LOCKER','FOLLOWED_RECOMMENDATIONS_PCT',
-          'personal','professional','junk',
-          'out_FOLLOWED_RECOMMENDATIONS_PCT_hi', 'out_FOLLOWED_RECOMMENDATIONS_PCT_lo',
-          'out_PRODUCT_CATEGORIES_VIEWED_hi', 'out_PRODUCT_CATEGORIES_VIEWED_lo',
-          'out_MEDIAN_MEAL_RATING_hi', 'out_MEDIAN_MEAL_RATING_lo',
-          'rev_per_mobilelogin', 'out_rev_per_pclogin_hi', 'out_rev_per_pclogin_lo',
-          'out_rev_per_mobilelogin_hi', 'out_rev_per_mobilelogin_lo',
-          'success_FOLLOWED_RECOMMENDATIONS_PCT'
-    ],
-    'Full Tree Features' : [ #important features for a tree with full dataset
-        'UNIQUE_MEALS_PURCH', 'MOBILE_NUMBER', LARGEST_ORDER_SIZE', 'TOTAL_PHOTOS_VIEWED',
-        'CONTACTS_W_CUSTOMER_SERVICE', 'TOTAL_MEALS_ORDERED', 'rev_per_meal', 'EARLY_DELIVERIES',
-        'REVENUE', 'professional', 'CANCELLATIONS_BEFORE_NOON', 'rev_per_mobilelogin',
-        'junk', 'FOLLOWED_RECOMMENDATIONS_PCT'
-    ],
-    'Random Forest Full' : [
-        'WEEKLY_PLAN', 'TOTAL_MEALS_ORDERED', 'junk', 'rev_per_pclogin', 'REVENUE',
-        'rev_per_mobilelogin', 'AVG_PREP_VID_TIME', 'rev_per_meal', 'AVG_TIME_PER_SITE_VISIT',
-        'success_FOLLOWED_RECOMMENDATIONS_PCT', 'FOLLOWED_RECOMMENDATIONS_PCT'
-    ],
-    'Gradient Boosting' : [
-        'CONTACTS_W_CUSTOMER_SERVICE', 'rev_per_pclogin', 'TOTAL_MEALS_ORDERED', 'AVG_PREP_VID_TIME',
-        'MOBILE_NUMBER', 'rev_per_meal', 'AVG_TIME_PER_SITE_VISIT', 'professional', 
-        'CANCELLATIONS_BEFORE_NOON', 'rev_per_mobilelogin',
-        'junk', 'FOLLOWED_RECOMMENDATIONS_PCT'
-    ],
-    'Best Model' : [
-        'EARLY_DELIVERIES', 'MOBILE_NUMBER','CANCELLATIONS_BEFORE_NOON', 
-        'CANCELLATIONS_AFTER_NOON','TASTES_AND_PREFERENCES', 'REFRIGERATED_LOCKER',
-        'FOLLOWED_RECOMMENDATIONS_PCT', 'personal','professional','junk', 
-        'out_FOLLOWED_RECOMMENDATIONS_PCT_hi',  'out_FOLLOWED_RECOMMENDATIONS_PCT_lo',
-        'out_PRODUCT_CATEGORIES_VIEWED_hi', 'out_PRODUCT_CATEGORIES_VIEWED_lo',
-        'out_MEDIAN_MEAL_RATING_hi', 'out_MEDIAN_MEAL_RATING_lo',
-        'rev_per_mobilelogin', 'out_rev_per_pclogin_hi', 'out_rev_per_pclogin_lo',
-        'out_rev_per_mobilelogin_hi', 'out_rev_per_mobilelogin_lo',
-        'success_FOLLOWED_RECOMMENDATIONS_PCT'
-    ]
-}
-
-
-# Saving model scores
-# creating an empty list
-model_performance = [['Model', 'Training Accuracy',
-                      'Testing Accuracy', 'AUC Value']]
-
-# setting random state
-seed = 222
-
-# Defining target variable
-chef_target = chef.loc[: , variables_dict['target']]
+# Rechecking if all null values are taken care of
+print(f"Remaining missing values: {birth.loc[ :, 'foth' ].isnull().sum()}")
 ```
 
-### A) Logistic Regression
-
-We'll start with a logistic regression model. We'll be using statsmodel package to print out comprehensive summary to better understand our features and how they relate to cross sell success.
-
-<strong> Step 1: </strong> Base Model (original variables) <br>
-<strong> Step 2: </strong> Full Model (full logical features) <br>
-<strong> Step 3: </strong> Fitted Model (significant features) <br>
-
-
-### Step 1: Base Model
-Preparation:
-
-
-```python
-###### Non Standardized Preparation 
-# Defining explanatory variables (add according to new feature selections)
-chef_base = chef.loc[: , variables_dict['Base']]
-
-# train-test split with stratification
-X_train, X_test, y_train, y_test = train_test_split(
-            chef_base,  # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) # stratifying target variable to ensure balance
-
-# merging training data for statsmodels
-chef_train = pd.concat([X_train, y_train], axis = 1) # contains target ariable!
-
-
-###### Standardized Preparation 
-# Standardizing our Data Set (only numeric variables) with user-defined unction
-chef_stand = standard(chef)
-
-# Defining explanatory variables (add according to new feature selections)
-chef_base_stand     = chef_stand.loc[: , variables_dict['Base']]
-
-# train-test split with stratification
-X_train_stand, X_test_stand, y_train_stand, y_test_stand = train_test_split(
-            chef_base_stand,   # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) 
-
-# merging training data for statsmodels
-chef_train_stand = pd.concat([X_train_stand, y_train_stand], axis = 1)
+```
+# # Rechecking missing values 
+birth.isnull().sum(axis=0)
 ```
 
-```python
+Response Variable Transformation
+Low Birth weight
+Birth weight is a critical indicator of an individual baby's chances of survival, measured as the first weight obtained after birth. At a broader level, the proportion of infants born with low birth weight serves as an indicator of various public health challenges, including maternal malnutrition, inadequate prenatal care, and overall maternal health. Infants with low birth weight are significantly more susceptible to mortality, with a risk approximately 20 times higher than those with higher birth weights (UNICEF). This phenomenon is more prevalent in developing countries compared to developed nations (World Health Organization).
+
+Low birth weight (LBW) is defined as a weight at birth of less than 2500 g (~5.5 pounds), as per the World Health Organization (WHO). Though, some evidence and studies suggests that this cut-off value may not be suitable for all settings. WHO recommends that countries consider adopting a population-specific cut-off for LBW to guide clinical care. Despite this, the 2500 gram cut-off continues to be widely used in many low- and middle-income countries. (BMC, 2019).
+
+LBW babies are at risk of cognitive deficits, motor delays, cerebral palsy, and other behavior and psychological problems. LBW is also influenced by many other factors such as maternal educational level, residence (urban or rural), family income, maternal occupation and health status, birth order, miscarriage, interpregnancy interval, and multiple pregnancies (Arayeshgari M. et.al, 2023).
+
+Predicting LBW plays a crucial role in preventing health risks for newborns. This analysis employs machine learning models and techniques to predict LBW.
+
+Birth Weight Variable Transformation
+Instead of solely predicting the birth weight of a baby using the continuous variable "bwght," this analysis focuses on identifying the threshold that distinguishes between a healthy birth weight and a low (unhealthy) birth weight. To achieve this, the birth weight variable (bwght) is transformed into a binary variable "low_bwght" based on the WHO threshold of less than 2500 grams.
+
+```
+birth['low_bwght'] = 0
+birth.loc[birth['bwght'] < 2500, 'low_bwght'] = 1
+
+# Dropping birth weight since low birth weight would be the response variable
+birth.drop(['bwght'], axis=1, inplace=True)
+```
+Setting the response variable
+```
+#!################################!#
+#!# set as the response variable #!#
+#!################################!#
+y_variable = 'low_bwght'
+```
+
+```
+birth['low_bwght'].value_counts()
+```
+
+Correlation with low birthweight (after transformation)
+
+```
+# creating feature sets
+continuous     = ['low_bwght','mage', 'meduc', 'monpre', 'npvis', 'fage', 'feduc', 'cigs', 'drink']
+
+non_continuous = ['low_bwght','male', 'mwhte', 'mblck', 'moth', 'fwhte', 'fblck','foth']
+
+
+# pearson correlation
+lbw_corr = birth[ continuous ].corr(method = 'pearson').round(decimals = 4)
+
+
+# phi coefficient
+lbw_phi_corr = birth[ non_continuous ].phik_matrix(interval_cols = non_continuous).round(decimals = 4)
+
+
+# checking results
+print(f"""
+Pearson Correlations
+---------------------------
+{lbw_corr.loc[ : , 'low_bwght'].sort_values(ascending = False)}
+
+
+Phi Coefficients
+----------------
+{lbw_phi_corr.loc[ : , 'low_bwght' ].sort_values(ascending = False)}
+""")
+```
+
+Analysis on correlations and phi coefficients between bwght and low_bwght 
+Comparison
+
+After transforming bwght to a binary variable (low_bwght), the correlations and phi coefficients generally decreased in magnitude compared to when bwght was treated as a continuous variable.
+The pearson correlation between low_bwght and the other variables is generally weaker compared to the pearson correlation between bwght and the other variables.
+The phi coefficients for the binary variable low_bwght are all 0, indicating no association with the other variables.
+Insights
+
+The transformation of bwght to a binary variable with a threshold of < 2500 essentially dichotomizes the data, which can lead to a loss of information and potentially reduce the strength of associations between variables.
+The decrease in correlations and phi coefficients after transformation suggests that the relationship between birthweight and the other variables is not as strong when using the binary variable.
+This could be due to the loss of information inherent in dichotomizing a continuous variable, as well as the arbitrary nature of the threshold chosen for the transformation.
+However, it might be interesting to explore further in each variables such as (1) if there are specific age brackets where the correlation is more pronounced, (2) optimal number and timing of prenatal visits for reducing the risk of low birth weight and (3) if there is a specific education level or range of education levels that is more strongly associated with low birth weight.
+The phi coefficients for race variables (mwhte, mblck, moth, fwhte, fblck, foth) indicate no significant association with low birth weight. However, it is worth exploring to check if there are specific race/ethnic groups within these categories that are more or less likely to have low birth weight babies.
+
+### Part III. Feature Engineering
+```
+## Feature 1: Inadequate Prenatal visit (less than 8) ##
+birth['ivisit'] = 0
+birth.loc[birth['npvis'] <= 8, 'ivisit'] = 1
+
+## Feature 2: Inadequate Prenatal visit | Mother's Race ##
+birth['ivisit_mwhte'] = birth['ivisit'] * birth['mwhte']
+birth['ivisit_mblck'] = birth['ivisit'] * birth['mblck']
+birth['ivisit_moth'] = birth['ivisit'] * birth['moth']
+
+## Feature 3: Mother's Age & Starting Month of Prenatal care ##
+birth['mage_monpre'] = birth['mage'] * birth['monpre']
+
+## Feature 4: Mother's Age Category
+birth['mteen'] = 0
+birth['madolescent'] = 0
+birth['myoung'] = 0
+birth['mmiddleaged'] = 0
+birth['madult'] = 0
+
+birth.loc[(birth['mage'] >= 15) & (birth['mage'] <= 19), 'mteen'] = 1
+birth.loc[(birth['mage'] >= 20) & (birth['mage'] <= 24), 'madolescent'] = 1
+birth.loc[(birth['mage'] >= 25) & (birth['mage'] <= 29), 'myoung'] = 1
+birth.loc[(birth['mage'] >= 30) & (birth['mage'] <= 34), 'mmiddleaged'] = 1
+birth.loc[birth['mage'] > 34, 'madult'] = 1
+
+## Feature 5: Mother of White Race | Adult (>34 y/o)
+birth['mwhte_madult'] = birth['mwhte'] * birth['madult']
+
+## Feature 6: Mother's Education Level
+birth['mlesshs'] = 0        # less than high school
+birth['mhighschool'] = 0    # high school 
+birth['mposths'] = 0        # post high school (GED)
+birth['mcollege'] = 0       # college
+
+birth.loc[birth['meduc'] <= 7, 'mlesshs'] = 1
+birth.loc[(birth['meduc'] > 7) & (birth['meduc'] <= 12), 'mhighschool'] = 1
+birth.loc[(birth['meduc'] > 12) & (birth['meduc'] <= 15), 'mposths'] = 1
+birth.loc[birth['meduc'] > 15, 'mcollege'] = 1
+
+## Feature 7 : Month of Prenatal Care Began | Race
+birth['monpre_mwhte'] = birth['monpre'] * birth['mwhte']
+birth['monpre_mblck'] = birth['monpre'] * birth['mblck']
+birth['monpre_moth'] = birth['monpre'] * birth['moth']
+```
+
+Feature 1 Inadequate Prenatal Visit (ivisit)
+In a study conducted in North Dakota, prenatal visits were categorized as inadequate (< 8 visits), intermediate (9-12 visits), and adequate (12+ visits) and this feature is focused on the inadequate visits. Regular prenatal visits are crucial for preventing preterm births and low-birth-weight babies. These visits provide access to healthcare services, allowing expectant mothers to receive regular check-ups and stay informed about potential complications. In a typical uncomplicated pregnancy, these visits occur approximately every four weeks until around week 36. However, the frequency of visits can vary based on the individual pregnancy, with higher-risk pregnancies requiring more frequent appointments. According to the NCBI, initiating prenatal care during the first three months of pregnancy reduces the risk of low birth weight. This is further highlighted by March Dimes (2022) by the result of the study that most women who gave birth in 2021 received prenatal care, 81.7% of women received first-trimester prenatal care, 12.6 percent of women received care in the second trimester and 5.7% of women received late or no prenatal care.
+
+Feature 2 Less Prenatal Visit | Mother (White Race) (ivisit_mwhte)
+Analyzing the interactions between various racial groups and other variables in the dataset could offer valuable insights into the disparities in prenatal care and birth outcomes among different races. For instance, a study in North Dakota revealed that individuals identified as "white" had an 8.8% rate of inadequate prenatal care. Additionally, data from the Centers for Disease Control (2021) suggests that birth rates among American Indians are higher compared to those among white individuals (16.99 vs. 12.00).
+
+Feature 3 Mother's Age & Starting Month of Prenatal Care (mage_monpre)
+Maternal age is also an important factor leading to LBW and preterm births. Advanced maternal age, defined as 35 years or older at the time of childbirth, is a widely recognized risk factor for adverse birth outcomes. Older mothers are more susceptible to experiencing low birth weight, preterm birth, perinatal mortality, and are more likely to require early and specialized care. Adequate prenatal care plays a crucial role in ensuring a healthy pregnancy and birth, particularly for older women. A study published in the International Journal of Gynecology and Obstetrics in February 2023 found that the utilization of prenatal care is most inadequate among the oldest women (aged 45-49 years) but lowest among those aged 35-39 years.
+
+Feature 4 Mother Age Bracket (mteen, madolescent, myoung, mmiddleaged, madult)
+In relation to Feature 3, this aspect is more detailed, focusing on different age groups. It is intriguing to investigate and validate in this analysis which specific maternal age groups are more susceptible to low birth weight. Existing research highlights that teenage mothers face an increased risk of preterm birth and low birth weight, while older mothers also have a higher risk of maternal complications. Similarly, a study conducted in North Dakota noted that maternal age is a contributing factor to low birth weight, with the youngest and oldest mothers in the U.S. exhibiting higher rates of low birth weight (March of Dimes, 2022).
+
+Feature 5 Mother (White Race) | Adult Mother (> 34 y/o)
+This feature focuses on women aged 34 and above, specifically of white ethnicity. Its purpose is to examine whether birth weight is more significant among older mothers and to draw attention to potential disparities in birth outcomes related to race and ethnicity. Additionally, it aims to investigate the presence of systemic racism and inequalities affecting birth rates across different racial groups, and to determine which age group is more likely to experience low birth weight. Birth rates among American Indians are higher than among White (16.99 vs. 12.00; Centers for Disease Control, WONDER, 2021).
+
+Feature 6 Mother Education Level (mlesshs, mhighschool, mposths, mcollege)
+The decision to undergo prenatal visits and make wise decisions can be influenced by factors such as socioeconomic status, including the mother's level of education. This is particularly important in emphasizing the importance of prenatal care in monitoring the baby's health. Women with higher education levels are more likely to be informed about self-care practices, possess greater knowledge about necessary care, have a higher socioeconomic standing, and exhibit better decision-making abilities regarding their health.
+
+Correlation Analysis with new features
+```
+# creating feature sets
+continuous     = ['low_bwght', 'mage','fage', 'meduc','feduc', 'monpre', 'npvis', 'mage_monpre',
+                  'cigs', 'drink', 'monpre_mwhte', 'monpre_mblck', 'monpre_moth' ]
+
+non_continuous = ['low_bwght', 'mwhte', 'mblck', 'moth', 'fwhte', 'fblck', 'foth',
+                  'male', 'ivisit', 'ivisit_mwhte', 'ivisit_mblck', 'ivisit_moth',
+                  'mteen', 'myoung', 'madolescent', 'mmiddleaged', 'madult', 
+                  'mwhte_madult', 'mlesshs', 'mhighschool', 'mposths', 'mcollege' ]
+
+# pearson correlation
+birth_corr = birth[ continuous ].corr(method = 'pearson').round(decimals = 4)
+
+
+# phi coefficient
+birth_phi_corr = birth[ non_continuous ].phik_matrix(interval_cols = non_continuous).round(decimals = 4)
+
+
+# checking results
+print(f"""
+Point-Biserial Correlations
+---------------------------
+{birth_corr.loc[ : , 'low_bwght' ].sort_values(ascending = False)}
+
+
+Phi Coefficients
+----------------
+{birth_phi_corr.loc[ : , 'low_bwght' ].sort_values(ascending = False)}
+""")
+```
+Point-Biserial Correlations
+
+cigs (0.0508), meduc (0.0292), monpre_mwhte (-0.0054), drink (-0.0152), feduc (-0.0233), mage (-0.0446), monpre_moth (-0.0455), monpre_mblck (-0.0543), monpre (-0.0629), mage_monpre (-0.0879), fage (-0.0918), and npvis (-0.1325) have relatively weak correlations with low_bwght. The negative signs indicate a negative correlation, suggesting that as the values of these variables increase, the likelihood of low birth weight decreases.
+Phi Coefficients
+
+ivisit_mwhte (0.3496), ivisit (0.3184), mteen (0.1107), and mwhte_madult (0.0299) have positive correlations with low_bwght, indicating that higher values in these variables are associated with a higher likelihood of low birth weight.
+
+Other variables, such as mposths, mhighschool, mlesshs, madult, mmiddleaged, madolescent, myoung, ivisit_moth, mwhte, ivisit_mblck, male, foth, fblck, fwhte, moth, mblck, and mcollege, have a correlation of 0.0000 with low_bwght, suggesting no linear relationship between these variables and low birth weight.
+
+Skewness and Yeo-Johnson Transformation
+```
+# yeo-johnson transformation
+birth_original = birth.copy()
+
+# List of numerical features to transform
+x_skewed = ['mage', 'meduc', 'monpre', 'npvis', 'fage', 
+            'feduc', 'cigs', 'drink']
+
+# Initialize the PowerTransformer with the Yeo-Johnson method
+transformer = PowerTransformer(method='yeo-johnson')
+
+# Fit the transformer to the numerical features and transform them
+birth[x_skewed] = transformer.fit_transform(birth[x_skewed])
+
+# Check the transformed features
+birth[x_skewed].describe()
+```
+
+```
+# List of non-binary columns to standardize
+non_binary_columns = ['mage', 'meduc', 'monpre', 'npvis', 'fage', 'feduc', 
+                      'cigs', 'drink']
+
+# INSTANTIATING a StandardScaler() object
+scaler = StandardScaler()
+
+# FITTING the scaler with the non-binary data
+scaler.fit(birth[non_binary_columns])
+
+# TRANSFORMING the non-binary data
+birth[non_binary_columns] = scaler.transform(birth[non_binary_columns])
+
+# Checking the first 5 rows of the dataframe
+birth.head(n=5)
+```
+
+```
+new_continuous_columns = ['mage_monpre', 'monpre_mwhte', 'monpre_mblck', 'monpre_moth']
+                          
+# Initialize the PowerTransformer with the Yeo-Johnson method
+transformer = PowerTransformer(method='yeo-johnson')
+
+# Fit the transformer to the numerical features and transform them
+birth[new_continuous_columns] = transformer.fit_transform(birth[new_continuous_columns])
+
+# Check the transformed features
+birth[new_continuous_columns].describe()
+
+# Instantiating a new StandardScaler object for the new continuous features
+new_scaler_c = StandardScaler()
+
+# Fitting the new scaler with the new continuous data
+new_scaler_c.fit(birth[new_continuous_columns])
+
+# Transforming the new continuous features
+birth[new_continuous_columns] = new_scaler_c.transform(birth[new_continuous_columns])
+```
+
+```
+new_binary_columns = ['ivisit', 'ivisit_mwhte', 'ivisit_mblck', 'ivisit_moth',
+                      'mteen', 'myoung', 'madolescent', 'mmiddleaged', 'madult', 
+                      'mwhte_madult', 'mlesshs', 'mhighschool', 'mposths', 'mcollege',
+                      'male', 'mblck', 'mwhte', 'moth', 'fblck', 'fwhte', 'foth']
+
+# Instantiating a new StandardScaler object for the new continuous features
+new_scaler_b = StandardScaler()
+
+# Fitting the new scaler with the new continuous data
+new_scaler_b.fit(birth[new_continuous_columns])
+
+# Transforming the new continuous features
+birth[new_continuous_columns] = new_scaler_b.transform(birth[new_continuous_columns])
+```
+Base Modeling (significant p values only)
+```
 # instantiating a logistic regression model object
-logistic_base = smf.logit(formula   = """ CROSS_SELL_SUCCESS ~ 
-                                          REVENUE + 
-                                          TOTAL_MEALS_ORDERED + 
-                                          UNIQUE_MEALS_PURCH + 
-                                          CONTACTS_W_CUSTOMER_SERVICE + 
-                                          PRODUCT_CATEGORIES_VIEWED + 
-                                          AVG_TIME_PER_SITE_VISIT + 
-                                          MOBILE_NUMBER + 
-                                          CANCELLATIONS_BEFORE_NOON + 
-                                          CANCELLATIONS_AFTER_NOON + 
-                                          TASTES_AND_PREFERENCES + 
-                                          PC_LOGINS + 
-                                          MOBILE_LOGINS + 
-                                          WEEKLY_PLAN + 
-                                          EARLY_DELIVERIES + 
-                                          LATE_DELIVERIES + 
-                                          PACKAGE_LOCKER + 
-                                          REFRIGERATED_LOCKER + 
-                                          FOLLOWED_RECOMMENDATIONS_PCT + 
-                                          AVG_PREP_VID_TIME + 
-                                          LARGEST_ORDER_SIZE + 
-                                          MASTER_CLASSES_ATTENDED + 
-                                          MEDIAN_MEAL_RATING + 
-                                          AVG_CLICKS_PER_VISIT + 
-                                          TOTAL_PHOTOS_VIEWED
-                                       """,
-                           data = chef_train)
-
+logistic_small = smf.logit(formula   = """low_bwght ~ 
+                                          ivisit_mwhte +
+                                          mteen +
+                                          mwhte_madult + 
+                                          mage_monpre +
+                                          mwhte_madult 
+                                          """,
+                                  data = birth)
 
 # FITTING the model object
-results_logistic = logistic_base.fit()
+results_logistic = logistic_small.fit()
 
 # checking the results SUMMARY
 results_logistic.summary2()
 ```
+Preparing Training Data 
+```
+# Prepare the training data for modeling
+birth_target = birth['low_bwght']
 
-<strong> Observations: </strong>
-- LLR p-value: corresponds to the test statiscs for the model. The low p-value indicates that this model is explaining to a certain degree the cross sell success
-- a lot of statistically insignificant variables are adding noise to our model
-- significant variables: mobile_number (+0.7131), cancellations before noon (+0.2444), followed recommendations percentage (+0.0572)
-<br>
+# Define the features based on the dataset columns
 
-### Step 2: Full Model
-Logistic regression using variables created during exploratory data analysis.
+sel_features = [ 'mlesshs', 'mhighschool',  'mposths', 'mcollege',
+                 'ivisit_mwhte', 'ivisit_moth', 'ivisit_mblck', 'ivisit', 
+                 'mteen', 'myoung', 'madolescent', 'mmiddleaged', 'madult',
+                 'mwhte_madult', 'mage_monpre', 'monpre_mwhte', 'monpre_mblck', 'monpre_moth'
+                 ]
 
+# Using core features
+birth_data = birth[sel_features]
+birth_data.head(n=2)
+```
 
-```python
-###### Non Standardized Preparation 
-# Defining explanatory variables (add according to new feature selections)
-chef_full = chef.loc[: , variables_dict['Full Model']]
+Class Imbalance 
+```
+birth['low_bwght'].value_counts(normalize = True).round(decimals = 2)
+```
 
+Candidate Model Development 
+Handling Imbalanced Data
+Based on the value count results of low bwght variable, we have imbalanced data. Proportion in Class 0 are much higher than the Class 1 and this means that the model will predict the majority class (not low birthweight), hence, having major misclassification of the minority class (low birthweight) in comparison with the majority class. To address this issue, larger weights will be assigned to the minority class (Class 1, representing low birth weight) and smaller weights to the majority class (Class 0, representing not low birth weight) in the following models below.This approach aims to penalize misclassifications of the minority class more heavily during model training, ultimately improving the model's ability to correctly classify instances of low birth weight.
+
+Stratified train-test split is also employed to ensure that the train and test sets have approximately the same percentage of samples of each target class as the complete set.
+
+Candidate Models
+In this analysis, Decision Tree, Random Forest, and Gradient Boosting Machine (GBM) Classification were chosen as the top three models for their ability to handle non-linear relationships and imbalanced data which is crucial due to the low proportion of low birth weight cases. Tree-based algorithms often perform well on imbalanced datasets while boosting algorithm is also ideal for imbalanced datasets because higher weight is given to the minority class at each successive iteration. During each iteration in training the weights of misclassified classes are adjusted.
+
+These models offer a balance between interpretability and predictive power, making them suitable for complex classification tasks like predicting low birth weight. On the other hand, the interpretability of the Ridge Classification model is low, the KNN can perform poorly with imbalanced data, and the Logistic Regression may not work well with complex feature associations.
+
+Train-Test Split
+```
 # train-test split with stratification
-X_train, X_test, y_train, y_test = train_test_split(
-            chef_full,  # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) # stratifying target variable to ensure balance
-
-# merging training data for statsmodels
-chef_train = pd.concat([X_train, y_train], axis = 1) # contains target variable!
+x_train, x_test, y_train, y_test = train_test_split(birth_data, 
+                                                    birth_target, 
+                                                    test_size    = 0.25, 
+                                                    random_state = 219,
+                                                    stratify     = birth_target)
 ```
-
-```python
-# instantiating a logistic regression model object
-# removed 'junk' as a base category for emails
-logistic_full = smf.logit(formula   = """ CROSS_SELL_SUCCESS ~ 
-                                          REVENUE + 
-                                          TOTAL_MEALS_ORDERED + 
-                                          UNIQUE_MEALS_PURCH + 
-                                          CONTACTS_W_CUSTOMER_SERVICE + 
-                                          PRODUCT_CATEGORIES_VIEWED + 
-                                          AVG_TIME_PER_SITE_VISIT + 
-                                          MOBILE_NUMBER + 
-                                          CANCELLATIONS_BEFORE_NOON + 
-                                          CANCELLATIONS_AFTER_NOON + 
-                                          TASTES_AND_PREFERENCES + 
-                                          PC_LOGINS + 
-                                          MOBILE_LOGINS + 
-                                          WEEKLY_PLAN + 
-                                          EARLY_DELIVERIES + 
-                                          LATE_DELIVERIES + 
-                                          PACKAGE_LOCKER + 
-                                          REFRIGERATED_LOCKER + 
-                                          FOLLOWED_RECOMMENDATIONS_PCT + 
-                                          AVG_PREP_VID_TIME + 
-                                          LARGEST_ORDER_SIZE + 
-                                          MASTER_CLASSES_ATTENDED + 
-                                          MEDIAN_MEAL_RATING + 
-                                          AVG_CLICKS_PER_VISIT + 
-                                          TOTAL_PHOTOS_VIEWED + 
-                                          m_FAMILY_NAME + 
-                                          out_AVG_TIME_PER_SITE_VISIT_hi + 
-                                          out_AVG_PREP_VID_TIME_hi + 
-                                          out_TOTAL_MEALS_ORDERED_hi + 
-                                          out_UNIQUE_MEALS_PURCH_hi + 
-                                          out_CONTACTS_W_CUSTOMER_SERVICE_hi + 
-                                          out_CANCELLATIONS_BEFORE_NOON_hi + 
-                                          out_LATE_DELIVERIES_hi + 
-                                          out_TOTAL_PHOTOS_VIEWED_hi + 
-                                          out_REVENUE_hi + 
-                                          out_FOLLOWED_RECOMMENDATIONS_PCT_hi + 
-                                          out_LARGEST_ORDER_SIZE_hi + 
-                                          out_PRODUCT_CATEGORIES_VIEWED_hi + 
-                                          out_AVG_CLICKS_PER_VISIT_hi + 
-                                          out_AVG_CLICKS_PER_VISIT_lo + 
-                                          out_PRODUCT_CATEGORIES_VIEWED_lo + 
-                                          out_FOLLOWED_RECOMMENDATIONS_PCT_lo + 
-                                          junk + 
-                                          personal + 
-                                          professional + 
-                                          rev_per_meal + 
-                                          out_rev_per_meal_hi + 
-                                          out_rev_per_meal_lo + 
-                                          success_FOLLOWED_RECOMMENDATIONS_PCT + 
-                                          success_CANCELLATIONS_BEFORE_NOON + 
-                                          success_MEDIAN_MEAL_RATING
-                                       """,
-                           data = chef_train)
-
-
-# FITTING the model object
-results_logistic = logistic_full.fit()
-
-# checking the results SUMMARY
-results_logistic.summary()
+Base Modeling with default parameters 
 ```
-
-<strong> Observations: </strong>
-- Significant Variables:
-    - mobile number
-    - cancellations before nooon
-    - followed recommendations percentage
-    - outliers in followed recommendations percentage lo
-    - outlier in rev per meal lo
-    - personal and professional emails (opposed to junk)
-    - success in followed recommendations percentage
-
-
-### Step 3: Fitted model
-
-
-```python
-# instantiating a logistic regression model object
-# removed 'junk' as a base category for emails
-logistic_fit = smf.logit(formula   = """ CROSS_SELL_SUCCESS ~ 
-                                          MOBILE_NUMBER + 
-                                          MOBILE_LOGINS +
-                                          FOLLOWED_RECOMMENDATIONS_PCT +
-                                          CANCELLATIONS_BEFORE_NOON + 
-                                          TASTES_AND_PREFERENCES +
-                                          AVG_PREP_VID_TIME +
-                                          out_FOLLOWED_RECOMMENDATIONS_PCT_lo + 
-                                          out_rev_per_meal_lo +
-                                          personal + 
-                                          professional +
-                                          success_FOLLOWED_RECOMMENDATIONS_PCT """,
-                           data = chef_train)
-
-
-# FITTING the model object
-results_logistic = logistic_fit.fit()
-results_logistic.summary()
-```
-
-<strong> Observations: </strong>
-- tastes and preferences seem to not be as significant but since it is an actionable variable, we'll keep it in the model for further analysis
-    - tastes and preference is at the moment an optional step for customers in the registration process
-    - it might be that customers that fill out the tastes and preferences are more likely to be engaged with the service and more likely to encounter the promotion, or more likely to be interested in improving their experience
-    - tastes and preferences could include a section on types of wine the customer enjoys
+# Candidate Model Development (using default values)
+models = {
+   
+    'Decision Tree Classification': DecisionTreeClassifier(class_weight      = None, 
+                                                           splitter          = 'best',
+                                                           criterion         = 'gini',
+                                                           max_depth         = None,
+                                                           min_samples_leaf  = 1, 
+                                                           min_samples_split = 2,
+                                                           max_leaf_nodes    = None,
+                                                           random_state      = 219),
     
-- since mobile number is significant, added mobile logins to understand customer purchase behavior
-- average prep video time: somewhat significant, increases significance when we include other variables related to time on platform (avg clicks per visit, total photos viewed)
-    - might indicate that perhaps customers enjoy having a glass of wine while preparing their food
-    - marketing opportunity: add promotion on these videos (in house campaign has benefits)
+    'Random Forest Classification': RandomForestClassifier(class_weight      = None, 
+                                                           n_estimators      = 100,
+                                                           criterion         = 'gini',
+                                                           min_samples_leaf  = 1,
+                                                           min_samples_split = 2,
+                                                           max_depth         = None,
+                                                           bootstrap         = True,
+                                                           warm_start        = False,
+                                                           random_state      = 219),
+    
+    'Ridge Classification':                RidgeClassifier(alpha             = 1.0,
+                                                           max_iter          = None,
+                                                           class_weight      = None,
+                                                           solver            = 'auto',
+                                                           random_state      = 219),
+    
+    'Logistic Regression' :                LogisticRegression(solver         = 'lbfgs',
+                                                              penalty        = 'l2',
+                                                              class_weight   = None,
+                                                                          C  = 1.0, 
+                                                              random_state   = 219),
 
-<br>
-<br>
+    
+    'GBM Classification': GradientBoostingClassifier(      n_estimators      = 100, 
+                                                           learning_rate     = .1, 
+                                                           max_depth         = 3,
+                                                           min_samples_leaf  = 1,
+                                                           min_samples_split = 2,
+                                                           loss              = 'log_loss',
+                                                           criterion         = 'friedman_mse',
+                                                           warm_start        = False,
+                                                           random_state      = 219)
+        }
 
-### Step 4: Important Model Scores (sklearn)
-Logistic regression using sklearn to find more details on the scoring. Still using the variables that showed important through exploratory data analysis:
-- Mobile Number
-- Mobile Logins
-- AVG prep video time
-- Cancellations Before Noon
-- Tastes and Preferences
-- Followed Recommendation Percentages (+ outlier and success flag)
-- email categories: junk ,professional, personal
+# List to hold model performance data
+model_performance_data = []
 
+# Train and evaluate each model
+for name, model in models.items():
+    
+    # FITTING the training data
+    model_fit = model.fit(x_train, y_train)
+        
+    # PREDICTING based on the testing set
+    model_pred = model_fit.predict(x_test)
+    
+    # saving scoring data for future use
+    train_score = model_fit.score(x_train, y_train)
+    test_score  = model_fit.score(x_test, y_test)
+    tt_gap      = train_score - test_score
+    
+    # Unpacking the confusion matrix
+    model_tn, model_fp, model_fn, model_tp = confusion_matrix(y_true=y_test, y_pred = model_pred).ravel()
+    
+    # Preparing AUC, precision, and recall
+    auc       = round(roc_auc_score(y_true=y_test, y_score=model_pred), 4)
+    precision = round(precision_score(y_true=y_test, y_pred=model_pred), 4)
+    recall    = round(recall_score(y_true=y_test, y_pred=model_pred), 4)
+    
+    # Creating model performance data
+    model_performance_data.append({
+        'Model Name': name,
+        'Training Accuracy': round(train_score, 4),
+        'Testing Accuracy': round(test_score, 4),
+        'Train-Test Gap': round(tt_gap, 4),
+        'AUC': auc,
+        'Precision': precision,
+        'Recall': recall,
+        'TP': model_tp,
+        'FP': model_fp,
+        'TN': model_tn,
+        'FN': model_fn,       
+    })
 
-```python
-###### Non Standardized Preparation 
-# Defining explanatory variables (add according to new feature selections)
-chef_imp = chef.loc[: , variables_dict['Best Model']]
+# Create DataFrame from model performance data
+model_performance_df = pd.DataFrame(model_performance_data)
 
-# train-test split with stratification
-X_train, X_test, y_train, y_test = train_test_split(
-            chef_imp,  # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) # stratifying target variable to ensure balance
+# Calculate F1 score and add it to the model performance data
+model_performance_df['f-1 Score'] = 2 * (model_performance_df['Precision'] * model_performance_df['Recall']) / \
+                                       (model_performance_df['Precision'] + model_performance_df['Recall'])
 
-# merging training data for statsmodels
-chef_train = pd.concat([X_train, y_train], axis = 1) # contains target variable!
-
-
-# INSTANTIATING a logistic regression model
-logreg = LogisticRegression(random_state = seed)
-
-# FITTING the training data
-logreg_fit = logreg.fit(X_train, y_train.values.reshape(-1,))
-
-
-# PREDICTING based on the testing set
-logreg_pred = logreg_fit.predict(X_test)
-
-# train accuracy
-logreg_train_acc  = logreg_fit.score(X_train, y_train).round(4)
-
-# test accuracy
-logreg_test_acc   = logreg_fit.score(X_test, y_test).round(4)
-
-# auc value
-logreg_auc = roc_auc_score(y_true  = y_test,
-                           y_score = logreg_pred).round(4)
-
-print('Training ACCURACY:', logreg_train_acc)
-print('Testing  ACCURACY:', logreg_test_acc)
-print('AUC Score        :', logreg_auc)
-```
-```python
-    Training ACCURACY: 0.7629
-    Testing  ACCURACY: 0.7392
-    AUC Score        : 0.6997
-```
-
-
-<strong> Observations: </strong>
-- model is well fitted based on training and testing score
-- Convergence warning: need to increase number of iterations or run on scaled data
-
-<br>
-<br>
-### Step 5: Logistic on Scaled Data
-
-
-```python
-###### Standardized Preparation 
-# Standardizing our Data Set (only numeric variables) with user-defined function
-chef_stand = standard(chef)
-
-# Defining explanatory variables (add according to new feature selections)
-chef_imp_stand     = chef_stand.loc[: , variables_dict['Best Model']]
-
-# train-test split with stratification
-X_train_stand, X_test_stand, y_train_stand, y_test_stand = train_test_split(
-            chef_imp_stand,   # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) 
-
-# merging training data for statsmodels
-chef_train_stand = pd.concat([X_train_stand, y_train_stand], axis = 1)
-
-# Important model on Standardized data
-# INSTANTIATING a logistic regression model
-logreg_stand = LogisticRegression(random_state = seed) 
-
-# FITTING the training data
-logreg_fit_stand = logreg_stand.fit(X_train_stand, y_train.values.reshape(-1,)) # removes warning on column shape
-
-# PREDICTING based on the testing set
-logreg_pred_stand = logreg_fit_stand.predict(X_test_stand)
-
-# train accuracy
-logreg_train_acc_stand  = logreg_fit_stand.score(X_train_stand, y_train_stand).round(4)
-
-# test accuracy
-logreg_test_acc_stand   = logreg_fit_stand.score(X_test_stand, y_test_stand).round(4)
-
-# auc value
-logreg_auc_stand = roc_auc_score(y_true  = y_test_stand,
-                           y_score = logreg_pred_stand).round(4)
-
-print('Training ACCURACY:', logreg_train_acc_stand)
-print('Testing  ACCURACY:', logreg_test_acc_stand)
-print('AUC Score        :', logreg_auc_stand)
+# Display the updated model performance DataFrame
+model_performance_df
 ```
 
-```python
-    Training ACCURACY: 0.782
-    Testing  ACCURACY: 0.7988
-    AUC Score        : 0.7655
+### Part IV. Hyperparameter Tuning
 ```
+# Hyperparameter Tuning for Decision Tree
 
-
-<strong> Observations: </strong>
-- model on standardized data slightly improved in scores
-- run hyperparameter tuning to increase score
-
-<br>
-<br>
-
-### Step 6: Hyperparameter Tuning
-
-
-```python
-### GridSearchCV
-# declaring a hyperparameter space
-solver_space     = ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga'] # use L2 penalty
-C_space          = pd.np.arange(0.1, 3.0, 0.1)
-warm_start_space = [True, False]
-
-
-# creating a hyperparameter grid
-param_grid = {'C'            : C_space,          
-              'warm_start'   : warm_start_space,
-              'solver'       : solver_space
-             } 
-
+# Define the parameter grid for Decision Tree
+param_grid_dt = { 'criterion' : ['gini', 'entropy', 'log_loss'],
+                  'splitter'  : ['best', 'random'],
+                  'max_depth' : np.arange(1, 12, 1),
+                  'min_samples_leaf' : np.arange(1, 8, 1),
+                  'min_samples_split': np.arange(2, 8, 1),
+                  'max_leaf_nodes': np.arange(2, 8, 1), 
+                }
 
 # INSTANTIATING the model object without hyperparameters
-lr_tuned = LogisticRegression(max_iter = 1000,
-                              random_state = seed)
-
-
+dt_grid = DecisionTreeClassifier(random_state = 219)
+        
 # GridSearchCV object
-lr_tuned_cv = GridSearchCV(estimator  = lr_tuned, 
-                           param_grid = param_grid, 
-                           cv         = 3, 
-                           scoring    = make_scorer(roc_auc_score,
-                                                    needs_threshold = False))
-
+dt_cv = RandomizedSearchCV(estimator               =  dt_grid,
+                               param_distributions = param_grid_dt,
+                               cv                  = 5,
+                               n_iter              = 1000,
+                               scoring             = make_scorer(roc_auc_score,
+                                                     needs_threshold = False))
 
 # FITTING to the FULL DATASET (due to cross-validation)
-lr_tuned_cv.fit(chef_imp_stand, chef_target.values.reshape(-1,))
-
-
-# printing the optimal parameters and best score
-print("Tuned Parameters  :", lr_tuned_cv.best_params_)
-print("Tuned CV AUC      :", lr_tuned_cv.best_score_.round(4))
-```
-
-```python
-GridSearch Output: 
-Tuned Parameters  : {'C': 1.6, 'solver': 'newton-cg', 'warm_start': True}
-Tuned CV AUC      : 0.6117
-```
-
-```python
-# Model with Tuned Parameters
-# INSTANTIATING a logistic regression model
-logreg_tuned = LogisticRegression(solver = 'newton-cg',
-                                  C = 1.6,
-                                  max_iter = 1500,
-                                  warm_start = True) 
-
-# FITTING the training data
-logreg_fit_tuned = logreg_tuned.fit(X_train_stand, y_train_stand.values.reshape(-1,)) # removes warning on column shap
-
-# PREDICTING based on the testing set
-logreg_pred_tuned = logreg_fit_tuned.predict(X_test_stand)
-
-# train accuracy
-logreg_train_acc_tuned  = logreg_fit_tuned.score(X_train_stand, y_train_stand).round(4)
-
-# test accuracy
-logreg_test_acc_tuned   = logreg_fit_tuned.score(X_test_stand, y_test_stand).round(4)
-
-# auc value
-logreg_auc_tuned = roc_auc_score(y_true  = y_test_stand,
-                                y_score = logreg_pred_tuned).round(4)
-
-print('Training ACCURACY:', logreg_train_acc_tuned)
-print('Testing  ACCURACY:', logreg_test_acc_tuned)
-print('AUC Score        :', logreg_auc_tuned)
-```
-
-```python
-    Training ACCURACY: 0.78
-    Testing  ACCURACY: 0.7988
-    AUC Score        : 0.7655
-```
-
-
-### B) K-Nearest Neighbors Classifier
-
-### Step 1: Base model
-
-
-```python
-###### Standardized Preparation 
-# Standardizing our Data Set (only numeric variables) with user-defined function
-chef_stand = standard(chef)
-
-# Defining explanatory variables (add according to new feature selections)
-chef_full_stand   = chef_stand.loc[: , variables_dict['Full Model']]
-
-# train-test split with stratification
-X_train_stand, X_test_stand, y_train_stand, y_test_stand = train_test_split(
-            chef_full_stand,   # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) 
-
-# merging training data for statsmodels
-chef_train_stand = pd.concat([X_train_stand, y_train_stand], axis = 1)
-```
-
-
-```python
-# finding optimal number of neighbors using AUC Score
-opt_neighbors = optimal_neighbors('auc', X_train, y_train, X_test, y_test, 20)
-
-# Only use standatdized data
-# INSTANTIATING a KNN model object
-full_knn_class = KNeighborsClassifier(n_neighbors = opt_neighbors)
-
-# FITTING to the training data
-full_knn_class_fit_stand = full_knn_class.fit(X_train_stand, y_train_stand.values.reshape(-1,))
-
-# PREDICTING on new data
-full_knn_class_pred = full_knn_class.predict(X_test_stand)
-
-# train accuracy
-full_knn_class_train_acc  = full_knn_class_fit_stand.score(X_train_stand, y_train_stand).round(4)
-
-# test accuracy
-full_knn_class_test_acc = full_knn_class_fit_stand.score(X_test_stand, y_test_stand).round(4)
-
-# auc value
-full_knn_class_auc = roc_auc_score(y_true  = y_test_stand,
-                              y_score = full_knn_class_pred).round(4)
-
-print('Training ACCURACY:', full_knn_class_train_acc)
-print('Testing  ACCURACY:', full_knn_class_test_acc)
-print('AUC Score        :', full_knn_class_auc)
-```
-
-```python
-    Training ACCURACY: 0.8225
-    Testing  ACCURACY: 0.6509
-    AUC Score        : 0.6754
-```
-
-
-<strong> Observations: </strong>
-- model is overfit but does performs better than logistic regression
-- use KNN with important features next
-
-### Step 2: Model with important features
-
-
-```python
-###### Standardized Preparation 
-# Standardizing our Data Set (only numeric variables) with user-defined function
-chef_stand = standard(chef)
-
-# Defining explanatory variables (add according to new feature selections)
-chef_imp_stand   = chef_stand.loc[: , variables_dict['Best Model']]
-
-# train-test split with stratification
-X_train_stand, X_test_stand, y_train_stand, y_test_stand = train_test_split(
-            chef_imp_stand,   # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) 
-
-# merging training data for statsmodels
-chef_train_stand = pd.concat([X_train_stand, y_train_stand], axis = 1)
-```
-
-
-```python
-# finding optimal number of neighbors using AUC Score
-opt_neighbors = optimal_neighbors('auc', X_train, y_train, X_test, y_test, 20)
-
-# Only use standatdized data
-# INSTANTIATING a KNN model object
-knn_class = KNeighborsClassifier(n_neighbors = opt_neighbors)
-
-# FITTING to the training data
-knn_class_fit_stand = knn_class.fit(X_train_stand, y_train_stand.values.reshape(-1,))
-
-# PREDICTING on new data
-knn_class_pred = knn_class.predict(X_test_stand)
-
-# train accuracy
-knn_class_train_acc  = knn_class_fit_stand.score(X_train_stand, y_train_stand).round(4)
-
-# test accuracy
-knn_class_test_acc = knn_class_fit_stand.score(X_test_stand, y_test_stand).round(4)
-
-# auc value
-knn_class_auc = roc_auc_score(y_true  = y_test_stand,
-                              y_score = knn_class_pred).round(4)
-
-print('Training ACCURACY:', knn_class_train_acc)
-print('Testing  ACCURACY:', knn_class_test_acc)
-print('AUC Score        :', knn_class_auc)
-```
-
-
-
-<strong> Observations: </strong>
-- reduced model performance with KNN
-- model is still fitting well
-- can improve with hyperparameter tuning
-
-
-```python
-## GridSearchCV
-# declaring a hyperparameter space
-n_neighbors_space = pd.np.arange(1,20,1)    
-weights_space     = ['uniform','distance']
-leaf_size_space   = pd.np.arange(10,30,10)
-
-
-# creating a hyperparameter grid
-param_grid = {'n_neighbors'  : n_neighbors_space,          
-              'weights'      : weights_space,
-              'leaf_size'    : leaf_size_space
-             } 
-
-
-# INSTANTIATING the model object without hyperparameters
-knn_tuned = KNeighborsClassifier()
-
-
-# GridSearchCV object
-knn_tuned_cv = GridSearchCV(estimator  = knn_tuned, 
-                           param_grid = param_grid, 
-                           cv         = 3, 
-                           scoring    = make_scorer(roc_auc_score,
-                                                    needs_threshold = False))
-
-
-# FITTING to the FULL DATASET (due to cross-validation)
-knn_tuned_cv.fit(chef_imp_stand, chef_target.values.reshape(-1,))
+dt_cv.fit(x_train, y_train)
 
 
 # PREDICT step is not needed
 
-
 # printing the optimal parameters and best score
-print("Tuned Parameters  :", knn_tuned_cv.best_params_)
-print("Tuned CV AUC      :", knn_tuned_cv.best_score_.round(4))
+print("Tuned Parameters  :", dt_cv.best_params_)
+print("Tuned Training AUC:", dt_cv.best_score_.round(decimals = 4))
+```
+After Tuning
+```
+# After tuning
+
+# INSTANTIATING a decision tree
+model_dt = DecisionTreeClassifier( class_weight      = {0: .05, 1: .95},
+                                   criterion         = 'entropy',
+                                   splitter          = 'random',
+                                   max_depth         = 4,
+                                   min_samples_leaf  = 8, 
+                                   min_samples_split = 5,
+                                   max_leaf_nodes    = 9,
+                                   random_state      = 219)
+# fitting the model object
+model_dt.fit(x_train, y_train)
+
+# Predicting on the test data
+pred_test_dt = model_dt.predict(x_test)
+
+# Getting the predicted probabilities for the positive class
+probabilities_dt = model_dt.predict_proba(x_test)[:, 1]
+
+# Defining a threshold
+threshold_dt = 0.5
+
+# Applying the threshold to convert probabilities into binary predictions
+pred_test_threshold_dt = (probabilities_dt >= threshold_dt).astype(int)
+
+# Calculating and printing the f1 score 
+f1_test_threshold_dt = f1_score(y_test, pred_test_threshold_dt)
+print('F-1 Score:', f1_test_threshold_dt.round(decimals = 4))
+
+# Calculating precision and recall scores
+precision_test_dt = precision_score(y_test, pred_test_threshold_dt)
+recall_test_dt    = recall_score(y_test, pred_test_threshold_dt)
+
+# unpacking the confusion matrix
+dt_tuned_tn_threshold, \
+dt_tuned_fp_threshold, \
+dt_tuned_fn_threshold, \
+dt_tuned_tp_threshold = confusion_matrix(y_true = y_test, y_pred = pred_test_threshold_dt).ravel()
+
+# printing each result 
+print(f"""
+True Negatives: {dt_tuned_tn_threshold}
+False Positives: {dt_tuned_fp_threshold}
+False Negatives: {dt_tuned_fn_threshold}
+True Positives: {dt_tuned_tp_threshold}
+""")
+print(f"Precision: {precision_test_dt.round(decimals = 4)}")
+print(f"Recall: {recall_test_dt.round(decimals = 4)}")
+```
+After Pruning
+```
+# plotting feature importances
+plot_feature_importances(model=model_dt, train=x_train)
 ```
 
-```python
-GridSearch Output: 
-Tuned Parameters  : {{'leaf_size': 10, 'n_neighbors': 2, 'weights': 'uniform'}}
-Tuned CV AUC      : 0.6372
+Ridge Classification Model
 ```
+# INSTANTIATING a Ridge Classification 
+model_rdg = rdg_tuned = RidgeClassifier(alpha             = 1,
+                                        class_weight      = None,
+                                        solver            = 'auto',
+                                        random_state      = 219)
+# fitting the model object
+model_rdg.fit(x_train, y_train)
 
-```python
-# Running KNN on tuned parameters
-# INSTANTIATING a KNN model object
-knn_class_tuned = KNeighborsClassifier(leaf_size   = 10, 
-                                       n_neighbors = 2,
-                                       weights     = 'uniform')
+# Predicting on the test data
+pred_test_rdg = model_rdg.predict(x_test)
 
-# FITTING to the training data
-knn_class_fit_tuned = knn_class_tuned.fit(X_train_stand, y_train_stand.values.reshape(-1,))
+# Calculating and printing the f1 score 
+f1_test_rdg = f1_score(y_test, pred_test_rdg)
+print('F-1 Score:', f1_test_rdg.round(decimals = 4))
 
-# PREDICTING on new data
-knn_class_pred_tuned = knn_class_tuned.predict(X_test_stand)
+# Calculating precision and recall scores
+precision_test_rdg = precision_score(y_test, pred_test_rdg)
+recall_test_rdg    = recall_score(y_test, pred_test_rdg)
 
-# train accuracy
-knn_class_train_acc_tuned  = knn_class_fit_tuned.score(X_train_stand, y_train_stand).round(4)
+# unpacking the confusion matrix
+rdg_tuned_tn_threshold, \
+rdg_tuned_fp_threshold, \
+rdg_tuned_fn_threshold, \
+rdg_tuned_tp_threshold = confusion_matrix(y_true = y_test, y_pred = pred_test_rdg).ravel()
 
-# test accuracy
-knn_class_test_acc_tuned = knn_class_fit_tuned.score(X_test_stand, y_test_stand).round(4)
-
-# auc value
-knn_class_auc_tuned = roc_auc_score(y_true  = y_test_stand,
-                                    y_score = knn_class_pred_tuned).round(4)
-
-print('Training ACCURACY:', knn_class_train_acc_tuned)
-print('Testing  ACCURACY:', knn_class_test_acc_tuned)
-print('AUC Score        :', knn_class_auc_tuned)
+# printing each result one-by-one
+print(f"""
+True Negatives: {rdg_tuned_tn_threshold}
+False Positives: {rdg_tuned_fp_threshold}
+False Negatives: {rdg_tuned_fn_threshold}
+True Positives: {rdg_tuned_tp_threshold}
+""")
+print(f"Precision: {precision_test_rdg.round(decimals = 4)}")
+print(f"Recall: {recall_test_rdg.round(decimals = 4)}")
 ```
-
-```python
-    Training ACCURACY: 0.8225
-    Testing  ACCURACY: 0.6509
-    AUC Score        : 0.6754
+Tuning
 ```
+# Hyperparameter Tuning for Ridge
 
-
-<strong> Observations: </strong>
-- Tuned parameters do not increase AUC score
-- keep default parameters with optimal number of neighbors with Best Variables
-
-### C) CART Model (Decision Tree)
-
-### Step 1: Default Model with all Features
-
-
-```python
-###### Non Standardized Preparation 
-# Defining explanatory variables (add according to new feature selections)
-chef_full = chef.loc[: , variables_dict['Full Model']]
-
-# train-test split with stratification
-X_train, X_test, y_train, y_test = train_test_split(
-            chef_full,  # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) # stratifying target variable to ensure balance
-
-# merging training data for statsmodels
-chef_train = pd.concat([X_train, y_train], axis = 1) # contains target variable!
-
-# INSTANTIATING a classification tree object
-full_tree = DecisionTreeClassifier(random_state = seed)
-
-# FITTING the training data
-full_tree_fit = full_tree.fit(X_train, y_train.values.reshape(-1,))
-
-# PREDICTING on new data
-full_tree_pred = full_tree_fit.predict(X_test)
-
-full_tree_train_acc = full_tree_fit.score(X_train, y_train).round(4)
-
-full_tree_test_acc = full_tree_fit.score(X_test, y_test).round(4)
-
-full_tree_auc = roc_auc_score(y_true  = y_test, y_score = full_tree_pred).round(4)
-
-# SCORING the model
-print('Training ACCURACY:', full_tree_fit.score(X_train, y_train).round(4))
-print('Testing  ACCURACY:', full_tree_fit.score(X_test, y_test).round(4))
-print('AUC Score        :', roc_auc_score(y_true  = y_test,
-                                          y_score = full_tree_pred).round(4))
-```
-
-
-### Step 2: Hyperparameter Tuning
-
-Tunining tree parameters to fit best variable set.
-
-
-```python
-###### Non Standardized Preparation 
-# Defining explanatory variables (add according to new feature selections)
-chef_best = chef.loc[: , variables_dict['Best Model']]
-
-# train-test split with stratification
-X_train, X_test, y_train, y_test = train_test_split(
-            chef_best,  # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) # stratifying target variable to ensure balance
-
-# merging training data for statsmodels
-chef_train = pd.concat([X_train, y_train], axis = 1) # contains target variable!
-```
-
-
-```python
-# declaring a hyperparameter space
-criterion_space = ['gini', 'entropy']
-splitter_space = ['best', 'random']
-depth_space   = pd.np.arange(1, 25)
-leaf_space    = pd.np.arange(1, 100)
-
-
-# creating a hyperparameter grid
-param_grid = {'criterion'        : criterion_space,
-              'splitter'         : splitter_space,
-              'max_depth'        : depth_space,
-              'min_samples_leaf' : leaf_space}
-
+# Define the parameter grid for Ridge
+param_grid_rdg = { 'solver'      : ['auto', 'svd', 'cholesky', 'lsqr', 'sparse_cg','sag', 'saga'],
+                   'alpha'       : np.arange(1, 20, 1),
+                }
 
 # INSTANTIATING the model object without hyperparameters
-tuned_tree = DecisionTreeClassifier(random_state = seed)
-
-
+rdg_grid = RidgeClassifier(random_state = 219)
+        
 # GridSearchCV object
-tuned_tree_cv = GridSearchCV(estimator  = tuned_tree,
-                             param_grid = param_grid,
-                             cv         = 3,
-                             scoring    = make_scorer(roc_auc_score,
-                                                      needs_threshold = False))
-
-
-# INSTANTIATING a logistic regression model with tuned values
-tree_tuned = DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion='entropy',
-                                    max_depth=18, max_features=None, max_leaf_nodes=None,
-                                    min_impurity_decrease=0.0, min_impurity_split=None,
-                                    min_samples_leaf=2, min_samples_split=2,
-                                    min_weight_fraction_leaf=0.0, presort='deprecated',
-                                    random_state=seed, splitter='random')
-
-
-# FITTING to the FULL DATASET (due to cross-validation from GridSearch)
-tree_tuned_fit = tree_tuned.fit(chef_best, chef_target)
-
-# PREDICTING based on the testing set
-tree_tuned_pred = tree_tuned.predict(X_test)
-
-# SCORING the results
-print('Training ACCURACY:', tree_tuned.score(X_train, y_train).round(4))
-print('Testing  ACCURACY:', tree_tuned.score(X_test, y_test).round(4))
-print('AUC Score        :', roc_auc_score(y_true  = y_test,
-                                          y_score = tree_tuned_pred).round(4))
-
-# declaring model performance objects
-tree_train_acc = tree_tuned.score(X_train, y_train).round(4)
-tree_test_acc  = tree_tuned.score(X_test, y_test).round(4)
-tree_auc       = roc_auc_score(y_true  = y_test,
-                               y_score = tree_tuned_pred).round(4)
-
-```
-
-```python
-    Training ACCURACY: 0.9075
-    Testing  ACCURACY: 0.8973
-    AUC Score        : 0.9058
-```
-
-<strong> BEST MODEL! </strong>
-
-
-
-### Step 3: Feature Selection
-
-
-```python
-## storing important features from gradient boosting as df 
-tree_features = pd.DataFrame(tree_tuned_fit.feature_importances_)
-tree_features['Variable Names'] = chef_best.columns
-
-# Looking at insignificant coefficients
-tree_features = tree_features.iloc[:,:][tree_features[0] != 0].sort_values(by = 0) # cut-off based on boxplots analysis
-tree_features
-
-```
-
-<strong> Observations: </strong>
-- Tree model identified additional features of importance to our case (compared to logistic regerssion): 
-    - average clicks per visit
-    - weekly plan
-    - revenue
-    - total photos viewed
-    - average prep video time
-    
-- variables that were important in logisitic that were not in this model:
-    - mobile number
-    - tastes and preferences
-
-
-```python
-###### Non Standardized Preparation 
-# Defining explanatory variables (add according to new feature selections)
-chef_tree = chef.loc[: , variables_dict['Full Tree Features']]
-
-# train-test split with stratification
-X_train, X_test, y_train, y_test = train_test_split(
-            chef_tree,  # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) # stratifying target variable to ensure balance
-
-# merging training data for statsmodels
-chef_train = pd.concat([X_train, y_train], axis = 1) # contains target variable!
-
-# INSTANTIATING a classification tree object
-fit_tree = DecisionTreeClassifier(criterion = 'gini',
-                                   max_depth = 5,
-                                   min_samples_leaf = 59,
-                                   splitter = 'best',
-                                   random_state = seed)
-
-# FITTING the training data
-fit_tree_fit = fit_tree.fit(X_train, y_train.values.reshape(-1,))
-
-# PREDICTING on new data
-fit_tree_pred = fit_tree_fit.predict(X_test)
-
-fit_tree_train_acc = fit_tree_fit.score(X_train, y_train).round(4)
-
-fit_tree_test_acc = fit_tree_fit.score(X_test, y_test).round(4)
-
-fit_tree_auc = roc_auc_score(y_true  = y_test, y_score = fit_tree_pred).round(4)
-
-# SCORING the model
-print('Training ACCURACY:', fit_tree_train_acc)
-print('Testing  ACCURACY:', fit_tree_test_acc)
-print('AUC Score        :', fit_tree_auc)
-```
-
-```python
-    Training ACCURACY: 0.8095
-    Testing  ACCURACY: 0.7864
-    AUC Score        : 0.7836
-```
-
-
-
-
-### D) Random Forest
-
-### Step 1: Default Model with all Features
-
-
-```python
-###### Non Standardized Preparation 
-# Defining explanatory variables (add according to new feature selections)
-chef_full = chef.loc[: , variables_dict['Full Model']]
-
-# train-test split with stratification
-X_train, X_test, y_train, y_test = train_test_split(
-            chef_full,  # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) # stratifying target variable to ensure balance
-
-# merging training data for statsmodels
-chef_train = pd.concat([X_train, y_train], axis = 1) # contains target variable!
-
-# INSTANTIATING a random forest model with default values
-rf_default = RandomForestClassifier(random_state  = seed)
-
-# FITTING the training data
-rf_default_fit = rf_default.fit(X_train, y_train.values.reshape(-1,))
-
-# PREDICTING based on the testing set
-rf_default_fit_pred = rf_default_fit.predict(X_test)
-
-rf_train_acc = rf_default_fit.score(X_train, y_train).round(4)
-rf_test_acc  = rf_default_fit.score(X_test, y_test).round(4)
-rf_auc_score = roc_auc_score(y_true  = y_test,
-                             y_score = rf_default_fit_pred).round(4)
-# SCORING the results
-print('Training ACCURACY:', rf_train_acc)
-print('Testing  ACCURACY:', rf_test_acc)
-print('AUC Score        :', rf_auc_score)
-```
-
-```python
-    Training ACCURACY: 1.0
-    Testing  ACCURACY: 0.7454
-    AUC Score        : 0.7025
-```
-
-
-### Step 2: Hyperparameter Tuning
-
-
-```python
-### Random Forest Hyperparameter Tuning
-# declaring a hyperparameter space
-estimator_space  = pd.np.arange(100, 1100, 250)
-leaf_space       = pd.np.arange(1, 31, 10)
-criterion_space  = ['gini', 'entropy']
-bootstrap_space  = [True, False]
-warm_start_space = [True, False]
-
-
-# creating a hyperparameter grid
-param_grid = {'n_estimators'     : estimator_space,
-              'min_samples_leaf' : leaf_space,
-              'criterion'        : criterion_space,
-              'bootstrap'        : bootstrap_space,
-              'warm_start'       : warm_start_space}
-
-
-# INSTANTIATING the model object without hyperparameters
-full_forest_grid = RandomForestClassifier(random_state = 802)
-
-
-# GridSearchCV object
-full_forest_cv = GridSearchCV(estimator  = full_forest_grid,
-                              param_grid = param_grid,
-                              cv         = 3,
-                              scoring    = make_scorer(roc_auc_score,
-                                           needs_threshold = False))
-
+rdg_cv = RandomizedSearchCV(estimator              =  rdg_grid,
+                               param_distributions = param_grid_rdg,
+                               cv                  = 5,
+                               n_iter              = 1000,
+                               scoring             = make_scorer(roc_auc_score,
+                                                     needs_threshold = False),
+                            random_state           = 219)
 
 # FITTING to the FULL DATASET (due to cross-validation)
-full_forest_cv.fit(chef_full, chef_target.values.reshape(-1,))
+rdg_cv.fit(x_train, y_train)
+
+# printing the optimal parameters and best score for each metric
+print("Tuned Parameters  :", rdg_cv.best_params_)
+print("Tuned Training AUC:", rdg_cv.best_score_.round(decimals = 4))
+```
+Aftr Tuning
+```
+# After tuning
+# INSTANTIATING a Ridge Classification 
+model_rdg = RidgeClassifier(alpha             = .5,
+                            class_weight      = {0:0.95, 0:0.05},
+                            solver            = 'auto', 
+                            random_state      = 219)
+
+# fitting the model object
+model_rdg_fit = model_rdg.fit(x_train, y_train)
+
+# Predicting on the test data
+pred_test_rdg = model_rdg_fit.predict(x_test)
+
+#Calculating and printing the f1 score 
+f1_test_rdg = f1_score(y_test, pred_test_rdg)
+print('F-1 Score:', f1_test_rdg.round(decimals = 4))
+
+# Calculating precision and recall scores
+precision_test_rdg = precision_score(y_test, pred_test_rdg)
+recall_test_rdg    = recall_score(y_test, pred_test_rdg)
+
+# unpacking the confusion matrix
+rdg_tuned_tn_threshold, \
+rdg_tuned_fp_threshold, \
+rdg_tuned_fn_threshold, \
+rdg_tuned_tp_threshold = confusion_matrix(y_true = y_test, y_pred = pred_test_rdg).ravel()
+
+# printing each result one-by-one
+print(f"""
+True Negatives: {rdg_tuned_tn_threshold}
+False Positives: {rdg_tuned_fp_threshold}
+False Negatives: {rdg_tuned_fn_threshold}
+True Positives: {rdg_tuned_tp_threshold}
+""")
+print(f"Precision: {precision_test_rdg.round(decimals = 4)}")
+print(f"Recall: {recall_test_rdg.round(decimals = 4)}")
+```
+Plotting Feature Importance
+```
+# Assuming model_rdg is your trained Ridge classifier
+coef = model_rdg.coef_[0]
+sorted_indices = np.argsort(coef)
+
+# Positive coefficients
+positive_indices = sorted_indices[coef[sorted_indices] > 0]
+positive_features = x_train.columns[positive_indices]
+
+# Negative coefficients
+negative_indices = sorted_indices[coef[sorted_indices] < 0]
+negative_features = x_train.columns[negative_indices]
+
+# Concatenating positive and negative features
+arranged_features = np.concatenate((positive_features, negative_features))
+
+# Plotting
+plt.figure(figsize=(12, 6))
+plt.barh(arranged_features, coef[sorted_indices])
+plt.xlabel('Coefficient Value')
+plt.ylabel('Feature')
+plt.title('Feature Importances (Ridge Classifier)')
+plt.show()
+```
+Random Forest
+```
+# INSTANTIATING a Random Forest
+model_rf = RandomForestClassifier( n_estimators             = 100, 
+                                   ccp_alpha                = .1, 
+                                   max_depth                = 7,
+                                   min_samples_leaf         = 4,
+                                   min_samples_split        = 5,
+                                   max_leaf_nodes           = 8,
+                                   bootstrap                = True,
+                                   criterion                = 'entropy',
+                                   warm_start               = True,
+                                   class_weight             = {0: .05, 1: .95}
+                                )
+
+# fitting the model object
+model_rf_fit = model_rf.fit(x_train, y_train)
+
+# Predicting on the test data
+pred_test_rf = model_rf_fit.predict(x_test)
+
+# Getting the predicted probabilities for the positive class
+probabilities_rf = model_rf.predict_proba(x_test)[:, 1]
+
+# Define a threshold
+threshold_rf = 0.5
+
+# Applying the threshold to convert probabilities into binary predictions
+pred_test_threshold_rf = (probabilities_rf >= threshold_rf).astype(int)
+
+# Calculating and printing the f1 score 
+f1_test_threshold_rf = f1_score(y_test, pred_test_threshold_rf)
+print('F-1 Score:', f1_test_threshold_rf.round(decimals = 4))
+
+# Calculating precision and recall scores
+precision_test_rf  = precision_score(y_test, pred_test_threshold_rf)
+recall_test_rf     = recall_score(y_test, pred_test_threshold_rf)
+
+# unpacking the confusion matrix
+rf_tuned_tn_threshold, \
+rf_tuned_fp_threshold, \
+rf_tuned_fn_threshold, \
+rf_tuned_tp_threshold = confusion_matrix(y_true = y_test, y_pred = pred_test_threshold_rf).ravel()
+
+# printing each result one-by-one
+print(f"""
+True Negatives: {rf_tuned_tn_threshold}
+False Positives: {rf_tuned_fp_threshold}
+False Negatives: {rf_tuned_fn_threshold}
+True Positives: {rf_tuned_tp_threshold}
+""")
+print(f"Precision: {precision_test_rf.round(decimals = 4)}")
+print(f"Recall: {recall_test_rf.round(decimals = 4)}")
+```
+Tuning
+```
+# Hyperparameter Tuning for Random Forest
+
+# Define the parameter grid for Random Forest
+param_grid_rf = { 
+                   'n_estimators'      : np.arange(100, 500, 100),
+                   'ccp_alpha'         : np.arange(.1, 5, .1), 
+                   'max_depth'         : np.arange(1, 5, 1),
+                   'min_samples_leaf'  : np.arange(1, 5, 1),
+                   'min_samples_split' : np.arange(2, 5, 1),
+                   'max_leaf_nodes'    : np.arange(1, 10, 1),
+                   'bootstrap'         : [True, False],
+                   'warm_start'        : [True, False],
+                   'criterion'         : ['gini', 'entropy', 'log_loss'] 
+                }
+
+# INSTANTIATING the model object without hyperparameters
+rf_grid = RandomForestClassifier(random_state = 219)
+        
+# GridSearchCV object
+rf_cv = RandomizedSearchCV(estimator              =  rf_grid,
+                               param_distributions = param_grid_rf,
+                               cv                  = 5,
+                               n_iter              = 1000,
+                               scoring             = make_scorer(roc_auc_score,
+                                                     needs_threshold = False),
+                            random_state           = 219)
+
+# FITTING to the FULL DATASET (due to cross-validation)
+rf_cv.fit(x_train, y_train)
+
+# printing the optimal parameters and best score for each metric
+print("Tuned Parameters  :", rf_cv.best_params_)
+print("Tuned Training AUC:", rf_cv.best_score_.round(decimals = 4))
+```
+After Tuning
+```
+# After Pruning
+# INSTANTIATING a Random Forest
+model_rf = RandomForestClassifier( n_estimators             = 100, 
+                                   max_depth                = 2,
+                                   min_samples_leaf         = 9,
+                                   min_samples_split        = 9,
+                                   max_leaf_nodes           = 2,
+                                   bootstrap                = True,
+                                   criterion                = 'entropy',
+                                   warm_start               = True,
+                                   class_weight             = {0: .05, 1: .95}
+                                )
+
+# fitting the model object
+model_rf_fit = model_rf.fit(x_train, y_train)
+
+# Predicting on the test data
+pred_test_rf = model_rf_fit.predict(x_test)
+
+# Getting the predicted probabilities for the positive class
+probabilities_rf = model_rf.predict_proba(x_test)[:, 1]
+
+# Define a threshold
+threshold_rf = 0.5
+
+# Applying the threshold to convert probabilities into binary predictions
+pred_test_threshold_rf = (probabilities_rf >= threshold_rf).astype(int)
+
+# Calculating and printing the f1 score 
+f1_test_threshold_rf = f1_score(y_test, pred_test_threshold_rf)
+print('F-1 Score:', f1_test_threshold_rf.round(decimals = 4))
+
+# Calculating precision and recall scores
+precision_test_rf  = precision_score(y_test, pred_test_threshold_rf)
+recall_test_rf     = recall_score(y_test, pred_test_threshold_rf)
+
+# unpacking the confusion matrix
+rf_tuned_tn_threshold, \
+rf_tuned_fp_threshold, \
+rf_tuned_fn_threshold, \
+rf_tuned_tp_threshold = confusion_matrix(y_true = y_test, y_pred = pred_test_threshold_rf).ravel()
+
+# printing each result one-by-one
+print(f"""
+True Negatives: {rf_tuned_tn_threshold}
+False Positives: {rf_tuned_fp_threshold}
+False Negatives: {rf_tuned_fn_threshold}
+True Positives: {rf_tuned_tp_threshold}
+""")
+print(f"Precision: {precision_test_rf.round(decimals = 4)}")
+print(f"Recall: {recall_test_rf.round(decimals = 4)}")
+```
+Plotting Feature Importance
+```
+# plotting feature importances
+plot_feature_importances(model_rf_fit,
+                         train = x_train,
+                         export = False)
+```
+Gradient Boost Machine 
+```
+# INSTANTIATING a Gradient Boost
+model_gbm = GradientBoostingClassifier( n_estimators      = 100, 
+                                        learning_rate     = 1, 
+                                        max_depth         = 7,
+                                        min_samples_leaf  = 4,
+                                        min_samples_split = 5,
+                                        loss              = 'log_loss',
+                                        criterion         = 'friedman_mse',
+                                        warm_start        = False
+                                       )
+
+# fitting the model object
+model_gbm.fit(x_train, y_train)
+
+# Predicting on the test data
+pred_test_gbm = model_gbm.predict(x_test)
+
+# Getting the predicted probabilities for the positive class
+probabilities_gbm = model_gbm.predict_proba(x_test)[:, 1]
+
+# Define a threshold
+threshold_gbm = 0.5
+
+# Applying the threshold to convert probabilities into binary predictions
+pred_test_threshold_gbm = (probabilities_gbm >= threshold_gbm).astype(int)
+
+# Calculating and printing the f1 score 
+f1_test_threshold_gbm = f1_score(y_test, pred_test_threshold_gbm)
+print('F-1 Score:', f1_test_threshold_gbm.round(decimals = 4))
+
+# Calculating precision and recall scores
+precision_test_gbm = precision_score(y_test, pred_test_threshold_gbm)
+recall_test_gbm    = recall_score(y_test, pred_test_threshold_gbm)
+
+# unpacking the confusion matrix
+gbm_tuned_tn_threshold, \
+gbm_tuned_fp_threshold, \
+gbm_tuned_fn_threshold, \
+gbm_tuned_tp_threshold = confusion_matrix(y_true = y_test, y_pred = pred_test_threshold_gbm).ravel()
+
+# printing each result one-by-one
+print(f"""
+True Negatives: {gbm_tuned_tn_threshold}
+False Positives: {gbm_tuned_fp_threshold}
+False Negatives: {gbm_tuned_fn_threshold}
+True Positives: {gbm_tuned_tp_threshold}
+""")
+print(f"Precision: {precision_test_gbm.round(decimals = 4)}")
+print(f"Recall: {recall_test_gbm.round(decimals = 4)}")
+```
+Tuning
+```
+# Hyperparameter Tuning for GBM
+
+# Define the parameter grid for GBM
+param_grid_gbm = { 'loss'              : ['log_loss', 'exponential'],
+                   'learning_rate'     : np.arange(.001, 1, .1), 
+                   'n_estimators'      : np.arange(100, 500, 100),
+                   'criterion'         : ['friedman_mse', 'squared_error'],
+                   'min_samples_split' : np.arange(2, 5, 1),
+                   'min_samples_leaf'  : np.arange(1, 5, 1),
+                   'max_depth'         : np.arange(1, 5, 1),                  
+                }
+
+# INSTANTIATING the model object without hyperparameters
+gbm_grid = GradientBoostingClassifier(random_state = 219)
+
+# GridSearchCV object
+gbm_cv = RandomizedSearchCV(estimator              =  gbm_grid,
+                               param_distributions = param_grid_gbm,
+                               cv                  = 5,
+                               n_iter              = 5000,
+                               scoring             = make_scorer(roc_auc_score,
+                                                     needs_threshold = False))
+
+# FITTING to the FULL DATASET (due to cross-validation)
+gbm_cv.fit(x_train, y_train)
 
 
 # PREDICT step is not needed
 
-
 # printing the optimal parameters and best score
-print("Tuned Parameters  :", full_forest_cv.best_params_)
-print("Tuned Training AUC:", full_forest_cv.best_score_.round(4))
+print("Tuned Parameters  :", gbm_cv.best_params_)
+print("Tuned Training AUC:", gbm_cv.best_score_.round(decimals = 4))
+```
+After Tuning
+```
+# After tuning
+# INSTANTIATING a GBM 
+
+sample_weight = {0: 0.05, 1: 0.95}
+
+# Convert the sample_weight dictionary into an array
+sample_weights = np.array([sample_weight[y_val] for y_val in y_train])
+
+model_gbm = GradientBoostingClassifier(learning_rate      = 0.004,
+                                       n_estimators       = 100, 
+                                       min_samples_split  = 2,
+                                       min_samples_leaf   = 2, 
+                                       max_depth          = 5,
+                                       loss               = 'log_loss',
+                                       criterion          = 'friedman_mse',
+                                       random_state       = 219)
+
+# fitting the model object
+model_gbm_fit = model_gbm.fit(x_train, y_train, sample_weight=sample_weights)
+
+# Predicting on the test data
+pred_test_gbm = model_gbm_fit.predict(x_test)
+
+# Define a threshold
+threshold_gbm = 0.5
+
+# Applying the threshold to convert probabilities into binary predictions
+pred_test_threshold_gbm = (pred_test_gbm >= threshold_gbm).astype(int)
+
+# Calculating and printing the f1 score 
+f1_test_threshold_gbm = f1_score(y_test, pred_test_threshold_gbm)
+print('F-1 Score:', f1_test_threshold_gbm.round(decimals = 4))
+
+# Calculating precision and recall scores
+precision_test_gbm = precision_score(y_test, pred_test_threshold_gbm)
+recall_test_gbm    = recall_score(y_test, pred_test_threshold_gbm)
+
+# unpacking the confusion matrix
+gbm_tuned_tn_threshold, \
+gbm_tuned_fp_threshold, \
+gbm_tuned_fn_threshold, \
+gbm_tuned_tp_threshold = confusion_matrix(y_true = y_test, y_pred = pred_test_threshold_gbm).ravel()
+
+# printing each result one-by-one
+print(f"""
+True Negatives: {gbm_tuned_tn_threshold}
+False Positives: {gbm_tuned_fp_threshold}
+False Negatives: {gbm_tuned_fn_threshold}
+True Positives: {gbm_tuned_tp_threshold}
+""")
+print(f"Precision: {precision_test_gbm.round(decimals = 4)}")
+print(f"Recall: {recall_test_gbm.round(decimals = 4)}")
+```
+Plotting Feature Importance
+```
+# plotting feature importances
+plot_feature_importances(model_gbm_fit,
+                         train = x_train,
+                         export = False)
+```
+Final Model - GBM
+The results indicate that the GBM Classification model performed the best, followed by the Random Forest Classification, and lastly, the Decision Tree. GBM was chosen as the best model because it clearly identified the factors with the highest impact on predicting low birth weight, such as the mother's age and the month prenatal care begins. Among the models, GBM showed the highest correlation coefficient with these variables compared to the other models. Gradient Boosted Decision Trees have been shown to outperform other models due to their boosting technique, which involves implementing several models and aggregating their results. The model also provides a score indicating the usefulness or value of each feature in constructing the boosted decision trees. The more an attribute is used to make key decisions within the decision trees, the higher its relative importance. Additionally, the models are built sequentially, with each subsequent model attempting to reduce the errors of the previous model.
+
+GBM can also handle complex interactions between features and the target variable better than simpler models like Decision Trees. This means it can capture the relationships between features and the target more effectively, leading to better identification of important features.
+
+Analyzing features
+```
+# Analyzing features
+
+# INSTANTIATING a GBM
+gbm_final = GradientBoostingClassifier(learning_rate      = 0.004,
+                                       n_estimators       = 100, 
+                                       min_samples_split  = 2,
+                                       min_samples_leaf   = 2, 
+                                       max_depth          = 5,
+                                       loss               = 'log_loss',
+                                       criterion          = 'friedman_mse',
+                                       random_state       = 219
+                                      )
+# Fitting the object
+gbm_final_fit = gbm_final.fit(x_train, y_train, sample_weight=sample_weights)
+
+# For feature importance
+gbm_importance = pd.DataFrame({'Feature': x_train.columns, 'Importance': gbm_final.feature_importances_})
+gbm_importance = gbm_importance.sort_values(by='Importance', ascending=False)
+
+# Filter features with positive importance coefficients
+gbm_importance_positive = gbm_importance['Importance'].round(4)
+gbm_importance
+```
+Feature Importance 
+Top two factors with largest impact on birthweight
+
+Based on the feature importance results from the Gradient Boosting Classifier (GBM) model, the two features that had the largest impact on birth weight are:
+
+Mother's Age_Month of Prenatal Care Started (mage_monpre)
+This feature has the highest importance score, highlighting the importance of taking into account both the mother's age and the timing of the prenatal care. Given the importance of both mother's age and the timing of prenatal care, special attention should be given to high-risk groups, such as teenage mothers or older mothers, to ensure they receive timely and comprehensive prenatal care. This could involve tailored educational programs, early identification of risk factors, and additional support services.
+
+
+Inadequate Prenatal Visits (ivisit)
+This feature ranks second in importance, indicating that insufficient prenatal visits or limited access to maternal care significantly contributes to low birth weight. Inadequate prenatal visits (less than 8) highlights the the importance of regular check-ups and monitoring during pregnancy. Prenatal care is most effective when started early and maintained consistently. It's crucial to ensure expecting mothers have access to adequate prenatal care. This can be achieved by raising awareness about the importance of prenatal visits, providing resources for transportation or childcare, and expanding healthcare services in underserved areas. Access to maternal care and clinical treatment should be made affordable and available to families lacking the means. Telemedicine is also another option to address disparities in prenatal care. It involves the provision of healthcare services by professionals using technology to exchange information for diagnosis, treatment, and prevention of diseases.
+
+Every woman deserves healthcare that is safe, effective, timely, efficient, and equitable. Ensuring consistent and enough access to maternity services and treatment is crucial for mothers to maintain optimal health and reduce the risk of pregnancy complications. This information can guide decision-makers, public health professionals, clinicians, and researchers in advocating for policies and resources that improve maternity care access nationwide.
+
+Prediction on Training Data
+```
+# Predicting on the training data
+pred_train_gbm = model_gbm_fit.predict(x_train)
+
+# Define a threshold for predictions
+threshold_gbm = 0.5
+
+# Applying the threshold to convert probabilities into binary predictions for training data
+pred_train_threshold_gbm = (pred_train_gbm >= threshold_gbm).astype(int)
+
+# Calculating the confusion matrix for training data
+tuned_gbm_tn_train, \
+tuned_gbm_fp_train, \
+tuned_gbm_fn_train, \
+tuned_gbm_tp_train = confusion_matrix(y_true=y_train, y_pred=pred_train_threshold_gbm).ravel()
+
+# Calculating the confusion matrix for test data
+tuned_gbm_tn_test, \
+tuned_gbm_fp_test, \
+tuned_gbm_fn_test, \
+tuned_gbm_tp_test = confusion_matrix(y_true=y_test, y_pred=pred_test_threshold_gbm).ravel()
+
+# printing each result one-by-one for training data
+print("Confusion Matrix for Training Data:")
+print(f"True Negatives : {tuned_gbm_tn_train}")
+print(f"False Positives: {tuned_gbm_fp_train}")
+print(f"False Negatives: {tuned_gbm_fn_train}")
+print(f"True Positives : {tuned_gbm_tp_train}\n")
+
+# printing each result one-by-one for test data
+print("Confusion Matrix for Test Data:")
+print(f"True Negatives : {tuned_gbm_tn_test}")
+print(f"False Positives: {tuned_gbm_fp_test}")
+print(f"False Negatives: {tuned_gbm_fn_test}")
+print(f"True Positives : {tuned_gbm_tp_test}")
+```
+Final Confusion Matrix Analysis of the Testing Data
+The confusion matrix above indicates the performance of gradient boost machine classification model, where the goal is to predict whether a newborn will have low birthweight (class 1) or not (class 0). It shows that there are no true negatives or false negatives, but there are 83 false positives and 20 true positives. In this analysis, false positives represent cases where the model incorrectly predicts that a newborn will have low birthweight when they actually do not. False negatives, on the other hand, represent cases where the model incorrectly predicts that a newborn will not have low birthweight when they actually do.
+
+Given the focus on correctly predicting low birthweight, false negatives are the error being controlled for in this study. False negatives occur when the model fails to identify newborns who actually have low birthweight, potentially leading to inadequate and late interventions or support for at-risk babies and their mothers. Controlling for false negatives is more crucial in this scenario because missing cases of low birthweight can have serious health implications and may result in adverse outcomes for both the newborn and the mother. Therefore, ensuring a low false negative rate is more important than controlling for false positives in this context.
+
+### Part V. Preparing for Kaggle Submission
+```
+kaggle_data = pd.read_excel(io         = './kaggle_test_data.xlsx',
+                            header     = 0,
+                            index_col  = 'bwt_id')
+
+# Dropping post-event horizon features
+kaggle_data = kaggle_data.drop(labels = ['omaps',
+                                         'fmaps'],
+                               axis   = 1) # columns
+
+kaggle_data.head(n=1)
+```
+### Part VI. Imputation & Feature Engineering (Test Data)
+```
+## Impute missing values ##
+## Cigs and drink
+
+# Imputing with the zero
+
+# cigs
+fill = 0
+kaggle_data['cigs'] = kaggle_data['cigs'].fillna(value = fill)
+
+# drink
+fill = 0
+kaggle_data['drink'] = kaggle_data['drink'].fillna(value = fill)
+
+## Monpre
+
+# Imputing with median per month of pregnancy that prenatal care began
+monpre_medians_k = []
+
+for month in range(0, 9):
+    median_visits_k = kaggle_data.loc[kaggle_data['monpre'] == month, 'npvis'].median()
+    monpre_medians_k.append(median_visits_k)
+
+# Individual medians
+kmonpre_0 = monpre_medians_k[0]
+kmonpre_1 = monpre_medians_k[1]
+kmonpre_2 = monpre_medians_k[2]
+kmonpre_3 = monpre_medians_k[3]
+kmonpre_4 = monpre_medians_k[4]
+kmonpre_5 = monpre_medians_k[5]
+kmonpre_6 = monpre_medians_k[6]
+kmonpre_7 = monpre_medians_k[7]
+kmonpre_8 = monpre_medians_k[8]
+
+# ensuring all missing values for npvis are taken care of
+
+for index, value in kaggle_data.iterrows():
+    
+    if str(kaggle_data.loc[index, 'npvis']).lower() == 'nan' and \
+        kaggle_data.loc[index, 'monpre'] == 0:
+        
+        kaggle_data.loc[index, 'npvis'] = kmonpre_0
+        
+    elif str(kaggle_data.loc[index, 'npvis']).lower() == 'nan' and \
+        kaggle_data.loc[index, 'monpre'] == 1:
+        
+        kaggle_data.loc[index, 'npvis'] = kmonpre_1
+        
+    elif str(kaggle_data.loc[index, 'npvis']).lower() == 'nan' and \
+        kaggle_data.loc[index, 'monpre'] == 2:
+        
+        kaggle_data.loc[index, 'npvis'] = kmonpre_2
+        
+    elif str(kaggle_data.loc[index, 'npvis']).lower() == 'nan' and \
+        kaggle_data.loc[index, 'monpre'] == 3:
+        
+        kaggle_data.loc[index, 'npvis'] = kmonpre_3
+        
+    elif str(kaggle_data.loc[index, 'npvis']).lower() == 'nan' and \
+        kaggle_data.loc[index, 'monpre'] == 4:
+        
+        kaggle_data.loc[index, 'npvis'] = kmonpre_4
+        
+    elif str(kaggle_data.loc[index, 'npvis']).lower() == 'nan' and \
+        kaggle_data.loc[index, 'monpre'] == 5:
+        
+        kaggle_data.loc[index, 'npvis'] = kmonpre_5
+        
+    elif str(kaggle_data.loc[index, 'npvis']).lower() == 'nan' and \
+        kaggle_data.loc[index, 'monpre'] == 6:
+        
+        kaggle_data.loc[index, 'npvis'] = kmonpre_6
+        
+    elif str(kaggle_data.loc[index, 'npvis']).lower() == 'nan' and \
+        kaggle_data.loc[index, 'monpre'] == 7:
+        
+        kaggle_data.loc[index, 'npvis'] = kmonpre_7
+        
+    elif str(kaggle_data.loc[index, 'npvis']).lower() == 'nan' and \
+        kaggle_data.loc[index, 'monpre'] == 8:
+        
+        kaggle_data.loc[index, 'npvis'] = kmonpre_8
+
+## fage and meduc
+
+# Imputing with median
+
+# fage
+fage_median_k = kaggle_data['fage'].median()
+
+# Impute median to NaN values in 'fage' column
+kaggle_data.loc[kaggle_data['fage'].isna(), 'fage'] = fage_median_k
+
+# meduc
+meduc_median_k = kaggle_data['meduc'].median()
+
+# Impute median to NaN values in 'meduc' column
+kaggle_data.loc[kaggle_data['meduc'].isna(), 'meduc'] = meduc_median_k
+
+# feduc
+feduc_median_k = kaggle_data['feduc'].median()
+
+# Impute median to NaN values in 'meduc' column
+kaggle_data.loc[kaggle_data['feduc'].isna(), 'feduc'] = feduc_median_k
+
+# Rechecking if all null values are taken care of
+print(f"Remaining missing values: {kaggle_data.loc[ :, 'foth' ].isnull().sum()}")
+
+## Feature 1: Inadequate Prenatal visit (less than 8) ##
+kaggle_data['ivisit'] = 0
+kaggle_data.loc[kaggle_data['npvis'] <= 8, 'ivisit'] = 1
+
+## Feature 2: Inadequate Prenatal visit | Mother's Race ##
+kaggle_data['ivisit_mwhte'] = kaggle_data['ivisit'] * kaggle_data['mwhte']
+kaggle_data['ivisit_mblck'] = kaggle_data['ivisit'] * kaggle_data['mblck']
+kaggle_data['ivisit_moth'] = kaggle_data['ivisit'] * kaggle_data['moth']
+
+## Feature 3: Mother's Age & Starting Month of Prenatal care ##
+kaggle_data['mage_monpre'] = kaggle_data['mage'] * kaggle_data['monpre']
+
+## Feature 4 ##
+# Mother's Age Category
+kaggle_data['mteen'] = 0
+kaggle_data['madolescent'] = 0
+kaggle_data['myoung'] = 0
+kaggle_data['mmiddleaged'] = 0
+kaggle_data['madult'] = 0
+
+kaggle_data.loc[(kaggle_data['mage'] >= 15) & (kaggle_data['mage'] <= 19), 'mteen'] = 1
+kaggle_data.loc[(kaggle_data['mage'] >= 20) & (kaggle_data['mage'] <= 24), 'madolescent'] = 1
+kaggle_data.loc[(kaggle_data['mage'] >= 25) & (kaggle_data['mage'] <= 29), 'myoung'] = 1
+kaggle_data.loc[(kaggle_data['mage'] >= 30) & (kaggle_data['mage'] <= 34), 'mmiddleaged'] = 1
+kaggle_data.loc[kaggle_data['mage'] > 34, 'madult'] = 1
+
+## Feature 5: Mother of White Race | Adult (>34 y/o)
+kaggle_data['mwhte_madult'] = kaggle_data['mwhte'] * kaggle_data['madult']
+
+## Feature 6: Mother's Education Level
+kaggle_data['mlesshs'] = 0           # less high school
+kaggle_data['mhighschool'] = 0       # high school
+kaggle_data['mposths'] = 0           # post high school
+kaggle_data['mcollege'] = 0          # college
+
+kaggle_data.loc[kaggle_data['meduc'] <= 7, 'mlesshs'] = 1
+kaggle_data.loc[(kaggle_data['meduc'] > 7) & (kaggle_data['meduc'] <= 12), 'mhighschool'] = 1
+kaggle_data.loc[(kaggle_data['meduc'] > 12) & (kaggle_data['meduc'] <= 15), 'mposths'] = 1
+kaggle_data.loc[kaggle_data['meduc'] > 15, 'mcollege'] = 1
+
+## Feature 7 : Month of Prenatal Care Began | Race
+kaggle_data['monpre_mwhte'] = kaggle_data['monpre'] * kaggle_data['mwhte']
+kaggle_data['monpre_mblck'] = kaggle_data['monpre'] * kaggle_data['mblck']
+kaggle_data['monpre_moth'] = kaggle_data['monpre'] * kaggle_data['moth']
 ```
 
-```python
-Tuned Parameters  : {'bootstrap': False, 'criterion': 'entropy', 'min_samples_leaf': 1, 'n_estimators': 600, 'warm_start': True}
-Tuned Training AUC: 0.5882
-<br>
-Tree set: 
-Tuned Parameters  : {'bootstrap': False, 'criterion': 'entropy', 'min_samples_leaf': 1, 'n_estimators': 350, 'warm_start': True} <br>
-Tuned Training AUC: 0.5836
+Transformations and Standardizations 
 ```
+## Transformations and Standardizations ##
+# yeo-johnson transformation
+kaggle_data_original = kaggle_data.copy()
 
-```python
-# INSTANTIATING a random forest model with tuned parameters
-rf_tuned = RandomForestClassifier(bootstrap = False, 
-                                    criterion = 'entropy',
-                                    min_samples_leaf = 1,
-                                    n_estimators = 350,
-                                    warm_start = True,
-                                    random_state  = seed)
+# List of numerical features to transform
+x_skewed = ['mage', 'meduc', 'monpre', 'npvis', 'fage', 
+            'feduc', 'cigs', 'drink']
 
-# FITTING the training data
-rf_tuned_fit = rf_tuned.fit(X_train, y_train.values.reshape(-1,))
+# Initialize the PowerTransformer with the Yeo-Johnson method
+transformer = PowerTransformer(method='yeo-johnson')
 
-# PREDICTING based on the testing set
-rf_tuned_fit_pred = rf_tuned_fit.predict(X_test)
+# Transform the numerical features using the already fitted transformer
+kaggle_data[x_skewed] = transformer.fit_transform(kaggle_data[x_skewed])
 
-rf_train_acc_tuned = rf_tuned_fit.score(X_train, y_train).round(4)
-rf_test_acc_tuned  = rf_tuned_fit.score(X_test, y_test).round(4)
-rf_auc_score_tuned = roc_auc_score(y_true  = y_test,
-                                   y_score = rf_tuned_fit_pred).round(4)
-# SCORING the results
-print('Training ACCURACY:', rf_train_acc_tuned)
-print('Testing  ACCURACY:', rf_test_acc_tuned)
-print('AUC Score        :', rf_auc_score_tuned)
+# List of non-binary columns to standardize
+non_binary_columns = ['mage', 'meduc', 'monpre', 'npvis', 'fage', 'feduc', 
+                      'cigs', 'drink']
+
+# Standardize the non-binary data using the already fitted scaler
+kaggle_data[non_binary_columns] = scaler.transform(kaggle_data[non_binary_columns])
+
+new_continuous_columns = ['mage_monpre', 'monpre_mwhte', 'monpre_mblck', 'monpre_moth']
+
+# Initialize the PowerTransformer with the Yeo-Johnson method
+transformer = PowerTransformer(method='yeo-johnson')
+
+# Fit the transformer to the numerical features and transform them
+kaggle_data[new_continuous_columns] = transformer.fit_transform(kaggle_data[new_continuous_columns])
+
+# Instantiating a new StandardScaler object for the new continuous features
+new_scaler_c = StandardScaler()
+
+# Fitting the new scaler with the new continuous data
+new_scaler_c.fit(kaggle_data[new_continuous_columns])
+
+# Transforming the new continuous features
+kaggle_data[new_continuous_columns] = new_scaler_c.transform(kaggle_data[new_continuous_columns])
+
+# New binary features
+new_binary_columns = ['ivisit', 'ivisit_mwhte', 'ivisit_mblck', 'ivisit_moth',
+                      'mteen', 'myoung', 'madolescent', 'mmiddleaged', 'madult', 
+                      'mwhte_madult', 'mlesshs', 'mhighschool', 'mposths', 'mcollege',
+                      'male', 'mwhte', 'mblck', 'moth', 'fwhte', 'fblck', 'foth']
+
+# Instantiating a new StandardScaler object for the new continuous features
+new_scaler = StandardScaler()
+
+# Fitting the new scaler with the new continuous data
+new_scaler.fit(kaggle_data[new_binary_columns])
+
+# Transforming the new continuous features
+kaggle_data[new_binary_columns] = new_scaler.transform(kaggle_data[new_binary_columns])
+
+
+# Prepare x_data_kaggle
+x_data_kaggle_selected = kaggle_data[sel_features]
 ```
-
-```python
-    Training ACCURACY: 1.0
-    Testing  ACCURACY: 0.7598
-    AUC Score        : 0.725
+### Part VII. Predicting for Kaggle Submission
 ```
+# Using GBM Model to predict test data
+gbm_final = GradientBoostingClassifier(learning_rate      = 0.004,
+                                       n_estimators       = 100, 
+                                       min_samples_split  = 2,
+                                       min_samples_leaf   = 2, 
+                                       max_depth          = 5,
+                                       loss               = 'log_loss',
+                                       criterion          = 'friedman_mse',
+                                       random_state       = 219
+                                      )
+# Fitting
+gbm_final_fit = gbm_final.fit(x_train, y_train, sample_weight=sample_weights)
+
+# Make predictions using the best model to introduce more bias 
+predictions_final = gbm_final_fit.predict_proba(x_data_kaggle_selected)
+predictions_final = np.where(predictions_final[:,1] > threshold_gbm, 1, 0)
+
+## Kaggle Submission File ##
+
+# organizing predictions
+model_predictions = {"low_bwght" : predictions_final}
 
 
-### Step 3: Feature Selection
+# converting predictions into df
+model_pred_df = pd.DataFrame(data  = model_predictions,
+                             index = kaggle_data.index)
 
-
-```python
-## storing important features from random forest as df 
-rf_features = pd.DataFrame(rf_default_fit.feature_importances_)
-rf_features['Variable Names'] = chef_full.columns
-
-# Looking at insignificant coefficients
-rf_features = rf_features.iloc[:,:][rf_features[0] >= 0.03].sort_values(by = 0) # sorting for most important features
-#rf_features.sort_values(by = 0, ascending = False)
+# name your model
+model_pred_df.to_csv(path_or_buf = "./model_output/final_model_gbm.csv",
+                     index       = True,
+                     index_label = 'bwt_id')
 ```
-
-<strong> Observations: </strong>
-- Tree identified rev_per_meal as a successful variable which was not selected before
-- unique meals purchased and product categories viewed were also important here but not previously
-
-
-```python
-###### Non Standardized Preparation 
-# Defining explanatory variables (add according to new feature selections)
-chef_rf = chef.loc[: , variables_dict['Random Forest Full']]
-
-# train-test split with stratification
-X_train, X_test, y_train, y_test = train_test_split(
-            chef_rf,  # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) # stratifying target variable to ensure balance
-
-# merging training data for statsmodels
-chef_train = pd.concat([X_train, y_train], axis = 1) # contains target variable!
-
-# INSTANTIATING a random forest model
-rf = RandomForestClassifier(bootstrap = False, 
-                            criterion = 'entropy',
-                            min_samples_leaf = 1,
-                            n_estimators = 350,
-                            warm_start = True,
-                            random_state  = seed)
-
-# FITTING the training data
-rf_fit = rf.fit(X_train, y_train.values.reshape(-1,))
-
-# PREDICTING based on the testing set
-rf_pred = rf_fit.predict(X_test)
-
-rf_train_acc2 = rf_fit.score(X_train, y_train).round(4)
-rf_test_acc2  = rf_fit.score(X_test, y_test).round(4)
-rf_auc_score2 = roc_auc_score(y_true  = y_test,
-                             y_score = rf_pred).round(4)
-# SCORING the results
-print('Training ACCURACY:', rf_train_acc2)
-print('Testing  ACCURACY:', rf_test_acc2)
-print('AUC Score        :', rf_auc_score2)
+### Part VIII. References
 ```
-```python
-    Training ACCURACY: 1.0
-    Testing  ACCURACY: 0.7659
-    AUC Score        : 0.738
+Abramwowicz, P. et.al (February, 2022). Inequalities in Birth Weight in Relation to Maternal Factors: A Population-Based Study of 3,813,757 Live Births. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8835086/
+
+Arayeshgari M, Najafi-Ghobadi S, Tarhsaz H, Parami S, Tapak L. Machine Learning-based Classifiers for the Prediction of Low Birth Weight. Healthc Inform Res. 2023 Jan;29(1):54-63. doi: 10.4258/hir.2023.29.1.54. Epub 2023 Jan 31. PMID: 36792101; PMCID: PMC9932310.
+
+Feresu, S. A., Harlow, S. D., & Woelk, G. B. (2015). Risk factors for low birthweight in Zimbabwean women: A secondary data analysis. PLOS ONE, 10(6), e0129705. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199306/
+
+GeeksforGeeks (March 2024). Handling Imbalanced Data. https://www.geeksforgeeks.org/ml-handling-imbalanced-data-with-smote-and-near-miss-algorithm-in-python/
+
+International Journal of Gynecology and Obstetrics. (February, 2023). Association of maternal age 35 years and over and prenatal care utilization, preterm birth, and low birth weight, Mexico 2008–2019. https://doi.org/10.1002/ijgo.14707
+
+Johnny. (February, 2020). Cost-Sensitive Decision Trees for Imbalanced Classification. https://johdev.com/jupyter/2020/02/26/Decision_Tree_Imbalance.html#Decision-Trees-for-Imbalanced-Classification
+
+Laopaiboon, M., Lumbiganon, P., Rattanakanokchai, S. et al. An outcome-based definition of low birthweight for births in low- and middle-income countries: a secondary analysis of the WHO global survey on maternal and perinatal health. BMC Pediatr 19, 166 (2019). https://doi.org/10.1186/s12887-019-1546-z
+
+March of Dimes (2022). Prenatal Care. https://www.marchofdimes.org/peristats/data?reg=99&top=5&stop=35&lev=1&slev=4&obj=1&sreg=38
+
+Medium (March, 2023). Handling Class Imbalance in Machine Learning. https://medium.com/@okanyenigun/handling-class-imbalance-in-machine-learning-cb1473e825ce
+
+Ren Y, Wu D, Tong Y, López-DeFede A, Gareau S. Issue of Data Imbalance on Low Birthweight Baby Outcomes Prediction and Associated Risk Factors Identification: Establishment of Benchmarking Key Machine Learning Models With Data Rebalancing Strategies. J Med Internet Res. 2023 May 31;25:e44081. doi: 10.2196/44081. PMID: 37256674; PMCID: PMC10267797.
+
+World Health Organization (WHO). Low birth weight. https://www.who.int/data/nutrition/nlis/info/low-birth-weight
 ```
-
-
-### E) Gradient Boosting
-
-### Step 1: Default Model with all Features
-
-
-```python
-###### Standardized Preparation 
-# Standardizing our Data Set (only numeric variables) with user-defined function
-chef_stand = standard(chef)
-
-# Defining explanatory variables (add according to new feature selections)
-chef_full_stand   = chef_stand.loc[: , variables_dict['Full Model']]
-
-# train-test split with stratification
-X_train_stand, X_test_stand, y_train_stand, y_test_stand = train_test_split(
-            chef_full_stand,   # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) 
-
-# merging training data for statsmodels
-chef_train_stand = pd.concat([X_train_stand, y_train_stand], axis = 1)
-
-
-# INSTANTIATING the model object without hyperparameters
-full_gbm_default = GradientBoostingClassifier()
-
-
-# FIT step is needed as we are not using .best_estimator
-full_gbm_default_fit = full_gbm_default.fit(X_train_stand, y_train_stand.values.reshape(-1,))
-
-
-# PREDICTING based on the testing set
-full_gbm_default_pred = full_gbm_default_fit.predict(X_test_stand)
-
-gbm_train_score = full_gbm_default_fit.score(X_train_stand, y_train_stand).round(4)
-gbm_test_score  = full_gbm_default_fit.score(X_test_stand, y_test_stand).round(4)
-gbm_auc_score   = roc_auc_score(y_true  = y_test_stand,
-                                y_score = full_gbm_default_pred).round(4)
-
-# SCORING the results
-print('Training ACCURACY:', gbm_train_score)
-print('Testing ACCURACY :', gbm_test_score)
-print('AUC Score        :', gbm_auc_score)
-```
-```python
-    Training ACCURACY: 0.9034
-    Testing ACCURACY : 0.7659
-    AUC Score        : 0.7431
-```
-
-
-<strong> Observations: </strong>
-- improved model performance
-- run hyperparameter tuning
-
-### Step 2: Hyperparameter Tuning
-
-
-```python
-## GridSearchCV
-# declaring a hyperparameter space
-learning_rate_space     = pd.np.arange(0.05,0.5,0.05)
-n_estimators_space      = pd.np.arange(100,500,50)
-min_samples_split_space = pd.np.arange(0.1,1,0.1)
-min_samples_leaf_space  = pd.np.arange(1,5,1)
-max_depth_space         = pd.np.arange(1,10,1)
-warm_start_space              = [True, False]
-
-# creating a hyperparameter grid
-param_grid = {'learning_rate'     : learning_rate_space,          
-              'n_estimators'      : n_estimators_space,
-              'min_samples_split' : min_samples_split_space,
-              'min_samples_leaf'  : min_samples_leaf_space,
-              'max_depth'         : max_depth_space,
-              'warm_start'        : warm_start_space
-             } 
-
-
-# INSTANTIATING the model object without hyperparameters
-GB_tuned = GradientBoostingClassifier(random_state = seed)
-
-# GridSearchCV object
-knn_tuned_cv = GridSearchCV(estimator  = GB_tuned, 
-                            param_grid = param_grid, 
-                            cv         = 3, 
-                            scoring    = make_scorer(roc_auc_score,
-                                                    needs_threshold = False))
-
-
-# FITTING to the FULL DATASET (due to cross-validation)
-knn_tuned_cv.fit(chef_imp_stand, chef_target.values.reshape(-1,))
-
-# printing the optimal parameters and best score
-print("Tuned Parameters  :", knn_tuned_cv.best_params_)
-print("Tuned CV AUC      :", knn_tuned_cv.best_score_.round(4))
-```
-
-```python
-Tuned parameters: {'learning_rate': 0.01, 'max_depth': 9, 'min_samples_leaf': 1, 'min_samples_split': 0.6, 'n_estimators': 900}
-Tuned CV AUC      : 0.6406
-```
-
-### Step 3: Feature Selection
-
-Gradient boosting selects the best features that can explain our model. Here, we will use the cut-off at 0.01 to determine these features based on the box plots analysis we did earlier. Variable before this value did not show a significant separation between failure and success.
-
-
-```python
-# storing important features from gradient boosting as df 
-gb_features = pd.DataFrame(full_gbm_default_fit.feature_importances_)
-gb_features['Variable Names'] = chef_full_stand.columns
-
-# Looking at insignificant coefficients
-gb_features = gb_features.iloc[:,:][gb_features[0] >= 0.01].sort_values(by = 0) # cut-off based on boxplots analysis
-gb_features
-
-```
-
-
-```python
-###### Standardized Preparation 
-# Standardizing our Data Set (only numeric variables) with user-defined function
-chef_stand = standard(chef)
-
-# Defining explanatory variables (add according to new feature selections)
-chef_gb_stand   = chef_stand.loc[: , variables_dict['Best Model']]
-
-# train-test split with stratification
-X_train_stand, X_test_stand, y_train_stand, y_test_stand = train_test_split(
-            chef_gb_stand,   # change
-            chef_target,
-            test_size = 0.25,
-            random_state = seed,
-            stratify = chef_target) 
-
-# merging training data for statsmodels
-chef_train_stand = pd.concat([X_train_stand, y_train_stand], axis = 1)
-
-
-# INSTANTIATING the model object with hyperparameters
-fit_gbm_tuned = GradientBoostingClassifier(learning_rate = 0.01,
-                                           n_estimators = 900,
-                                           min_samples_split = 0.6,
-                                           min_samples_leaf = 1,
-                                           max_depth = 9,
-                                           warm_start = False,
-                                           random_state = seed)
-
-# FIT step is needed as we are not using .best_estimator
-fit_gbm_tuned_fit = fit_gbm_tuned.fit(X_train_stand, y_train_stand.values.reshape(-1,))
-
-
-# PREDICTING based on the testing set
-fit_gbm_tuned_pred = fit_gbm_tuned_fit.predict(X_test_stand)
-
-fit_gbm_train_score = fit_gbm_tuned_fit.score(X_train_stand, y_train_stand).round(4)
-fit_gbm_test_score  = fit_gbm_tuned_fit.score(X_test_stand, y_test_stand).round(4)
-fit_gbm_auc_score   = roc_auc_score(y_true  = y_test_stand,
-                                   y_score = fit_gbm_tuned_pred).round(4)
-
-# SCORING the results
-print('Training ACCURACY:', fit_gbm_train_score)
-print('Testing ACCURACY :', fit_gbm_test_score)
-print('AUC Score        :', fit_gbm_auc_score)
-```
-
-```python
-    Training ACCURACY: 0.8307
-    Testing ACCURACY : 0.7864
-    AUC Score        : 0.7666
-```
-
-
-
-
-## Part 3: Evaluating the model
-
-
-
-![Model-Performance](/images/model-performance-classification.png)
-
-According to the table above, the best model to predict if a customer will or not subscribe to Halfway There is the decision tree. In the following steps, we will interpret the results of the model and evaluate is applicability to the business case.
-
-
-```python
-# calling the visual_cm function
-visual_cm(true_y = y_test,
-          pred_y = tree_tuned_pred,
-          labels = ['Did Not Buy Subscription', 'Bought Subscription'],
-          title  = 'Confusion Matrix of Decision Tree Classifier')
-```
-
-
-![Confusion-Matrix-Decision-Tree-Classifier](/images/Confusion-Matrix-Decision-Tree-Classifier.png)
-
-
-<strong> Observations: </strong><br>
-Our model's errors (predicted that the customer was going to buy the subscription but did not, and predicted the customer was not going to buy the subscription and did) are well balanced based on our business case. <br>
-<br>
-In other words, our marketing expenditure for <i> Halfway There </i> is being well utilized, since our precision in which customers will subscribe is 96%.
-<br> <br>
-However, our marketing expenditures could be optimized since we can see 39 out of 331 customers were not predicted to buy the subscription and still bought it. If we were to better understand these customers, we could increase the total number of customer subscriptions.
-
-
-***
-## Conclusion
-
-- Our best performing model was a Decision Tree with 21 features with a test score of 0.9058
-- Optimal features were found using exploratory data analysis, domain knowledge and tree classifiers
-- It is predicting whether or not a customer will subscribe to the new service Halfway There.
-- Its precision in correctly predicting a new customer is 96%
-
-## Business Insights
-
-1. Customer Loyalty
-<br>
-We provide full refunds for customers that cancel before noon. This policy is contributing to increase our customer satisfaction and loyalty. Indeed, <strong> of those that have cancelled at least once before noon, 73% have subscribed to Halfway There. </strong>
-<br>
-Thus, allowing for full refunds in cancellations increases customer satisfaction and loyalty. Assuming the bottle delivery is independent from the meal delivery, our customer’s may have an easier time committing to a half-bottle wine delivery then a fresh full meal, increasing their loyalty to the brand. Once loyal, customers are more likely to subscribe to new services.
-
-2. Recommendation System
-<br>
-Our recommendation system adapts to our customer’s previous purchases, lookalike scores and trending products. In the context of our new product, of customers that have previously followed our recommendations 20% of the time, 85% are subscribed to Halfway There. Additionally, customers that usually follow our recommendations are almost twice as likely to subscribe for this new service.
-<br>
-This group of customers is pickier with their meal options. Due to their busy schedules, they enjoy new offerings from recommendations, and take this opportunity to explore new tastes without the effort of research and appreciate the uniqueness of the local selection.
-
-## Recommendations and Business Implementation
-
-The number of customers that follow recommendations and the influence of communication channels are predictors of success in selling Halfway There. It indicates that a two-fold marketing strategy should be implemented when promoting the new service to a wider audience.
-<br>
-
-1) <strong> In-house: </strong> Customers that followed recommendations and that have watched preparation videos have proved to positively impact the success in selling Halfway There. Thus, implementing promotional videos inside our mobile and web platform would reduce marketing costs related to external parties and still be effective in reaching the desired customer (ex: advertisement videos before food prep videos promoting the wine as a drink while preparing the food).
-<br>
-
-2) <strong> Email Marketing: </strong> email campaigns are a cheap way to reach a great number of customers. Professional emails are positively correlated with successfully selling Halfway There, since customers access these inboxes multiple times a day. Therefore, we should consider an email campaign of the new service, in addition to make an email and email confirmation, required fields upon new customer registration.
-
-
-### Sources:
-
-Technical sources:
-- [Logistic Regression Analysis](https://stats.idre.ucla.edu/stata/output/logistic-regression-analysis/)
-- [Overview of feature selection methods - Towards Data Science](https://towardsdatascience.com/overview-of-feature-selection-methods-a2d115c7a8f7)
-- [Gradient Boosting Classifier sklearn Documentation](https://scikitlearn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html)
-- (Hughes,2012) <i> Why Email Marketing is King. </i> Retrieved from [https://hbr.org/2012/08/why-email-marketing-is-king](https://hbr.org/2012/08/why-email-marketing-is-king)
-
-<br>
-
-Domain Knowledge Sources:
-- (Forbes, 2018). Amazon Icon Meals and Mercatus How These Companies Are Driving Change in the Grocery Industry. Retrieved from [https://www.forbes.com/sites/brittainladd/2018/12/03/amazon- icon-meals-and-mercatus-how-these-companies-are-driving-change-in-the-grocery- industry/#72e1826a7d5b](https://www.forbes.com/sites/brittainladd/2018/12/03/amazon- icon-meals-and-mercatus-how-these-companies-are-driving-change-in-the-grocery- industry/#72e1826a7d5b)
-- [What do we know about the meal kit consumer?](https://www.fmi.org/blog/view/fmi-blog/2018/06/11/what-do-we-know-about-the- meal-kit-consumer)
-- (Nielsen, 2017). Understanding Landscape and Consumer Preferences. Retrieved from [https://www.nielsen.com/us/en/insights/article/2017/understanding- the-meal-kit-landscape-and-consumer-preferences/](https://www.nielsen.com/us/en/insights/article/2017/understanding- the-meal-kit-landscape-and-consumer-preferences/)
-
