@@ -1,9 +1,9 @@
 ---
-title: "Escape Room"
+title: "Text Adventure Game: Escape Room"
 date: 2023-12-03
 tags: [python, user-input, game development, text adventure]
 header:
-  image: "/images/escape_room.jpeg"
+  image: "/images/escape room.jpg"
 excerpt: "(Python) A text adventure game full of random plot twists and survival strategy. This game requires critical thinking, simple code analysis, and having fun will be helpful. Designed in Jupyter Notebook."
 mathjax: "true"
 ---
