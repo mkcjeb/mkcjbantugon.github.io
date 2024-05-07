@@ -10,20 +10,20 @@ toc: true
 toc_label : "Navigate"
 ---
 By: Team Matrix <br>
-Michelle Kae Celine Jo-anne Bantugon<br>
-Srinivas Kondeti <br>
-Zamambo Mkhize <br>
-Miron Tkachuk<br>
+	Michelle Kae Celine Jo-anne Bantugon<br>
+	Srinivas Kondeti <br>
+	Zamambo Mkhize <br>
+	Miron Tkachuk<br>
 
 SQL Challenge built by Professor Chase Kusterer <br>
 Hult International Business School<br>
 
 For the initial five questions, we use the "binary search" methodology. Our approach involves initially narrowing down the set of possible options by half. Then, we consider the movie titles starting with vowel letters. Lastly, we check if the duration is longer than X minutes, which depends on the results.
 
-```
+```mySQL workbench
 SELECT *, 
        id % 2 = 1 AS id_odd,                 --  Is ID ODD number?
-	   LENGTH(title) % 2 = 1 AS title_odd,   --  Is length of the title an ODD number?
+       LENGTH(title) % 2 = 1 AS title_odd,   --  Is length of the title an ODD number?
        release_year % 2 = 1 AS ryear_odd,    -- Is the release year an ODD number?
        certification LIKE '_' AS cert_one,   -- Does the certification consist of one letter?
        duration % 2 = 1 AS duration_odd      -- Is the duration an ODD number?
