@@ -9,9 +9,7 @@ mathjax: "true"
 toc: true
 toc_label : "Navigate"
 ---
-By: Michelle Kae Celine Jo-anne Bantugon<br>
-
-Business case built by Professor Chase Kusterer<br>
+By: Michelle Kae Celine Jo-anne Bantugon
 Hult International Business School<br>
 ### The Game
 
