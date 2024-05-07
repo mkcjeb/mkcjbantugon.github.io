@@ -20,7 +20,8 @@ Hult International Business School<br>
 
 For the initial five questions, we use the "binary search" methodology. Our approach involves initially narrowing down the set of possible options by half. Then, we consider the movie titles starting with vowel letters. Lastly, we check if the duration is longer than X minutes, which depends on the results.
 
-```mySQL workbench
+### SQL Query
+```
 SELECT *, 
        id % 2 = 1 AS id_odd,                 --  Is ID ODD number?
        LENGTH(title) % 2 = 1 AS title_odd,   --  Is length of the title an ODD number?
@@ -39,8 +40,10 @@ WHERE id IS NOT NULL AND
       budget IS NOT NULL
 GROUP BY id_odd, title_odd, ryear_odd, cert_one, duration_odd;
 ```
+### Flowchart
+![Flowchart](/images/The Matrix SQL Flowchart.jpg)
 
-<b> Results </b><br>
+### <b> Results </b><br>
 ![SQL Query Results](/images/sql_movie_part_1.png)
 <br>
 ![SQL Query Results](/images/sql_movie_part_2.png)
