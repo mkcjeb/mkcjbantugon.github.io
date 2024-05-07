@@ -41,7 +41,7 @@ WHERE id IS NOT NULL AND
 GROUP BY id_odd, title_odd, ryear_odd, cert_one, duration_odd;
 ```
 ### Flowchart
-![Flowchart](/images/The_Matrix_SQL_Flowchart.jpg)
+![Flowchart](/images/The Matrix SQL Flowchart.jpg)
 
 ### <b> Results </b><br>
 ![SQL Query Results](/images/sql_movie_part_1.png)
