@@ -42,4 +42,5 @@ GROUP BY id_odd, title_odd, ryear_odd, cert_one, duration_odd;
 
 <b> Results </b><br>
 ![SQL Query Results](/images/sql_movie_part_1.png)
+<br>
 ![SQL Query Results](/images/sql_movie_part_2.png)
