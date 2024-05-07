@@ -40,4 +40,6 @@ WHERE id IS NOT NULL AND
 GROUP BY id_odd, title_odd, ryear_odd, cert_one, duration_odd;
 ```
 
-<b> Results </b>
+<b> Results </b><br>
+!images/sql_movie_part_1.png
+!images/sql_movie_part_2.png
