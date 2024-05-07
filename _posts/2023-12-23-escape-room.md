@@ -9,7 +9,7 @@ mathjax: "true"
 toc: true
 toc_label : "Navigate"
 ---
-By: Michelle Kae Celine Jo-anne Bantugon
+By: Michelle Kae Celine Jo-anne Bantugon<br>
 Hult International Business School<br>
 ### The Game
 
