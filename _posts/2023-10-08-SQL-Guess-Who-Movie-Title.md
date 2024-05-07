@@ -10,10 +10,10 @@ toc: true
 toc_label : "Navigate"
 ---
 By: Team Matrix <br>
-	Michelle Kae Celine Jo-anne Bantugon<br>
-	Srinivas Kondeti <br>
-	Zamambo Mkhize <br>
-	Miron Tkachuk<br>
+Michelle Kae Celine Jo-anne Bantugon<br>
+Srinivas Kondeti <br>
+Zamambo Mkhize <br>
+Miron Tkachuk<br>
 
 SQL Challenge built by Professor Chase Kusterer <br>
 Hult International Business School<br>
@@ -29,7 +29,7 @@ SELECT *,
        duration % 2 = 1 AS duration_odd      -- Is the duration an ODD number?
 FROM films
 WHERE id IS NOT NULL AND
-	  title IS NOT NULL AND
+      title IS NOT NULL AND
       release_year IS NOT NULL AND
       country IS NOT NULL AND
       duration IS NOT NULL AND
