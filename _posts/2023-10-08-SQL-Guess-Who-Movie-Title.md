@@ -46,4 +46,24 @@ GROUP BY id_odd, title_odd, ryear_odd, cert_one, duration_odd;
 ### <b> Results </b><br>
 ![SQL Query Results](/images/sql_movie_part_1.png)
 <br>
+
+
+gallery:
+  - url: /images/The_Matrix_SQL_Flowchart.jpg
+    image_path: /images/The_Matrix_SQL_Flowchart.jpg
+    alt: "placeholder image 1"
+    title: "Image 1 title caption"
+  - url: /images/sql_movie_part_1.png
+    image_path: /images/sql_movie_part_1.png
+    alt: "placeholder image 2"
+    title: "Image 2 title caption"
+  - url: /images/sql_movie_part_2.png
+    image_path: /images/sql_movie_part_2.png
+    alt: "placeholder image 3"
+    title: "Image 3 title caption"
+  - url: /images/sql_movie_part_1.png
+    image_path: /images/sql_movie_part_1.png
+    alt: "placeholder image 4"
+    title: "Image 4 title caption"
+
 ![SQL Query Results](/images/sql_movie_part_2.png)
