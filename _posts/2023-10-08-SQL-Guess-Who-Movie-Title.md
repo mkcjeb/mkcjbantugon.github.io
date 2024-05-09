@@ -1,11 +1,14 @@
 ---
-title: "Post: Gallery"
-categories:
-  - Post Formats
-tags:
-  - gallery
-  - Post Formats
-  - tiled
+title: "SQL Guess The Movie Challenge"
+date: 2023-10-08
+tags: [SQL, bin method, challenge]
+header:
+  image: "/images/SQL guess the movie.jpg"
+excerpt: "(SQL) Choose one film based on alternating numeric and non-numeric yes/no questions. Only 3 maximum questions per column are allowed. "
+mathjax: "true"
+toc: true
+toc_label : "Navigate"
+---
 gallery:
   - url: /images/The_Matrix_SQL_Flowchart.jpg
     image_path: /images/The_Matrix_SQL_Flowchart.jpg
@@ -61,25 +64,14 @@ GROUP BY id_odd, title_odd, ryear_odd, cert_one, duration_odd;
 ### <b> Results </b><br>
 ![SQL Query Results](/images/sql_movie_part_1.png)
 <br>
-
-```yaml
-gallery:
-  - url: /images/The_Matrix_SQL_Flowchart.jpg
-    image_path: /images/The_Matrix_SQL_Flowchart.jpg
-    alt: "placeholder image 1"
-    title: "Image 1 title caption"
-  - url: /images/sql_movie_part_1.png
-    image_path: /images/sql_movie_part_1.png
-    alt: "placeholder image 2"
-    title: "Image 2 title caption"
-  - url: /images/sql_movie_part_2.png
-    image_path: /images/sql_movie_part_2.png
-    alt: "placeholder image 3"
-    title: "Image 3 title caption"
-  - url: /images/sql_movie_part_1.png
-    image_path: /images/sql_movie_part_1.png
-    alt: "placeholder image 4"
-    title: "Image 4 title caption"
-```
-
 ![SQL Query Results](/images/sql_movie_part_2.png)
+
+{% include figure popup=true image_path="/images/The_Matrix_SQL_Flowchart.jpg" alt="this is a placeholder image" caption="This is a figure caption." %}
+
+<figure>
+  <a href="/images/The_Matrix_SQL_Flowchart.jpg" class="image-popup" title="This is a figure caption.">
+    <img src="/images/The_Matrix_SQL_Flowchart.jpg" alt="this is a placeholder image">
+  </a>
+  <figcaption>This is a figure caption.</figcaption>
+</figure>
+
