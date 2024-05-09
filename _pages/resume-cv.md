@@ -1,5 +1,5 @@
 ---
 permalink: /resume-cv/
 header:
-  image: "/images/resume_mbantugon.png"
+  image: "/images/CV_Michelle_Bantugon_Data_Scientist-1.jpg"
 ---
