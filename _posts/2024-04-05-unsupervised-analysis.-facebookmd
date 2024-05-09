@@ -40,4 +40,18 @@ Use storytelling techniques to make your content more relatable and engaging. Pe
 <b> 3. Track Performance </b><br>
 Monitor and evaluate photo content performance metrics and other status types on a regular basis to find out what appeals to the audience. Utilize analytical tools to monitor engagement metrics such as likes, shares, comments, and others. <br>
 
-### Part I. 
+### Analysis Outline
+Part I: Preparation and Exploration <br>
+Part II: Instantiating a PCA object <br>
+Part III. Retaining Principal Components <br>
+Part IV. Factor Loadings and Interpretation <br>
+Part V. K-means Clustering <br>
+Part VI. Agglomerative Clustering <br>
+Part VII. Cluster Analysis <br>
+Part VIII: Segment Renaming and Photo Analysis <br>
+Part IX: Modeling Preparation (3 Models) <br>
+Part X: Model Results <br>
+Part XI:  Confusion Matrix Interpretation <br>
+Part XII: References <br>
+
+
