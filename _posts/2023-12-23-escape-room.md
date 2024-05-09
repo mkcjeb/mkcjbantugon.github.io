@@ -37,9 +37,9 @@ You must have Python installed in your computer in order to play the game. Open 
 ### Code
 ```python
 """
-Created on Mon December 03, 2023
+Published on Sunday December 03, 2023
 
-@author: michelle.bantugon
+@author: Michelle Kae Celine Jo-anne Bantugon (https://github.com/mkcjeb)
 """
 
 """
