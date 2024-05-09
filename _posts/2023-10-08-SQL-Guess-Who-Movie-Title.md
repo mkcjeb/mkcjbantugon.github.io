@@ -91,4 +91,5 @@ gallery:
   </a>
   <figcaption>This is a figure caption.</figcaption>
 </figure>
+<img src="{{ site.url }}{{ site.baseurl }}/images/The_Matrix_SQL_Flowchart.jpg" alt="">
 
