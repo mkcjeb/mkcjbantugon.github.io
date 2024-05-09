@@ -11,7 +11,7 @@ toc_label : "Navigate"
 ---
 By: Michelle Kae Celine Jo-anne Bantugon<br>
 
-Business case built by Professor Chase Kusterer and Dr. Priyanka Shrivastava <br>
+Business case built by [Professor Chase Kusterer](https://github.com/chase-kusterer) and Dr. Priyanka Shrivastava <br>
 Hult International Business School<br>
 
 ### Introduction
