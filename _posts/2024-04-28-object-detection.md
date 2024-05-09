@@ -12,7 +12,7 @@ toc_label : "Navigate"
 By: Michelle Kae Celine Jo-anne Bantugon<br>
 
 Business case built by <br>
-Professor Chase Kusterer<br>
+[Professor Chase Kusterer](https://github.com/chase-kusterer)<br>
 Ernst & Young | NASA <br>
 Hult International Business School<br>
 
