@@ -15,7 +15,7 @@ Srinivas Kondeti <br>
 Zamambo Mkhize <br>
 Miron Tkachuk<br>
 
-SQL Challenge built by [Professor Chase Kusterer](https://github.com/chase-kusterer)<br> <br>
+SQL Challenge built by [Professor Chase Kusterer](https://github.com/chase-kusterer)<br>
 Hult International Business School<br>
 
 For the initial five questions, we use the "binary search" methodology. Our approach involves initially narrowing down the set of possible options by half. Then, we consider the movie titles starting with vowel letters. Lastly, we check if the duration is longer than X minutes, which depends on the results.
