@@ -1021,16 +1021,16 @@ True Positives : {model_k_tp}
 The analysis aims to evaluate the impact of photo content on social media engagement.<b> Model 1</b>, which uses the original x-features, appears to be the best choice among the three models. The following metrics were considered in choosing Model 1.<br>
 
 1. AUC Score<br>
-    Model 1 has the highest AUC score (0.726) among the three models, indicating better overall performance in distinguishing between the photo and non-photo classes.<br><br>
+    Model 1 has the highest AUC score (0.726) among the three models, indicating better overall performance in distinguishing between the photo and non-photo classes.<br>
 
 2. Train-Test Gap<br>
-    Model 1 has the smallest gap between train and test performance (0.006), indicating good generalization to unseen data and is less likely to be overfitting.<br><br>
+    Model 1 has the smallest gap between train and test performance (0.006), indicating good generalization to unseen data and is less likely to be overfitting.<br>
 
 3. Comparable Precision and Recall<br>
-    Model 1 has a precision of 0.756 and a recall of 0.753, which are slightly lower than the corresponding values for Model 2 but still indicate a good balance between minimizing false positives and false negatives.<br><br>
+    Model 1 has a precision of 0.756 and a recall of 0.753, which are slightly lower than the corresponding values for Model 2 but still indicate a good balance between minimizing false positives and false negatives.<br>
     
 4. Interpretability<br>
-    Since Model 1 uses the original x-features, it is more interpretable than the other models, which rely on transformed features (principal components or clusters).<br><br>
+    Since Model 1 uses the original x-features, it is more interpretable than the other models, which rely on transformed features (principal components or clusters).<br>
     
 5. Custom Threshold<br>
     To achieve a balance between precision and recall, a custom threshold of 0.64 was selected, which was the lowest among the tested models and close to the default threshold of 0.50.<br>
