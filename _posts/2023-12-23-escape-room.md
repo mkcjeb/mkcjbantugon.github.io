@@ -628,16 +628,16 @@ game_intro()
 
 ```
 ### Sample Screenshots <br>
-## 1 of 4 <br>
+<b> 1 of 4 </b> <br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/game_snip_01.png" alt="">
 
-## 2 of 4 <br>
+<b> 2 of 4 </b> <br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/game_snip_02.png" alt="">
 
-## 3 of 4 <br>
+<b>3 of 4 <.b> <br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/game_snip_03.png" alt="">
 
-## 4 of 4 <br>
+<b> 4 of 4 </b> <br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/game_snip_04.png" alt="">
 
 <br>
