@@ -34,9 +34,10 @@ While photos are popular, consider diversifying content with videos and text pos
 Ensure that the content create positive emotions such as happiness, excitement, or inspiration, as these are more likely to result in likes and positive engagement. This is aligned with the findings by Lee et al. (2016) who found out that enjoyment of content and interpersonal relationships were the two most common motives for liking. <br>
 
 <b> 2. Engagement Strategies </b><br>
-Interactive Content <br>
+-  Interactive Content <br>
 Create engaging and interactive content that encourages comments, shares, and other forms of reactions. The use of unusual, participatory activities such as contests, games, and artistic performances will drive reactions and comments (Apiradee Wongkitrungrueng, Nassim Dehouche & Nuttapol Assarut, 2020). <br>
-Storytelling <br>
+
+-  Storytelling <br>
 Use storytelling techniques to make your content more relatable and engaging. People tend to engage more with content that resonates with them on a personal level. <br>
 
 <b> 3. Track Performance </b><br>
