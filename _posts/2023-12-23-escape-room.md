@@ -34,7 +34,7 @@ You must have Python installed in your computer in order to play the game. Open 
 
 *Note: If you're not familiar with Jupyter Notebooks, here's a [great tutorial](https://www.youtube.com/watch?v=HW29067qVWk) on how they work and [how to set up](https://www.anaconda.com/products/individual) Anaconda Navigator.*
 
-
+### Code
 ```python
 """
 Created on Mon December 03, 2023
