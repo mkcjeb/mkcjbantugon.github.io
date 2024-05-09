@@ -1,5 +1,5 @@
 ---
-title: "Facebook Data: Unsupervised Analysis"
+title: "Thailand Facebook Live Data: Unsupervised Analysis"
 date: 2024-04-14
 tags: [Python, machine learning, unsupervised, cluster, k-means, PCA, classification]
 header:
@@ -331,6 +331,7 @@ total_reactions_by_type = total_reactions_by_type.sort_values(by='total_reaction
 total_reactions_by_type
 ```
 <b> Analysis of Content Type by reactions</b><br>
+
 <b>Total Engagement</b> <br>
 Based on the table below, <b>videos perform exceptionally well in terms of total engagement</b> compared to other forms of content, such as photos and text posts. Videos have the highest total engagement with a total of 831,905 reactions. Photos follow behind with a total of 292,838 reactions, while text posts have the lowest total engagement with 79,718 reactions.
 
@@ -373,7 +374,6 @@ reaction_scaled = scaler(df = reaction_df)
 print(np.var(reaction_df), '\n\n')
 print(np.var(reaction_scaled))
 ```
-
 ### Part II. Instanstiating a PCA object
 ```
 # INSTANTIATING a PCA object with no limit to principal components
@@ -419,7 +419,6 @@ pca_5 = PCA(n_components = 5,
 # FITTING and TRANSFORMING the reaction_scaled
 reaction_pca_5 = pca_5.fit_transform(X = reaction_scaled)
 ```
-
 ### Part IV. Factor Loadings and Interpretation
 ```
 ####################
@@ -462,6 +461,7 @@ factor_loadings_5.to_excel(excel_writer = 'reaction_factor_loadings_5.xlsx',
 <b> Factor Loadings Interpretation </b><br>
 
 <b>Principal Component 1: Interactive & Entertaining</b><br>
+
 Positive side:<br>
 With strong positive loadings from loves, shares, and hahas, this component likely reflects the interactive, fun, and engaging nature of the content. It measures the overall interaction a post receives. The high loading in the love reaction suggests a strong emotional connection with the audience and a customer-seller relationship was already established, as noted in research by A. Wongkitrungrueng et al. (2019). This indicates stronger feelings and bonding between sellers and viewers, confirming the importance of vividness and interactivity in generating online engagement on Facebook (Luarn et al., 2015). Using the love reaction also signifies that the audience genuinely care about the content and want to show support (Medium, 2023). 
 The high number of shares signifies a collaborative relationship between customers and sellers, with customers encouraged to invite others via the share button, thus building larger audiences. Additionally, high loadings in comments suggest real-time social interaction, enabling sellers to engage with multiple customers simultaneously through written communication. This component highlights that emoticon reactions and comments serve as feedback about products, streaming time, or audio/video quality. This is intriguing as cooperation can exist prior to the purchase and loyalty stages (A. Wongkitrungrueng et al., 2019). Using haha reaction as well means to express amusement, humor, or laughter when you found content funny which creates positive atmosphere.
@@ -470,6 +470,7 @@ Negative side:<br>
 On the negative side, lower engagement metrics like loves, shares, and hahas indicate content that is ineffective. This suggests a lack of customer-seller relationship or a purely transactional approach, rather than a content-based or relationship-focused strategy. Transaction-based approaches typically focus solely on product details, with minimal discussion on broader topics such as brand values or customer experiences (A. Wongkitrungrueng et al., 2019).
 
 <b> Principal Component 2: Interesting </b><br>
+
 Positive side: <br>
 This component exhibits high loadings on likes and moderate loadings on wow reactions. It seems to represent content that is interesting and appealing, but with only one-way interaction. A high loading on likes, which are typically the initial reaction or go-to reaction before emoticon reactions, indicates that customers find value in high-quality content that resonates with them. After the introduction of other reactions, sometimes they may express their interest through a wow reaction. Using wow reaction also shows that you are acknowledging the impact of the post and expressing your admiration. Today, like can signify various things depending on the context. It can indicate agreement, support, appreciation, or simply acknowledging that you have seen the post. It is a versatile tool that allows users to engage with content in a quick and straightforward manner (Medium, 2023). They are also the default way to follow businesses and brands on Facebook. This can make the post appear more popular, potentially encouraging others to click on it.
 
@@ -477,6 +478,7 @@ Negative side: <br>
 While likes can lead to further engagement such as comments, this is not guaranteed, and sometimes clicking like may seem inappropriate depending on the post content. On the negative side, this indicates that the content may not be highly effective, possibly due to low-quality material that fails to resonate with the audience. It suggests that the seller may be inactive or not engaging with customers, or that the content is inconsistent, bland, repetitive, and lacks relevance.
 
 <b> Principal Component 3: Emotional </b><br>
+
 Positive side: <br>
 A strong positive correlation with sad reactions, followed by angry reactions, suggests a potentially negative response to the content or the seller. It is a way to offer virtual comfort and let them know that you are there for them (Medium, 2023). Posts that share heartwarming stories or evoke strong emotions are likely to receive high scores on this component. For example, content that seeks empathy by recounting unfortunate experiences could fall into this category. Additionally, poor internet connection or low audio/video quality could also contribute to these reactions. Negative feedback, such as sadness or anger, may stem from unsatisfactory service or values that conflict with the audience's beliefs. In Thailand, it is common for sellers with disabilities, sellers who appear impoverished, or sellers with disabled children to receive sad reactions, indicating sympathy from the audience. Other factors, such as gender, age, social status, location, mobility, or the timing of the interaction, can also influence the dynamics of customer-seller interactions. Interestingly, younger social media users, tend to click on the sad reaction in a sarcastic way or if they want to troll the business.
 
@@ -484,6 +486,7 @@ Negative side: <br>
 Individuals who refrain from clicking the sad reaction on Facebook indicate a preference against seeing sad content in their feed, given how the Facebook newsfeed algorithm functions. This suggests that the algorithm prioritizes content based on user preferences. In situations where more serious concerns are involved, such as those requiring care, opting for reactions other than sad may be more appropriate (Nick Leighton). Additionally, some users may simply prefer to remain neutral or indifferent.
 
 <b> Principal Component 4: Negative </b><br>
+
 Positive side: <br>
 With a significant emphasis on the angry reaction, it signifies disapproval in reaction to a post or comment that might be contentious or offensive. This reaction is commonly used when individuals wish to express strong disagreement or dissatisfaction. Users typically employ it to respond to negative feedback and controversial posts. Utilizing the angry reaction suggests that the content has elicited a strong negative response from the audience. Similarly, if someone has shared a contentious opinion or promoted hatred, the audience can convey their displeasure through the angry reaction.
 
@@ -491,12 +494,12 @@ Negative side: <br>
 On the other side, individuals who refrain from using the angry reaction feature perceive it as impolite or trivial when directed at others. They reserve this reaction for instances where the content is highly objectionable or directly challenges their values. Their primary focus is to maintain peaceful interactions and positive relationships with others by avoid debating with people who might disagree or to avoid offending people who hold different views (Warfare Plugins, n.d). This decision is largely influenced by their personal tolerance levels, comfort, and the dynamics of their relationships.
 
 <b> Principal Component 5: Surprising </b><br>
+
 Positive side: <br>
 Given its strong association with wows, this aspect of the analysis likely reflects content that is particularly surprising or unexpected. When users choose the wow reaction, they are indicating that the content has captured their attention and left them impressed or amazed. This reaction signifies their acknowledgment of the post's impact and their expression of admiration. However, it's important to note that this reaction could also suggest that the content has shocked or surprised the audience, unless it's being used sarcastically. In such cases, it can still be seen as a positive endorsement (Digital Communications, 2016). 
 
 Negative side: <br>
 Choosing not to react with surprise or use the wow reaction suggests that the content lacks a strong impact to create surprise or shock among the audience. The content may be perceived and interpreted differently than intended, potentially leading to unmet expectations and being seen as ordinary, blending in with other ordinary content.<br>
-
 ```
 # naming each principal component
 factor_loadings_5.columns = ['Interactive & Entertaining', # Engaging & Entertaining (+ Side), Transactional (- side)
@@ -679,7 +682,6 @@ Text
 """)
 ```
 ### Part VIII: Segment Renaming and Photo Analysis 
-<b>Segment Renaming and Photo Analysis:</b>
 
 1. <b>Thought Provoking</b>
     - This segment predominantly features photo posts, indicating their popularity, although text and video posts are also significant. The cluster's centroid values suggest a moderate level of interest, with slight emotional engagement and interactivity, aligning with the distribution of post types. In photo analysis, this suggests that photos are generally perceived as interesting or agreeable, as indicated by the higher frequency of likes. However, some negativity can also be present, such as angry reactions, indicating that certain photos can evoke strong emotional responses. People can typically scroll through photos quickly and understand their purpose, as opposed to video which requires more of a time commitment (Adobe, 2021). This is also valuable for announcements or informative posts, as photos may be more effective at quickly conveying information and getting people's attention. Similarly, this can be effective for people who wants instant message delivery just by scrolling rather than watching long videos. 
@@ -762,7 +764,7 @@ facebook_data   = x_data_st
 # declaring response variable
 facebook_target = facebook_df['photo']
 ```
-<b> Train-test split </b><br>
+<b> Train-test split (Model 1) </b><br>
 ```
 # training and testing sets
 x_train, x_test, y_train, y_test = train_test_split(facebook_data,
@@ -856,7 +858,7 @@ pca_5 = PCA(n_components = 5,
 # FITTING and TRANSFORMING the x_data_standardized
 reaction_pca_5 = pca_5.fit_transform(X = x_data_st)
 ```
-<b> Train-test split </b><br>
+<b> Train-test split (Model 2)</b><br>
 ```
 # selecting x- and y-data
 x_data = reaction_pca_5
@@ -955,7 +957,7 @@ cluster_df = pd.get_dummies(data       = reaction_kmeans_pca['Cluster'],
 # checking results
 cluster_df.value_counts(normalize = False).sort_index(ascending = False)
 ```
-<b> Train-test split </b><br>
+<b> Train-test split (Model 3) </b><br>
 ```
 # selecting x- and y-data
 x_data = cluster_df
