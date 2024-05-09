@@ -460,6 +460,7 @@ factor_loadings_5.to_excel(excel_writer = 'reaction_factor_loadings_5.xlsx',
                             index        = False)
 ```
 <b> Factor Loadings Interpretation </b><br>
+
 <b>Principal Component 1: Interactive & Entertaining</b><br>
 Positive side:<br>
 With strong positive loadings from loves, shares, and hahas, this component likely reflects the interactive, fun, and engaging nature of the content. It measures the overall interaction a post receives. The high loading in the love reaction suggests a strong emotional connection with the audience and a customer-seller relationship was already established, as noted in research by A. Wongkitrungrueng et al. (2019). This indicates stronger feelings and bonding between sellers and viewers, confirming the importance of vividness and interactivity in generating online engagement on Facebook (Luarn et al., 2015). Using the love reaction also signifies that the audience genuinely care about the content and want to show support (Medium, 2023). 
@@ -602,7 +603,7 @@ centroids_pca_df.columns = ['Interactive & Entertaining', # Engaging & Entertain
 centroids_pca_df
 ```
 ### Part VII. Cluster Analysis
-<b> Cluster Analysis </b><br>
+
 <b>1. Cluster 0 - Thought Provoking </b>
 
 In this cluster, posts focus primarily on being intriguing with a hint of negativity, yet they tend to lack significant engagement and interaction. However, they are not notably emotional or surprising. A typical post within this cluster might involve introducing a new product or highlighting improvements in its quality. While the post may pique interest with its intriguing description, it could also elicit some negative reactions if the product doesn't resonate well with the audience.  
