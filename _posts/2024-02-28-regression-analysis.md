@@ -31,8 +31,8 @@ Therefore, it is essential to understand future demand patterns that can help re
 - Small alpha was used and cyclic selection
 - Used of L1 penalty to shrink the coefficients of less important features to zero, effectively performing feature selection
 
-<b>Case: Chicago Bike Rental</b>
-<b>Audience</b>: Cook County Planning and Development Department
+<b>Case</b>: Chicago Bike Rental<br>
+<b>Audience</b>: Cook County Planning and Development Department<br>
 <b>Goal</b>: To predict the number of bike rentals on a given day, as well as to provide insights into the factors that contribute to bike rental demand
 
 ### Analysis Outline
