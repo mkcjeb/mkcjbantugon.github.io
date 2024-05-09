@@ -12,7 +12,7 @@ toc_label : "Navigate"
 
 By: Michelle Kae Celine Jo-anne Bantugon<br>
 
-Business case built by Professor Chase Kusterer<br>
+Business case built by [Professor Chase Kusterer](https://github.com/chase-kusterer)<br>
 Hult International Business School<br>
 
 Jupyter notebook and dataset for this analysis can be found here: [Data Science Portfolio](https://github.com/mkcjeb/data-science-portfolio/tree/main/projects/predicting_low_bweight) 
