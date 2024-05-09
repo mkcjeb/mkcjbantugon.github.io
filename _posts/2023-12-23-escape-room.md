@@ -634,7 +634,7 @@ game_intro()
 <b> 2 of 4 </b> <br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/game_snip_02.png" alt="">
 
-<b>3 of 4 <.b> <br>
+<b>3 of 4 </b> <br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/game_snip_03.png" alt="">
 
 <b> 4 of 4 </b> <br>
