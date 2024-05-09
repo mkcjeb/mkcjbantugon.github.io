@@ -7,7 +7,7 @@ header:
 excerpt: "(SQL) Choose one film based on alternating numeric and non-numeric yes/no questions. Only 3 maximum questions per column are allowed. "
 mathjax: "true"
 toc: true
-toc_label : "Navigate"
+toc_label : "Navigate":
 gallery:
   - url: /images/The_Matrix_SQL_Flowchart.jpg
     image_path: /images/The_Matrix_SQL_Flowchart.jpg
