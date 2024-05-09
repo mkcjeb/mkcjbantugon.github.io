@@ -1045,7 +1045,7 @@ Given the importance of accurate photo content classification, Model 1 appears t
 
 Model 1, utilizing Logistic Regression with the original x-features, demonstrates significant p-values below 0.05, indicating the importance of all features in classifying a photo. Particularly, likes and wows exhibit a positive correlation, suggesting that posts with more likes and wows are more likely to contain photos. Conversely, posts with more hahas, sads, or angries are less likely to include photos.<br>
 
-In summary, Model 1 (Original x-features) is selected as the preferred model due to its focus on precise analysis and the significance of minimizing irrelevant data in photo impact assessment. Its high precision and recall contribute to a cleaner dataset, allowing for a better understanding of the true impact of photo content on social media engagement. This, in turn, enables the generation of reliable recommendations for client video content strategies.<br>
+In summary, Model 1 (Original x-features) is selected as the preferred model due to its focus on precise analysis and the significance of minimizing irrelevant data in photo impact assessment. Its high precision and recall contribute to a cleaner dataset, allowing for a better understanding of the true impact of photo content on social media engagement. This, in turn, enables the generation of reliable recommendations for client photo content strategies.<br>
 
 ### Part XI:  Confusion Matrix Interpretation 
 <b> Model 1: Original x-features </b><br>
