@@ -1,5 +1,5 @@
 ---
-title: "Hurricane Maria: Object Detection (Coming Soon)"
+title: "Hurricane Maria: Object Detection (Under Review)"
 date: 2024-04-14
 tags: [Python, YOLO, machine learning, labelme]
 header:
