@@ -24,9 +24,10 @@ The 2024 challenge is focused on helping coastal communities become more resilie
 
 How can data and AI be a lifeline for a vulnerable coastline? <br>
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD08.png" alt="">
 [Video Presentation](https://youtu.be/5YiImxXQS6o) <br>
-
-<img src="{{ site.url }}{{ site.baseurl }}/images/The_Matrix_SQL_Flowchart.jpg" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD01.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD02.png" alt="">
 
 
 ### Introduction
