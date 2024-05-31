@@ -21,8 +21,7 @@ Note: This project was a collaboration with Ella Pesola, Italo Hidalgo, Jorge So
 The 2024 challenge is focused on helping coastal communities become more resilient to the effects of climate change.<br>
 
 How can data and AI be a lifeline for a vulnerable coastline? <br>
-
-[Video Presentation](https://youtu.be/5YiImxXQS6o) <br>
+[Video Presentation](https://youtu.be/5YiImxXQS6o) <br><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/OD01.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/OD02.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/OD03.png" alt=""><br>
