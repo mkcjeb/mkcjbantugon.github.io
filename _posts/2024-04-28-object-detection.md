@@ -26,6 +26,7 @@ How can data and AI be a lifeline for a vulnerable coastline? <br>
 
 [Video Presentation](https://youtu.be/5YiImxXQS6o) <br>
 
+<img src="{{ site.url }}{{ site.baseurl }}/images/The_Matrix_SQL_Flowchart.jpg" alt="">
 
 
 ### Introduction
