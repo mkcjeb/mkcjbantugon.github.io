@@ -24,7 +24,9 @@ The 2024 challenge is focused on helping coastal communities become more resilie
 
 How can data and AI be a lifeline for a vulnerable coastline? <br>
 
-Video Presentation: https://youtu.be/5YiImxXQS6o <br>
+[Video Presentation](https://youtu.be/5YiImxXQS6o) <br>
+
+
 
 ### Introduction
 Located in the northeastern Caribbean, Puerto Rico is part of the "hurricane belt." The island's location puts it directly in the path of tropical storms and hurricanes that form in the Atlantic Ocean. Hurricane Maria made landfall in Puerto Rico in September 2017, with sustained winds as high as 155 mph, which was barely below the Category 5 threshold. This natural event caused considerable damage to the island's infrastructure. The entire island was affected by uprooted trees, power lines pulled down, and residential and commercial roofs being destroyed. (Scott, 2018).
