@@ -24,11 +24,14 @@ The 2024 challenge is focused on helping coastal communities become more resilie
 
 How can data and AI be a lifeline for a vulnerable coastline? <br>
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/OD08.png" alt="">
 [Video Presentation](https://youtu.be/5YiImxXQS6o) <br>
-<img src="{{ site.url }}{{ site.baseurl }}/images/OD01.png" alt="">
-<img src="{{ site.url }}{{ site.baseurl }}/images/OD02.png" alt="">
-
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD01.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD02.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD03.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD04.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD05.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD06.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD07.png" alt=""><br>
 
 ### Introduction
 Located in the northeastern Caribbean, Puerto Rico is part of the "hurricane belt." The island's location puts it directly in the path of tropical storms and hurricanes that form in the Atlantic Ocean. Hurricane Maria made landfall in Puerto Rico in September 2017, with sustained winds as high as 155 mph, which was barely below the Category 5 threshold. This natural event caused considerable damage to the island's infrastructure. The entire island was affected by uprooted trees, power lines pulled down, and residential and commercial roofs being destroyed. (Scott, 2018).
@@ -275,3 +278,51 @@ Code above creates a colormap for different land cover types based on Sentinel-2
 values. It then applies the colormap to the data, highlighting vegetation, bare ground, and water in distinct colors. 
 It filters out clouds, cloud shadows, and no data from the image represented by the magenta color, displaying the remaining land cover types in the area of interest.<br>
 <b>Normalized Difference Vegetation Index (NDVI)</b><br>
+```
+# preparing two time steps compare NDVI outputs
+first_time  = 0  # April 08, 2017
+second_time = 29 # October 20, 2017
+```
+```
+
+# setting figure size
+fig, ax = plt.subplots(1, 2, figsize = (15, 10))
+
+
+# first image data
+ndvi_image = (cleaned_data.nir - cleaned_data.red) / (cleaned_data.nir + cleaned_data.red)
+ndvi_image.isel(time = first_time ).plot(ax = ax[0],
+                                         vmin = 0.0,
+                                         vmax = 0.8,
+                                         cmap = "RdYlGn")
+
+
+# second image data
+ndvi_image.isel(time = second_time).plot(ax = ax[1],
+                                         vmin = 0.0,
+                                         vmax = 0.8,
+                                         cmap = "RdYlGn")
+
+
+# axis labels
+ax[0].set_title(label = 'NDVI-Time #1'), ax[0].xaxis.set_visible(False), ax[0].yaxis.set_visible(False)
+ax[1].set_title(label = 'NDVI-Time #2'), ax[1].xaxis.set_visible(False), ax[1].yaxis.set_visible(False)
+
+
+# rendering the plot
+plt.show()
+```
+The figure is from April 08 and October 20, 2017. It creates plots of NDVI values for selected time window,
+masking out clouds, shadows, and no data. Values indicate the health and density of vegetation, with higher 
+values typically indicating healthier vegetation (dark green). Moreover, it illustrates how vegetation cover 
+changed post-storm, evident in the shift to lighter green, red, and orange shades, providing insights into the 
+sudden drop in NDVI after the storm.<br>
+<b>NDVI Change Product</b><br>
+
+
+
+
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/OD08.png" alt=""><br>
+
+### References
