@@ -93,6 +93,7 @@ import zipfile
 ```
 <b>Part I. Pre- and Post-Event NDVI Analysis </b><br>
 Part I utilizes the NDVI to calculate changes in vegetation. This calculation is based on Sentinel-2 optical data and the goal is to identify areas where storms have damaged vegetation and to assess if there is significant damage to buildings in nearby regions. The process involves defining the area of interest, the time period before and after the storm, the level of detail in the imagery (30 meters for Landstat), and filtering out the clouds . Same procedures were followed in the three visualizations below, resulting in identical outputs.<br>
+<b> Visualization 01</b><br>
 <b> Accessing Satellite Data </b><br>
 ```
 ## Hurricane Maria - San Juan, Puerto Rico ##
@@ -115,6 +116,7 @@ time_window = "2017-04-08/2017-10-31"
 # calculating days in time window
 print(date(2017, 10, 31) - date(2017, 4, 8 ))
 ```
+206 days, 0:00:00
 ```
 ## Using Planetary Computer's STAC catalog for items matching our query parameters above
 
@@ -357,8 +359,28 @@ ndvi_plot_01 = plt.gcf()
 # Display the plot
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/NDVI1.png" alt=""><br>
+<b>Analysis (Visualization 01) </b><br>
+The <b>forest area</b> shows varying degrees of vegetation change after Hurricane María. The <b>darker red regions</b> indicate <b>severe damage</b>, likely due to high winds, tree fall, and extensive defoliation. Lighter red areas suggest moderate stress or partial vegetation loss, with potential for quicker recovery. Factors contributing to this varied impact include the storm's path and intensity, topography, forest composition, and proximity to urban infrastructure. These variations underscore the need for targeted recovery efforts, focused reforestation, and comprehensive disaster preparedness strategies in forested regions prone to hurricanes.<br>
+<b> Visualization 02</b><br>
+<b>Accessing Satellite Data</b><br>
+```
+# Define the bounding box for the selected region
+min_lon = -66.19385887
+min_lat =  18.27306794
+max_lon = -66.08007533
+max_lat =  18.48024350
+
+# setting geographic boundary
+bounds = (min_lon, min_lat, max_lon, max_lat)
 
 
+# setting time window surrounding the storm landfall on September 20, 2017
+time_window = "2017-04-08/2017-11-30"
+
+# calculating days in time window
+print(date(2017, 11, 1) - date(2017, 4, 1 ))
+```
 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/OD08.png" alt=""><br>
