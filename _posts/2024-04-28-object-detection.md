@@ -1,5 +1,5 @@
 ---
-title: "Hurricane Maria: Object Detection (Under Review)"
+title: "Hurricane Maria: Object Detection"
 date: 2024-04-14
 tags: [Python, YOLO, machine learning, labelme]
 header:
@@ -18,4 +18,136 @@ Hult International Business School<br>
 
 [EY Open Science Data Challenge](https://challenge.ey.com/challenges/tropical-cyclone-damage-assessment-lrrno2xm)
 
+The 2024 challenge is focused on helping coastal communities become more resilient to the effects of climate change.<br>
 
+How can data and AI be a lifeline for a vulnerable coastline? <br>
+
+### Introduction
+Located in the northeastern Caribbean, Puerto Rico is part of the "hurricane belt." The island's location puts it directly in the path of tropical storms and hurricanes that form in the Atlantic Ocean. Hurricane Maria made landfall in Puerto Rico in September 2017, with sustained winds as high as 155 mph, which was barely below the Category 5 threshold. This natural event caused considerable damage to the island's infrastructure. The entire island was affected by uprooted trees, power lines pulled down, and residential and commercial roofs being destroyed. (Scott, 2018).
+
+In line with the above, we will analyze the Normalized Difference Vegetation Index (NDVI) to evaluate the health of vegetation pre and post storm. Moreover, the use deep learning model such as YOLO (You Only Look Once) for object detection and rapid analysis to assess infrastructure damage after hurricanes will be employed. This is crucial for efficient resource allocation and effective response in disasters' immediate aftermath. The integration of these technologies ensures that responses are more targeted and that resources are optimally used, which is crucial for areas like Puerto Rico that are frequently in the path of hurricanes.<br>
+
+### Top Three Actionable Insights
+
+<b>Housing Structure</b><br>
+Housing structures in the Old San Juan, which is near the coastal line, are old century houses made of cobblestones or reinforced concrete with either flat roofs and or shingle roofings. The buildings were also erected near each other making them sturdier rather than stand-alone houses or buildings. While the most damaged areas by hurricane happened in rural areas where houses or buildings are more scattered, stand-alone and mostly made out of lightweight materials.<br>
+
+One way to lessen the effect of hurricanes on buildings, be it commercial or residential is by getting people to build more hurricane-proof buildings especially in the rural areas. Based on the outreach project initiated by the Federal Emergency Management Agency (FEMA) in conjunction with the Federal Alliance for Safe homes (FLASH), strong implementation of the use of materials based on ICC standards will surely make a lot of difference. The houses, especially the older homes must ensure roof coverings are high wind-rated and attached properly regardless of the type (tiles, shingles, or metal). It is also highly recommended to install permanently-mounted hurricane shutters, strengthen the roof deck connection, and strengthen roof-to-wall connections by installing hurricane clips or straps. Lastly install a secondary water barrier and improve the anchorage of attached structures.<br>
+
+<b>Emergency / Evacuation Plan</b><br>
+The government must identify shelters and broadcast them in advance, so that people can plan their route to safety. Each house must be equipped with a Basic-Disaster kit or emergency supplies like food, water, medicine, power supplies that will last the whole family for days while waiting for rescue (OSHA). Although the aforementioned tactics are already in existence in different parts of the world, the thing here that sets them apart from other countries will be the constant education to the people of San Juan, Puerto Rico on the evacuation plan in case a hurricane hits the country again.
+
+<b>Insurance Plan</b><br>
+When Hurricane Maria hit San Juan, Puerto Rico, it uncovers that only a small percentage of the population’s homes were insured. Majority of the old homes which were passed down from generation to generation do not have insurance as well. The biggest take-away in this whole disaster was to get your homes insured as it wouldn’t be as costly as rebuilding your home or office buildings out of your own pockets (FEMA).<br>
+
+### Importing Packages
+```
+# supress warnings (be careful while using this)
+import warnings
+warnings.filterwarnings('ignore')
+
+# import common GIS tools
+import numpy                   as np
+import xarray                  as xr
+import matplotlib.pyplot       as plt
+import rasterio.features
+import rioxarray               as rio
+from matplotlib.cm import RdYlGn, Reds
+
+# import Planetary Computer tools
+import pystac_client
+import planetary_computer as pc
+import odc
+from odc.stac import stac_load
+
+# additional libraries
+from datetime import date # date-related calculations
+
+# GeoTiff images
+import rasterio
+from   osgeo import gdal
+
+# data visualisation
+from   matplotlib        import pyplot as plt
+from   matplotlib.pyplot import figure
+import matplotlib.image  as img
+from   PIL               import Image
+
+# model building
+import ultralytics
+from   ultralytics import YOLO
+import labelme2yolo
+
+# others
+import os
+import shutil
+import zipfile
+```
+<b>Part I. Pre- and Post-Event NDVI Analysis </b><br>
+Part I utilizes the NDVI to calculate changes in vegetation. This calculation is based on Sentinel-2 optical data and the goal is to identify areas where storms have damaged vegetation and to assess if there is significant damage to buildings in nearby regions. The process involves defining the area of interest, the time period before and after the storm, the level of detail in the imagery (30 meters for Landstat), and filtering out the clouds . Same procedures were followed in the three visualizations below, resulting in identical outputs.<br>
+<b> Accessing Satellite Data </b><br>
+```
+## Hurricane Maria - San Juan, Puerto Rico ##
+
+## Defining the area of interest using latitude and longitude coordinates 
+## at the center of the area we would like to observe
+
+# Define the bounding box for the selected region 
+min_lon = -66.19385887
+min_lat =  18.27306794
+max_lon = -66.069299
+max_lat =  18.400288
+
+# setting geographic boundary
+bounds = (min_lon, min_lat, max_lon, max_lat)
+
+# setting time window surrounding the storm landfall on September 20, 2017
+time_window = "2017-04-08/2017-10-31"
+
+# calculating days in time window
+print(date(2017, 10, 31) - date(2017, 4, 8 ))
+```
+```
+## Using Planetary Computer's STAC catalog for items matching our query parameters above
+
+# connecting to the planetary computer
+stac = pystac_client.Client.open("https://planetarycomputer.microsoft.com/api/stac/v1")
+
+# seaching for data
+search = stac.search(collections = ["sentinel-2-l2a"],
+                     bbox        = bounds,
+                     datetime    = time_window)
+
+# instantiating results list
+items = list(search.get_all_items())
+
+# summarizing results
+print('This is the number of scenes that touch our region:',len(items))
+```
+```
+## Setting the resolution to 10 meters per pixel, and then convert this to degrees per pixel for the
+## latitude-longitude coordinate system
+
+# pixel resolution for the final product
+resolution = 10  # meters per pixel 
+
+
+# scaling to degrees per pizel
+scale = resolution / 111320.0 # degrees per pixel for CRS:4326
+```
+```
+## Use of Open Data Cube (ODC) for managing and analyzing geospatial data
+## loading specific bands of data (like red, green, blue, near-infrared, and SCL)
+## Filtering out clouds using the qa_pixel band and mapping at a resolution of 30 meters per pixel
+
+xx = stac_load(
+    items,
+    bands      = ["red", "green", "blue", "nir", "SCL"],
+    crs        = "EPSG:4326",                            # latitude-longitude
+    resolution = scale,                                  # degrees
+    chunks     = {"x": 2048, "y": 2048},
+    dtype      = "uint16",
+    patch_url  = pc.sign,
+    bbox       = bounds
+)
+```
