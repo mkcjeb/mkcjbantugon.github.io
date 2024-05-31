@@ -178,6 +178,9 @@ plot_xx.plot.imshow(col      = 'time', # time
 # rendering results
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/S2a.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/S2b.png" alt=""><br>
+
 This focuses on the lower part of San Juan where forests are prominent. It includes geographic area and time frame, relevant satellite data and various angles. Visualization aids in selecting clear satellite images, enabling assessment of the most damaged areas by comparing pre- and post-storm dates. It also helps in narrowing the time window to assess the extent of damage post-storm. A good pre- and post-storm image should have minimal cloud cover and a suitable angle for assessing NDVI changes.<br>
 ```
 # selecting a selected time slice to view a single RGB image and the cloud mask
