@@ -887,7 +887,7 @@ plt.show()
 ```
 <img src="{{ site.url }}{{ site.baseurl }}/images/results.png" alt=""><br>
 
-###  Part III. Model Analysis
+###  Part IV. Model Analysis
 <b>Confusion Matrix</b><br>
 ```
 figure(figsize=(20,15), dpi=80)  
@@ -900,7 +900,7 @@ plt.imshow(cf)
 plt.show()
 ```
 <img src="{{ site.url }}{{ site.baseurl }}/images/confusion_matrix.png" alt=""><br>
-<b>Converting Confusion Matrix to One Class</b><br>
+<b>Converting Confusion Matrix for each Class</b><br>
 <b>Class 1 Undamaged residential building</b><br>
 ```
 # Confusion Matrix for Class 1 (2x2)
@@ -1164,14 +1164,14 @@ Model results offer insights to NASA, Ernst and Young, and infrastructure sector
 <b> Steps your team would implement/improve if you were given three months to work on this project  </b><br>
 Continuously improving the object detection model possibly by using more advanced models for accurate labeling and prediction. Also, considering the size of the buildings, among other features, may enhance its ability to classify damaged and undamaged buildings accurately, leading to better results. Additionally, QGIS offers tools for spatial analysis and feature extraction, allowing for further refinement of object detection algorithms based on building characteristics such as size, shape, and spatial arrangement. Applying advanced pre-processing techniques (sharpening, noise reduction) to improve image clarity. Finally, employing a hybrid approach in manual labeling and using auto-labeling tools to compare results could be beneficial.<br>
 
-### Part V. Feedback to EY 
+### Part VI. Feedback to EY 
 The team faced several challenges in analyzing images, including the need to enhance image quality for easier annotation and labeling. Blurred or hard-to-identify images pose challenges. Additionally, differences in frame area and angle between pre- and post-images make comparisons difficult. For example, a small building in the pre-image might appear larger in the post-image, potentially affecting model accuracy in labeling buildings correctly. Quality differences, such as clear skies in the pre-image versus cloud cover or shadows in the post-image, limit the selection of suitable images for the model. <br>
 
 Overlaying building footprints in QGIS can also provide valuable spatial context for object detection. By integrating building footprint data with satellite imagery or other geospatial datasets, it can visualize the distribution of buildings within an area.<br>
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/OD08.png" alt=""><br>
 
-### References
+### Part VII. References
 ```
 Bane, B. (2021, September 22). Artificial Intelligence brings better hurricane predictions. Pacific Northwest National Laboratory. https://www.pnnl.gov/news-media/artificial-intelligence-brings-better-hurricane-predictions
 
