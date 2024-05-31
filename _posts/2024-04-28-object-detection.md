@@ -94,7 +94,7 @@ import os
 import shutil
 import zipfile
 ```
-<b>Part I. Pre- and Post-Event NDVI Analysis </b><br>
+### Part II. Pre- and Post-Event NDVI Analysis
 Part I utilizes the NDVI to calculate changes in vegetation. This calculation is based on Sentinel-2 optical data and the goal is to identify areas where storms have damaged vegetation and to assess if there is significant damage to buildings in nearby regions. The process involves defining the area of interest, the time period before and after the storm, the level of detail in the imagery (30 meters for Landstat), and filtering out the clouds . Same procedures were followed in the three visualizations below, resulting in identical outputs.<br>
 <b> Visualization 01</b><br>
 <b> Accessing Satellite Data </b><br>
@@ -599,7 +599,7 @@ ndvi_plot_02 = plt.gcf()
 plt.show()
 ```
 <img src="{{ site.url }}{{ site.baseurl }}/images/NDVI2.png" alt=""><br>
-bB> Analysis (Visualization 02) </b><br>
+<b> Analysis (Visualization 02) </b><br>
 The dark red zones reflect acute vegetative destruction, hinting at the harsh conditions endured. Lighter reds and pinks signal less impacted areas that might recover more quickly, contingent on suitable soil and root health. White and pale zones likely represent non-vegetative or data-compromised areas and thus do not inform on vegetation status. The disparity in damage levels, potentially due to topography, land cover, and the storm's path, underscores the need for pinpointed restoration efforts and ongoing ecological tracking.<br>
 
 <b>Visualization 03</b><br>
@@ -848,7 +848,7 @@ plt.show()
 <b>Analysis (Visualization 03) </b><br>
 The visualization highlights striking contrasts in vegetation health with dark red areas indicating substantial damage, likely due to strong winds and rain near the coastal area for urban and suburban neighborhoods. Paler reds suggest areas of moderate impact, with prospects for a more rapid recovery. The irregular pattern of damage implies that factors like terrain variability and proximity to urban structures influenced the level of impact. The insights call for targeted reconstruction and strategic planning for similar future events.<br>
 
-### Part II. Object Detection and Model Building 
+### Part III. Object Detection and Model Building 
 <b>Generating Training and Testing Data along with the Configuration File </b><br>
 ```
 #!labelme2yolo --json_dir /path/to/labelme_json_dir/
@@ -944,7 +944,6 @@ True Positives: 59 <br>
 False Positives: 73 <br>
 True Negatives: 4429 <br>
 False Negatives: 104 <br> <br>
-
 Precision for Class 1: 0.4470 <br>
 Recall for Class 1: 0.3620 <br>
 <b>Class 2 Damaged residential buildings </b><br>
@@ -1036,7 +1035,6 @@ True Positives: 173 <br>
 False Positives: 134 <br>
 True Negatives: 3970 <br>
 False Negatives: 388 <br> <br>
-
 Precision for Class 3: 0.5635 <br>
 Recall for Class 3: 0.3084 <br>
 <b> Class 4 Damaged commercial building </b><br>
@@ -1082,7 +1080,6 @@ True Positives: 1853 <br>
 False Positives: 459 <br>
 True Negatives: 1543 <br>
 False Negatives: 810 <br> <br>
-
 Precision for Class 4: 0.8015 <br>
 Recall for Class 4: 0.6958 <br>
 ```
@@ -1157,7 +1154,7 @@ Similarly, when comparing undamaged and damaged residential buildings, the model
 
 Overall, the model shows a trend of higher performance in identifying damaged buildings across both residential and commercial categories, with varying levels of precision and recall for each class.<br>
 
-### Part IV. Conclusion 
+### Part V. Conclusion 
 Our team labeled 60 images for both pre- and post-storm scenarios, achieving an mAP of around 0.50. Additionally, we leveraged Open Source Roboflow datasets, which use auto labeling, with the same images. We tried three different labeling approaches and concluded that manual labeling using polygons that outline the shape of the building without background elements yielded highest results compared to using fixed rectangles. Labeling commercial buildings is identifiable since we considered big parking spaces and flat roofings, while for residential buildings, it tends to appear smaller and with a ridge line in roofing. <br>
 
 Given more time, we could explore hybrid approaches of using polygons and fixed rectangles with overlapping, similar to how Roboflow labeled it. This is for further analysis, as our model performance improved after using open-source datasets from Roboflow.<br>
@@ -1167,7 +1164,7 @@ Model results offer insights to NASA, Ernst and Young, and infrastructure sector
 <b> Steps your team would implement/improve if you were given three months to work on this project  </b><br>
 Continuously improving the object detection model possibly by using more advanced models for accurate labeling and prediction. Also, considering the size of the buildings, among other features, may enhance its ability to classify damaged and undamaged buildings accurately, leading to better results. Additionally, QGIS offers tools for spatial analysis and feature extraction, allowing for further refinement of object detection algorithms based on building characteristics such as size, shape, and spatial arrangement. Applying advanced pre-processing techniques (sharpening, noise reduction) to improve image clarity. Finally, employing a hybrid approach in manual labeling and using auto-labeling tools to compare results could be beneficial.<br>
 
-### Part IV. Feedback to EY 
+### Part V. Feedback to EY 
 The team faced several challenges in analyzing images, including the need to enhance image quality for easier annotation and labeling. Blurred or hard-to-identify images pose challenges. Additionally, differences in frame area and angle between pre- and post-images make comparisons difficult. For example, a small building in the pre-image might appear larger in the post-image, potentially affecting model accuracy in labeling buildings correctly. Quality differences, such as clear skies in the pre-image versus cloud cover or shadows in the post-image, limit the selection of suitable images for the model. <br>
 
 Overlaying building footprints in QGIS can also provide valuable spatial context for object detection. By integrating building footprint data with satellite imagery or other geospatial datasets, it can visualize the distribution of buildings within an area.<br>
