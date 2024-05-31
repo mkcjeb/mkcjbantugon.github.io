@@ -13,12 +13,10 @@ By: Michelle Kae Celine Jo-anne Bantugon<br>
 
 Business case built by <br>
 [Professor Chase Kusterer](https://github.com/chase-kusterer)<br>
-Ernst & Young | NASA <br>
+Ernst & Young | NASA ([EY Open Science Data Challenge](https://challenge.ey.com/challenges/tropical-cyclone-damage-assessment-lrrno2xm)) <br>
 Hult International Business School<br>
 
-Note: This project was a collaboration with Ella Pesola, Italo Hidalgo, Jorge Solis, Karla Marie Banal , and Marcio Pineda in the context of a Business Challenge class with Professor Chase Kusterer at Hult International Business School.
-
-[EY Open Science Data Challenge](https://challenge.ey.com/challenges/tropical-cyclone-damage-assessment-lrrno2xm)
+Note: This project was a collaboration with Ella Pesola, Italo Hidalgo, Jorge Solis, Karla Marie Banal , and Marcio Pineda in the context of a Business Challenge class with Professor Chase Kusterer at Hult International Business School.<br>
 
 The 2024 challenge is focused on helping coastal communities become more resilient to the effects of climate change.<br>
 
