@@ -24,6 +24,8 @@ The 2024 challenge is focused on helping coastal communities become more resilie
 
 How can data and AI be a lifeline for a vulnerable coastline? <br>
 
+Video Presentation: https://youtu.be/5YiImxXQS6o <br>
+
 ### Introduction
 Located in the northeastern Caribbean, Puerto Rico is part of the "hurricane belt." The island's location puts it directly in the path of tropical storms and hurricanes that form in the Atlantic Ocean. Hurricane Maria made landfall in Puerto Rico in September 2017, with sustained winds as high as 155 mph, which was barely below the Category 5 threshold. This natural event caused considerable damage to the island's infrastructure. The entire island was affected by uprooted trees, power lines pulled down, and residential and commercial roofs being destroyed. (Scott, 2018).
 
@@ -153,3 +155,119 @@ xx = stac_load(
     bbox       = bounds
 )
 ```
+<b>Viewing RGB (real color) images from the time series </b><br>
+```
+# This will take some time to run
+
+# subsetting results for RGB
+plot_xx = xx[ ["red", "green", "blue"] ].to_array()
+
+
+# showing results 
+plot_xx.plot.imshow(col      = 'time', # time
+                    col_wrap = 4     , # four columns per row
+                    robust   = True  , 
+                    vmin     = 0     ,
+                    vmax     = 3000  )
+
+
+# rendering results
+plt.show()
+```
+This focuses on the lower part of San Juan where forests are prominent. It includes geographic area and time frame, relevant satellite data and various angles. Visualization aids in selecting clear satellite images, enabling assessment of the most damaged areas by comparing pre- and post-storm dates. It also helps in narrowing the time window to assess the extent of damage post-storm. A good pre- and post-storm image should have minimal cloud cover and a suitable angle for assessing NDVI changes.<br>
+```
+# selecting a selected time slice to view a single RGB image and the cloud mask
+time_slice = 29 # October 20, 2017 (post-storm)
+```
+```
+## plotting an RGB real color image for a single date ##
+
+# setting plot size
+fig, ax = plt.subplots( figsize = (6, 10) )
+
+
+# preparing the plot
+xx.isel(time = time_slice)[ ["red", "green", "blue"] ].\
+    to_array().plot.imshow(robust = True,
+                           ax     = ax  ,
+                           vmin   = 0   ,
+                           vmax   = 3000)
+
+
+# titles and axis lables
+ax.set_title(label = f"RGB Color Results for Scene {time_slice}")
+ax.axis('off')
+
+
+# rendering results
+plt.show()
+```
+This area of interest includes tropical forests and vegetation, some of which are located near Cupey and Caimito, 
+in the lower part of San Juan. These were significantly impacted as evidenced by the browning of vegetation. 
+According to NASA, nearly 60% of canopy trees in the region lost branches, snapped in half, or uprooted, with 
+trees that once had wide, spreading crowns now reduced to slender main trunks. Forests in Puerto Rico are now 
+approximately one-third shorter on average following Hurricane Maria (NASA, 2019).<br>
+<b>Applying Cloud Filtering and Masking </b><br>
+```
+# instantiating a colormap for SCL pixel classifications
+
+scl_colormap = np.array(
+    [
+        [252,  40, 228, 255],  # 0  - NODATA - MAGENTA
+        [255,   0,   4, 255],  # 1  - Saturated or Defective - RED
+        [0  ,   0,   0, 255],  # 2  - Dark Areas - BLACK
+        [97 ,  97,  97, 255],  # 3  - Cloud Shadow - DARK GREY
+        [3  , 139,  80, 255],  # 4  - Vegetation - GREEN
+        [192, 132,  12, 255],  # 5  - Bare Ground - BROWN
+        [21 , 103, 141, 255],  # 6  - Water - BLUE
+        [117,   0,  27, 255],  # 7  - Unclassified - MAROON
+        [208, 208, 208, 255],  # 8  - Cloud - LIGHT GREY
+        [244, 244, 244, 255],  # 9  - Definitely Cloud - WHITE
+        [195, 231, 240, 255],  # 10 - Thin Cloud - LIGHT BLUE
+        [222, 157, 204, 255],  # 11 - Snow or Ice - PINK
+    ],
+    dtype="uint8",
+)
+```
+```
+# function for color encoding
+def colorize(xx, colormap):
+    return xr.DataArray( colormap[xx.data],
+                         coords = xx.coords,
+                         dims   = (*xx.dims, "band") )
+```
+```
+# filtering out water, etc.
+filter_values = [0, 1, 3, 6, 8, 9, 10]
+
+cloud_mask = ~xx.SCL.isin(filter_values) # this means not in filter_values
+```
+```
+# appling cloud mask (filtering out clouds, cloud shadows, and water)
+
+# storing as 16-bit integers
+cleaned_data = xx.where(cloud_mask).astype("uint16")
+```
+```
+# converting SCL to RGB
+scl_rgba_clean = colorize(xx       = cleaned_data.isel(time = time_slice).SCL.compute(), 
+                          colormap = scl_colormap)
+
+
+# setting figure size
+plt.figure(figsize = (6, 10))
+plt.imshow(scl_rgba_clean)
+
+
+# titles and axis labels
+plt.title(label = "Cloud / Shadows / Water Mask (MAGENTA)")
+plt.axis('off')
+
+
+# rendering the plot
+plt.show()
+```
+Code above creates a colormap for different land cover types based on Sentinel-2 Scene Classification Layer (SCL) 
+values. It then applies the colormap to the data, highlighting vegetation, bare ground, and water in distinct colors. 
+It filters out clouds, cloud shadows, and no data from the image represented by the magenta color, displaying the remaining land cover types in the area of interest.<br>
+<b>Normalized Difference Vegetation Index (NDVI)</b><br>
