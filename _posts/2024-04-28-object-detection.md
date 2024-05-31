@@ -315,7 +315,45 @@ values typically indicating healthier vegetation (dark green). Moreover, it illu
 changed post-storm, evident in the shift to lighter green, red, and orange shades, providing insights into the 
 sudden drop in NDVI after the storm.<br>
 <b>NDVI Change Product</b><br>
+```
+# function for calculating NDVI anomalies
+def NDVI(dataset):
+    return (dataset.nir - dataset.red) / (dataset.nir + dataset.red)
+```
+```
+# running comparison
+ndvi_clean = NDVI(cleaned_data)
 
+# calculating difference
+ndvi_pre     = ndvi_clean.isel(time = first_time)
+ndvi_post    = ndvi_clean.isel(time = second_time)
+ndvi_anomaly = ndvi_post - ndvi_pre
+
+
+# all areas of water or clouds will be black
+RdYlGn.set_bad('black',1.)
+
+
+# reversing the colormap for reds
+Reds_reverse = "Reds_r"
+```
+```
+## plotting NDVI anomaly
+plt.figure( figsize = (6,10) )
+ndvi_anomaly.plot(vmin = -0.2, vmax=0.0, cmap = Reds_reverse, add_colorbar=False)
+
+
+# titles and labels
+plt.title (label  = "NDVI Anomaly")
+plt.xlabel(xlabel = "Longitude")
+plt.ylabel(ylabel = "Latitude")
+
+# Save the current figure as a variable
+ndvi_plot_01 = plt.gcf()
+
+# Display the plot
+plt.show()
+```
 
 
 
