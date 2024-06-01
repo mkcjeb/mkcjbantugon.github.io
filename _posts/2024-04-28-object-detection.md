@@ -215,13 +215,12 @@ ax.axis('off')
 # rendering results
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/RGB_Scene_29.png" alt=""><br>
 This area of interest includes tropical forests and vegetation, some of which are located near Cupey and Caimito, 
 in the lower part of San Juan. These were significantly impacted as evidenced by the browning of vegetation. 
 According to NASA, nearly 60% of canopy trees in the region lost branches, snapped in half, or uprooted, with 
 trees that once had wide, spreading crowns now reduced to slender main trunks. Forests in Puerto Rico are now 
 approximately one-third shorter on average following Hurricane Maria (NASA, 2019).<br>
-
-<img src="{{ site.url }}{{ site.baseurl }}/images/RGB_Scene_29.png" alt=""><br>
 <b>Applying Cloud Filtering and Masking </b><br>
 ```
 # instantiating a colormap for SCL pixel classifications
