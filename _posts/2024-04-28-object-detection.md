@@ -455,6 +455,9 @@ plot_xx.plot.imshow(col      = 'time', # time
 # rendering results
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/S2_30_a.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/S2_30_b.png" alt=""><br>
+
 This visual focuses in the middle part where houses are located near forested areas. Geographic area and 
 time frame, relevant satellite data, and various angles were displayed. Visualizations have more clouds
 and not a good angle, usually either cropped or not captured at all. Zooming in on the area was done to 
@@ -694,13 +697,15 @@ plot_xx.plot.imshow(col      = 'time', # time
 # rendering results
 plt.show()
 ```
-```
+<img src="{{ site.url }}{{ site.baseurl }}/images/S2_21_a.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/S2_21_b.png" alt=""><br>
+
 This visualization targets an area in northern San Juan, Puerto Rico, featuring critical infrastructure near 
 coastal regions. It defines a specific geographical area and time range and collects pertinent satellite data.
 However, many visualizations are obscured by clouds, and some lack data entirely. To evaluate damage, we zoomed 
 into the area, maintaining consistent pre- and post-dates while varying coordinates to assess damage extent in
 this area.
-```
+
 ```
 # selecting a selected time slice to view a single RGB image and the cloud mask
 time_slice = 21 # October 20, 2017 (post storm)
