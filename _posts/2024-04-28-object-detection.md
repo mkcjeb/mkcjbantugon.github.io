@@ -989,7 +989,6 @@ True Positives: 379 <br>
 False Positives: 173 <br>
 True Negatives: 3640 <br>
 False Negatives: 473 <br> <br>
-
 Precision for Class 2: 0.6866 <br>
 Recall for Class 2: 0.4448 <br>
 <b> Class 3 Undamaged commercial building </b><br>
