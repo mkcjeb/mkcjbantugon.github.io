@@ -220,6 +220,8 @@ in the lower part of San Juan. These were significantly impacted as evidenced by
 According to NASA, nearly 60% of canopy trees in the region lost branches, snapped in half, or uprooted, with 
 trees that once had wide, spreading crowns now reduced to slender main trunks. Forests in Puerto Rico are now 
 approximately one-third shorter on average following Hurricane Maria (NASA, 2019).<br>
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/RGB_Scene_29.png" alt=""><br>
 <b>Applying Cloud Filtering and Masking </b><br>
 ```
 # instantiating a colormap for SCL pixel classifications
@@ -280,6 +282,7 @@ plt.axis('off')
 # rendering the plot
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/FM_Scene_29.png" alt=""><br>
 Code above creates a colormap for different land cover types based on Sentinel-2 Scene Classification Layer (SCL) 
 values. It then applies the colormap to the data, highlighting vegetation, bare ground, and water in distinct colors. 
 It filters out clouds, cloud shadows, and no data from the image represented by the magenta color, displaying the remaining land cover types in the area of interest.<br>
@@ -314,10 +317,10 @@ ndvi_image.isel(time = second_time).plot(ax = ax[1],
 ax[0].set_title(label = 'NDVI-Time #1'), ax[0].xaxis.set_visible(False), ax[0].yaxis.set_visible(False)
 ax[1].set_title(label = 'NDVI-Time #2'), ax[1].xaxis.set_visible(False), ax[1].yaxis.set_visible(False)
 
-
 # rendering the plot
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/NDVI_Scene_29.png" alt=""><br>
 The figure is from April 08 and October 20, 2017. It creates plots of NDVI values for selected time window,
 masking out clouds, shadows, and no data. Values indicate the health and density of vegetation, with higher 
 values typically indicating healthier vegetation (dark green). Moreover, it illustrates how vegetation cover 
@@ -485,6 +488,7 @@ ax.axis('off')
 # rendering results
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/RGB_Scene_30.png" alt=""><br>
 The highlighted area of interest includes tropical forests, vegetation, and surrounding suburbs, indicated by 
 white tones. Notably, there is observable browning of vegetation near forested regions, suburbs, and infrastructure 
 along the coastal areas. These findings align with Hosannah, N. et al. (2019), who noted a significant increase in 
@@ -524,6 +528,7 @@ plt.axis('off')
 # rendering the plot
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/FM_Scene_30.png" alt=""><br>
 <b>Normalized Difference Vegetation Index (NDVI)</b><br>
 ```
 # preparing two time steps compare NDVI outputs
@@ -559,10 +564,10 @@ ndvi_image.isel(time = second_time).plot(ax = ax[1],
 ax[0].set_title(label = 'NDVI-Time #1'), ax[0].xaxis.set_visible(False), ax[0].yaxis.set_visible(False)
 ax[1].set_title(label = 'NDVI-Time #2'), ax[1].xaxis.set_visible(False), ax[1].yaxis.set_visible(False)
 
-
 # rendering the plot
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/NDVI_Scene_30.png" alt=""><br>
 <b> NDVI Change Product</b><br>
 ```
 # running comparison
@@ -725,6 +730,7 @@ ax.axis('off')
 # rendering results
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/RGB_Scene_21.png" alt=""><br>
 It is evident that vegetation near coastal infrastructures has also shown signs of browning. This indicates 
 potential damage to houses and buildings. This image can help identify the specific types of buildings, 
 critical infrastructures, and areas most affected by the storm. Moreover, beach erosion and its significant 
@@ -764,6 +770,7 @@ plt.axis('off')
 # rendering the plot
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/FM_Scene_21.png" alt=""><br>
 <b>Normalized Difference Vegetation Index (NDVI)</b><br>
 ```
 # preparing two time steps compare NDVI outputs
@@ -799,10 +806,10 @@ ndvi_image.isel(time = second_time).plot(ax = ax[1],
 ax[0].set_title(label = 'NDVI-Time #1'), ax[0].xaxis.set_visible(False), ax[0].yaxis.set_visible(False)
 ax[1].set_title(label = 'NDVI-Time #2'), ax[1].xaxis.set_visible(False), ax[1].yaxis.set_visible(False)
 
-
 # rendering the plot
 plt.show()
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/NDVI_Scene_21.png" alt=""><br>
 Using the same time window as before, this visualization generates plots of NDVI values while excluding clouds, 
 shadows, water, and dark areas near the coastal area. NDVI values indicate vegetation health and density, with 
 higher values suggesting healthier vegetation (dark green). The plots demonstrate changes in vegetation cover 
