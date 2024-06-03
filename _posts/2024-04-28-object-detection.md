@@ -42,11 +42,16 @@ Housing structures in the Old San Juan, which is near the coastal line, are old 
 
 One way to lessen the effect of hurricanes on buildings, be it commercial or residential is by getting people to build more hurricane-proof buildings especially in the rural areas. Based on the outreach project initiated by the Federal Emergency Management Agency (FEMA) in conjunction with the Federal Alliance for Safe homes (FLASH), strong implementation of the use of materials based on ICC standards will surely make a lot of difference. The houses, especially the older homes must ensure roof coverings are high wind-rated and attached properly regardless of the type (tiles, shingles, or metal). It is also highly recommended to install permanently-mounted hurricane shutters, strengthen the roof deck connection, and strengthen roof-to-wall connections by installing hurricane clips or straps. Lastly install a secondary water barrier and improve the anchorage of attached structures.<br>
 
-<b>Emergency / Evacuation Plan</b><br>
-The government must identify shelters and broadcast them in advance, so that people can plan their route to safety. Each house must be equipped with a Basic-Disaster kit or emergency supplies like food, water, medicine, power supplies that will last the whole family for days while waiting for rescue (OSHA). Although the aforementioned tactics are already in existence in different parts of the world, the thing here that sets them apart from other countries will be the constant education to the people of San Juan, Puerto Rico on the evacuation plan in case a hurricane hits the country again.
+<b>Integration of green and gray infrastructure (embankments/seawalls) with natural coastal habitats</b><br>
+ 
+The pronounced change in NDVI in vegetation forests indicates heavy damage, highlighting the potential integration of natural coastal habitats such as mangrove forests, reefs, seagrass, or salt marshes into coastal defense strategies. These natural habitats can break tidal waves, reduce storm and erosion risks, and contribute to maintaining land as sea levels rise.<br>
+ 
+<b>Non-structural stabilization methods</b><br>
+ 
+Given the increased vulnerability of coastal areas to infrastructure damage, implementing both structural and non-structural measures is crucial. Structural protection, such as coastal habitats, can mitigate damage. Additionally, non-structural methods like beach nourishment and dune restoration offer effective solutions. Beach nourishment involves adding sand or sediment that widens the beach, reducing storm damage, while dune restoration involves rebuilding dunes and planting native vegetation to stabilize them, trap sand, and enhance coastal habitat.<br>
+ 
+Another approach is living shorelines, which use vegetation such as oyster reefs, seagrasses, mangroves, and vegetated dunes. These features can calm waves, reduce wave energy, and stabilize the coastline.<br>
 
-<b>Insurance Plan</b><br>
-When Hurricane Maria hit San Juan, Puerto Rico, it uncovers that only a small percentage of the population’s homes were insured. Majority of the old homes which were passed down from generation to generation do not have insurance as well. The biggest take-away in this whole disaster was to get your homes insured as it wouldn’t be as costly as rebuilding your home or office buildings out of your own pockets (FEMA).<br>
 
 ### Part I. Importing Packages
 ```
@@ -1175,15 +1180,16 @@ Model results offer insights to NASA, Ernst and Young, and infrastructure sector
 Continuously improving the object detection model possibly by using more advanced models for accurate labeling and prediction. Also, considering the size of the buildings, among other features, may enhance its ability to classify damaged and undamaged buildings accurately, leading to better results. Additionally, QGIS offers tools for spatial analysis and feature extraction, allowing for further refinement of object detection algorithms based on building characteristics such as size, shape, and spatial arrangement. Applying advanced pre-processing techniques (sharpening, noise reduction) to improve image clarity. Finally, employing a hybrid approach in manual labeling and using auto-labeling tools to compare results could be beneficial.<br>
 
 ### Part VI. Feedback to EY 
-The team faced several challenges in analyzing images, including the need to enhance image quality for easier annotation and labeling. Blurred or hard-to-identify images pose challenges. Additionally, differences in frame area and angle between pre- and post-images make comparisons difficult. For example, a small building in the pre-image might appear larger in the post-image, potentially affecting model accuracy in labeling buildings correctly. Quality differences, such as clear skies in the pre-image versus cloud cover or shadows in the post-image, limit the selection of suitable images for the model. <br>
-
-Overlaying building footprints in QGIS can also provide valuable spatial context for object detection. By integrating building footprint data with satellite imagery or other geospatial datasets, it can visualize the distribution of buildings within an area.<br>
+<b> Scale Variation </b> <br>
+One of the challenges the team encountered with the satellite images was scale variation. The images, which have a large field of view and are often taken from a top-down perspective, vary significantly in angle and viewpoint. This leads to differences in the scale of objects within each image and class. Additionally, the uniform cropping of the images introduces more background noise and partial cropping of some classes. 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/OD08.png" alt=""><br>
 
 ### Part VII. References
 ```
 Bane, B. (2021, September 22). Artificial Intelligence brings better hurricane predictions. Pacific Northwest National Laboratory. https://www.pnnl.gov/news-media/artificial-intelligence-brings-better-hurricane-predictions
+
+FEMA. March 2022. Hurricane and Flood Mitigation Handbook for Public Facilities. https://www.fema.gov/sites/default/files/documents/fema_p-2181-fact-sheet-5-4-shorelines.pdf
 
 Find Codes. (n.d.). Codes.iccsafe.org. https://codes.iccsafe.org/codes/puerto-rico
 
@@ -1194,6 +1200,8 @@ Hosannah, N., Ramamurthy, P., Marti, J., Munoz, J., & González, J. E. (2021). I
 Hurricane Preparedness and Response - Preparedness | Occupational Safety and Health Administration. (n.d.). www.osha.gov. https://www.osha.gov/hurricane/preparedness
 
 Kundu, R. (2022, August 3). Image Processing: Techniques, Types & Applications [2023]. https://www.v7labs.com/blog/image-processing-guide
+
+Li, C. (2020). Object detection in aerial image. Unc Charlotte Electronic Theses And Dissertations.
 
 Maayan, G. (2023, September 12). Complete Guide to Image Labeling for Computer Vision. Comet. https://www.comet.com/site/blog/complete-guide-to-image-labeling-for-computer-vision/
 
@@ -1207,6 +1215,8 @@ PBS Org (March, 2019). Hurricane Maria Devastated Puerto Rico’s Forests at an 
 
 Pérez Valentín, J. M., & Müller, M. F.(2020). Impact of Hurricane Maria onbeach erosion in Puerto Rico: Remotesensing and causal inference.Geophysical Research Letters,47,e2020GL087306. https://doi.org/10.1029/2020GL087306Received
 
+Peter Sheng Y, Paramygin VA, Rivera-Nieves AA, Zou R, Fernald S, Hall T, Jacob K. Coastal marshes provide valuable protection for coastal communities from storm-induced wave, flood, and structural loss in a changing climate. Sci Rep. 2022 Feb 23;12(1):3051. doi: 10.1038/s41598-022-06850-z. PMID: 35197502; PMCID: PMC8866407.
+
 Protective Actions Research. (2024). Fema.gov. https://community.fema.gov/ProtectiveActions/s/article/Hurricane-Review-Your-Insurance
 
 Roboflow User (um). tes1 Image Dataset. https://universe.roboflow.com/um-w3o1a/tes1-mjea9/dataset/3. Retrieved 24Apr2023
@@ -1216,4 +1226,8 @@ Scott, M. (2018, August 1). Hurricane Maria’s devastation of Puerto Rico. http
 Shorten, C., Khoshgoftaar, T.M. (2019, July 6). A survey on Image Data Augmentation for Deep Learning. J Big Data 6, 60 (2019). https://doi.org/10.1186/s40537-019-0197-0
 
 USGS. Landsat Collection 2 Quality Assessment Bands. https://www.usgs.gov/landsat-missions/landsat-collection-2-quality-assessment-bands
+
+Vishal Pandey, Khushboo Anand, Anmol Kalra, Anmol Gupta, Partha Pratim Roy, Byung-Gyu Kim. Enhancing object detection in aerial images[J]. Mathematical Biosciences and Engineering, 2022, 19(8): 7920-7932. doi: 10.3934/mbe.2022370
+
+Wetlands International and The Nature Conservancy. Mangroves for coastal defence. https://www.nature.org/media/oceansandcoasts/mangroves-for-coastal-defence.pdf
 ```
