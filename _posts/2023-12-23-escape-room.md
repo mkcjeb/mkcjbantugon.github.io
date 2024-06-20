@@ -39,7 +39,6 @@ Published on Sunday December 03, 2023<br>
 
 @author: Michelle Kae Celine Jo-anne Bantugon (https://github.com/mkcjeb)
 
-```
 ### Sample Screenshots <br>
 <b> 1 of 4 </b> <br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/game_snip_01.png" alt="">
