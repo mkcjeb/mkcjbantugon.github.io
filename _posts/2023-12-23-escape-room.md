@@ -41,6 +41,7 @@ Published on Sunday December 03, 2023
 
 @author: Michelle Kae Celine Jo-anne Bantugon (https://github.com/mkcjeb)
 """
+```
 ### Sample Screenshots <br>
 <b> 1 of 4 </b> <br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/game_snip_01.png" alt="">
@@ -55,8 +56,7 @@ Published on Sunday December 03, 2023
 <img src="{{ site.url }}{{ site.baseurl }}/images/game_snip_04.png" alt="">
 
 <br>
-
-"""
+```
 # Importing modules for generating random values, strings, and time
 import random
 import string
