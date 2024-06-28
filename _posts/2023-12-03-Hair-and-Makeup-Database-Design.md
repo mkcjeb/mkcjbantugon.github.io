@@ -22,4 +22,5 @@ Hult International Business School<br>
 ### Functional Dependency
 <img src="{{ site.url }}{{ site.baseurl }}/images/hmu_db_01.png" alt="">
 
+### Entity Relationship Diagram (ERD)
 <img src="{{ site.url }}{{ site.baseurl }}/images/hmu_db_02.png" alt="">
