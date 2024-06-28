@@ -1,10 +1,10 @@
 ---
-title: "Hair and Makeup Wedding Vendor"
+title: "Hair and Makeup Wedding Vendors Database Design"
 date: 2023-10-08
 tags: [SQL, database, RDBMS]
 header:
   image: "/images/hmua.jpg"
-excerpt: "(SQL) Designed a database based on the hair and makeup vendors information in San Francisco Bay Area . "
+excerpt: "(SQL) Designed a database based on the hair and makeup vendors information in San Francisco Bay Area. This includes entities, functional dependencies, and Entity Relationship Diagram in 3NF."
 mathjax: "true"
 toc: true
 toc_label : "Navigate":
