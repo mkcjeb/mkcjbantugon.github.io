@@ -1,1 +1,20 @@
+---
+title: "Hair and Makeup Wedding Vendor"
+date: 2023-10-08
+tags: [SQL, database, RDBMS]
+header:
+  image: "/images/hmua.jpg"
+excerpt: "(SQL) Designed a database based on the hair and makeup vendors information in San Francisco Bay Area . "
+mathjax: "true"
+toc: true
+toc_label : "Navigate":
+---
+By: Team Matrix <br>
+Michelle Kae Celine Jo-anne Bantugon (Data Engineer) <br>
+Miron Tkachuk (Data Engineer) <br>
+Srinivas Kondeti (Product Manager) <br>
+Zamambo Mkhize (Business-Side Stakeholder) <br>
 
+
+Business Challenge built by [Professor Chase Kusterer](https://github.com/chase-kusterer)<br>
+Hult International Business School<br>
