@@ -9,6 +9,14 @@ mathjax: "true"
 toc: true
 toc_label : "Navigate":
 ---
+By: Team Matrix <br>
+Michelle Kae Celine Jo-anne Bantugon (Data Engineer) <br>
+Miron Tkachuk (Data Engineer) <br>
+Srinivas Kondeti (Product Manager) <br>
+Zamambo Mkhize (Business-Side Stakeholder) <br>
+
+Business Challenge built by [Professor Chase Kusterer](https://github.com/chase-kusterer)<br>
+Hult International Business School<br>
 
 
 
