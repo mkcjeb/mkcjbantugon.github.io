@@ -25,36 +25,8 @@ Hult International Business School<br>
     
 Choose our services for your wedding and entrust the planning to the very best hands, leaving you absolutely relaxed to enjoy the best day of your lives!<br>
 
-&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - The Matrix Bliss Events
+&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - The Matrix Bliss Events
 
-<div class="alert alert-block alert-success">
-Proving  the elegance of simplicity in color palettes, this ethereal styled wedding presentation showcases greenery-filled floral arrangements. It offers exquisite styling inspiration for a romantic-vintage wedding, all presented in the heavenly hues of dusty blue.
-</div>
-
-<div class="alert alert-block alert-info">
-    <b>Wedding Theme:</b> Romantic + Vintage &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>Setting:</b>&emsp;&emsp;Indoor + Outdoor  <br>
-    <b>Color:</b>&emsp;&emsp;&emsp;&emsp;&emsp; Dusty Blue &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>Location:</b>&emsp;601 Murray Cir, Sausalito, CA 94965
-</div>
-<br>
-
-<div style="display: flex; justify-content: center; align-items: center;">
-<img src="theme.jpg" alt="theme.jpg" width="300" height="200" style="float:left; margin-right: -200px;" />
-<img src="invitation.png" alt="invitation.png" width="200" height="200" style="margin: 0 240px;" />
-</div>
-</div>
-</div>
-
-<div class="alert alert-block alert-warning" style="text-align: center; font-family: 'Calibri Light', sans-serif; font-size: 18px;">
-VENDORS<br>
-<hr>  
-<span style='font-family: "Arial"; font-size: 14px; color: gray; display: block; text-align: left;'>&emsp;&emsp;VENUE: Cavallo Point The Lodge at the Golden Gate&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;HAIR & MAKEUP: Shineforth Salon and The Pretty Committee &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<br><br>
-&emsp;&emsp;RENTALS: Eventlyst &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;DRESS & ATTIRE: Stacees (Bride Dress), Blacktux (Tie), Misaac (B.maid Dress) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
-<br>&emsp;&emsp;CATERING: Fogcutter &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;JEWELRY: Diamondere <br><br>
-&emsp;&emsp;FLOWERS: Expressions Floral &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; PHOTO AND VIDEO: Danny Rey Films<br> <br>
-&emsp;&emsp;INVITATION:The Knot & Paper culture &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MUSIC: iMobile DJs <br> <br>
-<span>    
-</div> 
-</div>
 
 ### Code
 ```
