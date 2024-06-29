@@ -113,7 +113,7 @@ formatted_total_cost = '\x1b[1m\x1b[41;184;219;46m' + f'Wedding Cost:           
 print(formatted_total_cost)
 ```
 ### Wedding Proposal
-Wedding Size: Medium (51 - 150)
+Wedding Size: Medium (51 - 150)<br>
 Budget Level: Moderate (135 guests)
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/w_proposal_01.png" alt="">
