@@ -1,6 +1,6 @@
 ---
 title: "Hair and Makeup Wedding Vendors Database Design"
-date: 2023-10-08
+date: 2023-12-03
 tags: [SQL, database, RDBMS, entities, ERD, functional dependencies, tables,data model]
 header:
   image: "/images/hmua.jpg"
