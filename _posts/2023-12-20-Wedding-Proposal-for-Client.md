@@ -23,9 +23,9 @@ Hult International Business School<br>
 <em>&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Congratulations on your engagement!<br>
     &emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ready to start planning the best day of your lives?</em><br>
     
-Choose our services for your wedding and entrust the planning to the very best hands, leaving you absolutely relaxed to enjoy the best day of your lives!<br>
+Choose our services for your wedding and entrust the planning to the very best hands, leaving you absolutely relaxed to enjoy the best day of your lives!<br><br>
 
-&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - The Matrix Bliss Events
+-<i>The Matrix Bliss Events</i>
 
 
 ### Code
