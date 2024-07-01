@@ -12211,6 +12211,7 @@ INNER JOIN vendors AS c
 ON a.vendor_id = c.vendor_id
 LIMIT 5;
 ```
+<img src="{{ site.url }}{{ site.baseurl }}/images/venue_dept.png" alt="">
 
 
 
