@@ -9,6 +9,8 @@ mathjax: "true"
 toc: true
 toc_label : "Navigate":
 ---
+<img src="{{ site.url }}{{ site.baseurl }}/images/promotion_dashboard_01.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/promotion_dashboard_02.png" alt="">
 ### Dashboard and Storyboard 
 The dashboards used in the storyboard present a comprehensive view of sales performance, allowing users to analyze 
 trends and make informed decisions. It includes key metrics such as total sales amounts and quantities per state, 
