@@ -308,6 +308,77 @@ ON f1.vendor_id = p1.vendor_id
 WHERE ws_small = 1
 group by 1,2,3,5;
 ```
+### Hair and Makeup Department
+```
+/*
+HAIR AND MAKEUP DEPARTMENT
+To streamline vendor selection, proximity to the potential event venue is a key criterion.
+Hair:
+Our choice of hair providers is guided by the client's desired style. The bride opts for a 
+'half-up' do with a braid, while the bridesmaids prefer elegant 'updo' chignons.
+Makeup:
+All makeup vendors provide both traditional and airbrush makeup styles, along with trial 
+sessions for the client to choose her preferred look. Simple makeup options are available 
+for brides, grooms, and children on both the bride and groom sides.
+*/
+
+-- Table 1
+DROP TABLE IF EXISTS hmu;
+CREATE TEMPORARY TABLE hmu AS
+WITH rankedprices AS (
+  SELECT
+    a.vendor_id,
+    a.price_ce,
+    RANK() OVER (PARTITION BY a.vendor_id ORDER BY COUNT(*) DESC, MAX(a.price_ce) DESC) AS rank_pce
+  FROM products AS a
+  INNER JOIN vendors AS b
+    ON a.vendor_id = b.vendor_id
+  WHERE a.vendor_id LIKE '%hmu%'
+    AND b.vendor_location IN ('berkeley', 'burlingame', 'san francisco', 'oakland', 'san jose')
+  GROUP BY a.vendor_id, a.price_ce
+)
+SELECT
+  b.vendor_id,
+  b.vendor_depart,
+  c.price_ce,
+  1 AS ws_small,
+  1 AS ws_medium,
+  1 AS ws_large
+FROM vendors AS b
+INNER JOIN rankedprices AS c 
+  ON b.vendor_id = c.vendor_id AND c.rank_pce = 1
+ORDER BY c.price_ce ASC;
+
+/*
+HMU_ALL_SIZES Table 2
+*/
+DROP TABLE IF EXISTS hmu_all_sizes;
+CREATE TEMPORARY TABLE hmu_all_sizes AS
+SELECT 	'Small' AS wedding_size,
+	CASE 
+        WHEN a.price_ce = 1 THEN 'Inexpensive'
+		WHEN a.price_ce = 2 THEN 'Affordable'
+		WHEN a.price_ce = 3 THEN 'Moderate'
+		WHEN a.price_ce = 4 then 'Luxury'
+	END AS budget_level,
+		1 AS hair_bride,
+		ROUND(AVG(CASE WHEN a.product_name IN ('half up') AND c.vendor_location IN ('berkeley', 'burlingame', 'san francisco', 'oakland', 'san jose')
+					   THEN a.price_unit END), 2) AS hair_bride_price,
+		1 AS makeup_tr_bride,
+        ROUND(AVG(CASE WHEN a.product_name IN ('traditional') AND c.vendor_location IN ('berkeley', 'burlingame', 'san francisco', 'oakland', 'san jose')
+					   THEN a.price_unit END), 2) AS makeup_tr_bride_price,
+		1 AS makeup_ab_bride,
+        ROUND(AVG(CASE WHEN a.product_name IN ('airbrush') AND c.vendor_location IN ('berkeley', 'burlingame', 'san francisco', 'oakland', 'san jose')
+					   THEN a.price_unit END), 2) AS makeup_ab_bride_price
+					
+FROM products AS a
+INNER JOIN hmu AS b
+ON a.vendor_id = b.vendor_id
+INNER JOIN vendors AS c
+ON a.vendor_id = c.vendor_id
+WHERE ws_small = 1
+GROUP BY 1,2,3,5;
+```
 ### Invitation Department
 ```
 /*
@@ -411,78 +482,6 @@ FROM Products p1
 INNER JOIN jewelry f1
 ON f1.vendor_id = p1.vendor_id
 group by 1,2,3;
-```
-
-### Hair and Makeup Department
-```
-/*
-HAIR AND MAKEUP DEPARTMENT
-To streamline vendor selection, proximity to the potential event venue is a key criterion.
-Hair:
-Our choice of hair providers is guided by the client's desired style. The bride opts for a 
-'half-up' do with a braid, while the bridesmaids prefer elegant 'updo' chignons.
-Makeup:
-All makeup vendors provide both traditional and airbrush makeup styles, along with trial 
-sessions for the client to choose her preferred look. Simple makeup options are available 
-for brides, grooms, and children on both the bride and groom sides.
-*/
-
--- Table 1
-DROP TABLE IF EXISTS hmu;
-CREATE TEMPORARY TABLE hmu AS
-WITH rankedprices AS (
-  SELECT
-    a.vendor_id,
-    a.price_ce,
-    RANK() OVER (PARTITION BY a.vendor_id ORDER BY COUNT(*) DESC, MAX(a.price_ce) DESC) AS rank_pce
-  FROM products AS a
-  INNER JOIN vendors AS b
-    ON a.vendor_id = b.vendor_id
-  WHERE a.vendor_id LIKE '%hmu%'
-    AND b.vendor_location IN ('berkeley', 'burlingame', 'san francisco', 'oakland', 'san jose')
-  GROUP BY a.vendor_id, a.price_ce
-)
-SELECT
-  b.vendor_id,
-  b.vendor_depart,
-  c.price_ce,
-  1 AS ws_small,
-  1 AS ws_medium,
-  1 AS ws_large
-FROM vendors AS b
-INNER JOIN rankedprices AS c 
-  ON b.vendor_id = c.vendor_id AND c.rank_pce = 1
-ORDER BY c.price_ce ASC;
-
-/*
-HMU_ALL_SIZES Table 2
-*/
-DROP TABLE IF EXISTS hmu_all_sizes;
-CREATE TEMPORARY TABLE hmu_all_sizes AS
-SELECT 	'Small' AS wedding_size,
-	CASE 
-        WHEN a.price_ce = 1 THEN 'Inexpensive'
-		WHEN a.price_ce = 2 THEN 'Affordable'
-		WHEN a.price_ce = 3 THEN 'Moderate'
-		WHEN a.price_ce = 4 then 'Luxury'
-	END AS budget_level,
-		1 AS hair_bride,
-		ROUND(AVG(CASE WHEN a.product_name IN ('half up') AND c.vendor_location IN ('berkeley', 'burlingame', 'san francisco', 'oakland', 'san jose')
-					   THEN a.price_unit END), 2) AS hair_bride_price,
-		1 AS makeup_tr_bride,
-        ROUND(AVG(CASE WHEN a.product_name IN ('traditional') AND c.vendor_location IN ('berkeley', 'burlingame', 'san francisco', 'oakland', 'san jose')
-					   THEN a.price_unit END), 2) AS makeup_tr_bride_price,
-		1 AS makeup_ab_bride,
-        ROUND(AVG(CASE WHEN a.product_name IN ('airbrush') AND c.vendor_location IN ('berkeley', 'burlingame', 'san francisco', 'oakland', 'san jose')
-					   THEN a.price_unit END), 2) AS makeup_ab_bride_price
-					
-FROM products AS a
-INNER JOIN hmu AS b
-ON a.vendor_id = b.vendor_id
-INNER JOIN vendors AS c
-ON a.vendor_id = c.vendor_id
-WHERE ws_small = 1
-GROUP BY 1,2,3,5;
 ```
 ### Music Department
 ```
@@ -1266,12 +1265,12 @@ VALUES
 
 ### Final table
 ```
--- Final table
+-- Final table (Viewing the first 30)
 SELECT *
 FROM wedding_cost_data
 limit 30;
 ```
-### Table Output
+### Table Output (First 30)
 <img src="{{ site.url }}{{ site.baseurl }}/images/wedding_table.png" alt="">
 
 
