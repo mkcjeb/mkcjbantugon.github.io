@@ -1,7 +1,7 @@
 ---
 title: "Air France Marketing: R Analysis"
 date: 2024-03-10
-tags: [R, machine learning, unsupervised, cluster, k-means, PCA, classification]
+tags: [R, SEO, SEM, Marketing, Air France, NLP, Word cloud]
 header:
   image: "/images/air france.jpeg"
 excerpt: "(R, NLP) Air France Internet Marketing: Optimizing Google, Yahoo!, MSN, and Kayak Sponsored Search.  The analysis reveals whether different search engines were attracting different consumer segments and yielding unique purchase patterns and consumer behavior from SEM campaigns. "
