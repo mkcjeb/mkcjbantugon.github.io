@@ -18,13 +18,13 @@ Zamambo Mkhize (Business-Side Stakeholder) <br>
 Business Challenge built by [Professor Chase Kusterer](https://github.com/chase-kusterer)<br>
 Hult International Business School<br>
 
-### Functional Dependency
+### I. Functional Dependency
 <img src="{{ site.url }}{{ site.baseurl }}/images/hmu_db_01.png" alt="">
 
-### Entity Relationship Diagram (ERD)
+### II. Entity Relationship Diagram (ERD)
 <img src="{{ site.url }}{{ site.baseurl }}/images/hmu_db_02.png" alt="">
 
-### Integrating All Wedding Vendors (Cohort Project MBAN 2023)
+### III. Integrating All Wedding Vendors (Cohort Project MBAN 2023)
 
 ### Dropping & Creating the Database
 ```
@@ -67,7 +67,7 @@ CREATE TABLE Products (
     FOREIGN KEY (vendor_id) REFERENCES Vendors(vendor_id)
 );
 ```
-### Wedding Vendors
+### IV. Wedding Vendors
 ### Inserting Values (Hair & Makeup Department)
 ```
 #inserting for Vendor table until row 2539
@@ -2596,7 +2596,7 @@ VALUES
 'dj_35', 'music', 'los gatos dj company', 'los gatos ', 1, 0, 4083567717, ''
 );
 ```
-### Wedding Products
+### V. Wedding Products
 ### Venue Department
 ```
 /* INSERT QUERY NO: 1 */
@@ -8595,7 +8595,7 @@ VALUES
 'prod_854', 'suit - charcoal suit', 'att_17', 475, '1 per person', 3
 );
 ```
-### Vendor Sustainability Table
+### VI. Vendor Sustainability Table
 ### Flower Department
 ```
 DROP TABLE IF EXISTS Flowers_Vendor_Sustainability;
