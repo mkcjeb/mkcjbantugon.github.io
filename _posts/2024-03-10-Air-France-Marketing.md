@@ -26,9 +26,9 @@ able to identify within the study case.
 
 ### Top Three Actionable Insights
 
-The Overture Global campaign, while having lower CPT and CPC, experiences lower conversion rates and revenue. To improve performance, the campaign should use more "advanced" and explore "broad" keyword match types.  Additionally, lowering search engine bids for Overture Global and increasing bids for Overture US could be  beneficial. Despite it, it ranks second in clicks and traffic generation, the conversion rate remains low.  Utilizing more advanced and broad keywords could enhance this campaign's performance.
+The Overture Global campaign, while having lower CPT and CPC, experiences lower conversion rates and revenue. To improve performance, the campaign should use more "advanced" and explore "broad" keyword match types.  Additionally, lowering search engine bids for Overture Global and increasing bids for Overture US could be  beneficial. Despite it, it ranks second in clicks and traffic generation, the conversion rate remains low.  Utilizing more advanced and broad keywords could enhance this campaign's performance.<br>
 
-While MSN US and MSN Global have lower traffic compared to Yahoo, they show a higher conversion rate. To boost  revenue for the Air France Brand & French Destinations campaign using Google Global and MSN, consider increasing MSN's search engine bids slightly while decreasing CPC. Using more broad match keywords can also help increase revenue by improving quality score and achieving higher ad ranks. Once stability and awareness are established, advanced and standard keywords can be introduced. Google Global can also benefit from reducing CPC and increasing the use of broad keywords, with future plans for advanced and standard keywords once stability and awareness are achieved.
+While MSN US and MSN Global have lower traffic compared to Yahoo, they show a higher conversion rate. To boost  revenue for the Air France Brand & French Destinations campaign using Google Global and MSN, consider increasing MSN's search engine bids slightly while decreasing CPC. Using more broad match keywords can also help increase revenue by improving quality score and achieving higher ad ranks. Once stability and awareness are established, advanced and standard keywords can be introduced. Google Global can also benefit from reducing CPC and increasing the use of broad keywords, with future plans for advanced and standard keywords once stability and awareness are achieved.<br>
 
 Geo-targeted countries in both Yahoo US and Google US exhibit high Cost Per Click (CPC) following the Business  Class campaign. This indicates a high expenditure for traffic without significant click-through rates (CTR). The low Return On Ad Spent (ROAS) is also indicative of this inefficiency. The campaign targets demographics interested in cost-effective, discounted deals, leading to competitive keyword searches and higher CPCs. Increased competition drives up bid prices, necessitating strategic keyword selection, competition monitoring, and enhanced quality score to lower CPC and boost ROAS and CTR (Semrush, 2023). Quality score is influenced by factors like expected CTR, ad relevance, and landing page experience. Ensuring content alignment with ad promises and optimizing page speed on desktop and mobile devices are essential for enhancing landing page experience (UDS, 2023). 
 
@@ -176,7 +176,7 @@ case$Bid_Strategy <- ifelse(case$Publisher_Name == "Yahoo_US" & is.na(case$Bid_S
 # Checking if all null values are imputed
 colSums(is.na(case))
 ```
-Imputation rationale
+<b>Imputation rationale</b><br>
 Bid strategy imputation was guided by patterns observed within each publisher name's data, alongside considerations of which campaign they belong, their search engine bid for that specific campaign, and keyword group to maintain dataset consistency. Prior to imputation, data cleaning involved correcting typographical errors in bid strategy values to facilitate merging of similar values, particularly for Position 1-4 Bid Strategy. "N/A," considered a valid match type, was changed to "Unknown" to avoid it being recognized as a null value by R. Uniformity and consistency were ensured throughout this process.
 
 Adding new column (ROAS and Net Revenue)
@@ -220,8 +220,9 @@ word_freq <- tidy_text %>%
 wordcloud2(word_freq, size = .22, minRotation = -pi/6, maxRotation = -pi/6)
 ```
 <img src="{{ site.url }}{{ site.baseurl }}/images/air_france_word_cloud.png" alt=""><br>
-Analysis on Word Cloud
-The plot indicates that the most frequent keyword is "internationalairfare," suggesting a focus on international flights rather than domestic travel specifically in terms of airfare. The next frequent terms are parisairfare, parisairfares and parisflight. This suggests a strong preference for travel to Paris among users. While Paris is the primary focus, keywords like europeairfare, franceairfare, romeflight, and veniceflight suggest an interest in other European cities as well.
+
+<b>Analysis on Word Cloud</b><br>
+The plot indicates that the most frequent keyword is "internationalairfare," suggesting a focus on international flights rather than domestic travel specifically in terms of airfare. The next frequent terms are parisairfare, parisairfares and parisflight. This suggests a strong preference for travel to Paris among users. While Paris is the primary focus, keywords like europeairfare, franceairfare, romeflight, and veniceflight suggest an interest in other European cities as well.<br>
 
 The keywords airfrance, airfrancecom, and airfranceairline show that users refer to specifically search for information about Air France's services directly on their website. Other keywords such as cheapinternationalairfare, parischeapflight, and cheapinternationalticket suggest that customers are looking for an affordable travel options.
 
@@ -268,15 +269,15 @@ top_20_matched <- case %>%
   filter(Keyword %in% top_words) %>% # Filter rows where Keyword matches any of the top words
   arrange(desc(Total_Volume_Bookings), desc(Clicks), desc(Impressions), Avg_Cost_per_Click)
 ```
-STRATEGY
+<b>STRATEGY</b><br>
 We utilize the marketing funnel in this case study dataset which is the model of the customer journey. It represents the buying stages people go through after becoming aware of a business, service, or product (Semrush, 2023).The funnel starts with "Awareness", "Consideration", "Conversion", and "Loyalty". This shows the customers narrowing as the journey progresses toward purchase. From this marketing funnel, we decided to create our strategy which is to reverse it. We want to create a lookalike audiences to reverse the marketing funnel and generate high-quality leads. This is aligned with the study of Naira Perez (2022) who is now using the social media platforms to help us create personas based on data we know is accurate and then targeting them. According to Perez(2022), interest-based marketing is a good starting point but misses the mark many times. In one of the study conducted on the accuracy of Facebook activity on their interest-based ads, they found that only  30% of interests Facebook listed were not real interests. This means that if your ad is based on the list of interests, you could miss the mark about 30% of the time. With this reverse marketing funnel, instead of feeding this theoretical funnel to cold audiences, we want to go first at the end of the funnel and  generate a list of cold audiences so similar to our current converters that they may be almost considered warm audiences. As Perez (2022) recommended, with this strategy we need to consider our campaign more competitive in a way that the goal for lookalike audiences is not only to be good at converting but also at engagement. This means they will also spread awareness to other potential lookalike audiences.
 
-Our KPIs in Reverse Marketing Funnel
-This model is in perspective of maximizing the return on investment (ROI) but at the same time retaining customers, and lowering the cost. Our model will start on "Total Number of Booking" which is the part of "Conversion and Loyalty". It will be followed by "Clicks" which will be represented by "Consideration" then "Impression" which in this case is "Awareness". Finally, the "Average Cost per Click" is also considered to minimize the cost impact.
+<b>Our KPIs in Reverse Marketing Funnel</b><br>
+This model is in perspective of maximizing the return on investment (ROI) but at the same time retaining customers, and lowering the cost. Our model will start on "Total Number of Booking" which is the part of "Conversion and Loyalty". It will be followed by "Clicks" which will be represented by "Consideration" then "Impression" which in this case is "Awareness". Finally, the "Average Cost per Click" is also considered to minimize the cost impact.<br>
 
-As per Wordstream, quality Score has a direct correlation on success in Google Ads and Microsoft Ads which means higher ROI. High quality scores lower both the cost per click and the cost per conversion. Moreover, it can also improve the ad position that increases the likelihood of customers clicking on the ads. 
+As per Wordstream, quality Score has a direct correlation on success in Google Ads and Microsoft Ads which means higher ROI. High quality scores lower both the cost per click and the cost per conversion. Moreover, it can also improve the ad position that increases the likelihood of customers clicking on the ads. <br>
 
-Results of Reverse Marketing Funnel using the dataset
+<b>Results of Reverse Marketing Funnel using the dataset</b><br>
 The table shows that the first top 20 of the top performing campaigns who are the "Air Branded" and "Air France Brand & French Destinations". The most relevant keywords results are airfrance, air france, [airfrance], and airfrance com. While "Exact" match type topped the ranking, majority of match type is "Broad" with few "Advanced" as well. For the publisher name, there are several who make it to the top which comprises of "Google_US", "Google_Global", "Yahoo_US", "MSN_US", and "Overture_Global".
 
 ```
@@ -411,8 +412,7 @@ bid_plt<-  ggplot(ranked, aes(x = Publisher_Name, y = Search_Engine_Bid, fill = 
 # Average CPC by Publisher Name (Plot 1)
 cpc_plt
 ```
-Average CPC by Publisher Name (Plot 1)
-
+<b>Average CPC by Publisher Name (Plot 1)</b><br>
 In our analysis of average cost-per-click (CPC) by publisher, we've identified notable variances. Publishers  such as Google, MSN, and Yahoo demonstrate a broad CPC range, suggesting varied bidding strategies. Conversely, Overture (both Global and US) exhibits a narrower CPC spread, implying a more uniform pricing approach. Yahoo and Overture, predominantly utilizing standard and advanced match types, typically incur lower CPCs. Meanwhile, Google and MSN, favoring broad match types, are associated with higher CPCs. Notably, Google is the exclusive publisher implementing exact match types within this dataset.
 
 ```
