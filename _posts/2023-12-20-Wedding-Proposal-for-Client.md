@@ -18,8 +18,7 @@ Zamambo Mkhize (Business-Side Stakeholder) <br>
 Business Challenge built by [Professor Chase Kusterer](https://github.com/chase-kusterer)<br>
 Hult International Business School<br>
 
-Presentation to the Client
-[Wedding Proposal to Client](https://www.youtube.com/watch?v=Hx5pz-9aWH0) <br><br>
+[Presentation to the Client](https://www.youtube.com/watch?v=Hx5pz-9aWH0) <br><br>
 
 ### Dear Bride & Groom,
 
