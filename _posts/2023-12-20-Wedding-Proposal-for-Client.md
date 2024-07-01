@@ -29,7 +29,7 @@ Choose our services for your wedding and entrust the planning to the very best h
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>-The Matrix Bliss Events</i>
 
-### SQL Queries
+### I. SQL Queries
 ```
 /*
 Team 07 The Matrix (Vision Board 12)
@@ -744,7 +744,7 @@ ON f1.vendor_id = p1.vendor_id
 WHERE ws_large = 1
 group by 1,2,3;
 ```
-### Budget Level and Wedding Size Different Combinations
+### II. Budget Level and Wedding Size Different Combinations
 ```
 -- Table 2 Template for Budget Level and Wedding Size Different Combinations
 DROP TABLE IF EXISTS TEMPLATE;
@@ -870,7 +870,7 @@ LEFT JOIN jewelry_all_sizes j1
 ON j1.budget_level = t1.budget_level
 ;
 ```
-### Assigned Weights based on importance
+### III. Assigned Weights based on importance
 ```
 /* 
    We assigned weights based on importance for the style and on amount of products will be used from that department
@@ -924,7 +924,7 @@ SELECT vendor_id, vendor_depart, price_ce, ws_small, ws_medium, ws_large FROM dr
 UNION ALL
 SELECT * FROM jewelry;
 ```
-### Assigned Wedding Size (Medium) & Budget Level (Moderate) 
+### IV. Assigned Wedding Size (Medium) & Budget Level (Moderate) 
 ```
 /* 
 ALL VENDORS ARE CHOSEN FROM FIRST_FINAL_TABLE AND HAVE PRICE_CE = 3 (EXCEPT PHOTO AND JEWELRY) AND WS_LARGE = 1
@@ -1002,7 +1002,7 @@ price_per_item float,
 quantity int,
 subtotal float);
 ```
-### Outsourcing
+### V. Outsourcing
 ```
 -- Flowers outsource data
 INSERT INTO wedding_cost_data VALUES
@@ -1268,17 +1268,17 @@ VALUES
 );
 ```
 
-### Final table
+### VI. Final table
 ```
 -- Final table (Viewing the first 30)
 SELECT *
 FROM wedding_cost_data
 limit 30;
 ```
-### Table Output (First 30)
+### VII. Table Output (First 30)
 <img src="{{ site.url }}{{ site.baseurl }}/images/wedding_table.png" alt="">
 
-### Python Code
+### VIII. Python Code
 ```
 # Importing pandas libraries
 import pandas as pd
@@ -1362,7 +1362,7 @@ total_cost = str(wedding_data['subtotal'].sum())
 formatted_total_cost = '\x1b[1m\x1b[41;184;219;46m' + f'Wedding Cost:                    {round(float(total_cost), 2)}$' + '\x1b[0m\x1b[0m'  # Adding ANSI escape codes for bold and color
 print(formatted_total_cost)
 ```
-### Wedding Proposal
+### IX. Wedding Proposal
 Wedding Size: Medium (51 - 150)<br>
 Budget Level: Moderate (135 guests)
 
