@@ -12200,7 +12200,7 @@ INSERT INTO Cuisine (product_id, cuisine_id, african, american, asian, bbq, cari
 INSERT INTO Cuisine (product_id, cuisine_id, african, american, asian, bbq, caribbean, french, fusion, german, greek, indian, italian, latin_american, local, mediterranean, mexican, middle_eastern, seafood, southern, spanish, thai) VALUES ('prod_327', 'cus_bar_18', '', '1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 INSERT INTO Cuisine (product_id, cuisine_id, african, american, asian, bbq, caribbean, french, fusion, german, greek, indian, italian, latin_american, local, mediterranean, mexican, middle_eastern, seafood, southern, spanish, thai) VALUES ('prod_328', 'cus_bar_19', '', '1', '1', '1', '', '1', '', '', '1', '', '1', '', '1', '1', '1', '1', '1', '1', '1', '');
 ```
-### Sample Table Output (Venue Department)
+### VII. Sample Table Output (Venue Department)
 Wedding Vendors and Pricing
 ```
 SELECT c.vendor_name, c.vendor_location, c.vendor_rating, a.product_name, a.unit_vol, a.price_unit, a.price_ce
