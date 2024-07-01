@@ -767,7 +767,7 @@ INSERT INTO TEMPLATE VALUES
 DROP TABLE IF EXISTS SECOND_FINAL_TABLE_PREPARATION;
 CREATE TEMPORARY TABLE SECOND_FINAL_TABLE_PREPARATION AS
 SELECT  t1.wedding_size,
-		t1.budget_level,
+	t1.budget_level,
         'romantic/vintage' as wedding_theme,
         flowers_arrangement,
         arr_price,
@@ -873,7 +873,7 @@ ON j1.budget_level = t1.budget_level
    CREATE TEMPORARY TABLE SECOND_FINAL_TABLE AS
 */
 SELECT *,
-		5 * flowers_arrangement * arr_price + 1*flowers_bouquet * bou_price + 
+        5 * flowers_arrangement * arr_price + 1*flowers_bouquet * bou_price + 
         1.5 * venue * venue_price  +
         invitation_price +
         2 * catering_cuisine_price * catering_cuisine +
@@ -928,7 +928,7 @@ final products for jewelry
 DROP TABLE IF EXISTS jewelry_products;
 CREATE TEMPORARY TABLE jewelry_products AS
 SELECT  vendor_depart as department,
-		vendor_name,
+        vendor_name,
         2450 as vendor_budget,
         'Wedding Ring' as product_name,
         price_unit as price_per_item,
@@ -944,7 +944,7 @@ AND v1.vendor_id = 'jwl_04';
 DROP TABLE IF EXISTS music_products;
 CREATE TEMPORARY TABLE music_products AS
 SELECT  vendor_depart as department,
-		vendor_name,
+        vendor_name,
         2080 as vendor_budget,
         'Music' as product_name,
         price_unit as price_per_item,
@@ -960,7 +960,7 @@ AND v1.vendor_id = 'dj_12';
 DROP TABLE IF EXISTS photo_products;
 CREATE TEMPORARY TABLE photo_products AS
 SELECT  vendor_depart as department,
-		vendor_name,
+	vendor_name,
         3940 as vendor_budget,
         'Wedding Photoshoot' as product_name,
         price_unit as price_per_item,
@@ -975,7 +975,7 @@ WHERE v1.vendor_id = 'vid_08';
 DROP TABLE IF EXISTS venue_products;
 CREATE TEMPORARY TABLE venue_products AS
 SELECT  vendor_depart as department,
-		vendor_name,
+	vendor_name,
         17800 as vendor_budget,
         'Wedding Venue' as product_name,
         price_unit as price_per_item,
