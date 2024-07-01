@@ -241,7 +241,7 @@ ggplot(word_freq[1:20, ], aes(x = reorder(word, n), y = n)) +
     plot.title = element_text(hjust = 0.5, face = "bold") 
   )
 ```
-Analysis of Top 20 Keywords by Frequency
+<b>Analysis of Top 20 Keywords by Frequency</b><br>
 In addition to creating a word cloud, presenting a bar plot of the most frequent keywords would provide the audience with a clear and straightforward visualization. We will analyze the top 20 keywords to understand their frequency and performance in Air France's SEM campaigns. This selection represents the most frequently used words, with a maximum frequency of 31 down to 15. We will use these keywords to assess their association with the top-performing campaigns of Air France. Additionally, we will identify any keywords not in the top 20 that perform well based on our key performance indicators (KPIs) and determine their associated campaigns and strategies.
 
 ###  Part IV. Data Visualizations and Analysis
