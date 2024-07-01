@@ -187,7 +187,7 @@ case$ROAS <- case$Amount / case$Total_Cost
 # Adding Net Revenue column
 case$Net_Revenue<- case$Amount - case$Total_Cost
 ```
-### NLP
+### NLP (Word Cloud)
 ```
 # NLP 
 text_data <- case
@@ -219,7 +219,7 @@ word_freq <- tidy_text %>%
 # Generating Wordcloud
 wordcloud2(word_freq, size = .22, minRotation = -pi/6, maxRotation = -pi/6)
 ```
-<img src="{{ site.url }}{{ site.baseurl }}/images/air_france_word_cloud.png" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}/images/air_france_word_cloud.png" alt=""><br>
 Analysis on Word Cloud
 The plot indicates that the most frequent keyword is "internationalairfare," suggesting a focus on international flights rather than domestic travel specifically in terms of airfare. The next frequent terms are parisairfare, parisairfares and parisflight. This suggests a strong preference for travel to Paris among users. While Paris is the primary focus, keywords like europeairfare, franceairfare, romeflight, and veniceflight suggest an interest in other European cities as well.
 
