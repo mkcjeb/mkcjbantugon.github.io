@@ -1,5 +1,5 @@
 ---
-title: "Hair and Makeup Wedding Vendors Database Design"
+title: "Wedding Vendors Database Design"
 date: 2023-12-03
 tags: [SQL, database, RDBMS, entities, ERD, functional dependencies, tables,data model]
 header:
@@ -9,7 +9,7 @@ mathjax: "true"
 toc: true
 toc_label : "Navigate":
 ---
-By: Team Matrix <br>
+By: Team Matrix (Hair & Makeup Department) <br>
 Michelle Kae Celine Jo-anne Bantugon (Data Engineer) <br>
 Miron Tkachuk (Data Engineer) <br>
 Srinivas Kondeti (Product Manager) <br>
