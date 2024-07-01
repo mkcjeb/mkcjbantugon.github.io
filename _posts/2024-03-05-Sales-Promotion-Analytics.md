@@ -19,6 +19,7 @@ over time, while the drill-down bar chart provides detailed insights into sales 
 levels. The dashboard utilizes Tableau essentials to enhance interactivity and effectiveness, catering to both technical 
 and non-technical audiences. 
 
+### Interactive Dashboard (Video)
 <video width="600" height="600" controls>
   <source src="{{ site.url }}{{ site.baseurl }}/videos/sales_promotion.mp4" type="video/mp4">
   Your browser does not support the video tag.
