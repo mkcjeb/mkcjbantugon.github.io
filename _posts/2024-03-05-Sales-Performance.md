@@ -1,5 +1,5 @@
 ---
-title: "Sales Promotion Analysis"
+title: "Sales Performance Analysis"
 date: 2023-10-08
 tags: [Tableau, dashboard, interactive, BANS, dynamic zone visibility, drill-down]
 header:
