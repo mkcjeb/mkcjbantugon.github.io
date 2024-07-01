@@ -21,20 +21,20 @@ and non-technical audiences.
 
 ### Insights and Recommendations 
 <b>Regional Sales Comparison</b><br>
--Focus on increasing sales efforts in high-performing regions like Ontario, Alberta, 
+Focus on increasing sales efforts in high-performing regions like Ontario, Alberta, 
 Texas, and Florida. <br>
 <b>Top Distributors and Items</b><br>
--Strengthen partnerships with top distributors like Home Depot and prioritize the 
-promotion of high-selling items. 
+Strengthen partnerships with top distributors like Home Depot and prioritize the 
+promotion of high-selling items. <br>
 <b>Comparison of Promotion Impact</b><br>
--Plan promotions to align with successful periods, such as November and 
-December, and monitor effectiveness to maximize impact. 
+Plan promotions to align with successful periods, such as November and 
+December, and monitor effectiveness to maximize impact. <br>
 <b>Trends and Top Distributors</b><br>
--Analyze factors contributing to the success of Lowe’s Companies Incorporated and 
-consider replicating strategies in other regions. 
+Analyze factors contributing to the success of Lowe’s Companies Incorporated and 
+consider replicating strategies in other regions. <br>
 <b>Type of Promotion</b><br>
 -Leverage the popularity of Black Friday and the September Promotion by optimizing marketing 
-efforts and product offerings during these periods. 
+efforts and product offerings during these periods. <br>
 
 ### Storytelling and Conclusions 
 The storyboard and dashboard tell a compelling story of sales performance, highlighting key insights and trends. By 
