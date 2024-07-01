@@ -19,6 +19,11 @@ over time, while the drill-down bar chart provides detailed insights into sales 
 levels. The dashboard utilizes Tableau essentials to enhance interactivity and effectiveness, catering to both technical 
 and non-technical audiences. 
 
+<video width="320" height="240" controls>
+  <source src="{{ site.url }}{{ site.baseurl }}/images/sales_promotion.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ### Insights and Recommendations 
 <b>Regional Sales Comparison</b><br>
 Focus on increasing sales efforts in high-performing regions like Ontario, Alberta, 
