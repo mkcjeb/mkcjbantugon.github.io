@@ -1,5 +1,5 @@
 ---
 permalink: /resume-cv/
 header:
-  image: "/images/Resume_DS.png"
+  image: "/images/Michelle_Bantugon_Resume.png"
 ---
