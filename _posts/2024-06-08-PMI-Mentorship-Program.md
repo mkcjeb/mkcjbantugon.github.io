@@ -1,5 +1,5 @@
 ---
-title: "PMI SF Bay Area NGL Mentorship Program"
+title: "PMI SF Bay Area NGL Mentorship Program (Coming Soon)"
 date: 2024-06-08
 tags: [Data Analytics, Tableau, UI/UX, User Journey]
 header:
