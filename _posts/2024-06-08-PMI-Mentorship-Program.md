@@ -11,3 +11,8 @@ toc_label : "Navigate"
 ---
 By: Michelle Kae Celine Jo-anne Bantugon<br>
 
+
+Note: This project was a collaboration with Tummala Sai Madhuri, Dhara Khubchandani, Odniko M., and Elena Orzheshkovskaya under Project Management Institute San Francisco Bay Area Chapter NGL Let's Jam Challenge 2024.
+
+
+
