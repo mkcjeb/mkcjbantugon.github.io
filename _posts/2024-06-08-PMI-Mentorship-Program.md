@@ -13,6 +13,36 @@ By: Michelle Kae Celine Jo-anne Bantugon<br>
 
 <i> Note: This project was a collaboration with Tummala Sai Madhuri, Dhara Khubchandani, Odniko M., and Elena Orzheshkovskaya under Project Management Institute San Francisco Bay Area Chapter NGL Let's Jam Challenge 2024.</i><br>
 
+## Project Management Institute (PMI)
+<b>PMI Non-Profit Organization</b>: Project Management Institute (PMI) is a globally recognized professional association for project management practitioners. PMI provides a range of resources, certifications, and networking opportunities to its members. PMI membership offers several benefits and opportunities for individuals involved in project management. <br>
+
+## Case Study: Mentorship Program
+PMI SFBAC offers project or product management professionals opportunities to network, learn, and grow in all stages of their careers within their local community. The Mentorship Program fosters a community of project management professionals from all industries and experience levels, including those who are transitioning into a Project/Program or Product Management career. The program also supports seasoned professionals interested in seeking mentorship to grow into senior leadership roles.<br>
+
+The Mentorship Program is structured in a 10-week cohort during which Mentees are mentored by a senior Mentor. Additionally, the program also offers real-world experiential learning opportunities for Mentees to showcase their leadership skills. Mentees sharpen their skills in professional branding, resume building, and interview preparation skills with the help of industry experts through peer-to-peer or group networking forums. Specific forums within the Mentorship Program include:
+- Mentor-mentee pairing in a One-on-One format <br>
+- Coaching Circle: One-to-2-4 mentees group format <br>
+- Mentor-led Group Experiential Learning tracks <br>
+    Leadership Development <br>
+    Career Building / Career Transitioning<br>
+
+These open forums enable learning from peer-to-peer experiences and networking opportunities. Participants enjoy professional development, networking, and learning which encourages their growth as Project or Product managers in all stages of their careers.<br>
+
+## Objectives
+PMI SFBAC recognizes a crucial gap in monitoring and reporting the accomplishments of its Mentorship Program and is poised to address this challenge head-on. The organization has identified a critical need for a sophisticated system that not only captures essential performance metrics but does so with efficiency. This system should also present these metrics in a way that offers both real-time and periodic insights that reflect the dynamic nature of the Mentorship Program.<br>
+
+<b>Clear Measurements of Success</b><br>
+Create a solution that efficiently captures essential performance metrics for the Mentorship Program.<br>
+
+<b>Adaptive Mentee Experience</b><br>
+Harness data-driven insights to facilitate ongoing enhancements, ensuring the program remains adaptive and responsive to the needs of different cohorts.<br>
+
+<b>Optimization of Mentorship Pairing</b><br>
+Significantly reduces the manual effort traditionally involved in creating mentor-mentee matches.<br>
+
+The solution should contribute to an ecosystem that nurtures professional growth, encourages feedback, and celebrates the achievements of its participants. Through this challenge, we aim to elevate the mentorship experience, making it more accessible, insightful, and rewarding for everyone involved.<br>
+
+
 [Presentation](https://www.canva.com/design/DAGKxlcBX0M/hGKFb-RbyD4DYKdBOCFzxw/view?utm_content=DAGKxlcBX0M&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel) <br>
 
 [Feedback from the Judges](https://docs.google.com/spreadsheets/d/1M5fZxc6jP_045xIr8-yE_YDPZ8PRHoORnoRFkRBCfpg/edit?gid=0#gid=0)<br>
