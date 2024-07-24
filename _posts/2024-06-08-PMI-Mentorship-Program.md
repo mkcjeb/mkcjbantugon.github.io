@@ -65,5 +65,11 @@ The solution should contribute to an ecosystem that nurtures professional growth
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP15.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP16.png" alt=""><br>
 
+## Interactive Dashboard
+<video width="600" height="600" controls>
+  <source src="{{ site.url }}{{ site.baseurl }}/videos/pmi_tmp_dashboard.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Feedback from the Judges
 [Judging Criteria and Score](https://docs.google.com/spreadsheets/d/1M5fZxc6jP_045xIr8-yE_YDPZ8PRHoORnoRFkRBCfpg/edit?gid=0#gid=0)<br>
