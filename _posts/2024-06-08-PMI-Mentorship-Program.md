@@ -45,9 +45,7 @@ The solution should contribute to an ecosystem that nurtures professional growth
 
 [Presentation](https://www.canva.com/design/DAGKxlcBX0M/hGKFb-RbyD4DYKdBOCFzxw/view?utm_content=DAGKxlcBX0M&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel) <br>
 
-[Feedback from the Judges](https://docs.google.com/spreadsheets/d/1M5fZxc6jP_045xIr8-yE_YDPZ8PRHoORnoRFkRBCfpg/edit?gid=0#gid=0)<br>
-
-## Mentorship Program
+## Mentorship Program Deck
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP1.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP2.png" alt=""><br>
@@ -65,3 +63,6 @@ The solution should contribute to an ecosystem that nurtures professional growth
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP14.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP15.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP16.png" alt=""><br>
+
+## Feedback from the Judges
+[Judging Criteria and Score](https://docs.google.com/spreadsheets/d/1M5fZxc6jP_045xIr8-yE_YDPZ8PRHoORnoRFkRBCfpg/edit?gid=0#gid=0)<br>
