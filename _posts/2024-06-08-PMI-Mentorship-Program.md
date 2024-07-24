@@ -15,6 +15,8 @@ By: Michelle Kae Celine Jo-anne Bantugon<br>
 
 [Presentation](https://www.canva.com/design/DAGKxlcBX0M/hGKFb-RbyD4DYKdBOCFzxw/view?utm_content=DAGKxlcBX0M&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel) <br>
 
+[Feedback from the Judges](https://docs.google.com/spreadsheets/d/1M5fZxc6jP_045xIr8-yE_YDPZ8PRHoORnoRFkRBCfpg/edit?gid=0#gid=0)<br>
+
 ## Mentorship Program
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP1.png" alt=""><br>
