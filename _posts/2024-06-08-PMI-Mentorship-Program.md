@@ -66,9 +66,8 @@ The solution should contribute to an ecosystem that nurtures professional growth
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP16.png" alt=""><br>
 
 ## Interactive Dashboard
-<video width="600" height="600" controls>
+<video width="400" height="400" controls>
   <source src="{{ site.url }}{{ site.baseurl }}/videos/pmi_tmp_dashboard.mp4" type="video/mp4">
-  Your browser does not support the video tag.
 </video>
 
 ## Feedback from the Judges
