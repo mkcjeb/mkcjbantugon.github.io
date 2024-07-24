@@ -12,7 +12,7 @@ toc_label : "Navigate"
 By: Michelle Kae Celine Jo-anne Bantugon<br>
 
 <i> Note: This project was a collaboration with Tummala Sai Madhuri, Dhara Khubchandani, Odniko M., and Elena Orzheshkovskaya under Project Management Institute San Francisco Bay Area Chapter NGL Let's Jam Challenge 2024.</i><br>
-[Powerpoint Presentation]([https://youtu.be/5YiImxXQS6o](https://www.canva.com/design/DAGKxlcBX0M/hGKFb-RbyD4DYKdBOCFzxw/view?utm_content=DAGKxlcBX0M&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel)) <br><br>
+[Powerpoint Presentation]([[https://youtu.be/5YiImxXQS6o](https://www.canva.com/design/DAGKxlcBX0M/hGKFb-RbyD4DYKdBOCFzxw/view?utm_content=DAGKxlcBX0M&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel)]) <br><br>
 
 ## Mentorship Program
 <img src="{{ site.url }}{{ site.baseurl }}/images/OD01.png" alt=""><br>
