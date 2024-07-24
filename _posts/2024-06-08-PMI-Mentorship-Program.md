@@ -24,8 +24,8 @@ The Mentorship Program is structured in a 10-week cohort during which Mentees ar
 - Mentor-mentee pairing in a One-on-One format <br>
 - Coaching Circle: One-to-2-4 mentees group format <br>
 - Mentor-led Group Experiential Learning tracks <br>
-    Leadership Development <br>
-    Career Building / Career Transitioning<br>
+    - Leadership Development <br>
+    - Career Building / Career Transitioning<br>
 
 These open forums enable learning from peer-to-peer experiences and networking opportunities. Participants enjoy professional development, networking, and learning which encourages their growth as Project or Product managers in all stages of their careers.<br>
 
