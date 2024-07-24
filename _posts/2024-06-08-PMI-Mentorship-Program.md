@@ -1,5 +1,5 @@
 ---
-title: "PMI SF Bay Area NGL Mentorship Program (2nd Place Winner)"
+title: "PMI SF Bay Area Chapter NGL Let's Jam Challenge (2nd Place Winner)"
 date: 2024-06-08
 tags: [Data Analytics, Tableau, UI/UX, User Journey]
 header:
