@@ -11,7 +11,7 @@ toc_label : "Navigate"
 ---
 By: Michelle Kae Celine Jo-anne Bantugon<br>
 
-<i> Note: This project was a collaboration with Tummala Sai Madhuri, Dhara Khubchandani, Odniko M., and Elena Orzheshkovskaya under Project Management Institute San Francisco Bay Area Chapter NGL Let's Jam Challenge 2024.</i><br>
+<i> Note: This [project](https://www.linkedin.com/feed/update/urn:li:activity:7221230805778366464/) was a collaboration with Tummala Sai Madhuri, Dhara Khubchandani, Odniko M., and Elena Orzheshkovskaya under Project Management Institute San Francisco Bay Area Chapter NGL Let's Jam Challenge 2024.</i><br>
 
 ## Project Management Institute (PMI)
 <b>PMI Non-Profit Organization</b>: Project Management Institute (PMI) is a globally recognized professional association for project management practitioners. PMI provides a range of resources, certifications, and networking opportunities to its members. PMI membership offers several benefits and opportunities for individuals involved in project management. <br>
