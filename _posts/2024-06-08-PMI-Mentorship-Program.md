@@ -24,8 +24,12 @@ By: Michelle Kae Celine Jo-anne Bantugon<br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP5.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP6.png" alt=""><br>
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP7.png" alt=""><br>
-
-
-
-
-
+<img src="{{ site.url }}{{ site.baseurl }}/images/TMP8.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/TMP9.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/TMP10.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/TMP11.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/TMP12.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/TMP13.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/TMP14.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/TMP15.png" alt=""><br>
+<img src="{{ site.url }}{{ site.baseurl }}/images/TMP16.png" alt=""><br>
