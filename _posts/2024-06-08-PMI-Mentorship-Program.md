@@ -16,7 +16,8 @@ By: Michelle Kae Celine Jo-anne Bantugon<br>
 ## Project Management Institute (PMI)
 <b>PMI Non-Profit Organization</b>: Project Management Institute (PMI) is a globally recognized professional association for project management practitioners. PMI provides a range of resources, certifications, and networking opportunities to its members. PMI membership offers several benefits and opportunities for individuals involved in project management. <br>
 
-## Case Study: Mentorship Program
+## PMI SFBAC Mentorship Program
+[Case Study](https://docs.google.com/document/d/1SjgbHalPZTt2CRRIFBALj0i5RHHY7vjz5bK3PmxsAS8/edit?usp=drive_link) <br>
 PMI SFBAC offers project or product management professionals opportunities to network, learn, and grow in all stages of their careers within their local community. The Mentorship Program fosters a community of project management professionals from all industries and experience levels, including those who are transitioning into a Project/Program or Product Management career. The program also supports seasoned professionals interested in seeking mentorship to grow into senior leadership roles.<br>
 
 The Mentorship Program is structured in a 10-week cohort during which Mentees are mentored by a senior Mentor. Additionally, the program also offers real-world experiential learning opportunities for Mentees to showcase their leadership skills. Mentees sharpen their skills in professional branding, resume building, and interview preparation skills with the help of industry experts through peer-to-peer or group networking forums. Specific forums within the Mentorship Program include:
