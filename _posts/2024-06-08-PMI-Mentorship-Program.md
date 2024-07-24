@@ -44,7 +44,7 @@ Significantly reduces the manual effort traditionally involved in creating mento
 The solution should contribute to an ecosystem that nurtures professional growth, encourages feedback, and celebrates the achievements of its participants. Through this challenge, we aim to elevate the mentorship experience, making it more accessible, insightful, and rewarding for everyone involved.<br>
 
 
-[Presentation (designed by yours truly using PMI template](https://www.canva.com/design/DAGKxlcBX0M/hGKFb-RbyD4DYKdBOCFzxw/view?utm_content=DAGKxlcBX0M&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel) <br>
+[Presentation (designed by yours truly using PMI template)](https://www.canva.com/design/DAGKxlcBX0M/hGKFb-RbyD4DYKdBOCFzxw/view?utm_content=DAGKxlcBX0M&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel) <br>
 
 ## Mentorship Program Deck
 <img src="{{ site.url }}{{ site.baseurl }}/images/TMP.png" alt=""><br>
