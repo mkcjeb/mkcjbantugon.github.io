@@ -4,7 +4,7 @@ date: 2024-04-14
 tags: [Python, YOLO, machine learning, labelme]
 header:
   image: "/images/ey challenge.jpg"
-excerpt: "(Python - Machine Learning) The EY Open Data Science 2024 challenge is focused on helping coastal communities become more resilient to the effects of climate change. Participants will use AI for good and help solve societal and environmental problems through technology. "
+excerpt: "(Python - Machine Learning) The 2024 EY Open Science Data challenge is focused on helping coastal communities become more resilient to the effects of climate change. Participants will use AI for good and help solve societal and environmental problems through technology. "
 mathjax: "true"
 toc: true
 toc_label : "Navigate"
@@ -13,7 +13,7 @@ By: Michelle Kae Celine Jo-anne Bantugon<br>
 
 Business case built by <br>
 [Professor Chase Kusterer](https://github.com/chase-kusterer)<br>
-Ernst & Young | NASA ([EY Open Science Data Challenge](https://challenge.ey.com/challenges/tropical-cyclone-damage-assessment-lrrno2xm)) <br>
+Ernst & Young | NASA ([2024 EY Open Science Data Challenge](https://challenge.ey.com/challenges/tropical-cyclone-damage-assessment-lrrno2xm)) <br>
 Hult International Business School<br>
 
 <i>Note: This project was a collaboration with Ella Pesola, Italo Hidalgo, Jorge Solis, Karla Marie Banal , and Marcio Pineda in the context of a Business Challenge class with Professor Chase Kusterer at Hult International Business School.</i><br>
