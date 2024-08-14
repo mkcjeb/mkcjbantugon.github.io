@@ -4,7 +4,7 @@ date: 2024-04-14
 tags: [Python, YOLO, machine learning, labelme]
 header:
   image: "/images/ey challenge.jpg"
-excerpt: "(Python - Machine Learning) The 2024 EY Open Science Data challenge is focused on helping coastal communities become more resilient to the effects of climate change. Participants will use AI for good and help solve societal and environmental problems through technology. "
+excerpt: "(Python - Machine Learning, Computer Vision (YOLO)) The 2024 EY Open Science Data challenge is focused on helping coastal communities become more resilient to the effects of climate change. Participants will use AI for good and help solve societal and environmental problems through technology. "
 mathjax: "true"
 toc: true
 toc_label : "Navigate"
